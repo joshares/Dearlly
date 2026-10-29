@@ -8,8 +8,10 @@ from celery.signals import setup_logging
 
 from app.core.config import get_settings
 from app.core.logging import configure_logging
+from app.core.monitoring import init_sentry
 
 settings = get_settings()
+init_sentry(settings, component="worker")
 
 # Celery's default success line prints the task's return value, which may be personal data.
 trace.LOG_SUCCESS = "Task %(name)s[%(id)s] succeeded in %(runtime)ss"

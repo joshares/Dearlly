@@ -11,6 +11,7 @@ from app.api import auth, google, health, users
 from app.core.config import Settings, get_settings
 from app.core.logging import configure_logging
 from app.core.middleware import REQUEST_ID_HEADER, RequestContextMiddleware
+from app.core.monitoring import init_sentry
 from app.core.ratelimit import RateLimitedError, RateLimiter, rate_limited_handler
 from app.core.registries import load_all_registries
 from app.db.session import create_engine, create_sessionmaker
@@ -19,6 +20,7 @@ from app.db.session import create_engine, create_sessionmaker
 def create_app(settings: Settings | None = None) -> FastAPI:
     settings = settings or get_settings()
     configure_logging(settings.log_level)
+    init_sentry(settings, component="api")
     # Fail at boot, not on first request, if a registry file is broken.
     load_all_registries()
 

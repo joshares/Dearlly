@@ -33,6 +33,8 @@ x-backend: &backend
     EMAIL_FROM: Dearlly <hello@send.dearlly.app>
     # Only Cloudflare can reach the server, so its header carries the visitor's real IP.
     CLIENT_IP_HEADER: CF-Connecting-IP
+    # Shown in Sentry so each error is tied to the exact deployed commit.
+    APP_VERSION: ${IMAGE_TAG}
   depends_on:
     migrate:
       condition: service_completed_successfully

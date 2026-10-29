@@ -7,6 +7,7 @@ import time
 import uuid
 from collections.abc import Iterable
 
+import sentry_sdk
 from starlette.datastructures import MutableHeaders
 from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
@@ -83,8 +84,10 @@ class RequestContextMiddleware:
 
         try:
             await self.app(scope, receive, send_wrapper)
-        except Exception:
+        except Exception as exc:
             logger.exception("unhandled error")
+            # We answer the error ourselves, so tell Sentry explicitly (no-op when it's off).
+            sentry_sdk.capture_exception(exc)
             if response_started:
                 raise
             # Generic body: never leak stack traces or internals to the caller.
