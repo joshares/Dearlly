@@ -70,5 +70,26 @@ ssh -t dearlly sudo /opt/dearlly/deploy/set-secret.sh SECRET_KEY --generate
 
 Saved to `/opt/dearlly/.env.production` (owner `deploy`, mode 600). Never in git, never in chat.
 
-Still to come in Stage 3: production Compose + deploys on merge, encrypted backups to R2, monitoring,
-email (Resend + backup provider), Google sign-in keys.
+Production secrets (all via `set-secret.sh`): `SECRET_KEY` and `POSTGRES_PASSWORD` (both
+`--generate`), `TURNSTILE_SECRET_KEY`, `RESEND_API_KEY`; later `GOOGLE_CLIENT_ID`,
+`GOOGLE_CLIENT_SECRET`. Public settings are in `docker-compose.prod.yml`.
+
+## Deploys (automatic on merge to `main`)
+
+CI → **Publish images** (only after all checks pass) → **Deploy to dearlly.app**:
+
+1. Images are built and pushed to GitHub's registry, tagged with the commit (`ghcr.io/joshares/dearlly-{api,web}:<sha>`).
+2. The deploy job connects with a **deploy-only SSH key**. On the server that key's forced command is
+   `deploy.sh`, which accepts only `deploy <commit sha>`: no shell, no forwarding.
+3. `deploy.sh` pulls that commit's images with a short-lived token (logged out afterwards), runs
+   migrations, starts everything, waits up to 2 minutes for `/health` and the home page, and **rolls
+   back to the previous version** if they don't come up.
+
+GitHub settings it needs (repository **secrets**): `DEPLOY_HOST` (server IP), `DEPLOY_SSH_KEY`
+(private deploy key), `DEPLOY_KNOWN_HOSTS` (server's SSH fingerprint); and repository **variable**
+`TURNSTILE_SITE_KEY` (public). Authorise the deploy key on the server with `authorize-ci-key.sh`.
+
+Manual redeploy of the current version: re-run the latest CI run on `main` in GitHub Actions.
+
+Still to come in Stage 3: encrypted backups to R2, monitoring (Sentry, UptimeRobot), backup email
+provider, Zoho inbox, Google sign-in keys.

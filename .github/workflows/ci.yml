@@ -144,3 +144,82 @@ jobs:
           severity: HIGH,CRITICAL
           exit-code: "1"
           skip-setup-trivy: true
+
+  # ---- Production: only on main, only after every check above has passed. ----
+
+  publish:
+    name: Publish images
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [backend, frontend, images]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      packages: write
+    env:
+      SHA: ${{ github.sha }}
+      TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Turnstile site key is set
+        run: test -n "$TURNSTILE_SITE_KEY" || { echo "Set the TURNSTILE_SITE_KEY repository variable"; exit 1; }
+      - name: Log in to GitHub's registry
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: printf '%s' "$TOKEN" | docker login ghcr.io -u "${GITHUB_ACTOR}" --password-stdin
+      - name: Build and push API image
+        run: |
+          docker build --label "org.opencontainers.image.source=https://github.com/${GITHUB_REPOSITORY}" \
+            -t "ghcr.io/joshares/dearlly-api:${SHA}" backend
+          docker push "ghcr.io/joshares/dearlly-api:${SHA}"
+      - name: Build and push web image
+        run: |
+          docker build --label "org.opencontainers.image.source=https://github.com/${GITHUB_REPOSITORY}" \
+            --build-arg NEXT_PUBLIC_API_URL=https://api.dearlly.app \
+            --build-arg "NEXT_PUBLIC_TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY}" \
+            -t "ghcr.io/joshares/dearlly-web:${SHA}" frontend
+          docker push "ghcr.io/joshares/dearlly-web:${SHA}"
+      - name: Log out
+        if: always()
+        run: docker logout ghcr.io
+
+  deploy:
+    name: Deploy to dearlly.app
+    needs: publish
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: production
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Deploy over SSH (deploy-only key)
+        env:
+          SHA: ${{ github.sha }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          { printf '%s\n' "$TOKEN"; tar -czf - docker-compose.prod.yml deploy; } \
+            | ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes \
+                "deploy@${DEPLOY_HOST}" "deploy ${SHA}"
+      - name: Remove the key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
+      - name: Check the live site
+        run: |
+          curl -fsS --retry 5 --retry-delay 5 https://api.dearlly.app/health
+          curl -fsS --retry 5 --retry-delay 5 -o /dev/null https://dearlly.app/
