@@ -266,7 +266,8 @@ Also start now: find the illustrator (brief: love-letter post office, Nigerian c
 
 **Stage 1 (Foundation) is done** (29 Oct 2026): PRs #1–#8 merged, CI green on `main`, `docker compose up` shows the Dearlly home page. `main` is protected by the "Protect main" ruleset (PR + all checks green + CodeQL, merge commits only, branches auto-deleted).
 **Stage 2 (Accounts) is done** (29 Oct 2026): sign-up with the 18+ tick; log in by emailed code, optional password or Google (Google button appears once its keys are set); sessions, rate limits, profiles, "Delete my account", branded emails, and the A+B look (PRs #9–#17).
-**Stage 3 (Production) is in progress:** domain `dearlly.app` is on Cloudflare; Hostinger KVM 2 (France, Ubuntu 24.04) hardened; HTTPS through Cloudflare (Full strict + Authenticated Origin Pulls, Caddy); **live at https://dearlly.app** with automatic deploys on merge (health check + rollback). Next: backups, monitoring, Zoho, Google keys.
+**Stage 3 (Production) is done** (29 Oct 2026): **live at https://dearlly.app**. Hardened Hostinger server; Cloudflare Full (strict) + Authenticated Origin Pulls + Cloudflare-only firewall; automatic deploys on merge with health check and rollback; nightly encrypted backups to R2 with a tested restore; Sentry (API + worker) and UptimeRobot; Resend on send.dearlly.app; Zoho inbox hello@dearlly.app with SPF, DKIM and DMARC. **Postponed by the founder:** Google sign-in keys (code is live, button hidden) and the backup email provider (Brevo).
+**Stage 4 (Experience engine + love note) is in progress.**
 Stage 0 is partly done: the plan is in the repo; the accounts and domain are being created alongside (needed by Stage 3).
 Update this section as each stage finishes.
 
@@ -287,6 +288,7 @@ Update this section as each stage finishes.
 | 29 Oct 2026 | "Delete my account" added in Stage 2 (NDPA right to erasure). Each later stage adds its data to what deletion removes |
 | 29 Oct 2026 | **Three ways to log in:** emailed code, optional password, and "Continue with Google". Passwords: Argon2id, 10+ characters, breached-password check (HIBP k-anonymity), Turnstile + rate limits, changing it logs out other devices; "forgot password" = log in with a code, then set a new one. Google arrives behind its keys (button hidden until set). A backup email provider is added in Stage 3 so codes still go out if Resend fails |
 | 29 Oct 2026 | Domain: **dearlly.app** (Cloudflare). VPS: Hostinger KVM 2 on a **12-month** term (founder's choice; a little more per month than 24 months). The server IP is kept out of the public repo |
+| 29 Oct 2026 | Google sign-in keys and the backup email provider postponed (founder). Google needs a Privacy Policy link before it can be opened to everyone; a draft Privacy page comes early in Stage 4 |
 | 29 Oct 2026 | Pages use a per-request CSP nonce, so HTML is rendered per request. Stage 4 decides how invitation pages are cached at Cloudflare without weakening the CSP |
 
 ## First prompt for Claude Code (Stage 1)
