@@ -17,6 +17,11 @@ Environment = Literal["development", "test", "production"]
 PLACEHOLDER_MARKER = "local-dev-only"
 MIN_SECRET_KEY_LENGTH = 32
 
+# Cloudflare's published Turnstile test secret: always passes. Fine locally, refused in production.
+# https://developers.cloudflare.com/turnstile/troubleshooting/testing/
+TURNSTILE_TEST_SECRET = "1x0000000000000000000000000000000AA"  # noqa: S105 - public test key
+TURNSTILE_TEST_SECRET_PREFIXES = ("1x0000", "2x0000", "3x0000")
+
 
 def _split_csv(value: object) -> object:
     if isinstance(value, str):
@@ -40,13 +45,27 @@ class Settings(BaseSettings):
     cors_origins: Annotated[list[str], NoDecode] = ["http://localhost:3100"]
     public_web_url: str = "http://localhost:3100"
 
+    # "log" writes emails to the log (local only); "resend" sends them for real.
     email_delivery: Literal["log", "resend"] = "log"
+    resend_api_key: SecretStr | None = None
+    email_from: str = "Dearlly <hello@dearlly.localhost>"
+
+    turnstile_secret_key: SecretStr = SecretStr(TURNSTILE_TEST_SECRET)
+
+    # Header carrying the visitor's real IP when behind a proxy (Cloudflare: CF-Connecting-IP).
+    # Empty means "use the direct connection address".
+    client_ip_header: str = ""
 
     _split_hosts = field_validator("allowed_hosts", "cors_origins", mode="before")(_split_csv)
 
     @property
     def is_production(self) -> bool:
         return self.environment == "production"
+
+    @property
+    def cookie_secure(self) -> bool:
+        # Local development runs on plain http://localhost.
+        return self.is_production
 
     @model_validator(mode="after")
     def _refuse_insecure_production(self) -> "Settings":
@@ -74,6 +93,12 @@ def insecure_production_settings(settings: Settings) -> list[str]:
             problems.append(f"CORS origin {origin!r} must be an exact https:// origin")
     if urlparse(settings.public_web_url).scheme != "https":
         problems.append("PUBLIC_WEB_URL must use https://")
+    if settings.turnstile_secret_key.get_secret_value().startswith(TURNSTILE_TEST_SECRET_PREFIXES):
+        problems.append("TURNSTILE_SECRET_KEY is Cloudflare's test key")
+    if settings.email_delivery != "resend" or settings.resend_api_key is None:
+        problems.append("EMAIL_DELIVERY must be resend, with RESEND_API_KEY set")
+    if "localhost" in settings.email_from:
+        problems.append("EMAIL_FROM must be a real sender address")
     return problems
 
 
