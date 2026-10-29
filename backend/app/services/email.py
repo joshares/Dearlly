@@ -1,12 +1,12 @@
 """Transactional email. Locally emails are logged, not sent; production sends through Resend."""
 
-import html
 import logging
 from dataclasses import dataclass
 
 import httpx
 
 from app.core.config import Settings
+from app.services.email_templates import Paragraph, letter_email
 
 logger = logging.getLogger(__name__)
 
@@ -30,17 +30,29 @@ def login_code_email(to: str, code: str, minutes_valid: int) -> Email:
         f"Your Dearlly code is {code}\n\n"
         f"It works once and expires in {minutes_valid} minutes.\n"
         "If you didn't ask for it, you can ignore this email. "
-        "Nobody can sign in without the code.\n"
+        "Nobody can sign in without the code.\n\n"
+        "Yours, always — Dearlly\n"
     )
-    safe_code = html.escape(code)
-    body = (
-        '<div style="font-family:Georgia,serif;background:#F3EADB;color:#1F2A6B;padding:24px">'
-        '<p style="font-size:20px;margin:0 0 12px">Your Dearlly code</p>'
-        '<p style="font-size:32px;letter-spacing:6px;font-weight:bold;margin:0 0 12px">'
-        f"{safe_code}</p>"
-        f"<p>It works once and expires in {minutes_valid} minutes.</p>"
-        "<p>If you didn't ask for it, you can ignore this email. "
-        "Nobody can sign in without the code.</p></div>"
+    body = letter_email(
+        title="Your Dearlly code",
+        preheader=f"{code} is your code. It works once and expires in {minutes_valid} minutes.",
+        greeting="My dearest,",
+        heading="Here's your code to come in.",
+        highlight=code,
+        paragraphs=[
+            Paragraph(
+                f"Type it on the Dearlly page you came from. "
+                f"It works once and expires in {minutes_valid} minutes."
+            ),
+            Paragraph(
+                "Didn't ask for this? You can ignore it. Nobody can get in without the code.",
+                small=True,
+            ),
+        ],
+        footer=(
+            "You're getting this because someone asked to log in to Dearlly with this email "
+            "address. Dearlly is for adults 18+. We'll never ask for this code by phone or chat."
+        ),
     )
     return Email(to=to, subject=f"{code} is your Dearlly code", text=text, html=body)
 
