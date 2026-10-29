@@ -59,6 +59,11 @@ class ProfileUpdateIn(BaseModel):
     display_name: str | None = Field(default=None, max_length=80)
 
 
+class DeleteAccountIn(BaseModel):
+    # Retyping the username guards against accidental taps.
+    confirm_username: str = Field(max_length=40)
+
+
 class UsernameAvailabilityOut(BaseModel):
     available: bool
     reason: str | None = None

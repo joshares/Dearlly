@@ -14,6 +14,8 @@ export function ProfileView() {
   const [displayName, setDisplayName] = useState("");
   const [status, setStatus] = useState<"idle" | "saving" | "saved">("idle");
   const [error, setError] = useState<string | null>(null);
+  const [confirmName, setConfirmName] = useState("");
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     api<MyProfile>("/me")
@@ -41,6 +43,19 @@ export function ProfileView() {
     } catch (err) {
       setError(err instanceof ApiError ? err.detail : "Something went wrong.");
       setStatus("idle");
+    }
+  }
+
+  async function deleteAccount(event: React.FormEvent) {
+    event.preventDefault();
+    setDeleting(true);
+    setError(null);
+    try {
+      await api("/me/delete", { method: "POST", body: { confirm_username: confirmName } });
+      router.replace("/");
+    } catch (err) {
+      setError(err instanceof ApiError ? err.detail : "Something went wrong.");
+      setDeleting(false);
     }
   }
 
@@ -113,6 +128,36 @@ export function ProfileView() {
       >
         {t.logOut}
       </button>
+
+      <form
+        onSubmit={deleteAccount}
+        aria-labelledby="delete-title"
+        className="flex flex-col gap-3 rounded-md border-2 border-dashed border-stamp p-4"
+      >
+        <h2 id="delete-title" className="text-xl">
+          {t.deleteTitle}
+        </h2>
+        <p className="text-sm text-muted">{t.deleteBody}</p>
+        <label className="flex flex-col gap-1 text-sm font-semibold">
+          {t.deleteConfirmLabel.replace("{username}", me.username)}
+          <input
+            className="min-h-12 rounded-md border-2 border-fg bg-surface px-3 text-base"
+            name="confirm_username"
+            autoComplete="off"
+            autoCapitalize="none"
+            spellCheck={false}
+            value={confirmName}
+            onChange={(e) => setConfirmName(e.target.value)}
+          />
+        </label>
+        <button
+          type="submit"
+          disabled={deleting || confirmName.trim().toLowerCase() !== me.username}
+          className="min-h-12 rounded-md border-2 border-stamp px-5 font-bold text-accent-text disabled:opacity-50"
+        >
+          {deleting ? t.deleting : t.deleteButton}
+        </button>
+      </form>
     </div>
   );
 }
