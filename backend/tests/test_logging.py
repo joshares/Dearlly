@@ -1,7 +1,14 @@
 import json
 import logging
 
-from app.core.logging import REDACTED, JsonFormatter, redact, redact_text, request_id_var
+from app.core.logging import (
+    REDACTED,
+    JsonFormatter,
+    configure_logging,
+    redact,
+    redact_text,
+    request_id_var,
+)
 
 
 def _format(message: str, **extra: object) -> dict[str, object]:
@@ -40,3 +47,19 @@ def test_secrets_inside_messages_are_redacted() -> None:
     assert "p w" not in text
     assert ":pw@" not in text
     assert "eyJhb" not in text
+
+
+def test_task_inputs_and_results_are_redacted() -> None:
+    data = {"id": "1", "name": "send", "args": "('a@b.c',)", "kwargs": "{}", "return_value": "x"}
+    assert redact({"data": data})["data"] == {
+        "id": "1",
+        "name": "send",
+        "args": REDACTED,
+        "kwargs": REDACTED,
+        "return_value": REDACTED,
+    }
+
+
+def test_uvicorn_access_log_is_off() -> None:
+    configure_logging()
+    assert logging.getLogger("uvicorn.access").disabled

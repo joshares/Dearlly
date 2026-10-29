@@ -56,8 +56,8 @@ def test_untrusted_host_is_rejected(client: TestClient) -> None:
 
 
 def test_cors_allows_only_listed_origin(client: TestClient) -> None:
-    allowed = client.get("/health", headers={"Origin": "http://localhost:3000"})
-    assert allowed.headers["access-control-allow-origin"] == "http://localhost:3000"
+    allowed = client.get("/health", headers={"Origin": "http://localhost:3100"})
+    assert allowed.headers["access-control-allow-origin"] == "http://localhost:3100"
     blocked = client.get("/health", headers={"Origin": "https://evil.example"})
     assert "access-control-allow-origin" not in blocked.headers
 
