@@ -37,3 +37,15 @@ def test_broken_registry_is_refused(tmp_path: Path) -> None:
 def test_unknown_registry_is_refused() -> None:
     with pytest.raises(RegistryError):
         load_registry("planets")
+
+
+def test_email_rules() -> None:
+    from app.services.profiles import ProfileFieldError, normalize_email
+
+    assert normalize_email("  Ada_Demo@Example.COM ") == "ada_demo@example.com"
+    for bad in ("", "ada", "ada@", "@x.com", "a@b", "a@b.", "a@.com", "a b@x.com", "a@b@c.com"):
+        with pytest.raises(ProfileFieldError):
+            normalize_email(bad)
+    # The pattern CodeQL flagged as slow now returns instantly.
+    with pytest.raises(ProfileFieldError):
+        normalize_email("!@!." + "!." * 120)
