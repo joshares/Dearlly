@@ -41,5 +41,34 @@ passwords), ufw (SSH rate-limited, HTTPS only from Cloudflare's IPs), fail2ban, 
 security updates (reboots at 04:00 Lagos time if needed), Docker from Docker's repository with log
 rotation, and `/opt/dearlly`. It's safe to re-run.
 
-Still to come in Stage 3: HTTPS proxy with the Cloudflare Origin certificate, `set-secret.sh`,
-deploys on merge, encrypted backups to R2, monitoring.
+## HTTPS: Cloudflare → Caddy → app
+
+- `Caddyfile`: Caddy runs as a system service (not in Docker, so ufw applies), listens on 443
+  only, uses the Cloudflare Origin certificate and requires Cloudflare's client certificate
+  (Authenticated Origin Pulls). `dearlly.app` → web (127.0.0.1:3100), `api.dearlly.app` → API
+  (127.0.0.1:8100), `www` → redirect to `dearlly.app`.
+- `caddy-setup.sh`: installs Caddy and Cloudflare's origin-pull CA; run again after the certificate
+  is in place to start it.
+- `set-cert.sh`: pastes the Origin certificate and private key in with a hidden prompt, checks they
+  are valid and match.
+
+Copy the scripts to the server, then run them (Mac, repo folder):
+
+```
+scp -r deploy dearlly:/opt/dearlly/
+ssh -t dearlly sudo /opt/dearlly/deploy/caddy-setup.sh
+ssh -t dearlly sudo /opt/dearlly/deploy/set-cert.sh
+ssh -t dearlly sudo /opt/dearlly/deploy/caddy-setup.sh
+```
+
+## Secrets
+
+```
+ssh -t dearlly sudo /opt/dearlly/deploy/set-secret.sh NAME             # hidden prompt
+ssh -t dearlly sudo /opt/dearlly/deploy/set-secret.sh SECRET_KEY --generate
+```
+
+Saved to `/opt/dearlly/.env.production` (owner `deploy`, mode 600). Never in git, never in chat.
+
+Still to come in Stage 3: production Compose + deploys on merge, encrypted backups to R2, monitoring,
+email (Resend + backup provider), Google sign-in keys.
