@@ -23,6 +23,8 @@ class User(PlanMixin, Base):
     # Optional: people can also log in with an emailed code or Google. Argon2id hash only.
     password_hash: Mapped[str | None] = mapped_column(String(255))
     password_changed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # Google's permanent account id, set the first time they use "Continue with Google".
+    google_sub: Mapped[str | None] = mapped_column(String(255), unique=True)
     last_login_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(

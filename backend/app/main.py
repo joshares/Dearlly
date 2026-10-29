@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from redis.asyncio import Redis
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from app.api import auth, health, users
+from app.api import auth, google, health, users
 from app.core.config import Settings, get_settings
 from app.core.logging import configure_logging
 from app.core.middleware import REQUEST_ID_HEADER, RequestContextMiddleware
@@ -63,5 +63,6 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     app.include_router(health.router)
     app.include_router(auth.router)
+    app.include_router(google.router)
     app.include_router(users.router)
     return app

@@ -174,7 +174,8 @@ async def signup(
 ) -> MyProfile:
     await limiter.hit(SIGNUP_PER_IP, client_ip(request, settings))
     try:
-        email = decode_jwt(settings, request.cookies.get(SIGNUP_COOKIE, ""), "signup")["sub"]
+        proof = decode_jwt(settings, request.cookies.get(SIGNUP_COOKIE, ""), "signup")
+        email = proof["sub"]
     except InvalidTokenError as exc:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -205,6 +206,8 @@ async def signup(
         email_verified_at=now,
         password_hash=password_hash,
         password_changed_at=now if password_hash else None,
+        # Set when they came through "Continue with Google".
+        google_sub=proof.get("google_sub"),
     )
     db.add(user)
     try:

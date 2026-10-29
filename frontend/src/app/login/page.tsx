@@ -9,8 +9,15 @@ import { getMessages } from "@/i18n";
 
 export const metadata: Metadata = { title: "Log in · Dearlly" };
 
-export default async function LoginPage() {
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ step?: string; error?: string }>;
+}) {
   const nonce = (await headers()).get("x-nonce") ?? undefined;
+  const params = await searchParams;
+  const from =
+    params.step === "signup" ? "signup" : params.error === "google" ? "google-error" : undefined;
   const t = getMessages();
   return (
     <>
@@ -36,8 +43,8 @@ export default async function LoginPage() {
           <Link href="/" aria-label={t.header.home} className="text-fg md:hidden">
             <Logo size={34} />
           </Link>
-          <div className="letter-sheet w-full max-w-lg rounded-sm py-8 pr-6 pl-12 md:rotate-1 md:py-12 md:pr-10 md:pl-16">
-            <LoginFlow nonce={nonce} />
+          <div className="letter-sheet w-full max-w-lg rounded-sm py-8 pr-4 pl-10 md:rotate-1 md:py-12 md:pr-10 md:pl-16">
+            <LoginFlow nonce={nonce} from={from} />
           </div>
         </main>
       </div>

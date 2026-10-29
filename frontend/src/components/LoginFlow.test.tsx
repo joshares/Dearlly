@@ -20,6 +20,7 @@ const json = (status: number, body: unknown) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
 
 let bodies: Record<string, unknown>;
+let googleOn = false;
 
 function mockApi(verifyStatus: "logged_in" | "signup_required", signup: Response) {
   bodies = {};
@@ -29,6 +30,7 @@ function mockApi(verifyStatus: "logged_in" | "signup_required", signup: Response
       const path = new URL(url).pathname;
       if (init.body) bodies[path] = JSON.parse(init.body as string);
       if (path === "/auth/csrf") return json(200, { csrf_token: "tok" });
+      if (path === "/auth/providers") return json(200, { google: googleOn });
       if (path === "/auth/start") return json(202, { status: "code_sent" });
       if (path === "/auth/verify") return json(200, { status: verifyStatus, user: null });
       if (path.startsWith("/usernames/")) return json(200, { available: true, reason: null });
@@ -53,6 +55,7 @@ async function reachCodeStep() {
 beforeEach(() => {
   resetApiState();
   push.mockReset();
+  googleOn = false;
 });
 afterEach(() => {
   cleanup();
@@ -123,5 +126,32 @@ describe("LoginFlow", () => {
     fireEvent.click(screen.getByLabelText("Use my password"));
     fireEvent.click(screen.getByRole("button", { name: /Forgot your password/ }));
     expect(screen.getByRole("button", { name: "Email me a code" })).toBeTruthy();
+  });
+
+  it("hides Google until the server has it switched on", async () => {
+    mockApi("logged_in", json(500, {}));
+    render(<LoginFlow />);
+    await waitFor(() => expect(bodies).toBeDefined());
+    expect(screen.queryByRole("link", { name: /Continue with Google/ })).toBeNull();
+  });
+
+  it("shows Google when it is configured", async () => {
+    googleOn = true;
+    mockApi("logged_in", json(500, {}));
+    render(<LoginFlow />);
+    const link = await screen.findByRole("link", { name: /Continue with Google/ });
+    expect(link.getAttribute("href")).toBe("http://localhost:8100/auth/google/start");
+  });
+
+  it("continues to the sign-up step after Google", async () => {
+    mockApi("logged_in", json(500, {}));
+    render(<LoginFlow from="signup" />);
+    expect(await screen.findByText("Choose your name")).toBeTruthy();
+  });
+
+  it("explains when Google sign-in failed", async () => {
+    mockApi("logged_in", json(500, {}));
+    render(<LoginFlow from="google-error" />);
+    expect((await screen.findByRole("alert")).textContent).toMatch(/Google sign-in didn't work/);
   });
 });

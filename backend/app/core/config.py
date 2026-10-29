@@ -56,11 +56,21 @@ class Settings(BaseSettings):
     # Empty means "use the direct connection address".
     client_ip_header: str = ""
 
+    # Where browsers reach the API (Google sends people back here after they sign in).
+    public_api_url: str = "http://localhost:8100"
+    # "Continue with Google": off until both are set (Google Cloud console, Stage 3).
+    google_client_id: str = ""
+    google_client_secret: SecretStr | None = None
+
     _split_hosts = field_validator("allowed_hosts", "cors_origins", mode="before")(_split_csv)
 
     @property
     def is_production(self) -> bool:
         return self.environment == "production"
+
+    @property
+    def google_enabled(self) -> bool:
+        return bool(self.google_client_id and self.google_client_secret)
 
     @property
     def cookie_secure(self) -> bool:
@@ -93,6 +103,8 @@ def insecure_production_settings(settings: Settings) -> list[str]:
             problems.append(f"CORS origin {origin!r} must be an exact https:// origin")
     if urlparse(settings.public_web_url).scheme != "https":
         problems.append("PUBLIC_WEB_URL must use https://")
+    if urlparse(settings.public_api_url).scheme != "https":
+        problems.append("PUBLIC_API_URL must use https://")
     if settings.turnstile_secret_key.get_secret_value().startswith(TURNSTILE_TEST_SECRET_PREFIXES):
         problems.append("TURNSTILE_SECRET_KEY is Cloudflare's test key")
     if settings.email_delivery != "resend" or settings.resend_api_key is None:
