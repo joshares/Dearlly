@@ -10,6 +10,7 @@ describe("buildCsp", () => {
     expect(csp).toContain("frame-ancestors 'none'");
     expect(csp).toContain("object-src 'none'");
     expect(csp).toContain("connect-src 'self' https://api.dearlly.example");
+    expect(csp).toContain("frame-src https://challenges.cloudflare.com");
   });
 
   it("allows dev tooling only in development", () => {
