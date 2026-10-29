@@ -289,6 +289,10 @@ Update this section as each stage finishes.
 | 29 Oct 2026 | **Three ways to log in:** emailed code, optional password, and "Continue with Google". Passwords: Argon2id, 10+ characters, breached-password check (HIBP k-anonymity), Turnstile + rate limits, changing it logs out other devices; "forgot password" = log in with a code, then set a new one. Google arrives behind its keys (button hidden until set). A backup email provider is added in Stage 3 so codes still go out if Resend fails |
 | 29 Oct 2026 | Domain: **dearlly.app** (Cloudflare). VPS: Hostinger KVM 2 on a **12-month** term (founder's choice; a little more per month than 24 months). The server IP is kept out of the public repo |
 | 29 Oct 2026 | Google sign-in keys and the backup email provider postponed (founder). Google needs a Privacy Policy link before it can be opened to everyone; a draft Privacy page comes early in Stage 4 |
+| 29 Oct 2026 | **Account at the final step:** anyone can start writing; logging in or signing up is required to seal, share or download (the draft is kept on the device meanwhile). Same for creating games. Recipients never need an account |
+| 29 Oct 2026 | **Love-note replies:** the recipient "seals a reply" (a reaction: I love this / Aww / You made me smile / Forever yours, plus an optional short note). Yes/No with the runaway No stays for date and vacation invitations (Stage 5) |
+| 29 Oct 2026 | Quote library: ~40 original quotes drafted by the builder (incl. Pidgin), **for the founder to review** before launch (`backend/config/quotes.yaml`) |
+| 29 Oct 2026 | "Opened" counts only when the recipient breaks the seal, not when a link preview (WhatsApp etc.) loads the page; the sender's own previews never count |
 | 29 Oct 2026 | Pages use a per-request CSP nonce, so HTML is rendered per request. Stage 4 decides how invitation pages are cached at Cloudflare without weakening the CSP |
 
 ## First prompt for Claude Code (Stage 1)

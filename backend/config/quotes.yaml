@@ -1,0 +1,45 @@
+# Starter library of ORIGINAL love-note quotes (written for Dearlly; no copied poems or lyrics).
+# DRAFT for the founder to review: edit, add or delete freely. Each needs a unique key.
+# moods: sweet, romantic, playful, deep, apology, anniversary, missing_you, naija
+
+quotes:
+  - {key: q01, mood: sweet, title: "Good morning, you", text: "Every morning I check two things: the time, and whether I still get to love you. So far, the answer is always yes."}
+  - {key: q02, mood: sweet, title: "My favourite place", text: "I have been to many places, but my favourite is still the space right next to you."}
+  - {key: q03, mood: sweet, title: "Small things", text: "It's the small things — the way you laugh at your own jokes, the way you say my name — that make my whole day."}
+  - {key: q04, mood: sweet, title: "Lucky", text: "Out of all the people in this busy city, I found you. I'm still counting my luck."}
+  - {key: q05, mood: sweet, title: "Home", text: "You are not a place, but every time I'm with you, I'm home."}
+  - {key: q06, mood: romantic, title: "Sealed with love", text: "If I could fold my whole heart into an envelope, I would seal it with wax and post it to you every single day."}
+  - {key: q07, mood: romantic, title: "The answer", text: "Whatever the question is today — the answer is still you."}
+  - {key: q08, mood: romantic, title: "Slowly, then all at once", text: "I didn't fall for you in one moment. I fell a little every day, until there was nothing left that wasn't yours."}
+  - {key: q09, mood: romantic, title: "Under the same sky", text: "Wherever you are tonight, look up. The same sky is holding both of us, and I'm thinking of you."}
+  - {key: q10, mood: romantic, title: "My best story", text: "Of all the stories I could tell, the best one starts with the day I met you."}
+  - {key: q11, mood: romantic, title: "Still you", text: "Through the busy days and the quiet nights, through traffic and through rain — still you. Always you."}
+  - {key: q12, mood: playful, title: "Official notice", text: "This letter is to inform you that you have been officially selected as my favourite person. No appeals allowed."}
+  - {key: q13, mood: playful, title: "Warning", text: "Side effects of loving you include: smiling at my phone, forgetting what I was saying, and wanting jollof for two."}
+  - {key: q14, mood: playful, title: "Delivery update", text: "Your package of hugs is out for delivery. Expected arrival: the moment I see you."}
+  - {key: q15, mood: playful, title: "Terms and conditions", text: "By reading this, you agree to let me love you, annoy you a little, and steal your fries forever."}
+  - {key: q16, mood: playful, title: "Fact check", text: "Fact: you are the reason my screen time is so high. I regret nothing."}
+  - {key: q17, mood: deep, title: "Seen", text: "Thank you for seeing me — not the version I show the world, but the real one. You make it safe to be me."}
+  - {key: q18, mood: deep, title: "Choosing you", text: "Love isn't only a feeling for me. Every day, on purpose, I choose you."}
+  - {key: q19, mood: deep, title: "Grow with me", text: "I don't want a perfect love. I want ours: the one where we keep learning each other and growing together."}
+  - {key: q20, mood: deep, title: "Hard days", text: "On the hard days, I hope you remember this: you are not carrying it alone. I'm right here."}
+  - {key: q21, mood: deep, title: "Proud of you", text: "I watch you chase your dreams and I'm so proud I can hardly say it out loud. So I'm writing it down."}
+  - {key: q22, mood: apology, title: "I'm sorry", text: "I got it wrong, and I'm sorry. You matter more to me than being right. Let me make it up to you."}
+  - {key: q23, mood: apology, title: "Let's start again", text: "I wasn't at my best, and you deserved better. Can we start again — this time with more listening from me?"}
+  - {key: q24, mood: apology, title: "Peace offering", text: "Consider this letter a peace offering. Small chops and a long hug to follow."}
+  - {key: q25, mood: anniversary, title: "Another year", text: "Another year of your laugh, your patience and your love. I would choose every single day of it again."}
+  - {key: q26, mood: anniversary, title: "Since that day", text: "Since the day we started, my life has had a new favourite chapter. Happy anniversary, my love."}
+  - {key: q27, mood: anniversary, title: "Counting", text: "I stopped counting the days a long time ago. Now I just count the ways you make me happy."}
+  - {key: q28, mood: anniversary, title: "Still my yes", text: "Years later, you are still my easiest yes."}
+  - {key: q29, mood: missing_you, title: "Miles", text: "The distance is long, but my love travels faster than any flight. Until I'm next to you again."}
+  - {key: q30, mood: missing_you, title: "Empty seat", text: "There is an empty seat beside me that only fits you. It's waiting, and so am I."}
+  - {key: q31, mood: missing_you, title: "Soon", text: "Every day apart is one day closer to seeing you. I'm counting down."}
+  - {key: q32, mood: missing_you, title: "Thinking of you", text: "Just a small letter to say: I'm thinking of you, right now, and smiling."}
+  - {key: q33, mood: naija, title: "Na you", text: "Out of everybody for this Lagos, na you my heart choose. No shaking."}
+  - {key: q34, mood: naija, title: "My person", text: "You be my person — for traffic, for rain, for suya at midnight. Anywhere wey you dey, na there I wan dey."}
+  - {key: q35, mood: naija, title: "Correct", text: "Everything about you just correct. I no fit explain am, I just dey feel am."}
+  - {key: q36, mood: naija, title: "Jollof for two", text: "Life with you sweet pass party jollof. Make we dey together like this forever."}
+  - {key: q37, mood: naija, title: "Sure guy", text: "You be my sure person. When everything dey shake, you dey stand gidigba."}
+  - {key: q38, mood: sweet, title: "Thank you", text: "Thank you for the little things you think I don't notice. I notice. I always do."}
+  - {key: q39, mood: romantic, title: "Dear you", text: "If my heart could write, this whole letter would just be your name, over and over."}
+  - {key: q40, mood: deep, title: "Forever plan", text: "I don't know everything about the future. But I know I want you in all of it."}

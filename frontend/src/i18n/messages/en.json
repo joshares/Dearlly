@@ -130,5 +130,58 @@
   "loginPanel": {
     "quote": "Every love story deserves a proper letter.",
     "postmark": "ABUJA · LAGOS · SENT WITH LOVE ·"
+  },
+  "write": {
+    "metaTitle": "Write a love note · Dearlly",
+    "title": "Write a love note",
+    "lead": "Fill it in, watch it come together, then seal it.",
+    "whoHeading": "Who is it for?",
+    "senderLabel": "Your name",
+    "senderHint": "How they'll see it signed.",
+    "recipientLabel": "Their name",
+    "titleLabel": "What you call them (optional)",
+    "titleHint": "e.g. my love, babe, sunshine. Used as \"Dear …\".",
+    "wordsHeading": "Your words",
+    "pickQuote": "Pick a quote to start from",
+    "allMoods": "All",
+    "moods": {
+      "sweet": "Sweet",
+      "romantic": "Romantic",
+      "playful": "Playful",
+      "deep": "Deep",
+      "apology": "Sorry",
+      "anniversary": "Anniversary",
+      "missing_you": "Missing you",
+      "naija": "Naija"
+    },
+    "useQuote": "Use this",
+    "quoteTitleLabel": "Title (optional)",
+    "quoteTextLabel": "Your message",
+    "placeholder": "Your words will appear here…",
+    "lookHeading": "Paper and timing",
+    "themeLabel": "Paper",
+    "themes": {
+      "cream": "Cream",
+      "kraft": "Kraft",
+      "rose": "Rose"
+    },
+    "scheduleLabel": "Keep it sealed until (optional, Lagos time)",
+    "scheduleHint": "Leave empty to open straight away. Great for 00:00 on 14 February.",
+    "previewHeading": "Preview",
+    "seal": "Seal it",
+    "sealing": "Sealing…",
+    "sealNeedsAccount": "You'll log in or create a free account at this step. Your letter is kept while you do.",
+    "characters": "{count}/{max}",
+    "sealedTitle": "Sealed with love.",
+    "sealedLead": "Your letter is ready. Only people with this link can open it.",
+    "copyLink": "Copy link",
+    "copied": "Copied",
+    "whatsapp": "Send on WhatsApp",
+    "share": "Share…",
+    "whatsappText": "I wrote you something 💌 Open it here:",
+    "viewLetter": "See your letter",
+    "writeAnother": "Write another",
+    "trackIt": "You'll see when it's opened and their reply on your profile.",
+    "sealedUntil": "It stays sealed until {when}."
   }
 }
