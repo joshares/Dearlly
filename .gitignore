@@ -18,11 +18,16 @@ __pycache__/
 .mypy_cache/
 .pytest_cache/
 .ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
 
 # Node / Next.js
 node_modules/
 .next/
 out/
+*.tsbuildinfo
+next-env.d.ts
 
 # Builds and logs
 dist/
