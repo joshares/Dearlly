@@ -61,6 +61,9 @@ def needs_rehash(password_hash: str) -> bool:
 
 
 async def is_breached(client: httpx.AsyncClient, password: str) -> bool:
+    # SHA-1 here is HIBP's lookup format, not password storage (that is Argon2id above), and only
+    # 5 hex characters of it leave the server. Reviewed false positive for weak-hash scanners.
+    # nosemgrep: python.lang.security.insecure-hash-algorithms.insecure-hash-algorithm-sha1
     digest = hashlib.sha1(password.encode(), usedforsecurity=False).hexdigest().upper()
     prefix, suffix = digest[:5], digest[5:]
     try:
