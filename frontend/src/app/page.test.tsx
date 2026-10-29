@@ -34,11 +34,7 @@ describe("home page", () => {
   it("links only to pages that exist", () => {
     render(<HomePage />);
     const hrefs = [...document.querySelectorAll("a")].map((a) => a.getAttribute("href"));
-    expect(new Set(hrefs)).toEqual(new Set(["/", "/login", "/profile"]));
-    // Unbuilt features are clearly not clickable.
-    for (const button of screen.getAllByRole("button")) {
-      expect((button as HTMLButtonElement).disabled).toBe(true);
-    }
+    expect(new Set(hrefs)).toEqual(new Set(["/", "/login", "/profile", "/write"]));
   });
 
   it("offers sign-up as the main action", () => {

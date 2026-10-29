@@ -39,14 +39,12 @@ export default function HomePage() {
               >
                 {home.primaryCta}
               </Link>
-              <button
-                type="button"
-                disabled
-                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-lg border-2 border-fg px-6 whitespace-nowrap text-lg font-extrabold disabled:cursor-not-allowed disabled:opacity-70"
+              <Link
+                href="/write"
+                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-lg border-2 border-fg px-6 whitespace-nowrap text-lg font-extrabold"
               >
                 {home.secondaryCta}
-                <span className="text-sm font-semibold">· {home.soon}</span>
-              </button>
+              </Link>
             </div>
             <p className="font-hand text-lg leading-[2.2] text-muted">{home.signOff}</p>
           </div>

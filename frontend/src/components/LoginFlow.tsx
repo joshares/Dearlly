@@ -26,7 +26,16 @@ function message(error: unknown): string {
  * `from` is where Google sent the browser back: "signup" for new people (Google proved the
  * email; they still pick a username and tick 18+), "google-error" when it failed.
  */
-export function LoginFlow({ nonce, from }: { nonce?: string; from?: "signup" | "google-error" }) {
+export function LoginFlow({
+  nonce,
+  from,
+  next = "/profile",
+}: {
+  nonce?: string;
+  from?: "signup" | "google-error";
+  /** Where to go once logged in (already checked with safeNext). */
+  next?: string;
+}) {
   const router = useRouter();
   const [step, setStep] = useState<Step>(from === "signup" ? "signup" : "email");
   const [method, setMethod] = useState<Method>("code");
@@ -98,7 +107,7 @@ export function LoginFlow({ nonce, from }: { nonce?: string; from?: "signup" | "
           method: "POST",
           body: { email, password, turnstile_token: turnstileToken },
         });
-        router.push("/profile");
+        router.push(next);
       });
       return;
     }
@@ -119,7 +128,7 @@ export function LoginFlow({ nonce, from }: { nonce?: string; from?: "signup" | "
         method: "POST",
         body: { email, code },
       });
-      if (result.status === "logged_in") router.push("/profile");
+      if (result.status === "logged_in") router.push(next);
       else setStep("signup");
     });
   };
@@ -136,7 +145,7 @@ export function LoginFlow({ nonce, from }: { nonce?: string; from?: "signup" | "
           password: newPassword || null,
         },
       });
-      router.push("/profile");
+      router.push(next);
     });
   };
 
