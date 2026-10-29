@@ -55,7 +55,7 @@
   },
   "login": {
     "title": "Log in or sign up",
-    "lead": "No passwords. We email you a 6-digit code.",
+    "lead": "Log in with an emailed code, or your password if you've set one.",
     "emailLabel": "Your email",
     "sendCode": "Email me a code",
     "sending": "Sending…",
@@ -75,7 +75,16 @@
     "adultLabel": "I'm 18 or older",
     "adultHint": "Dearlly is only for adults.",
     "createAccount": "Create my account",
-    "creating": "Creating…"
+    "creating": "Creating…",
+    "methodLabel": "How do you want to log in?",
+    "methodCode": "Email me a code",
+    "methodPassword": "Use my password",
+    "passwordLabel": "Password",
+    "logIn": "Log in",
+    "loggingIn": "Logging in…",
+    "forgotPassword": "Forgot your password? Get a code instead",
+    "newPasswordLabel": "Password (optional)",
+    "newPasswordHint": "At least 10 characters. Skip it and you can always log in with a code."
   },
   "profile": {
     "title": "Your profile",
@@ -94,7 +103,16 @@
     "deleteBody": "This permanently deletes your account, your profile and everything linked to it, and logs you out on every device. It can't be undone.",
     "deleteConfirmLabel": "Type your username ({username}) to confirm",
     "deleteButton": "Delete my account forever",
-    "deleting": "Deleting…"
+    "deleting": "Deleting…",
+    "passwordTitle": "Password",
+    "passwordNone": "You log in with emailed codes. Add a password if you'd like another way in.",
+    "passwordSet": "You can log in with your password or an emailed code.",
+    "currentPasswordLabel": "Current password",
+    "newPasswordLabel": "New password",
+    "newPasswordHint": "At least 10 characters. Changing it logs you out on your other devices.",
+    "addPassword": "Add password",
+    "changePassword": "Change password",
+    "passwordSaved": "Password saved"
   },
   "header": {
     "label": "Site",

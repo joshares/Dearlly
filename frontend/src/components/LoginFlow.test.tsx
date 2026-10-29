@@ -33,6 +33,7 @@ function mockApi(verifyStatus: "logged_in" | "signup_required", signup: Response
       if (path === "/auth/verify") return json(200, { status: verifyStatus, user: null });
       if (path.startsWith("/usernames/")) return json(200, { available: true, reason: null });
       if (path === "/auth/signup") return signup;
+      if (path === "/auth/login") return json(200, { status: "logged_in", user: null });
       throw new Error(`unexpected ${path}`);
     }),
   );
@@ -84,6 +85,7 @@ describe("LoginFlow", () => {
       username: "ada_demo",
       display_name: null,
       is_adult: true,
+      password: null,
     });
   });
 
@@ -97,5 +99,29 @@ describe("LoginFlow", () => {
     fireEvent.click(screen.getByRole("button", { name: "Create my account" }));
     expect((await screen.findByRole("alert")).textContent).toBe("That username is taken.");
     expect(push).not.toHaveBeenCalled();
+  });
+
+  it("logs in with a password instead of a code", async () => {
+    mockApi("logged_in", json(500, {}));
+    render(<LoginFlow />);
+    fireEvent.click(screen.getByLabelText("Use my password"));
+    fireEvent.change(screen.getByLabelText("Your email"), { target: { value: "ada_demo@x.com" } });
+    fireEvent.change(screen.getByLabelText("Password"), { target: { value: "lagoon-sunset-2027" } });
+    fireEvent.click(screen.getByRole("button", { name: "pass check" }));
+    fireEvent.click(screen.getByRole("button", { name: "Log in" }));
+    await waitFor(() => expect(push).toHaveBeenCalledWith("/profile"));
+    expect(bodies["/auth/login"]).toEqual({
+      email: "ada_demo@x.com",
+      password: "lagoon-sunset-2027",
+      turnstile_token: "ok",
+    });
+  });
+
+  it("offers a code when the password is forgotten", () => {
+    mockApi("logged_in", json(500, {}));
+    render(<LoginFlow />);
+    fireEvent.click(screen.getByLabelText("Use my password"));
+    fireEvent.click(screen.getByRole("button", { name: /Forgot your password/ }));
+    expect(screen.getByRole("button", { name: "Email me a code" })).toBeTruthy();
   });
 });

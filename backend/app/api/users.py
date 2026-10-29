@@ -1,22 +1,34 @@
 """Profiles: your own (private, includes email) and other people's (public, never email)."""
 
 import logging
+from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
 from sqlalchemy import select
 
-from app.api.deps import AppSettings, CurrentUser, DbSession, Limiter, clear_auth_cookies
+from app.api.auth import checked_password_hash
+from app.api.deps import (
+    AppSettings,
+    CurrentUser,
+    DbSession,
+    Limiter,
+    clear_auth_cookies,
+    current_session_id,
+)
 from app.api.schemas import (
     DeleteAccountIn,
     MyProfile,
     ProfileUpdateIn,
     PublicProfile,
+    SetPasswordIn,
     UsernameAvailabilityOut,
 )
 from app.core.csrf import require_csrf
 from app.core.net import client_ip
 from app.core.ratelimit import Limit
 from app.models import User
+from app.services import auth as auth_service
+from app.services import passwords
 from app.services.profiles import ProfileFieldError, normalize_display_name, normalize_username
 
 logger = logging.getLogger(__name__)
@@ -25,6 +37,7 @@ router = APIRouter(tags=["profiles"], dependencies=[Depends(require_csrf)])
 
 LOOKUP_PER_IP = Limit("profile-lookup-ip", max_requests=60, window_seconds=60)
 DELETE_PER_IP = Limit("account-delete-ip", max_requests=10, window_seconds=3600)
+SET_PASSWORD_PER_IP = Limit("set-password-ip", max_requests=10, window_seconds=3600)
 
 
 @router.get("/me")
@@ -41,6 +54,35 @@ async def update_me(body: ProfileUpdateIn, user: CurrentUser, db: DbSession) -> 
     await db.commit()
     await db.refresh(user)
     return MyProfile.model_validate(user)
+
+
+@router.post("/me/password", status_code=status.HTTP_204_NO_CONTENT)
+async def set_password(
+    body: SetPasswordIn,
+    request: Request,
+    user: CurrentUser,
+    db: DbSession,
+    settings: AppSettings,
+    limiter: Limiter,
+) -> None:
+    """Set a first password, or change it (needs the current one). Logs out other devices."""
+    await limiter.hit(SET_PASSWORD_PER_IP, client_ip(request, settings))
+    if user.password_hash is not None and not await passwords.verify_password(
+        user.password_hash, body.current_password or ""
+    ):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Your current password isn't right.",
+        )
+    user.password_hash = await checked_password_hash(
+        request.app.state.http, body.new_password, email=user.email, username=user.username
+    )
+    user.password_changed_at = datetime.now(UTC)
+    await db.commit()
+    await auth_service.revoke_other_sessions(
+        db, user.id, keep=await current_session_id(request, settings)
+    )
+    logger.info("password set", extra={"user_id": str(user.id)})
 
 
 @router.post("/me/delete", status_code=status.HTTP_204_NO_CONTENT)

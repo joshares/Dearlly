@@ -23,6 +23,7 @@ class MyProfile(PublicProfile):
     id: uuid.UUID
     email: str
     plan: Plan
+    has_password: bool
 
 
 class CsrfOut(BaseModel):
@@ -53,6 +54,20 @@ class SignupIn(BaseModel):
     display_name: str | None = Field(default=None, max_length=80)
     # The required "I'm 18 or older" tick.
     is_adult: bool
+    # Optional: they can always log in with a code instead.
+    password: str | None = Field(default=None, max_length=256)
+
+
+class PasswordLoginIn(BaseModel):
+    email: str = Field(max_length=254)
+    password: str = Field(max_length=256)
+    turnstile_token: str = Field(max_length=2048)
+
+
+class SetPasswordIn(BaseModel):
+    # Required when the account already has a password.
+    current_password: str | None = Field(default=None, max_length=256)
+    new_password: str = Field(max_length=256)
 
 
 class ProfileUpdateIn(BaseModel):

@@ -8,6 +8,7 @@ import { getMessages } from "@/i18n";
 import { ApiError, api, type MyProfile } from "@/lib/api";
 
 type Step = "email" | "code" | "signup";
+type Method = "code" | "password";
 
 const t = getMessages().login;
 
@@ -24,6 +25,11 @@ function message(error: unknown): string {
 export function LoginFlow({ nonce }: { nonce?: string }) {
   const router = useRouter();
   const [step, setStep] = useState<Step>("email");
+  const [method, setMethod] = useState<Method>("code");
+  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  // Turnstile tokens work once: remount the widget for a fresh check after each try.
+  const [turnstileKey, setTurnstileKey] = useState(0);
   const [email, setEmail] = useState("");
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [code, setCode] = useState("");
@@ -62,13 +68,25 @@ export function LoginFlow({ nonce }: { nonce?: string }) {
       await action();
     } catch (err) {
       setError(message(err));
+      setTurnstileToken(null);
+      setTurnstileKey((key) => key + 1);
     } finally {
       setBusy(false);
     }
   }
 
-  const sendCode = (event: React.FormEvent) => {
+  const submitEmailStep = (event: React.FormEvent) => {
     event.preventDefault();
+    if (method === "password") {
+      void run(async () => {
+        await api("/auth/login", {
+          method: "POST",
+          body: { email, password, turnstile_token: turnstileToken },
+        });
+        router.push("/profile");
+      });
+      return;
+    }
     void run(async () => {
       await api("/auth/start", {
         method: "POST",
@@ -96,7 +114,12 @@ export function LoginFlow({ nonce }: { nonce?: string }) {
     void run(async () => {
       await api<MyProfile>("/auth/signup", {
         method: "POST",
-        body: { username, display_name: displayName || null, is_adult: isAdult },
+        body: {
+          username,
+          display_name: displayName || null,
+          is_adult: isAdult,
+          password: newPassword || null,
+        },
       });
       router.push("/profile");
     });
@@ -105,15 +128,37 @@ export function LoginFlow({ nonce }: { nonce?: string }) {
   const startOver = () => {
     setStep("email");
     setTurnstileToken(null);
+    setTurnstileKey((key) => key + 1);
     setError(null);
   };
 
   return (
     <div className="flex flex-col gap-5">
       {step === "email" && (
-        <form onSubmit={sendCode} className="flex flex-col gap-4">
+        <form onSubmit={submitEmailStep} className="flex flex-col gap-4">
           <h1 className="text-4xl leading-tight md:text-5xl">{t.title}</h1>
           <p className="text-muted">{t.lead}</p>
+          <fieldset className="grid grid-cols-2 gap-1 rounded-lg border-2 border-fg p-1">
+            <legend className="sr-only">{t.methodLabel}</legend>
+            {(["code", "password"] as const).map((option) => (
+              <label
+                key={option}
+                className={`flex min-h-11 cursor-pointer items-center justify-center rounded-md px-2 text-center text-sm font-bold ${
+                  method === option ? "bg-fg text-bg" : "text-fg"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="method"
+                  value={option}
+                  checked={method === option}
+                  onChange={() => setMethod(option)}
+                  className="sr-only"
+                />
+                {option === "code" ? t.methodCode : t.methodPassword}
+              </label>
+            ))}
+          </fieldset>
           <label className={label}>
             {t.emailLabel}
             <input
@@ -128,12 +173,46 @@ export function LoginFlow({ nonce }: { nonce?: string }) {
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
+          {method === "password" && (
+            <>
+              <label className={label}>
+                {t.passwordLabel}
+                <input
+                  className={input}
+                  type="password"
+                  name="password"
+                  autoComplete="current-password"
+                  required
+                  maxLength={128}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </label>
+              <button
+                type="button"
+                className="-mt-2 self-start text-sm underline"
+                onClick={() => setMethod("code")}
+              >
+                {t.forgotPassword}
+              </button>
+            </>
+          )}
           <div className="flex flex-col gap-1 text-sm">
             <span>{t.humanCheck}</span>
-            <Turnstile nonce={nonce} onToken={onToken} />
+            <Turnstile key={turnstileKey} nonce={nonce} onToken={onToken} />
           </div>
-          <button type="submit" className={primary} disabled={busy || !email || !turnstileToken}>
-            {busy ? t.sending : t.sendCode}
+          <button
+            type="submit"
+            className={primary}
+            disabled={busy || !email || !turnstileToken || (method === "password" && !password)}
+          >
+            {method === "password"
+              ? busy
+                ? t.loggingIn
+                : t.logIn
+              : busy
+                ? t.sending
+                : t.sendCode}
           </button>
         </form>
       )}
@@ -204,6 +283,25 @@ export function LoginFlow({ nonce }: { nonce?: string }) {
               onChange={(e) => setDisplayName(e.target.value)}
             />
           </label>
+          <div className="flex flex-col gap-1">
+            <label className={label}>
+              {t.newPasswordLabel}
+              <input
+                className={input}
+                type="password"
+                name="new_password"
+                autoComplete="new-password"
+                minLength={10}
+                maxLength={128}
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                aria-describedby="new-password-hint"
+              />
+            </label>
+            <span id="new-password-hint" className="text-sm text-muted">
+              {t.newPasswordHint}
+            </span>
+          </div>
           <label className="flex min-h-12 items-center gap-3 rounded-md border-2 border-line p-3 text-left">
             <input
               type="checkbox"

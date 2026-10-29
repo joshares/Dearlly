@@ -17,7 +17,11 @@ from app.api import auth as auth_api
 from app.core.config import Settings
 from app.core.ratelimit import RateLimiter
 from app.main import create_app
+from app.services import passwords
 from app.services.email import Email
+
+# Stand-in for the HIBP breached-password list in tests.
+BREACHED = {"password123456"}
 
 PROD_SECRET = "x" * 48
 
@@ -107,13 +111,22 @@ class AuthClient(TestClient):
         assert response.status_code == 202, response.text
         return self.last_code()
 
-    def sign_up(self, email: str, username: str) -> Response:
+    def sign_up(self, email: str, username: str, password: str | None = None) -> Response:
         code = self.request_code(email)
         assert self.post("/auth/verify", json={"email": email, "code": code}).json() == {
             "status": "signup_required",
             "user": None,
         }
-        return self.post("/auth/signup", json={"username": username, "is_adult": True})
+        body: dict[str, object] = {"username": username, "is_adult": True}
+        if password:
+            body["password"] = password
+        return self.post("/auth/signup", json=body)
+
+    def password_login(self, email: str, password: str, turnstile: str = "ok") -> Response:
+        return self.post(
+            "/auth/login",
+            json={"email": email, "password": password, "turnstile_token": turnstile},
+        )
 
 
 @pytest.fixture
@@ -128,6 +141,11 @@ def auth_client(db_settings: Settings, monkeypatch: pytest.MonkeyPatch) -> Itera
 
     monkeypatch.setattr(auth_api, "send_email", fake_send)
     monkeypatch.setattr(auth_api, "verify_turnstile", fake_turnstile)
+
+    async def fake_breached(_http: object, password: str) -> bool:
+        return password in BREACHED
+
+    monkeypatch.setattr(passwords, "is_breached", fake_breached)
     app = create_app(db_settings)
     with AuthClient(app) as client:
         assert client.portal is not None

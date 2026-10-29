@@ -15,6 +15,9 @@ export function ProfileView() {
   const [status, setStatus] = useState<"idle" | "saving" | "saved">("idle");
   const [error, setError] = useState<string | null>(null);
   const [confirmName, setConfirmName] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [passwordStatus, setPasswordStatus] = useState<"idle" | "saving" | "saved">("idle");
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
@@ -43,6 +46,29 @@ export function ProfileView() {
     } catch (err) {
       setError(err instanceof ApiError ? err.detail : "Something went wrong.");
       setStatus("idle");
+    }
+  }
+
+  async function savePassword(event: React.FormEvent) {
+    event.preventDefault();
+    if (!me) return;
+    setPasswordStatus("saving");
+    setError(null);
+    try {
+      await api("/me/password", {
+        method: "POST",
+        body: {
+          current_password: me.has_password ? currentPassword : null,
+          new_password: newPassword,
+        },
+      });
+      setMe({ ...me, has_password: true });
+      setCurrentPassword("");
+      setNewPassword("");
+      setPasswordStatus("saved");
+    } catch (err) {
+      setError(err instanceof ApiError ? err.detail : "Something went wrong.");
+      setPasswordStatus("idle");
     }
   }
 
@@ -120,6 +146,61 @@ export function ProfileView() {
           {error}
         </p>
       )}
+
+      <form
+        onSubmit={savePassword}
+        aria-labelledby="password-title"
+        className="flex flex-col gap-3 border-t-2 border-dashed border-line pt-5"
+      >
+        <h2 id="password-title" className="text-2xl">
+          {t.passwordTitle}
+        </h2>
+        <p className="text-sm text-muted">{me.has_password ? t.passwordSet : t.passwordNone}</p>
+        {me.has_password && (
+          <label className="flex flex-col gap-1 text-sm font-semibold">
+            {t.currentPasswordLabel}
+            <input
+              className="min-h-12 rounded-md border-2 border-fg bg-surface px-3 text-base"
+              type="password"
+              name="current_password"
+              autoComplete="current-password"
+              required
+              maxLength={128}
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+            />
+          </label>
+        )}
+        <label className="flex flex-col gap-1 text-sm font-semibold">
+          {t.newPasswordLabel}
+          <input
+            className="min-h-12 rounded-md border-2 border-fg bg-surface px-3 text-base"
+            type="password"
+            name="new_password"
+            autoComplete="new-password"
+            required
+            minLength={10}
+            maxLength={128}
+            value={newPassword}
+            onChange={(e) => {
+              setNewPassword(e.target.value);
+              setPasswordStatus("idle");
+            }}
+          />
+          <span className="font-normal text-muted">{t.newPasswordHint}</span>
+        </label>
+        <button
+          type="submit"
+          disabled={passwordStatus === "saving" || newPassword.length < 10}
+          className="min-h-12 rounded-md border-2 border-fg px-5 font-bold disabled:opacity-50"
+        >
+          {passwordStatus === "saved"
+            ? t.passwordSaved
+            : me.has_password
+              ? t.changePassword
+              : t.addPassword}
+        </button>
+      </form>
 
       <button
         type="button"

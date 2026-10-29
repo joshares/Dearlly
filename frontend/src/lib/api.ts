@@ -13,6 +13,7 @@ export type MyProfile = {
   display_name: string | null;
   email: string;
   plan: "free" | "premium";
+  has_password: boolean;
   created_at: string;
 };
 

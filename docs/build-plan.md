@@ -173,7 +173,7 @@ docs/       build-plan.md, runbooks
 
 The playbook's security standard (OWASP ASVS Level 2, section 3) applies in full: secure cookies, CSRF, Turnstile, Redis rate limits, security headers, production refuses insecure settings, `/docs` off in production, hardened containers, secrets only through `set-secret.sh`. These rules are added for Dearlly:
 
-**Login:** magic-link email codes replace passwords. Codes are single-use, expire in 10 minutes and are rate-limited by email and IP.
+**Login:** three ways in — emailed code (single-use, expires in 10 minutes, rate-limited by email and IP), an optional password (Argon2id, breached-password check, Turnstile, rate limits) and "Continue with Google".
 
 **Private links:** unguessable tokens (at least 128 bits), `noindex` on every invitation page, optional PIN and expiry, link can be revoked by the sender.
 
@@ -284,6 +284,7 @@ Update this section as each stage finishes.
 | 29 Oct 2026 | Look chosen from the design board: **A + B mix**: airmail-stripe frame round every screen, ruled love-letter paper with a red margin line, handwritten opener and sign-off, tilted perforated stamp cards. Logo: **wax seal "D" + Gloock wordmark**. Laptop gets a top menu; phones keep the bottom bar |
 | 29 Oct 2026 | **No dark mode and no blue page backgrounds:** every screen stays on cream love-letter paper; ink blue is only for text, outlines and the airmail stripes (founder's choice) |
 | 29 Oct 2026 | "Delete my account" added in Stage 2 (NDPA right to erasure). Each later stage adds its data to what deletion removes |
+| 29 Oct 2026 | **Three ways to log in:** emailed code, optional password, and "Continue with Google". Passwords: Argon2id, 10+ characters, breached-password check (HIBP k-anonymity), Turnstile + rate limits, changing it logs out other devices; "forgot password" = log in with a code, then set a new one. Google arrives behind its keys (button hidden until set). A backup email provider is added in Stage 3 so codes still go out if Resend fails |
 | 29 Oct 2026 | Pages use a per-request CSP nonce, so HTML is rendered per request. Stage 4 decides how invitation pages are cached at Cloudflare without weakening the CSP |
 
 ## First prompt for Claude Code (Stage 1)
