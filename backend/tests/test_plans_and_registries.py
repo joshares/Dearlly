@@ -25,7 +25,10 @@ def test_free_plan_is_gated_server_side() -> None:
 def test_registries_load_and_start_empty() -> None:
     registries = load_all_registries()
     assert set(registries) == set(REGISTRIES)
-    assert all(entries == () for entries in registries.values())
+    # Filled in as stages arrive: love notes (Stage 4) and the quote library so far.
+    assert registries["cities"] == () and registries["game_formats"] == ()
+    assert any(t["key"] == "love_note" for t in registries["experience_types"])
+    assert len(registries["quotes"]) >= 40
 
 
 def test_broken_registry_is_refused(tmp_path: Path) -> None:

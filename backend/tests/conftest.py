@@ -63,7 +63,7 @@ def client(app: FastAPI) -> Iterator[TestClient]:
 # They need TEST_DATABASE_URL pointing at a migrated Postgres whose database name contains "test".
 # CI sets REQUIRE_DB_TESTS=1 so they can never be skipped silently there.
 
-TABLES = ("refresh_tokens", "auth_sessions", "users")
+TABLES = ("experiences", "refresh_tokens", "auth_sessions", "users")
 
 
 async def _truncate(url: str) -> None:

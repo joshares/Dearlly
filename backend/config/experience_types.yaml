@@ -1,3 +1,32 @@
-# Experience types (love note, date, vacation, gift reveal). Filled in Stages 4–5.
-# One entry per type; a new type is a new entry plus its form and animation.
-experience_types: []
+# Experience types. A new type = a new entry here + its form and animation (no rebuild).
+#
+# key:        stable id stored with each experience (never rename once live)
+# name:       shown in the app
+# fields:     the type's own content; every value is plain text
+#   max:        maximum characters
+#   required:   must be filled in
+# themes:     paper styles the sender can pick
+# reply:      how the recipient answers: "reaction" (pick one + optional note) or "yes_no" (Stage 5)
+# reactions:  for reply: reaction, the choices the recipient sees
+
+experience_types:
+  - key: love_note
+    name: Love note
+    fields:
+      quote_title:
+        max: 80
+        required: false
+      quote_text:
+        max: 600
+        required: true
+    themes: [cream, kraft, rose]
+    reply: reaction
+    reactions:
+      - key: love_it
+        label: I love this
+      - key: aww
+        label: Aww
+      - key: smiling
+        label: You made me smile
+      - key: forever
+        label: Forever yours

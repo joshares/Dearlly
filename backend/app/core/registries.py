@@ -16,6 +16,7 @@ REGISTRIES = {
     "experience_types": "experience_types.yaml",
     "cities": "cities.yaml",
     "game_formats": "game_formats.yaml",
+    "quotes": "quotes.yaml",
 }
 
 
