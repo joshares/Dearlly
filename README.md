@@ -3,37 +3,42 @@
 Romantic experiences, sent like love letters. Love notes, date and vacation invitations, gift reveals,
 two-player romantic games and a stamp photo community — for Nigeria, starting with Lagos and Abuja.
 
-> This folder is the **starter kit**. The code is built stage by stage by Claude Code, following
-> `docs/build-plan.md`. Start with **START HERE** below.
+The code is built stage by stage by Claude Code, following `docs/build-plan.md`. The current stage is
+in the **Where we are** section of that file.
 
-## START HERE (founder steps)
+## How changes reach `main` (founder steps)
 
-1. **Unzip** this file and move the `dearlly` folder somewhere permanent, for example `Documents/Projects/dearlly`.
-2. **GitHub:** go to github.com → **+** (top right) → **New repository** → name it `dearlly` → choose **Private** →
-   leave "Add a README" **unticked** → **Create repository**. Keep that page open (you need its address).
-3. **VS Code:** **File → Open Folder…** → choose the `dearlly` folder → **Open**.
-4. **Claude Code:** open the Claude Code panel in VS Code and send this first message (put your GitHub username in):
+1. Claude Code works on a branch and opens a **pull request** (PR) with a plain-English summary.
+2. On GitHub, open the PR and scroll to the bottom. Wait until every check shows a **green tick**.
+3. Do any "pre-merge steps" Claude Code listed, then click **Merge pull request** → **Confirm merge**.
+4. Never merge with a red cross or a yellow dot.
 
-   ```
-   Read CLAUDE.md. Then set up git for this folder, make one first commit on main with these starter
-   files, connect it to my private GitHub repo https://github.com/YOUR-USERNAME/dearlly and push.
-   Walk me through any login step in plain numbered steps.
-   ```
+## Running it on a Mac (for development)
 
-   Success looks like: the GitHub repo page now shows these files.
-5. **Start building:** open `docs/first-prompt.md`, copy the prompt inside the grey box, and paste it into Claude Code.
-   It will do Stage 1 (Foundation) as small pull requests.
-6. **Merging:** for each pull request, wait until every check is **green**, then click **Merge** on GitHub.
-   Never merge with a red or yellow check.
+Needs Docker Desktop running (whale icon in the menu bar).
+
+```
+cp .env.example .env
+docker compose up --build
+```
+
+Then open http://localhost:3000. The API answers at http://localhost:8000/health.
+(Docker Compose arrives in Stage 1; until then this command does nothing useful.)
 
 ## What's in here
 
 | Path | What it is |
 | --- | --- |
 | `CLAUDE.md` | Rules and context Claude Code reads every session |
+| `SECURITY.md` | How to report a security problem, and the security standard we follow |
 | `docs/build-plan.md` | The full plan: features, stages, security, costs, launch checklist |
 | `docs/project-playbook.md` | How we build (from Statabet), with the Dearlly brief filled in |
-| `docs/first-prompt.md` | The Stage 1 prompt to paste into Claude Code |
+| `docs/first-prompt.md` | The Stage 1 prompt (already used) |
 | `design/brand/brand.md` | Colours, fonts, animation ideas, illustrator brief |
-| `design/illustrations/`, `design/rive/` | Put the illustrator's files and Rive animations here |
-| `backend/`, `frontend/`, `deploy/`, `scripts/`, `.github/` | Empty for now — Claude Code fills them in Stage 1 |
+| `design/illustrations/`, `design/rive/` | The illustrator's files and Rive animations |
+| `backend/` | FastAPI API, Celery worker, database migrations, tests, YAML registries |
+| `frontend/` | Next.js web app |
+| `deploy/` | Server setup, deploy and secret scripts (Stage 3) |
+| `scripts/` | Checks and the demo seed (refuses to run in production) |
+| `.github/` | Automatic checks (CI) and Dependabot |
+| `.env.example` | The settings the app reads, with safe local-only values. Real secrets never go in git |
