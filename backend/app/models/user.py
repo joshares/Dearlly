@@ -20,11 +20,18 @@ class User(PlanMixin, Base):
     # When they ticked "I'm 18 or older" (no date of birth is collected).
     adult_confirmed_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
     email_verified_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    # Optional: people can also log in with an emailed code or Google. Argon2id hash only.
+    password_hash: Mapped[str | None] = mapped_column(String(255))
+    password_changed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     last_login_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
+
+    @property
+    def has_password(self) -> bool:
+        return self.password_hash is not None
 
 
 class AuthSession(Base):

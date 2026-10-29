@@ -143,6 +143,18 @@ async def revoke_session(db: AsyncSession, session_id: uuid.UUID) -> None:
     await db.commit()
 
 
+async def revoke_other_sessions(
+    db: AsyncSession, user_id: uuid.UUID, keep: uuid.UUID | None
+) -> None:
+    query = update(AuthSession).where(
+        AuthSession.user_id == user_id, AuthSession.revoked_at.is_(None)
+    )
+    if keep is not None:
+        query = query.where(AuthSession.id != keep)
+    await db.execute(query.values(revoked_at=datetime.now(UTC)))
+    await db.commit()
+
+
 async def session_id_for_refresh_token(db: AsyncSession, token: str) -> uuid.UUID | None:
     return (
         await db.execute(

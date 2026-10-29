@@ -19,7 +19,6 @@ export default function ProfilePage() {
         </div>
         <Postmark
           text={t.loginPanel.postmark}
-          center="DEARLLY"
           size={200}
           className="hidden rotate-12 text-fg opacity-40 md:block"
         />
