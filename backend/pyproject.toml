@@ -3,29 +3,7 @@ name = "dearlly-api"
 version = "0.1.0"
 description = "Dearlly API and background worker"
 requires-python = ">=3.12,<3.13"
-dependencies = [
-    "fastapi",
-    "uvicorn[standard]",
-    "pydantic>=2",
-    "pydantic-settings",
-    "sqlalchemy[asyncio]>=2",
-    "asyncpg",
-    "alembic",
-    "redis",
-    "celery[redis]",
-    "pyyaml",
-]
-
-[project.optional-dependencies]
-dev = [
-    "pytest",
-    "pytest-asyncio",
-    "httpx",
-    "ruff",
-    "mypy",
-    "types-pyyaml",
-    "pip-audit",
-]
+# Dependencies live in requirements.in / requirements-dev.in (locked with hashes in the .txt files).
 
 [tool.ruff]
 line-length = 100
