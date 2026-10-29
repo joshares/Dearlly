@@ -1,0 +1,122 @@
+# Production stack on the server (/opt/dearlly). Started only by deploy/deploy.sh:
+#
+#   docker compose --env-file .env.production -f docker-compose.prod.yml up -d
+#
+# - Images come from GitHub's registry, tagged with the commit they were built from (IMAGE_TAG).
+# - Secrets live only in /opt/dearlly/.env.production (set with deploy/set-secret.sh).
+#   Everything below is public configuration: no secrets in this file.
+# - Ports are bound to 127.0.0.1; Caddy (outside Docker) is the only public entrance.
+
+name: dearlly
+
+x-hardened: &hardened
+  read_only: true
+  security_opt: ["no-new-privileges:true"]
+  cap_drop: [ALL]
+  restart: unless-stopped
+  tmpfs: ["/tmp"]
+
+x-backend: &backend
+  <<: *hardened
+  image: ghcr.io/joshares/dearlly-api:${IMAGE_TAG:?IMAGE_TAG is set by deploy.sh}
+  env_file: .env.production
+  environment:
+    ENVIRONMENT: production
+    LOG_LEVEL: INFO
+    DATABASE_URL: postgresql+asyncpg://dearlly:${POSTGRES_PASSWORD:?run set-secret.sh POSTGRES_PASSWORD --generate}@postgres:5432/dearlly
+    REDIS_URL: redis://redis:6379/0
+    ALLOWED_HOSTS: api.dearlly.app,localhost,127.0.0.1
+    CORS_ORIGINS: https://dearlly.app
+    PUBLIC_WEB_URL: https://dearlly.app
+    PUBLIC_API_URL: https://api.dearlly.app
+    EMAIL_DELIVERY: resend
+    EMAIL_FROM: Dearlly <hello@send.dearlly.app>
+    # Only Cloudflare can reach the server, so its header carries the visitor's real IP.
+    CLIENT_IP_HEADER: CF-Connecting-IP
+  depends_on:
+    migrate:
+      condition: service_completed_successfully
+    redis:
+      condition: service_healthy
+
+services:
+  postgres:
+    <<: *hardened
+    image: postgres:16-trixie
+    user: "999:999"
+    environment:
+      POSTGRES_USER: dearlly
+      POSTGRES_DB: dearlly
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?run set-secret.sh POSTGRES_PASSWORD --generate}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    tmpfs: ["/tmp", "/var/run/postgresql"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dearlly -d dearlly"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    <<: *hardened
+    image: redis:8-trixie
+    user: "999:999"
+    command: ["redis-server", "--save", "60", "1", "--appendonly", "no"]
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  migrate:
+    <<: *backend
+    restart: "no"
+    command: ["alembic", "upgrade", "head"]
+    healthcheck:
+      disable: true
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api:
+    <<: *backend
+    ports:
+      - "127.0.0.1:8100:8000"
+
+  worker:
+    <<: *backend
+    command: ["celery", "-A", "app.worker:celery_app", "worker", "--loglevel=INFO", "--concurrency=2"]
+    healthcheck:
+      test: ["CMD-SHELL", "celery -A app.worker:celery_app inspect ping -d celery@$$HOSTNAME --timeout 5"]
+      interval: 60s
+      timeout: 15s
+      start_period: 30s
+      retries: 3
+
+  beat:
+    <<: *backend
+    command: ["celery", "-A", "app.worker:celery_app", "beat", "--loglevel=INFO"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import os, sys; sys.exit(0 if os.path.exists('/tmp/celerybeat-schedule') else 1)"]
+      interval: 60s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+
+  web:
+    <<: *hardened
+    image: ghcr.io/joshares/dearlly-web:${IMAGE_TAG:?IMAGE_TAG is set by deploy.sh}
+    tmpfs: ["/tmp", "/app/.next/cache"]
+    environment:
+      NEXT_PUBLIC_API_URL: https://api.dearlly.app
+    ports:
+      - "127.0.0.1:3100:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  redisdata:
