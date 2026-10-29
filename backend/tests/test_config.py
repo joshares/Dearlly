@@ -32,6 +32,7 @@ def test_valid_production_settings_start() -> None:
         ({"cors_origins": "http://dearlly.example"}, "CORS origin"),
         ({"cors_origins": ""}, "CORS_ORIGINS"),
         ({"public_web_url": "http://dearlly.example"}, "PUBLIC_WEB_URL"),
+        ({"public_api_url": "http://api.dearlly.example"}, "PUBLIC_API_URL"),
         ({"turnstile_secret_key": "1x0000000000000000000000000000000AA"}, "TURNSTILE"),
         ({"email_delivery": "log"}, "EMAIL_DELIVERY"),
         ({"resend_api_key": None}, "RESEND_API_KEY"),

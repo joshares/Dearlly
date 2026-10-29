@@ -84,7 +84,10 @@
     "loggingIn": "Logging in…",
     "forgotPassword": "Forgot your password? Get a code instead",
     "newPasswordLabel": "Password (optional)",
-    "newPasswordHint": "At least 10 characters. Skip it and you can always log in with a code."
+    "newPasswordHint": "At least 10 characters. Skip it and you can always log in with a code.",
+    "google": "Continue with Google",
+    "or": "or",
+    "googleFailed": "Google sign-in didn't work. Please try again, or use an emailed code."
   },
   "profile": {
     "title": "Your profile",

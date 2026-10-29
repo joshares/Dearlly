@@ -18,7 +18,7 @@ from app.core.config import Settings
 
 JWT_ALGORITHM = "HS256"
 JWT_ISSUER = "dearlly"
-TokenType = Literal["access", "signup"]
+TokenType = Literal["access", "signup", "oauth"]
 
 LOGIN_CODE_DIGITS = 6
 
