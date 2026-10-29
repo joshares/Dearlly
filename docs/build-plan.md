@@ -266,7 +266,7 @@ Also start now: find the illustrator (brief: love-letter post office, Nigerian c
 
 **Stage 1 (Foundation) is done** (29 Oct 2026): PRs #1–#8 merged, CI green on `main`, `docker compose up` shows the Dearlly home page. `main` is protected by the "Protect main" ruleset (PR + all checks green + CodeQL, merge commits only, branches auto-deleted).
 **Stage 2 (Accounts) is done** (29 Oct 2026): sign-up with the 18+ tick; log in by emailed code, optional password or Google (Google button appears once its keys are set); sessions, rate limits, profiles, "Delete my account", branded emails, and the A+B look (PRs #9–#17).
-**Stage 3 (Production) is in progress:** domain `dearlly.app` is on Cloudflare; Hostinger KVM 2 bought (France, Ubuntu 24.04); server hardening next.
+**Stage 3 (Production) is in progress:** domain `dearlly.app` is on Cloudflare; Hostinger KVM 2 (France, Ubuntu 24.04) hardened; HTTPS through Cloudflare (Full strict + Authenticated Origin Pulls, Caddy); **live at https://dearlly.app** with automatic deploys on merge (health check + rollback). Next: backups, monitoring, Zoho, Google keys.
 Stage 0 is partly done: the plan is in the repo; the accounts and domain are being created alongside (needed by Stage 3).
 Update this section as each stage finishes.
 
