@@ -57,7 +57,7 @@ All four experience types run on one engine: one `experiences` table with a `typ
 
 **Secret admirer mode:** the recipient doesn't see the sender's name until the sender chooses to reveal it. Dearlly always knows who sent it. Tighter limits: 3 per day, the recipient can block with one tap, no photos.
 
-**Accounts:** create without signing up; sign up (magic-link email code) to send by email, save, and see responses. Username public, email never shown, 18+ date-of-birth gate.
+**Accounts:** create without signing up; sign up (magic-link email code) to send by email, save, and see responses. Username public, email never shown, 18+ gate: a required "I'm 18 or older" tick at sign-up (no date of birth collected).
 
 ### AI
 
@@ -116,7 +116,7 @@ Eleven weeks (2 November 2026 to 15 January 2027) cover Stages 0–9. Unlike Sta
 | --- | --- | --- |
 | 0 | Plan doc, accounts, buy dearlly domain | Accounts exist, domain on Cloudflare, `docs/build-plan.md` in repo |
 | 1 | Foundation: repo, Docker Compose, FastAPI, Postgres, Redis, Celery, Next.js, CI and security scans, Dependabot, design tokens and fonts | CI all green; `docker compose up` shows a Dearlly-styled home page |
-| 2 | Accounts: magic-link login, sessions, Turnstile, rate limits, 18+ gate, username, profile basics | Sign up, log in, log out and rate limits pass tests; under-18 refused |
+| 2 | Accounts: magic-link login, sessions, Turnstile, rate limits, 18+ gate, username, profile basics | Sign up, log in, log out and rate limits pass tests; sign-up refused without the 18+ tick |
 | 3 | Production early: VPS, hardening, Cloudflare Full (strict), secrets, auto-deploy, backups to R2, Sentry, UptimeRobot, Resend, Zoho | Merge to main is live in 5 minutes; restore tested; login email lands in inbox |
 | 4 | Experience engine + love note + invitation/acceptance pages + share link, WhatsApp, email, PNG/PDF download, scheduled send, Opened/Accepted | A love note can be sent, opened, accepted and downloaded on a phone |
 | 5 | Date, vacation and gift reveal types; `cities.yaml` with curated Lagos and Abuja places; photo upload to R2; secret admirer mode | All four types work end to end; 50+ curated places loaded |
@@ -264,7 +264,8 @@ Also start now: find the illustrator (brief: love-letter post office, Nigerian c
 
 ## Where we are
 
-**Stage 1 (Foundation) is built and in review** as PRs #1–#6. It is done when all six are merged and CI is green on `main`.
+**Stage 1 (Foundation) is done** (29 Oct 2026): PRs #1–#8 merged, CI green on `main`, `docker compose up` shows the Dearlly home page. `main` is protected by the "Protect main" ruleset (PR + all checks green + CodeQL, merge commits only, branches auto-deleted).
+**Stage 2 (Accounts) is in progress.**
 Stage 0 is partly done: the plan is in the repo; the accounts and domain are being created alongside (needed by Stage 3).
 Update this section as each stage finishes.
 
@@ -279,6 +280,7 @@ Update this section as each stage finishes.
 | 29 Oct 2026 | Local ports are 3100 (web) and 8100 (API), so Dearlly runs next to Statabet on the same Mac |
 | 29 Oct 2026 | Frontend starts on TypeScript 6 and ESLint 9 (not 7 / 10): Next.js 16's lint plugins don't support ESLint 10 yet. Upgrade deliberately later |
 | 29 Oct 2026 | Python packages are locked as `requirements.in` → `requirements.txt` (with hashes), the layout Dependabot can update. Locks use only releases 14+ days old, except security fixes |
+| 29 Oct 2026 | 18+ gate is a required "I'm 18 or older" tick at sign-up, with the time it was ticked stored as the record. **No date of birth is collected** (founder's decision: less personal data to hold). Trade-off: it relies on the user's word, like most dating and social apps; "Intense" games use the same confirmation |
 | 29 Oct 2026 | Pages use a per-request CSP nonce, so HTML is rendered per request. Stage 4 decides how invitation pages are cached at Cloudflare without weakening the CSP |
 
 ## First prompt for Claude Code (Stage 1)
