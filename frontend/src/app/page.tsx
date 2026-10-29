@@ -35,7 +35,7 @@ export default function HomePage() {
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Link
                 href="/login"
-                className="inline-flex min-h-14 items-center justify-center rounded-lg bg-stamp px-7 whitespace-nowrap text-lg font-extrabold text-paper shadow-[4px_4px_0_var(--color-ink)] transition-transform hover:-translate-y-0.5 dark:shadow-[4px_4px_0_var(--color-paper)]"
+                className="inline-flex min-h-14 items-center justify-center rounded-lg bg-stamp px-7 whitespace-nowrap text-lg font-extrabold text-paper shadow-[4px_4px_0_var(--color-ink)] transition-transform hover:-translate-y-0.5"
               >
                 {home.primaryCta}
               </Link>

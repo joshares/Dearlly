@@ -56,7 +56,7 @@ wins for security and process. If something is unclear, ask — never guess or f
 
 ## Design rules
 
-- Tokens: Paper `#F3EADB` (background), Ink `#1F2A6B` (text; dark-mode background),
+- Tokens: Paper `#F3EADB` (background), Ink `#1F2A6B` (text and outlines; never a page background — no dark mode),
   Stamp red `#D7392B` (main actions, seals), Kraft `#C89B6D` (envelopes, borders).
 - Fonts (self-hosted): **Gloock** headings, **Figtree** body/buttons, **Homemade Apple** handwritten touches.
 - Animations: Rive for signature moments (envelope seal, wax seal crack, postmark, ink signature,

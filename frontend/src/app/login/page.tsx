@@ -16,8 +16,8 @@ export default async function LoginPage() {
     <>
       <div className="grid min-h-[calc(100dvh-2*var(--frame))] md:grid-cols-2">
         {/* Brand panel: laptops only. */}
-        <aside className="relative hidden flex-col justify-between overflow-hidden bg-ink p-12 text-paper md:flex dark:bg-[#141b4a]">
-          <Link href="/" aria-label={t.header.home} className="text-paper">
+        <aside className="relative hidden flex-col justify-between overflow-hidden border-r-2 border-dashed border-line bg-surface/70 p-12 md:flex">
+          <Link href="/" aria-label={t.header.home} className="text-fg">
             <Logo />
           </Link>
           <div className="relative flex justify-center">
@@ -26,7 +26,6 @@ export default async function LoginPage() {
                 label={t.home.art.label}
                 letterTo={t.home.art.to}
                 letterBody={t.home.art.body}
-                postmarkClass="text-paper"
               />
             </div>
           </div>

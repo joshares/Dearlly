@@ -14,11 +14,11 @@ Every screen follows one idea: sending seals an envelope, receiving breaks a wax
 | Token | Hex | Use |
 | --- | --- | --- |
 | Paper | `#F3EADB` | Main background (faint paper grain) |
-| Ink | `#1F2A6B` | Text, outlines; dark-mode background |
+| Ink | `#1F2A6B` | Text, outlines, airmail stripes (never a page background) |
 | Stamp red | `#D7392B` | Main buttons, seals, postmarks |
 | Kraft | `#C89B6D` | Envelopes, secondary surfaces, borders |
 
-Dark mode: Ink background, Paper text, Stamp red stays the accent.
+No dark mode: Dearlly is always on cream love-letter paper, even when the phone is set to dark mode (decided 29 Oct 2026).
 
 ## Fonts (Google Fonts, self-hosted)
 

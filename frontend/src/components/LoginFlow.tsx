@@ -14,7 +14,7 @@ const t = getMessages().login;
 const input =
   "min-h-12 w-full rounded-md border-2 border-fg bg-surface px-3 text-base text-fg placeholder:text-muted";
 const primary =
-  "min-h-14 w-full rounded-lg bg-stamp px-5 text-lg font-extrabold text-paper shadow-[4px_4px_0_var(--color-ink)] disabled:opacity-50 disabled:shadow-none dark:shadow-[4px_4px_0_var(--color-paper)]";
+  "min-h-14 w-full rounded-lg bg-stamp px-5 text-lg font-extrabold text-paper shadow-[4px_4px_0_var(--color-ink)] disabled:opacity-50 disabled:shadow-none";
 const label = "flex flex-col gap-1 text-left text-sm font-semibold";
 
 function message(error: unknown): string {

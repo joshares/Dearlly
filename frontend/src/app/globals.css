@@ -12,14 +12,13 @@
   --font-hand: var(--font-homemade-apple), cursive;
 }
 
-/* Semantic colours: light mode is paper with ink, dark mode is ink with paper. */
+/* Semantic colours. Always cream paper with ink (no dark mode: founder's choice, 29 Oct 2026). */
 :root {
   --bg: var(--color-paper);
   --fg: var(--color-ink);
   --surface: #fbf6ee;
   --muted: #3d4680;
   --line: var(--color-kraft);
-  /* Red text is unreadable on ink, so dark mode uses paper text with red borders instead. */
   --accent-text: var(--color-stamp);
   /* Love-letter paper: ruled lines and the red margin line. */
   --rule: rgb(31 42 107 / 0.12);
@@ -36,20 +35,6 @@
   :root {
     --frame: 14px;
     --margin-x: 64px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: var(--color-ink);
-    --fg: var(--color-paper);
-    --surface: #27337a;
-    --muted: #d9cdb8;
-    --accent-text: var(--color-paper);
-    --rule: rgb(243 234 219 / 0.07);
-    --margin-line: rgb(215 57 43 / 0.6);
-    --shadow: rgb(0 0 0 / 0.3);
-    color-scheme: dark;
   }
 }
 
