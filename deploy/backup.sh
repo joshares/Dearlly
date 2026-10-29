@@ -26,13 +26,25 @@ for var in BACKUP_AGE_RECIPIENT R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY R2_ENDPOIN
 done
 
 # rclone remote "r2", configured from the environment only (nothing written to disk).
-export RCLONE_CONFIG=/dev/null # no config file: everything comes from the environment
 export RCLONE_CONFIG_R2_TYPE=s3
 export RCLONE_CONFIG_R2_PROVIDER=Cloudflare
 export RCLONE_CONFIG_R2_ACCESS_KEY_ID="$R2_ACCESS_KEY_ID"
 export RCLONE_CONFIG_R2_SECRET_ACCESS_KEY="$R2_SECRET_ACCESS_KEY"
 export RCLONE_CONFIG_R2_ENDPOINT="$R2_ENDPOINT"
 export RCLONE_CONFIG_R2_NO_CHECK_BUCKET=true
+
+# Ubuntu's rclone (1.60) mishandles uploads to R2, so use the official image, pinned.
+RCLONE_IMAGE="rclone/rclone:1.75.2@sha256:2687085f718d3c628f7fdfb77c52a1d344332aed543110bb88088f2c70d43eb5"
+rclone() {
+  # Only "rcat" reads from stdin; other commands must not swallow the caller's input.
+  local stdin_flag=()
+  [[ "$1" == "rcat" ]] && stdin_flag=(-i)
+  docker run --rm "${stdin_flag[@]}" --user "$(id -u):$(id -g)" \
+    -e RCLONE_CONFIG=/dev/null -e RCLONE_CONFIG_R2_TYPE -e RCLONE_CONFIG_R2_PROVIDER \
+    -e RCLONE_CONFIG_R2_ACCESS_KEY_ID -e RCLONE_CONFIG_R2_SECRET_ACCESS_KEY \
+    -e RCLONE_CONFIG_R2_ENDPOINT -e RCLONE_CONFIG_R2_NO_CHECK_BUCKET \
+    -v "${RCLONE_WORKDIR:-/tmp}:/work" -w /work "$RCLONE_IMAGE" "$@"
+}
 
 name="db/dearlly-$(date -u +%Y%m%d-%H%M%S).dump.age"
 log "Backing up to r2:$BUCKET/$name"

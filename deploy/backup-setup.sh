@@ -9,8 +9,10 @@ set -euo pipefail
 
 [[ $EUID -eq 0 ]] || { echo "Run with sudo." >&2; exit 1; }
 
-apt-get -yq install age rclone >/dev/null
-echo "Installed: $(age --version), $(rclone version | head -1)"
+apt-get -yq install age >/dev/null
+echo "Installed: age $(age --version)"
+# rclone runs from its official Docker image (see backup.sh); Ubuntu's copy is too old for R2.
+docker pull -q rclone/rclone:1.75.2 >/dev/null && echo "rclone image ready"
 
 cat > /etc/systemd/system/dearlly-backup.service <<'EOF'
 [Unit]
