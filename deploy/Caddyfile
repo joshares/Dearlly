@@ -1,0 +1,42 @@
+# Caddy: the only public entrance on the server (port 443).
+#
+# Visitors -> Cloudflare (CDN, firewall) -> this Caddy -> app containers on 127.0.0.1.
+# - The certificate is Cloudflare's Origin certificate (Cloudflare SSL mode "Full (strict)").
+# - Authenticated Origin Pulls: Cloudflare must present its client certificate, so even a
+#   request that reaches this IP directly is refused. ufw also only lets Cloudflare in.
+
+{
+	# We bring our own certificate; nothing to fetch, nothing on port 80.
+	auto_https off
+	admin off
+}
+
+(cloudflare_only) {
+	tls /etc/caddy/certs/origin.pem /etc/caddy/certs/origin.key {
+		protocols tls1.2 tls1.3
+		client_auth {
+			mode require_and_verify
+			trust_pool file /etc/caddy/certs/cloudflare-origin-pull-ca.pem
+		}
+	}
+	header -Server
+	log {
+		output stdout
+		format json
+	}
+}
+
+https://dearlly.app {
+	import cloudflare_only
+	reverse_proxy 127.0.0.1:3100
+}
+
+https://www.dearlly.app {
+	import cloudflare_only
+	redir https://dearlly.app{uri} permanent
+}
+
+https://api.dearlly.app {
+	import cloudflare_only
+	reverse_proxy 127.0.0.1:8100
+}
