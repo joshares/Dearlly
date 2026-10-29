@@ -234,3 +234,29 @@ async def test_resend_failure_raises() -> None:
     async with _client(httpx.MockTransport(lambda _: httpx.Response(422))) as client:
         with pytest.raises(EmailDeliveryError):
             await send_email(client, production_settings(), login_code_email("a@b.c", "1", 10))
+
+
+def test_branded_email_escapes_and_brands() -> None:
+    from app.services.email_templates import Paragraph, letter_email
+
+    page = letter_email(
+        title="t",
+        preheader="p",
+        greeting="Dear <b>you</b>",
+        heading="Hi & welcome",
+        paragraphs=[Paragraph("<script>alert(1)</script>")],
+        highlight="12<34",
+        footer="f",
+    )
+    assert "<script>" not in page and "&lt;script&gt;" in page
+    assert "Dear &lt;b&gt;you&lt;/b&gt;" in page and "Hi &amp; welcome" in page
+    assert "#D7392B" in page and "#F3EADB" in page  # stamp red, paper
+    assert 'content="light only"' in page  # mail apps shouldn't flip it to dark
+
+
+def test_login_code_email_is_branded() -> None:
+    email = login_code_email("a@b.c", "482913", 10)
+    assert "Dearlly" in email.html and "My dearest," in email.html
+    # Each digit sits in its own box.
+    assert all(f">{digit}</td>" in email.html for digit in "482913")
+    assert "482913 is your code" in email.html  # inbox preview line

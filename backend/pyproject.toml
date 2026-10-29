@@ -14,6 +14,8 @@ select = ["E", "F", "W", "I", "B", "UP", "S", "ASYNC", "BLE", "C4", "SIM", "RUF"
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["S101", "S105", "S106"]
+# Email HTML reads better one element per line.
+"app/services/email_templates.py" = ["E501"]
 
 [tool.mypy]
 python_version = "3.12"

@@ -8,6 +8,9 @@ Every screen follows one idea: sending seals an envelope, receiving breaks a wax
 - **Background:** red-and-blue airmail stripes framing every screen, over ruled love-letter paper with a red margin line.
 - **Touches:** handwritten opener ("My dearest,") and sign-off ("Yours, always — Dearlly"); experience types as tilted, perforated stamps; postmarks with city and date.
 - Drawn in code for now (`frontend/src/components/brand.tsx`); the illustrator's artwork replaces these pieces.
+- **Emails** use the same letter design (`backend/app/services/email_templates.py`): cream paper, airmail stripes top and bottom,
+  the seal "D" and wordmark, a red margin line, "My dearest," and "Yours, always — Dearlly". Built with tables and inline
+  styles so Gmail, Outlook and phone mail apps show it properly; Georgia stands in for Gloock, which email apps can't load.
 
 ## Colours
 
