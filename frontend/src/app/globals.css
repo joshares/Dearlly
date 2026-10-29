@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* Brand tokens (docs/build-plan.md, "Brand and design"). */
+@theme {
+  --color-paper: #f3eadb;
+  --color-ink: #1f2a6b;
+  --color-stamp: #d7392b;
+  --color-kraft: #c89b6d;
+
+  --font-heading: var(--font-gloock), Georgia, serif;
+  --font-body: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-hand: var(--font-homemade-apple), cursive;
+}
+
+/* Semantic colours: light mode is paper with ink, dark mode is ink with paper. */
+:root {
+  --bg: var(--color-paper);
+  --fg: var(--color-ink);
+  --surface: #fbf6ee;
+  --muted: #4a5285;
+  --line: var(--color-kraft);
+  /* Red text is unreadable on ink, so dark mode uses paper text with red borders instead. */
+  --accent-text: var(--color-stamp);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--color-ink);
+    --fg: var(--color-paper);
+    --surface: #27337a;
+    --muted: #d9cdb8;
+    --accent-text: var(--color-paper);
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent-text: var(--accent-text);
+}
+
+body {
+  background-color: var(--bg);
+  /* Faint paper grain. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.16 0 0 0 0 0.42 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  color: var(--fg);
+  font-family: var(--font-body);
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-stamp);
+  outline-offset: 3px;
+}
+
+/* Perforated postage-stamp edge: holes in the padding ring only, solid in the middle. */
+.stamp-edge {
+  --hole: 4px;
+  padding: calc(var(--hole) * 2);
+  mask:
+    radial-gradient(circle var(--hole), #0000 96%, #000) calc(var(--hole) * -1.5)
+      calc(var(--hole) * -1.5) / calc(var(--hole) * 3) calc(var(--hole) * 3) round,
+    linear-gradient(#000 0 0) content-box;
+  mask-composite: add;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-2deg);
+  }
+}
+
+.drift {
+  animation: drift 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

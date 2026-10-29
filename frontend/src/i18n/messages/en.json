@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "title": "Dearlly — say it like a love letter",
+    "description": "Love notes, date invitations, vacation surprises and gift reveals, sealed and sent by private link. Plus games for two."
+  },
+  "brand": {
+    "name": "Dearlly",
+    "tagline": "Sealed with love, sent by link."
+  },
+  "home": {
+    "badge": "The post office opens soon",
+    "title": "Say it like a love letter.",
+    "lead": "Love notes, date invitations, vacation surprises and gift reveals — sealed in an envelope and sent by private link. Plus games for two.",
+    "primaryCta": "Write a love note",
+    "secondaryCta": "Play a game for two",
+    "soon": "Opening soon",
+    "experiencesHeading": "What you can send",
+    "experiences": {
+      "loveNote": { "title": "Love note", "body": "A few true words, sealed with wax." },
+      "date": { "title": "Date invitation", "body": "Ask them out properly, with a time and a place." },
+      "vacation": { "title": "Vacation invite", "body": "Pack the bags first, then tell them." },
+      "gift": { "title": "Gift reveal", "body": "They scratch the stamp to see it." }
+    },
+    "gamesHeading": "Games for two",
+    "gamesBody": "Answer privately, reveal together. From talking stage to deep talk.",
+    "adultsOnly": "For adults 18+ in Nigeria."
+  },
+  "nav": {
+    "label": "Main",
+    "home": "Home",
+    "create": "Create",
+    "games": "Games",
+    "stamps": "Stamps",
+    "profile": "Profile",
+    "soon": "Soon"
+  },
+  "envelope": {
+    "label": "A sealed envelope with a red wax seal"
+  }
+}
