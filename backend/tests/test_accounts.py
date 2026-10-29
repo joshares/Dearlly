@@ -219,3 +219,34 @@ def test_update_display_name(auth_client: AuthClient) -> None:
 
 def test_profile_changes_need_login(auth_client: AuthClient) -> None:
     assert auth_client.patch("/me", json={"display_name": "Ada"}).status_code == 401
+
+
+# --- delete account (NDPA right to erasure) --------------------------------------------------
+
+
+def test_delete_account_removes_everything(auth_client: AuthClient) -> None:
+    auth_client.sign_up(EMAIL, "ada_demo")
+    refresh = auth_client.cookies.get("dl_refresh", path="/auth")
+    assert refresh
+    wrong = auth_client.post("/me/delete", json={"confirm_username": "someone_else"})
+    assert wrong.status_code == 400
+    assert auth_client.get("/me").status_code == 200
+
+    assert auth_client.post("/me/delete", json={"confirm_username": "ADA_demo"}).status_code == 204
+    assert auth_client.get("/me").status_code == 401
+    assert auth_client.get("/users/ada_demo").status_code == 404
+    # The old refresh token died with the account.
+    auth_client.replace_cookies(dl_refresh=refresh)
+    assert auth_client.post("/auth/refresh").status_code == 401
+
+
+def test_deleted_email_and_username_can_sign_up_again(auth_client: AuthClient) -> None:
+    auth_client.sign_up(EMAIL, "ada_demo")
+    auth_client.post("/me/delete", json={"confirm_username": "ada_demo"})
+    auth_client.use_csrf()
+    assert auth_client.sign_up(EMAIL, "ada_demo").status_code == 201
+
+
+def test_delete_account_needs_login(auth_client: AuthClient) -> None:
+    response = auth_client.post("/me/delete", json={"confirm_username": "ada_demo"})
+    assert response.status_code == 401

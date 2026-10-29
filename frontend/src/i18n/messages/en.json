@@ -85,6 +85,11 @@
     "saved": "Saved",
     "logOut": "Log out",
     "planLabel": "Plan",
-    "planFree": "Free"
+    "planFree": "Free",
+    "deleteTitle": "Delete my account",
+    "deleteBody": "This permanently deletes your account, your profile and everything linked to it, and logs you out on every device. It can't be undone.",
+    "deleteConfirmLabel": "Type your username ({username}) to confirm",
+    "deleteButton": "Delete my account forever",
+    "deleting": "Deleting…"
   }
 }
