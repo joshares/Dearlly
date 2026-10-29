@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 
 import { BottomNav } from "@/components/BottomNav";
+import { Postmark } from "@/components/brand";
 import { ProfileView } from "@/components/ProfileView";
+import { SiteHeader } from "@/components/SiteHeader";
 import { getMessages } from "@/i18n";
 
 export const metadata: Metadata = { title: "Profile · Dearlly" };
@@ -10,9 +12,17 @@ export default function ProfilePage() {
   const t = getMessages();
   return (
     <>
-      <main className="mx-auto flex max-w-lg flex-col gap-6 px-5 pt-8 pb-32">
-        <p className="font-heading text-3xl">{t.brand.name}</p>
-        <ProfileView />
+      <SiteHeader t={t.header} />
+      <main className="mx-auto grid w-full max-w-6xl gap-10 pt-4 pr-5 pb-36 pl-9 md:grid-cols-[1fr_240px] md:px-12 md:pt-8 md:pb-24">
+        <div className="letter-sheet rounded-sm py-8 pr-6 pl-12 md:py-12 md:pr-12 md:pl-16">
+          <ProfileView />
+        </div>
+        <Postmark
+          text={t.loginPanel.postmark}
+          center="DEARLLY"
+          size={200}
+          className="hidden rotate-12 text-fg opacity-40 md:block"
+        />
       </main>
       <BottomNav t={t.nav} current="profile" />
     </>

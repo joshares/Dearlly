@@ -1,9 +1,17 @@
+import Link from "next/link";
+
 import { BottomNav } from "@/components/BottomNav";
-import { Envelope } from "@/components/Envelope";
+import { HeroArt } from "@/components/brand";
+import { SiteHeader } from "@/components/SiteHeader";
+import { StampCard } from "@/components/StampCard";
 import { getMessages } from "@/i18n";
 
-const EXPERIENCES = ["loveNote", "date", "vacation", "gift"] as const;
-const TILTS = ["-rotate-2", "rotate-1", "rotate-2", "-rotate-1"];
+const EXPERIENCES = [
+  { key: "loveNote", tone: "kraft", tilt: "-rotate-3" },
+  { key: "date", tone: "stamp", tilt: "rotate-2" },
+  { key: "vacation", tone: "ink", tilt: "-rotate-1" },
+  { key: "gift", tone: "paper", tilt: "rotate-3" },
+] as const;
 
 export default function HomePage() {
   const t = getMessages();
@@ -11,59 +19,66 @@ export default function HomePage() {
 
   return (
     <>
-      <main className="mx-auto flex max-w-lg flex-col gap-10 px-5 pt-8 pb-32">
-        <header className="flex flex-wrap items-center justify-between gap-2">
-          <p className="font-heading text-3xl">{t.brand.name}</p>
-          <p className="rounded-full border-2 border-stamp px-3 py-1 text-xs font-bold tracking-wide text-accent-text uppercase">
-            {home.badge}
-          </p>
-        </header>
-
-        <section className="flex flex-col items-center gap-6 text-center">
-          <Envelope label={t.envelope.label} />
-          <p className="font-hand text-lg text-muted">{t.brand.tagline}</p>
-          <h1 className="text-4xl leading-tight">{home.title}</h1>
-          <p className="text-base leading-relaxed text-muted">{home.lead}</p>
-          <div className="flex w-full flex-col gap-3">
-            <button
-              type="button"
-              disabled
-              className="min-h-12 rounded-md bg-stamp px-5 text-base font-bold text-paper shadow-[3px_3px_0_var(--color-ink)] disabled:cursor-not-allowed"
-            >
-              {home.primaryCta} · <span className="font-normal">{home.soon}</span>
-            </button>
-            <button
-              type="button"
-              disabled
-              className="min-h-12 rounded-md border-2 border-fg px-5 text-base font-bold disabled:cursor-not-allowed"
-            >
-              {home.secondaryCta} · <span className="font-normal">{home.soon}</span>
-            </button>
+      <SiteHeader t={t.header} />
+      <main className="mx-auto flex w-full max-w-6xl flex-col gap-16 pt-4 pr-5 pb-36 pl-9 md:gap-24 md:px-12 md:pt-10 md:pb-24">
+        <section className="grid items-center gap-10 md:grid-cols-[1.1fr_1fr] md:gap-12">
+          <div className="flex flex-col gap-5 md:gap-6">
+            <p className="flex items-center gap-2 self-start rounded-full border-2 border-stamp px-4 py-1.5 text-xs font-extrabold tracking-[0.14em] text-accent-text uppercase">
+              <span className="h-2 w-2 rounded-full bg-stamp" aria-hidden="true" />
+              {home.badge}
+            </p>
+            <p className="font-hand text-xl leading-[2.2] md:text-2xl">{home.opener}</p>
+            <h1 className="text-[2.9rem] leading-[1] tracking-tight sm:text-6xl lg:text-[5.4rem]">
+              {home.title}
+            </h1>
+            <p className="max-w-xl text-lg leading-[1.8] text-muted md:text-xl">{home.lead}</p>
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <Link
+                href="/login"
+                className="inline-flex min-h-14 items-center justify-center rounded-lg bg-stamp px-7 whitespace-nowrap text-lg font-extrabold text-paper shadow-[4px_4px_0_var(--color-ink)] transition-transform hover:-translate-y-0.5 dark:shadow-[4px_4px_0_var(--color-paper)]"
+              >
+                {home.primaryCta}
+              </Link>
+              <button
+                type="button"
+                disabled
+                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-lg border-2 border-fg px-6 whitespace-nowrap text-lg font-extrabold disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {home.secondaryCta}
+                <span className="text-sm font-semibold">· {home.soon}</span>
+              </button>
+            </div>
+            <p className="font-hand text-lg leading-[2.2] text-muted">{home.signOff}</p>
+          </div>
+          <div className="drift flex justify-center md:justify-end">
+            <HeroArt label={home.art.label} letterTo={home.art.to} letterBody={home.art.body} />
           </div>
         </section>
 
-        <section aria-labelledby="experiences" className="flex flex-col gap-4">
-          <h2 id="experiences" className="text-2xl">
+        <section aria-labelledby="send" className="flex flex-col gap-8">
+          <h2 id="send" className="text-3xl md:text-4xl">
             {home.experiencesHeading}
           </h2>
-          <ul className="grid grid-cols-2 gap-4">
-            {EXPERIENCES.map((key, index) => (
-              <li key={key} className={`stamp-edge bg-kraft ${TILTS[index]}`}>
-                <div className="flex h-full flex-col gap-1 border-2 border-ink bg-paper p-3 text-ink">
-                  <h3 className="text-lg leading-snug">{home.experiences[key].title}</h3>
-                  <p className="text-sm leading-snug">{home.experiences[key].body}</p>
-                </div>
+          <ul className="grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-8">
+            {EXPERIENCES.map(({ key, tone, tilt }) => (
+              <li key={key}>
+                <StampCard
+                  title={home.experiences[key].title}
+                  body={home.experiences[key].body}
+                  tone={tone}
+                  tilt={tilt}
+                />
               </li>
             ))}
           </ul>
         </section>
 
-        <section className="rounded-md border-2 border-dashed border-line p-5">
-          <h2 className="text-2xl">{home.gamesHeading}</h2>
-          <p className="mt-2 text-muted">{home.gamesBody}</p>
+        <section className="letter-sheet flex flex-col gap-3 rounded-sm py-8 pr-6 pl-12 md:max-w-3xl md:py-10 md:pl-16">
+          <h2 className="text-3xl md:text-4xl">{home.gamesHeading}</h2>
+          <p className="text-lg leading-[2.25rem] text-muted">{home.gamesBody}</p>
         </section>
 
-        <p className="text-center text-sm text-muted">{home.adultsOnly}</p>
+        <p className="text-sm text-muted">{home.adultsOnly}</p>
       </main>
       <BottomNav t={t.nav} current="home" />
     </>

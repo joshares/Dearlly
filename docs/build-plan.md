@@ -265,7 +265,7 @@ Also start now: find the illustrator (brief: love-letter post office, Nigerian c
 ## Where we are
 
 **Stage 1 (Foundation) is done** (29 Oct 2026): PRs #1–#8 merged, CI green on `main`, `docker compose up` shows the Dearlly home page. `main` is protected by the "Protect main" ruleset (PR + all checks green + CodeQL, merge commits only, branches auto-deleted).
-**Stage 2 (Accounts) is in progress.**
+**Stage 2 (Accounts) is done** (29 Oct 2026): email-code sign-up/log-in with the 18+ tick, sessions, rate limits, profiles and "Delete my account" (PRs #9–#13). Next: the A+B redesign (in review), then Stage 3 (production).
 Stage 0 is partly done: the plan is in the repo; the accounts and domain are being created alongside (needed by Stage 3).
 Update this section as each stage finishes.
 
@@ -281,6 +281,8 @@ Update this section as each stage finishes.
 | 29 Oct 2026 | Frontend starts on TypeScript 6 and ESLint 9 (not 7 / 10): Next.js 16's lint plugins don't support ESLint 10 yet. Upgrade deliberately later |
 | 29 Oct 2026 | Python packages are locked as `requirements.in` → `requirements.txt` (with hashes), the layout Dependabot can update. Locks use only releases 14+ days old, except security fixes |
 | 29 Oct 2026 | 18+ gate is a required "I'm 18 or older" tick at sign-up, with the time it was ticked stored as the record. **No date of birth is collected** (founder's decision: less personal data to hold). Trade-off: it relies on the user's word, like most dating and social apps; "Intense" games use the same confirmation |
+| 29 Oct 2026 | Look chosen from the design board: **A + B mix**: airmail-stripe frame round every screen, ruled love-letter paper with a red margin line, handwritten opener and sign-off, tilted perforated stamp cards. Logo: **wax seal "D" + Gloock wordmark**. Laptop gets a top menu; phones keep the bottom bar |
+| 29 Oct 2026 | "Delete my account" added in Stage 2 (NDPA right to erasure). Each later stage adds its data to what deletion removes |
 | 29 Oct 2026 | Pages use a per-request CSP nonce, so HTML is rendered per request. Stage 4 decides how invitation pages are cached at Cloudflare without weakening the CSP |
 
 ## First prompt for Claude Code (Stage 1)

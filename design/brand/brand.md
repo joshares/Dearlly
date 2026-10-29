@@ -2,6 +2,13 @@
 
 Every screen follows one idea: sending seals an envelope, receiving breaks a wax seal, photos become postage stamps.
 
+## Chosen look (29 Oct 2026)
+
+- **Logo:** red wax seal with a "D", next to "Dearlly" in Gloock. The same seal cracks open on invitations.
+- **Background:** red-and-blue airmail stripes framing every screen, over ruled love-letter paper with a red margin line.
+- **Touches:** handwritten opener ("My dearest,") and sign-off ("Yours, always — Dearlly"); experience types as tilted, perforated stamps; postmarks with city and date.
+- Drawn in code for now (`frontend/src/components/brand.tsx`); the illustrator's artwork replaces these pieces.
+
 ## Colours
 
 | Token | Hex | Use |

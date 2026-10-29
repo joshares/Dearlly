@@ -42,6 +42,8 @@ export function Turnstile({
     const widgetId = api.render(container.current, {
       sitekey: TURNSTILE_SITE_KEY,
       theme: "auto",
+      // The normal widget is 300px wide: too wide for small phones inside the letter sheet.
+      size: window.innerWidth < 420 ? "compact" : "normal",
       callback: (token: string) => callback.current(token),
       "expired-callback": () => callback.current(null),
       "error-callback": () => callback.current(null),

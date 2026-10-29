@@ -1,11 +1,21 @@
 import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { getMessages, locales } from "@/i18n";
 
 import HomePage from "./page";
 
-afterEach(cleanup);
+beforeEach(() => {
+  // Visitor is not logged in.
+  vi.stubGlobal(
+    "fetch",
+    vi.fn(async () => new Response(JSON.stringify({ detail: "Please log in." }), { status: 401 })),
+  );
+});
+afterEach(() => {
+  cleanup();
+  vi.unstubAllGlobals();
+});
 
 describe("home page", () => {
   it("shows the headline from the translation file", () => {
@@ -13,7 +23,7 @@ describe("home page", () => {
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(getMessages().home.title);
   });
 
-  it("has bottom navigation with Home as the current page", () => {
+  it("has phone navigation with Home as the current page", () => {
     render(<HomePage />);
     const nav = screen.getByRole("navigation", { name: "Main" });
     const home = nav.querySelector('[aria-current="page"]');
@@ -23,11 +33,18 @@ describe("home page", () => {
 
   it("links only to pages that exist", () => {
     render(<HomePage />);
+    const hrefs = [...document.querySelectorAll("a")].map((a) => a.getAttribute("href"));
+    expect(new Set(hrefs)).toEqual(new Set(["/", "/login", "/profile"]));
+    // Unbuilt features are clearly not clickable.
     for (const button of screen.getAllByRole("button")) {
       expect((button as HTMLButtonElement).disabled).toBe(true);
     }
-    const links = [...screen.getByRole("navigation").querySelectorAll("a")];
-    expect(links.map((a) => a.getAttribute("href"))).toEqual(["/", "/profile"]);
+  });
+
+  it("offers sign-up as the main action", () => {
+    render(<HomePage />);
+    const cta = screen.getByRole("link", { name: getMessages().home.primaryCta });
+    expect(cta.getAttribute("href")).toBe("/login");
   });
 });
 

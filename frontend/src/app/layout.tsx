@@ -34,7 +34,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       lang={defaultLocale}
       className={`${gloock.variable} ${figtree.variable} ${homemadeApple.variable}`}
     >
-      <body className="min-h-dvh antialiased">{children}</body>
+      <body className="min-h-dvh antialiased">
+        <div className="airmail-frame" aria-hidden="true" />
+        {children}
+      </body>
     </html>
   );
 }
