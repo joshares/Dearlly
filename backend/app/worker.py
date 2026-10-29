@@ -3,12 +3,16 @@
 from typing import Any
 
 from celery import Celery
+from celery.app import trace
 from celery.signals import setup_logging
 
 from app.core.config import get_settings
 from app.core.logging import configure_logging
 
 settings = get_settings()
+
+# Celery's default success line prints the task's return value, which may be personal data.
+trace.LOG_SUCCESS = "Task %(name)s[%(id)s] succeeded in %(runtime)ss"
 
 celery_app = Celery("dearlly", broker=settings.redis_url.get_secret_value())
 celery_app.conf.update(

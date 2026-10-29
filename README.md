@@ -22,8 +22,7 @@ cp .env.example .env
 docker compose up --build
 ```
 
-Then open http://localhost:3000. The API answers at http://localhost:8000/health.
-(Docker Compose arrives in Stage 1; until then this command does nothing useful.)
+Then open http://localhost:3100. The API answers at http://localhost:8100/health.
 
 ## What's in here
 

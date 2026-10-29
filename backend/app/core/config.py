@@ -37,8 +37,8 @@ class Settings(BaseSettings):
     secret_key: SecretStr = SecretStr("local-dev-only-not-a-secret-change-on-server")
 
     allowed_hosts: Annotated[list[str], NoDecode] = ["localhost", "127.0.0.1", "testserver"]
-    cors_origins: Annotated[list[str], NoDecode] = ["http://localhost:3000"]
-    public_web_url: str = "http://localhost:3000"
+    cors_origins: Annotated[list[str], NoDecode] = ["http://localhost:3100"]
+    public_web_url: str = "http://localhost:3100"
 
     email_delivery: Literal["log", "resend"] = "log"
 

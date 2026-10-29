@@ -29,6 +29,8 @@ REDACT_KEYS = (
     "otp",
     "private_key",
 )
+# Exact field names whose values are personal data: Celery task inputs and results.
+REDACT_EXACT_KEYS = frozenset({"args", "kwargs", "return_value"})
 
 _KEY_PATTERN = "|".join(re.escape(key) for key in REDACT_KEYS)
 # key=value / key: value pairs inside free-text messages.
@@ -48,7 +50,7 @@ _STANDARD_ATTRS = frozenset(
 
 def _is_sensitive_key(key: str) -> bool:
     lowered = key.lower()
-    return any(marker in lowered for marker in REDACT_KEYS)
+    return lowered in REDACT_EXACT_KEYS or any(marker in lowered for marker in REDACT_KEYS)
 
 
 def redact_text(text: str) -> str:
@@ -97,7 +99,9 @@ def configure_logging(level: str = "INFO") -> None:
     root.handlers = [handler]
     root.setLevel(level)
     # Route uvicorn and celery through the same JSON handler.
-    for name in ("uvicorn", "uvicorn.error", "uvicorn.access", "celery"):
+    for name in ("uvicorn", "uvicorn.error", "celery"):
         logger = logging.getLogger(name)
         logger.handlers = []
         logger.propagate = True
+    # Uvicorn's access log prints full URLs (private link tokens). We log route templates instead.
+    logging.getLogger("uvicorn.access").disabled = True

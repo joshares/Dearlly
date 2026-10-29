@@ -48,7 +48,7 @@ def test_secrets_are_hidden_in_repr() -> None:
 
 def test_settings_read_comma_separated_env(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("ALLOWED_HOSTS", "a.example, b.example")
-    monkeypatch.setenv("CORS_ORIGINS", "http://localhost:3000")
+    monkeypatch.setenv("CORS_ORIGINS", "http://localhost:3100")
     settings = Settings()
     assert settings.allowed_hosts == ["a.example", "b.example"]
-    assert settings.cors_origins == ["http://localhost:3000"]
+    assert settings.cors_origins == ["http://localhost:3100"]

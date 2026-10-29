@@ -97,3 +97,48 @@ jobs:
         run: npm run build
       - name: npm audit (runtime)
         run: npm audit --omit=dev --audit-level=high
+
+  images:
+    name: Images (build + Trivy)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Compose file is valid
+        run: cp .env.example .env && docker compose config --quiet
+      - name: Build API image
+        run: docker build -t dearlly-api:ci backend
+      - name: Build web image
+        run: docker build -t dearlly-web:ci --build-arg NEXT_PUBLIC_API_URL=https://api.example.invalid frontend
+      - name: Trivy scan (API image)
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          version: v0.76.1
+          scan-type: image
+          image-ref: dearlly-api:ci
+          scanners: vuln
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+      - name: Trivy scan (web image)
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          version: v0.76.1
+          scan-type: image
+          image-ref: dearlly-web:ci
+          scanners: vuln
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+          skip-setup-trivy: true
+      - name: Trivy config scan (Dockerfiles)
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          version: v0.76.1
+          scan-type: config
+          scan-ref: .
+          severity: HIGH,CRITICAL
+          exit-code: "1"
+          skip-setup-trivy: true
