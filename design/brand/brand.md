@@ -2,16 +2,23 @@
 
 Every screen follows one idea: sending seals an envelope, receiving breaks a wax seal, photos become postage stamps.
 
+## Chosen look (29 Oct 2026)
+
+- **Logo:** red wax seal with a "D", next to "Dearlly" in Gloock. The same seal cracks open on invitations.
+- **Background:** red-and-blue airmail stripes framing every screen, over ruled love-letter paper with a red margin line.
+- **Touches:** handwritten opener ("My dearest,") and sign-off ("Yours, always — Dearlly"); experience types as tilted, perforated stamps; postmarks with city and date.
+- Drawn in code for now (`frontend/src/components/brand.tsx`); the illustrator's artwork replaces these pieces.
+
 ## Colours
 
 | Token | Hex | Use |
 | --- | --- | --- |
 | Paper | `#F3EADB` | Main background (faint paper grain) |
-| Ink | `#1F2A6B` | Text, outlines; dark-mode background |
+| Ink | `#1F2A6B` | Text, outlines, airmail stripes (never a page background) |
 | Stamp red | `#D7392B` | Main buttons, seals, postmarks |
 | Kraft | `#C89B6D` | Envelopes, secondary surfaces, borders |
 
-Dark mode: Ink background, Paper text, Stamp red stays the accent.
+No dark mode: Dearlly is always on cream love-letter paper, even when the phone is set to dark mode (decided 29 Oct 2026).
 
 ## Fonts (Google Fonts, self-hosted)
 

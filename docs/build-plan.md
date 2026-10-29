@@ -19,7 +19,7 @@ Every screen follows one idea: Dearlly is a love-letter post office. Sending sea
 | Token | Hex | Use |
 | --- | --- | --- |
 | Paper | #F3EADB | Main background (with a faint paper grain) |
-| Ink | #1F2A6B | Text, outlines, dark mode background |
+| Ink | #1F2A6B | Text, outlines, airmail stripes (never a page background) |
 | Stamp red | #D7392B | Main action buttons, seals, postmarks |
 | Kraft | #C89B6D | Envelopes, secondary surfaces, borders |
 
@@ -36,7 +36,7 @@ Every screen follows one idea: Dearlly is a love-letter post office. Sending sea
 
 **Make it look human, not AI-made:** commission one Nigerian illustrator for about 15 hand-drawn pieces (envelope, stamps, seal, a postman mascot, empty states). Avoid purple-blue gradients, frosted glass, Inter, sparkle icons, 3D blobs and hearts on everything.
 
-**Mobile-first rules:** bottom navigation in thumb reach, tap targets 48px or more, works on cheap Android phones and slow data (first page under 200 KB of script, images compressed, animations loaded only when needed), respects "reduce motion", full dark mode (ink background, paper text).
+**Mobile-first rules:** bottom navigation in thumb reach, tap targets 48px or more, works on cheap Android phones and slow data (first page under 200 KB of script, images compressed, animations loaded only when needed), respects "reduce motion", always on cream paper (no dark mode).
 
 ## Features at launch
 
@@ -265,7 +265,7 @@ Also start now: find the illustrator (brief: love-letter post office, Nigerian c
 ## Where we are
 
 **Stage 1 (Foundation) is done** (29 Oct 2026): PRs #1–#8 merged, CI green on `main`, `docker compose up` shows the Dearlly home page. `main` is protected by the "Protect main" ruleset (PR + all checks green + CodeQL, merge commits only, branches auto-deleted).
-**Stage 2 (Accounts) is in progress.**
+**Stage 2 (Accounts) is done** (29 Oct 2026): email-code sign-up/log-in with the 18+ tick, sessions, rate limits, profiles and "Delete my account" (PRs #9–#13). Next: the A+B redesign (in review), then Stage 3 (production).
 Stage 0 is partly done: the plan is in the repo; the accounts and domain are being created alongside (needed by Stage 3).
 Update this section as each stage finishes.
 
@@ -281,6 +281,9 @@ Update this section as each stage finishes.
 | 29 Oct 2026 | Frontend starts on TypeScript 6 and ESLint 9 (not 7 / 10): Next.js 16's lint plugins don't support ESLint 10 yet. Upgrade deliberately later |
 | 29 Oct 2026 | Python packages are locked as `requirements.in` → `requirements.txt` (with hashes), the layout Dependabot can update. Locks use only releases 14+ days old, except security fixes |
 | 29 Oct 2026 | 18+ gate is a required "I'm 18 or older" tick at sign-up, with the time it was ticked stored as the record. **No date of birth is collected** (founder's decision: less personal data to hold). Trade-off: it relies on the user's word, like most dating and social apps; "Intense" games use the same confirmation |
+| 29 Oct 2026 | Look chosen from the design board: **A + B mix**: airmail-stripe frame round every screen, ruled love-letter paper with a red margin line, handwritten opener and sign-off, tilted perforated stamp cards. Logo: **wax seal "D" + Gloock wordmark**. Laptop gets a top menu; phones keep the bottom bar |
+| 29 Oct 2026 | **No dark mode and no blue page backgrounds:** every screen stays on cream love-letter paper; ink blue is only for text, outlines and the airmail stripes (founder's choice) |
+| 29 Oct 2026 | "Delete my account" added in Stage 2 (NDPA right to erasure). Each later stage adds its data to what deletion removes |
 | 29 Oct 2026 | Pages use a per-request CSP nonce, so HTML is rendered per request. Stage 4 decides how invitation pages are cached at Cloudflare without weakening the CSP |
 
 ## First prompt for Claude Code (Stage 1)

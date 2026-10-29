@@ -14,7 +14,7 @@ const t = getMessages().login;
 const input =
   "min-h-12 w-full rounded-md border-2 border-fg bg-surface px-3 text-base text-fg placeholder:text-muted";
 const primary =
-  "min-h-12 w-full rounded-md bg-stamp px-5 text-base font-bold text-paper shadow-[3px_3px_0_var(--color-ink)] disabled:opacity-50 disabled:shadow-none";
+  "min-h-14 w-full rounded-lg bg-stamp px-5 text-lg font-extrabold text-paper shadow-[4px_4px_0_var(--color-ink)] disabled:opacity-50 disabled:shadow-none";
 const label = "flex flex-col gap-1 text-left text-sm font-semibold";
 
 function message(error: unknown): string {
@@ -112,7 +112,7 @@ export function LoginFlow({ nonce }: { nonce?: string }) {
     <div className="flex flex-col gap-5">
       {step === "email" && (
         <form onSubmit={sendCode} className="flex flex-col gap-4">
-          <h1 className="text-3xl">{t.title}</h1>
+          <h1 className="text-4xl leading-tight md:text-5xl">{t.title}</h1>
           <p className="text-muted">{t.lead}</p>
           <label className={label}>
             {t.emailLabel}
@@ -140,7 +140,7 @@ export function LoginFlow({ nonce }: { nonce?: string }) {
 
       {step === "code" && (
         <form onSubmit={checkCode} className="flex flex-col gap-4">
-          <h1 className="text-3xl">{t.codeTitle}</h1>
+          <h1 className="text-4xl leading-tight md:text-5xl">{t.codeTitle}</h1>
           <p className="text-muted">{t.codeLead.replace("{email}", email)}</p>
           <label className={label}>
             {t.codeLabel}
@@ -167,7 +167,7 @@ export function LoginFlow({ nonce }: { nonce?: string }) {
 
       {step === "signup" && (
         <form onSubmit={createAccount} className="flex flex-col gap-4">
-          <h1 className="text-3xl">{t.signupTitle}</h1>
+          <h1 className="text-4xl leading-tight md:text-5xl">{t.signupTitle}</h1>
           <p className="text-muted">{t.signupLead}</p>
           <div className="flex flex-col gap-1">
             <label className={label}>

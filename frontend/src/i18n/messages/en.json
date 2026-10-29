@@ -9,11 +9,18 @@
   },
   "home": {
     "badge": "The post office opens soon",
+    "opener": "My dearest,",
     "title": "Say it like a love letter.",
     "lead": "Love notes, date invitations, vacation surprises and gift reveals — sealed in an envelope and sent by private link. Plus games for two.",
-    "primaryCta": "Write a love note",
-    "secondaryCta": "Play a game for two",
-    "soon": "Opening soon",
+    "primaryCta": "Create your account",
+    "secondaryCta": "Write a love note",
+    "soon": "opening soon",
+    "signOff": "Yours, always — Dearlly",
+    "art": {
+      "label": "A love letter peeking out of a kraft envelope sealed with red wax",
+      "to": "Dear Tolu,",
+      "body": "Dinner at the lagoon, Saturday at 7?"
+    },
     "experiencesHeading": "What you can send",
     "experiences": {
       "loveNote": {
@@ -34,20 +41,17 @@
       }
     },
     "gamesHeading": "Games for two",
-    "gamesBody": "Answer privately, reveal together. From talking stage to deep talk.",
+    "gamesBody": "Answer privately, reveal together. From talking stage to deep talk — the server deals the questions, so nobody can peek.",
     "adultsOnly": "For adults 18+ in Nigeria."
   },
   "nav": {
     "label": "Main",
     "home": "Home",
-    "create": "Create",
+    "create": "Write",
     "games": "Games",
     "stamps": "Stamps",
     "profile": "Profile",
     "soon": "Soon"
-  },
-  "envelope": {
-    "label": "A sealed envelope with a red wax seal"
   },
   "login": {
     "title": "Log in or sign up",
@@ -91,5 +95,19 @@
     "deleteConfirmLabel": "Type your username ({username}) to confirm",
     "deleteButton": "Delete my account forever",
     "deleting": "Deleting…"
+  },
+  "header": {
+    "label": "Site",
+    "write": "Write a letter",
+    "games": "Games for two",
+    "stamps": "Our Stamp",
+    "soon": "Soon",
+    "logIn": "Log in",
+    "myProfile": "My profile",
+    "home": "Dearlly home"
+  },
+  "loginPanel": {
+    "quote": "Every love story deserves a proper letter.",
+    "postmark": "ABUJA · LAGOS · SENT WITH LOVE ·"
   }
 }

@@ -12,26 +12,29 @@
   --font-hand: var(--font-homemade-apple), cursive;
 }
 
-/* Semantic colours: light mode is paper with ink, dark mode is ink with paper. */
+/* Semantic colours. Always cream paper with ink (no dark mode: founder's choice, 29 Oct 2026). */
 :root {
   --bg: var(--color-paper);
   --fg: var(--color-ink);
   --surface: #fbf6ee;
-  --muted: #4a5285;
+  --muted: #3d4680;
   --line: var(--color-kraft);
-  /* Red text is unreadable on ink, so dark mode uses paper text with red borders instead. */
   --accent-text: var(--color-stamp);
+  /* Love-letter paper: ruled lines and the red margin line. */
+  --rule: rgb(31 42 107 / 0.12);
+  --margin-line: rgb(215 57 43 / 0.5);
+  --shadow: rgb(31 42 107 / 0.18);
+
+  /* Airmail frame thickness and where the margin line sits. */
+  --frame: 8px;
+  --margin-x: 22px;
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (min-width: 768px) {
   :root {
-    --bg: var(--color-ink);
-    --fg: var(--color-paper);
-    --surface: #27337a;
-    --muted: #d9cdb8;
-    --accent-text: var(--color-paper);
-    color-scheme: dark;
+    --frame: 14px;
+    --margin-x: 64px;
   }
 }
 
@@ -45,9 +48,17 @@
 }
 
 body {
+  padding: var(--frame);
   background-color: var(--bg);
-  /* Faint paper grain. */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.16 0 0 0 0 0.42 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  /* Ruled writing paper with a red margin line. */
+  background-image:
+    linear-gradient(
+      90deg,
+      transparent calc(var(--margin-x) - 1px),
+      var(--margin-line) calc(var(--margin-x) - 1px) calc(var(--margin-x) + 1px),
+      transparent calc(var(--margin-x) + 1px)
+    ),
+    repeating-linear-gradient(transparent 0 35px, var(--rule) 35px 36px);
   color: var(--fg);
   font-family: var(--font-body);
   -webkit-tap-highlight-color: transparent;
@@ -65,9 +76,43 @@ h3 {
   outline-offset: 3px;
 }
 
+/* Red-and-blue airmail stripes around the whole screen. */
+.airmail-frame {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  padding: var(--frame);
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-stamp) 0 14px,
+    var(--color-paper) 14px 22px,
+    var(--color-ink) 22px 36px,
+    var(--color-paper) 36px 44px
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+/* A sheet of letter paper (forms, profile). */
+.letter-sheet {
+  background-color: var(--surface);
+  background-image:
+    linear-gradient(
+      90deg,
+      transparent 27px,
+      var(--margin-line) 27px 29px,
+      transparent 29px
+    ),
+    repeating-linear-gradient(transparent 0 35px, var(--rule) 35px 36px);
+  box-shadow: 8px 10px 0 var(--shadow);
+}
+
 /* Perforated postage-stamp edge: holes in the padding ring only, solid in the middle. */
 .stamp-edge {
-  --hole: 4px;
+  --hole: 5px;
   padding: calc(var(--hole) * 2);
   mask:
     radial-gradient(circle var(--hole), #0000 96%, #000) calc(var(--hole) * -1.5)
@@ -79,10 +124,10 @@ h3 {
 @keyframes drift {
   0%,
   100% {
-    transform: translateY(0) rotate(-3deg);
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-6px) rotate(-2deg);
+    transform: translateY(-6px);
   }
 }
 

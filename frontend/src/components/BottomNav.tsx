@@ -6,7 +6,7 @@ type NavKey = "home" | "create" | "games" | "stamps" | "profile";
 
 const ICONS: Record<NavKey, React.ReactNode> = {
   home: <path d="M4 11 12 4l8 7v9H4z M10 20v-5h4v5" />,
-  create: <path d="M5 19l1-4L16 5l3 3L9 18zM14 7l3 3" />,
+  create: <path d="M3 6h18v12H3z M3 6l9 7 9-7" />,
   games: <path d="M5 6h9v13H5z M10 3h9v13" />,
   stamps: <path d="M6 4h12v16H6z M9 8h6v6H9z" />,
   profile: <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 20c1-4 4-6 8-6s7 2 8 6" />,
@@ -25,7 +25,7 @@ export function BottomNav({ t, current }: { t: Messages["nav"]; current: NavKey 
   return (
     <nav
       aria-label={t.label}
-      className="fixed inset-x-0 bottom-0 z-10 border-t-2 border-line bg-surface pb-[env(safe-area-inset-bottom)]"
+      className="fixed inset-x-[var(--frame)] bottom-[var(--frame)] z-40 border-t-2 border-line bg-surface pb-[env(safe-area-inset-bottom)] md:hidden"
     >
       <ul className="mx-auto grid max-w-lg grid-cols-5">
         {ITEMS.map(({ key, href }) => {

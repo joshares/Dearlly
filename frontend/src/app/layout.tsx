@@ -19,10 +19,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F3EADB" },
-    { media: "(prefers-color-scheme: dark)", color: "#1F2A6B" },
-  ],
+  themeColor: "#F3EADB",
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
@@ -34,7 +31,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       lang={defaultLocale}
       className={`${gloock.variable} ${figtree.variable} ${homemadeApple.variable}`}
     >
-      <body className="min-h-dvh antialiased">{children}</body>
+      <body className="min-h-dvh antialiased">
+        <div className="airmail-frame" aria-hidden="true" />
+        {children}
+      </body>
     </html>
   );
 }

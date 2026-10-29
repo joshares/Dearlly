@@ -74,7 +74,7 @@ export function ProfileView() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-3xl">{t.title}</h1>
+      <h1 className="text-4xl leading-tight md:text-5xl">{t.title}</h1>
       <dl className="flex flex-col gap-3 rounded-md border-2 border-line bg-surface p-4">
         <div>
           <dt className="text-sm text-muted">{t.usernameLabel}</dt>
