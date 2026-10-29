@@ -49,9 +49,9 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-          cache-dependency-path: backend/requirements-dev.lock
+          cache-dependency-path: backend/requirements-dev.txt
       - name: Install hash-locked dependencies
-        run: python -m pip install --require-hashes -r requirements-dev.lock
+        run: python -m pip install --require-hashes -r requirements-dev.txt
       - name: Ruff format
         run: ruff format --check .
       - name: Ruff lint
@@ -63,9 +63,9 @@ jobs:
       - name: Pytest
         run: pytest
       - name: pip-audit (runtime)
-        run: pip-audit --require-hashes --disable-pip -r requirements.lock
+        run: pip-audit --require-hashes --disable-pip -r requirements.txt
       - name: pip-audit (dev tools)
-        run: pip-audit --require-hashes --disable-pip -r requirements-dev.lock
+        run: pip-audit --require-hashes --disable-pip -r requirements-dev.txt
 
   frontend:
     name: Frontend (lint, types, tests, build, audit)

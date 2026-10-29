@@ -1,0 +1,16 @@
+# Development and CI tools, on top of the runtime dependencies. Lock with:
+#   uv pip compile requirements-dev.in --python-version 3.12 --generate-hashes --exclude-newer <today minus 14 days> \
+#     --exclude-newer-package filelock=<today> --exclude-newer-package certifi=<today> -o requirements-dev.txt
+-c requirements.txt
+-r requirements.in
+pytest
+pytest-asyncio
+httpx
+ruff
+mypy
+types-pyyaml
+pip-audit
+
+# Security floors: newer than the 14-day cutoff because they fix known vulnerabilities.
+filelock>=4.2.1  # CVE-2026-112941
+certifi>=2026.10.19  # PYSEC-2026-4320

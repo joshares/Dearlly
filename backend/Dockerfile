@@ -3,9 +3,9 @@
 FROM python:3.12-slim-trixie AS build
 ENV PIP_NO_CACHE_DIR=1 PIP_DISABLE_PIP_VERSION_CHECK=1
 WORKDIR /build
-COPY requirements.lock .
+COPY requirements.txt .
 RUN python -m venv /venv \
-    && /venv/bin/pip install --require-hashes --no-deps -r requirements.lock \
+    && /venv/bin/pip install --require-hashes --no-deps -r requirements.txt \
     # pip isn't needed at runtime; removing it keeps image scans clean.
     && /venv/bin/pip uninstall -y pip
 

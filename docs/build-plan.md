@@ -278,6 +278,7 @@ Update this section as each stage finishes.
 | 29 Oct 2026 | GitHub repo `joshares/Dearlly` is **public for now** (founder's choice; to be made private later). Nothing sensitive is committed. Public repos get CodeQL and branch rulesets free |
 | 29 Oct 2026 | Local ports are 3100 (web) and 8100 (API), so Dearlly runs next to Statabet on the same Mac |
 | 29 Oct 2026 | Frontend starts on TypeScript 6 and ESLint 9 (not 7 / 10): Next.js 16's lint plugins don't support ESLint 10 yet. Upgrade deliberately later |
+| 29 Oct 2026 | Python packages are locked as `requirements.in` → `requirements.txt` (with hashes), the layout Dependabot can update. Locks use only releases 14+ days old, except security fixes |
 | 29 Oct 2026 | Pages use a per-request CSP nonce, so HTML is rendered per request. Stage 4 decides how invitation pages are cached at Cloudflare without weakening the CSP |
 
 ## First prompt for Claude Code (Stage 1)

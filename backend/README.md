@@ -14,17 +14,21 @@ FastAPI API and Celery worker. Python 3.12.
 
 ## Dependencies
 
-Dependencies are listed in `pyproject.toml` and locked with hashes. After changing `pyproject.toml`:
+Runtime packages are listed in `requirements.in`, dev tools in `requirements-dev.in`. Both are locked with
+hashes into `requirements.txt` / `requirements-dev.txt`, using only releases at least 14 days old
+(matching Dependabot's cooldown). After editing a `.in` file, with CUTOFF = today minus 14 days:
 
 ```
-uv pip compile pyproject.toml --python-version 3.12 --generate-hashes --no-header -o requirements.lock
-uv pip compile pyproject.toml --extra dev --python-version 3.12 --generate-hashes --no-header -o requirements-dev.lock
+uv pip compile requirements.in --python-version 3.12 --generate-hashes --exclude-newer CUTOFF -o requirements.txt
+uv pip compile requirements-dev.in --python-version 3.12 --generate-hashes --exclude-newer CUTOFF -o requirements-dev.txt
 ```
+
+Dependabot reads these `.in`/`.txt` pairs and keeps them up to date weekly.
 
 ## Checks (same as CI)
 
 ```
-pip install --require-hashes -r requirements-dev.lock
+pip install --require-hashes -r requirements-dev.txt
 ruff format --check . && ruff check . && mypy && pytest
 alembic upgrade head   # needs DATABASE_URL pointing at a Postgres 16
 ```
