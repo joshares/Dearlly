@@ -265,7 +265,8 @@ Also start now: find the illustrator (brief: love-letter post office, Nigerian c
 ## Where we are
 
 **Stage 1 (Foundation) is done** (29 Oct 2026): PRs #1–#8 merged, CI green on `main`, `docker compose up` shows the Dearlly home page. `main` is protected by the "Protect main" ruleset (PR + all checks green + CodeQL, merge commits only, branches auto-deleted).
-**Stage 2 (Accounts) is done** (29 Oct 2026): email-code sign-up/log-in with the 18+ tick, sessions, rate limits, profiles and "Delete my account" (PRs #9–#13). Next: the A+B redesign (in review), then Stage 3 (production).
+**Stage 2 (Accounts) is done** (29 Oct 2026): sign-up with the 18+ tick; log in by emailed code, optional password or Google (Google button appears once its keys are set); sessions, rate limits, profiles, "Delete my account", branded emails, and the A+B look (PRs #9–#17).
+**Stage 3 (Production) is in progress:** domain `dearlly.app` is on Cloudflare; Hostinger KVM 2 bought (France, Ubuntu 24.04); server hardening next.
 Stage 0 is partly done: the plan is in the repo; the accounts and domain are being created alongside (needed by Stage 3).
 Update this section as each stage finishes.
 
@@ -285,6 +286,7 @@ Update this section as each stage finishes.
 | 29 Oct 2026 | **No dark mode and no blue page backgrounds:** every screen stays on cream love-letter paper; ink blue is only for text, outlines and the airmail stripes (founder's choice) |
 | 29 Oct 2026 | "Delete my account" added in Stage 2 (NDPA right to erasure). Each later stage adds its data to what deletion removes |
 | 29 Oct 2026 | **Three ways to log in:** emailed code, optional password, and "Continue with Google". Passwords: Argon2id, 10+ characters, breached-password check (HIBP k-anonymity), Turnstile + rate limits, changing it logs out other devices; "forgot password" = log in with a code, then set a new one. Google arrives behind its keys (button hidden until set). A backup email provider is added in Stage 3 so codes still go out if Resend fails |
+| 29 Oct 2026 | Domain: **dearlly.app** (Cloudflare). VPS: Hostinger KVM 2 on a **12-month** term (founder's choice; a little more per month than 24 months). The server IP is kept out of the public repo |
 | 29 Oct 2026 | Pages use a per-request CSP nonce, so HTML is rendered per request. Stage 4 decides how invitation pages are cached at Cloudflare without weakening the CSP |
 
 ## First prompt for Claude Code (Stage 1)
