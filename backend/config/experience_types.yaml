@@ -1,0 +1,3 @@
+# Experience types (love note, date, vacation, gift reveal). Filled in Stages 4–5.
+# One entry per type; a new type is a new entry plus its form and animation.
+experience_types: []
