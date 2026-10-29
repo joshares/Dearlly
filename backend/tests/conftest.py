@@ -23,6 +23,10 @@ def production_settings(**overrides: Any) -> Settings:
         "allowed_hosts": "api.dearlly.example,testserver",
         "cors_origins": "https://dearlly.example",
         "public_web_url": "https://dearlly.example",
+        "turnstile_secret_key": "0x4AAAAAAA-real-looking-secret",
+        "email_delivery": "resend",
+        "resend_api_key": "re_test_not_real",
+        "email_from": "Dearlly <hello@send.dearlly.example>",
     }
     values.update(overrides)
     return Settings(**values)

@@ -32,9 +32,15 @@ def test_valid_production_settings_start() -> None:
         ({"cors_origins": "http://dearlly.example"}, "CORS origin"),
         ({"cors_origins": ""}, "CORS_ORIGINS"),
         ({"public_web_url": "http://dearlly.example"}, "PUBLIC_WEB_URL"),
+        ({"turnstile_secret_key": "1x0000000000000000000000000000000AA"}, "TURNSTILE"),
+        ({"email_delivery": "log"}, "EMAIL_DELIVERY"),
+        ({"resend_api_key": None}, "RESEND_API_KEY"),
+        ({"email_from": "Dearlly <hello@dearlly.localhost>"}, "EMAIL_FROM"),
     ],
 )
-def test_production_refuses_insecure_settings(overrides: dict[str, str], message: str) -> None:
+def test_production_refuses_insecure_settings(
+    overrides: dict[str, str | None], message: str
+) -> None:
     with pytest.raises(ValidationError, match=message):
         production_settings(**overrides)
 

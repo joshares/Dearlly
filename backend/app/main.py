@@ -1,6 +1,7 @@
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
+import httpx
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from redis.asyncio import Redis
@@ -10,6 +11,7 @@ from app.api import health
 from app.core.config import Settings, get_settings
 from app.core.logging import configure_logging
 from app.core.middleware import REQUEST_ID_HEADER, RequestContextMiddleware
+from app.core.ratelimit import RateLimitedError, RateLimiter, rate_limited_handler
 from app.core.registries import load_all_registries
 from app.db.session import create_engine, create_sessionmaker
 
@@ -25,9 +27,13 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         app.state.engine = create_engine(settings)
         app.state.sessionmaker = create_sessionmaker(app.state.engine)
         app.state.redis = Redis.from_url(settings.redis_url.get_secret_value())
+        app.state.rate_limiter = RateLimiter(app.state.redis)
+        # One shared client for outside services (Turnstile, Resend).
+        app.state.http = httpx.AsyncClient(headers={"User-Agent": "Dearlly"})
         try:
             yield
         finally:
+            await app.state.http.aclose()
             await app.state.redis.aclose()
             await app.state.engine.dispose()
 
@@ -40,6 +46,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         openapi_url="/openapi.json" if docs_enabled else None,
     )
     app.state.settings = settings
+    app.add_exception_handler(RateLimitedError, rate_limited_handler)
 
     app.add_middleware(
         CORSMiddleware,
