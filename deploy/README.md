@@ -91,5 +91,27 @@ GitHub settings it needs (repository **secrets**): `DEPLOY_HOST` (server IP), `D
 
 Manual redeploy of the current version: re-run the latest CI run on `main` in GitHub Actions.
 
-Still to come in Stage 3: encrypted backups to R2, monitoring (Sentry, UptimeRobot), backup email
-provider, Zoho inbox, Google sign-in keys.
+## Backups (nightly, encrypted, Cloudflare R2)
+
+- `backup.sh`: `pg_dump` → encrypted with **age** to a public key → uploaded to R2 bucket
+  `dearlly-backups` under `db/`. Keeps 35 days. Runs at 01:30 UTC (02:30 Lagos) via the
+  `dearlly-backup.timer` systemd timer.
+- The **private** backup key exists only in the founder's password manager ("Dearlly backup key").
+  The server and R2 can't read old backups. **Lose that key = backups can't be restored.**
+- `restore-test.sh`: restores the newest backup into a throwaway Postgres and counts what came
+  back. Run it after setup and every few months.
+
+One-time setup (Mac):
+
+```
+ssh -t dearlly sudo /opt/dearlly/deploy/backup-setup.sh      # installs age, rclone, timer
+ssh -t dearlly sudo /opt/dearlly/deploy/backup-key.sh        # shows the private key ONCE
+ssh -t dearlly sudo /opt/dearlly/deploy/set-secret.sh R2_ACCESS_KEY_ID
+ssh -t dearlly sudo /opt/dearlly/deploy/set-secret.sh R2_SECRET_ACCESS_KEY
+ssh -t dearlly sudo /opt/dearlly/deploy/set-secret.sh R2_ENDPOINT
+ssh dearlly /opt/dearlly/deploy/backup.sh                    # first backup now
+ssh -t dearlly /opt/dearlly/deploy/restore-test.sh           # prove it restores
+```
+
+Still to come in Stage 3: monitoring (Sentry, UptimeRobot), Zoho inbox, Google sign-in keys, backup
+email provider.
