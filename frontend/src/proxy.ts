@@ -13,6 +13,8 @@ export function proxy(request: NextRequest) {
   // Next.js reads the nonce from the request's CSP header and stamps it on its own scripts.
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("Content-Security-Policy", csp);
+  // Pages read this to load third-party scripts (Turnstile) with the same nonce.
+  requestHeaders.set("x-nonce", nonce);
 
   const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set("Content-Security-Policy", csp);

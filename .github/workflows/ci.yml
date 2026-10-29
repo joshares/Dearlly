@@ -113,7 +113,7 @@ jobs:
       - name: Build API image
         run: docker build -t dearlly-api:ci backend
       - name: Build web image
-        run: docker build -t dearlly-web:ci --build-arg NEXT_PUBLIC_API_URL=https://api.example.invalid frontend
+        run: docker build -t dearlly-web:ci --build-arg NEXT_PUBLIC_API_URL=https://api.example.invalid --build-arg NEXT_PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA frontend
       - name: Trivy scan (API image)
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:

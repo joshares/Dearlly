@@ -5,6 +5,9 @@
  * scripts Next.js itself rendered can run. The other headers are fixed and set in next.config.ts.
  */
 
+// Cloudflare Turnstile (bot check on log-in) runs in an iframe from here.
+export const TURNSTILE_ORIGIN = "https://challenges.cloudflare.com";
+
 export type CspOptions = {
   nonce: string;
   dev: boolean;
@@ -25,6 +28,7 @@ export function buildCsp({ nonce, dev, apiOrigin }: CspOptions): string {
     "font-src": ["'self'"],
     "connect-src": connect,
     "media-src": ["'self'"],
+    "frame-src": [TURNSTILE_ORIGIN],
     "worker-src": ["'self'", "blob:"],
     "manifest-src": ["'self'"],
     "object-src": ["'none'"],

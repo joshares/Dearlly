@@ -16,10 +16,22 @@
     "soon": "Opening soon",
     "experiencesHeading": "What you can send",
     "experiences": {
-      "loveNote": { "title": "Love note", "body": "A few true words, sealed with wax." },
-      "date": { "title": "Date invitation", "body": "Ask them out properly, with a time and a place." },
-      "vacation": { "title": "Vacation invite", "body": "Pack the bags first, then tell them." },
-      "gift": { "title": "Gift reveal", "body": "They scratch the stamp to see it." }
+      "loveNote": {
+        "title": "Love note",
+        "body": "A few true words, sealed with wax."
+      },
+      "date": {
+        "title": "Date invitation",
+        "body": "Ask them out properly, with a time and a place."
+      },
+      "vacation": {
+        "title": "Vacation invite",
+        "body": "Pack the bags first, then tell them."
+      },
+      "gift": {
+        "title": "Gift reveal",
+        "body": "They scratch the stamp to see it."
+      }
     },
     "gamesHeading": "Games for two",
     "gamesBody": "Answer privately, reveal together. From talking stage to deep talk.",
@@ -36,5 +48,43 @@
   },
   "envelope": {
     "label": "A sealed envelope with a red wax seal"
+  },
+  "login": {
+    "title": "Log in or sign up",
+    "lead": "No passwords. We email you a 6-digit code.",
+    "emailLabel": "Your email",
+    "sendCode": "Email me a code",
+    "sending": "Sending…",
+    "humanCheck": "Quick check that you're a person:",
+    "codeTitle": "Check your email",
+    "codeLead": "We sent a 6-digit code to {email}. It works once and expires in 10 minutes.",
+    "codeLabel": "6-digit code",
+    "checkCode": "Continue",
+    "checking": "Checking…",
+    "differentEmail": "Use a different email or get a new code",
+    "signupTitle": "Choose your name",
+    "signupLead": "Your username is public. Your email is never shown to anyone.",
+    "usernameLabel": "Username",
+    "usernameHint": "3–20 letters, numbers or _ , starting with a letter.",
+    "usernameAvailable": "Available",
+    "displayNameLabel": "Display name (optional)",
+    "adultLabel": "I'm 18 or older",
+    "adultHint": "Dearlly is only for adults.",
+    "createAccount": "Create my account",
+    "creating": "Creating…"
+  },
+  "profile": {
+    "title": "Your profile",
+    "loading": "Opening your letters…",
+    "usernameLabel": "Username",
+    "displayNameLabel": "Display name",
+    "emailLabel": "Email",
+    "emailPrivate": "Only you can see this.",
+    "save": "Save",
+    "saving": "Saving…",
+    "saved": "Saved",
+    "logOut": "Log out",
+    "planLabel": "Plan",
+    "planFree": "Free"
   }
 }

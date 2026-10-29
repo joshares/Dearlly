@@ -12,13 +12,13 @@ const ICONS: Record<NavKey, React.ReactNode> = {
   profile: <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 20c1-4 4-6 8-6s7 2 8 6" />,
 };
 
-// Only Home exists in Stage 1; the other sections arrive in later stages.
+// Create, Games and Stamps arrive in later stages.
 const ITEMS: { key: NavKey; href?: string }[] = [
   { key: "home", href: "/" },
   { key: "create" },
   { key: "games" },
   { key: "stamps" },
-  { key: "profile" },
+  { key: "profile", href: "/profile" },
 ];
 
 export function BottomNav({ t, current }: { t: Messages["nav"]; current: NavKey }) {

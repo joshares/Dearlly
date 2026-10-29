@@ -21,12 +21,13 @@ describe("home page", () => {
     expect(home?.getAttribute("href")).toBe("/");
   });
 
-  it("does not pretend unbuilt features work", () => {
+  it("links only to pages that exist", () => {
     render(<HomePage />);
     for (const button of screen.getAllByRole("button")) {
       expect((button as HTMLButtonElement).disabled).toBe(true);
     }
-    expect(screen.getByRole("navigation").querySelectorAll("a")).toHaveLength(1);
+    const links = [...screen.getByRole("navigation").querySelectorAll("a")];
+    expect(links.map((a) => a.getAttribute("href"))).toEqual(["/", "/profile"]);
   });
 });
 
