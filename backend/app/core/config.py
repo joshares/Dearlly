@@ -62,6 +62,10 @@ class Settings(BaseSettings):
     google_client_id: str = ""
     google_client_secret: SecretStr | None = None
 
+    # Error alerts (Sentry, EU). Off when unset. APP_VERSION is the deployed commit.
+    sentry_dsn: SecretStr | None = None
+    app_version: str = ""
+
     _split_hosts = field_validator("allowed_hosts", "cors_origins", mode="before")(_split_csv)
 
     @property

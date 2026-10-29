@@ -14,6 +14,7 @@ pyyaml
 pyjwt[crypto]
 httpx
 argon2-cffi
+sentry-sdk[fastapi,celery]
 
 # Security floors: newer than the 14-day cutoff because they fix known vulnerabilities.
 certifi>=2026.10.19  # PYSEC-2026-4320

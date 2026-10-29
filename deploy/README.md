@@ -113,5 +113,13 @@ ssh dearlly /opt/dearlly/deploy/backup.sh                    # first backup now
 ssh -t dearlly /opt/dearlly/deploy/restore-test.sh           # prove it restores
 ```
 
-Still to come in Stage 3: monitoring (Sentry, UptimeRobot), Zoho inbox, Google sign-in keys, backup
-email provider.
+## Monitoring
+
+- **Sentry** (EU): API and background worker report crashes. Personal data is scrubbed first: no
+  cookies, bodies, query strings, local variables or source lines; emails and IPs removed; our
+  log redaction list applied. Set `SENTRY_DSN` with `set-secret.sh`, then prove it works:
+  `ssh dearlly docker exec dearlly-api-1 python -m app.sentry_check`.
+- **UptimeRobot**: keyword monitor on `https://api.dearlly.app/health` (keyword `ok`) and an HTTP
+  monitor on `https://dearlly.app`, alerting hello@dearlly.app.
+
+Still to come in Stage 3: Google sign-in keys, backup email provider.
