@@ -8,7 +8,6 @@ DISPLAY_NAME_MAX = 40
 EMAIL_MAX = 254
 
 _USERNAME_RE = re.compile(r"^[a-z][a-z0-9_]*$")
-_EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 # Links and phone numbers in public names are a scam risk.
 _LINK_RE = re.compile(r"(?i)(https?:|www\.|\.(com|ng|net|org|app|io|co)\b)")
 _PHONE_RE = re.compile(r"\d[\d\s\-().+]{6,}\d")
@@ -40,8 +39,18 @@ class ProfileFieldError(ValueError):
 
 
 def normalize_email(value: str) -> str:
+    # Checked by splitting, not a regex, so no input can make it slow.
     email = value.strip().lower()
-    if len(email) > EMAIL_MAX or not _EMAIL_RE.match(email):
+    local, _, domain = email.rpartition("@")
+    labels = domain.split(".")
+    if (
+        len(email) > EMAIL_MAX
+        or not local
+        or "@" in local
+        or any(char.isspace() for char in email)
+        or len(labels) < 2
+        or not all(labels)
+    ):
         raise ProfileFieldError("Enter a valid email address.")
     return email
 
