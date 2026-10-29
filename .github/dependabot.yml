@@ -1,0 +1,131 @@
+# Weekly, grouped minor/patch updates with a 14-day cooldown (new releases must age first).
+# Major upgrades of core tools are ignored: the builder does those deliberately (playbook section 5).
+version: 2
+
+updates:
+  - package-ecosystem: pip
+    directory: /backend
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Africa/Lagos
+    cooldown:
+      default-days: 14
+    open-pull-requests-limit: 5
+    groups:
+      python-minor-patch:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: fastapi
+        update-types: [version-update:semver-major]
+      - dependency-name: starlette
+        update-types: [version-update:semver-major]
+      - dependency-name: pydantic
+        update-types: [version-update:semver-major]
+      - dependency-name: pydantic-settings
+        update-types: [version-update:semver-major]
+      - dependency-name: sqlalchemy
+        update-types: [version-update:semver-major]
+      - dependency-name: alembic
+        update-types: [version-update:semver-major]
+      - dependency-name: celery
+        update-types: [version-update:semver-major]
+      - dependency-name: redis
+        update-types: [version-update:semver-major]
+      - dependency-name: uvicorn
+        update-types: [version-update:semver-major]
+      - dependency-name: mypy
+        update-types: [version-update:semver-major]
+      - dependency-name: pytest
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Africa/Lagos
+    cooldown:
+      default-days: 14
+    open-pull-requests-limit: 5
+    groups:
+      npm-minor-patch:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: next
+        update-types: [version-update:semver-major]
+      - dependency-name: eslint-config-next
+        update-types: [version-update:semver-major]
+      - dependency-name: react
+        update-types: [version-update:semver-major]
+      - dependency-name: react-dom
+        update-types: [version-update:semver-major]
+      - dependency-name: "@types/react"
+        update-types: [version-update:semver-major]
+      - dependency-name: "@types/react-dom"
+        update-types: [version-update:semver-major]
+      - dependency-name: "@types/node"
+        update-types: [version-update:semver-major]
+      - dependency-name: typescript
+        update-types: [version-update:semver-major]
+      - dependency-name: eslint
+        update-types: [version-update:semver-major]
+      - dependency-name: tailwindcss
+        update-types: [version-update:semver-major]
+      - dependency-name: "@tailwindcss/postcss"
+        update-types: [version-update:semver-major]
+      - dependency-name: vitest
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: docker
+    directories: [/backend, /frontend]
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Africa/Lagos
+    cooldown:
+      default-days: 14
+    groups:
+      docker-minor-patch:
+        update-types: [minor, patch]
+    ignore:
+      # Python 3.12 and Node 24 are chosen deliberately.
+      - dependency-name: python
+        update-types: [version-update:semver-major, version-update:semver-minor]
+      - dependency-name: node
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: docker-compose
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Africa/Lagos
+    cooldown:
+      default-days: 14
+    groups:
+      compose-minor-patch:
+        update-types: [minor, patch]
+    ignore:
+      # PostgreSQL 16 and Redis 8 are chosen deliberately.
+      - dependency-name: postgres
+        update-types: [version-update:semver-major]
+      - dependency-name: redis
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Africa/Lagos
+    cooldown:
+      default-days: 14
+    groups:
+      actions:
+        patterns: ["*"]

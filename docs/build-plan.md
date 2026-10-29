@@ -264,7 +264,9 @@ Also start now: find the illustrator (brief: love-letter post office, Nigerian c
 
 ## Where we are
 
-Stage 0 is in progress: the plan is written, and the accounts and domain are next. Update this line as each stage finishes.
+**Stage 1 (Foundation) is built and in review** as PRs #1–#6. It is done when all six are merged and CI is green on `main`.
+Stage 0 is partly done: the plan is in the repo; the accounts and domain are being created alongside (needed by Stage 3).
+Update this section as each stage finishes.
 
 ### Decisions and changes log
 
@@ -273,6 +275,10 @@ Stage 0 is in progress: the plan is written, and the accounts and domain are nex
 | 29 Oct 2026 | Name: Dearlly. Design: Direction A, love letter post office. Market: Nigeria, focus on Lagos and Abuja |
 | 29 Oct 2026 | Fully separate from Statabet (own server, accounts, repo). Games free at launch; money plan later |
 | 29 Oct 2026 | Added Community ("Our Stamp") and Games (2 players, 4 intensity levels). Secret admirer mode included with limits |
+| 29 Oct 2026 | GitHub repo `joshares/Dearlly` is **public for now** (founder's choice; to be made private later). Nothing sensitive is committed. Public repos get CodeQL and branch rulesets free |
+| 29 Oct 2026 | Local ports are 3100 (web) and 8100 (API), so Dearlly runs next to Statabet on the same Mac |
+| 29 Oct 2026 | Frontend starts on TypeScript 6 and ESLint 9 (not 7 / 10): Next.js 16's lint plugins don't support ESLint 10 yet. Upgrade deliberately later |
+| 29 Oct 2026 | Pages use a per-request CSP nonce, so HTML is rendered per request. Stage 4 decides how invitation pages are cached at Cloudflare without weakening the CSP |
 
 ## First prompt for Claude Code (Stage 1)
 
