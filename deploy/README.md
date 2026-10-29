@@ -70,6 +70,12 @@ ssh -t dearlly sudo /opt/dearlly/deploy/set-secret.sh SECRET_KEY --generate
 
 Saved to `/opt/dearlly/.env.production` (owner `deploy`, mode 600). Never in git, never in chat.
 
+New secrets take effect at the next deploy, or straight away with:
+
+```
+ssh dearlly /opt/dearlly/deploy/apply-secrets.sh
+```
+
 Production secrets (all via `set-secret.sh`): `SECRET_KEY` and `POSTGRES_PASSWORD` (both
 `--generate`), `TURNSTILE_SECRET_KEY`, `RESEND_API_KEY`; later `GOOGLE_CLIENT_ID`,
 `GOOGLE_CLIENT_SECRET`. Public settings are in `docker-compose.prod.yml`.
@@ -122,4 +128,10 @@ ssh -t dearlly /opt/dearlly/deploy/restore-test.sh           # prove it restores
 - **UptimeRobot**: keyword monitor on `https://api.dearlly.app/health` (keyword `ok`) and an HTTP
   monitor on `https://dearlly.app`, alerting hello@dearlly.app.
 
-Still to come in Stage 3: Google sign-in keys, backup email provider.
+## Continue with Google
+
+Google Cloud project "Dearlly" → Google Auth Platform → OAuth client (Web application) with redirect
+URI `https://api.dearlly.app/auth/google/callback`. Then `set-secret.sh GOOGLE_CLIENT_ID`,
+`set-secret.sh GOOGLE_CLIENT_SECRET`, `apply-secrets.sh`. The button appears once both are set.
+
+Still to come in Stage 3: backup email provider.
