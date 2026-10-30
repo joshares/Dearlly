@@ -135,12 +135,63 @@ h3 {
   animation: drift 6s ease-in-out infinite;
 }
 
+/* Opening a letter: the seal cracks, the flap lifts, the letter slides out. */
+.envelope-flap {
+  transform-origin: top;
+  transition:
+    transform 0.6s ease-in 0.35s,
+    z-index 0s 0.65s;
+}
+.envelope-paper {
+  opacity: 0; /* tucked away until the flap lifts */
+  transition:
+    transform 0.6s ease-out 0.9s,
+    opacity 0s 0.35s;
+}
+.seal-half {
+  transition:
+    transform 0.45s ease-out,
+    opacity 0.45s ease-out 0.15s;
+}
+.is-opening .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 5;
+}
+.is-opening .envelope-paper {
+  opacity: 1;
+  transform: translateY(-48%);
+}
+.is-opening .seal-left {
+  transform: translate(-30px, 18px) rotate(-35deg);
+  opacity: 0;
+}
+.is-opening .seal-right {
+  transform: translate(30px, 18px) rotate(35deg);
+  opacity: 0;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise-in {
+  animation: rise-in 0.5s ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
   }
 }

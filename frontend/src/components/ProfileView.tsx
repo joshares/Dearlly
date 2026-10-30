@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import { SentLetters } from "@/components/SentLetters";
 import { getMessages } from "@/i18n";
 import { ApiError, api, type MyProfile } from "@/lib/api";
 
@@ -108,7 +109,7 @@ export function ProfileView() {
         </div>
         <div>
           <dt className="text-sm text-muted">{t.emailLabel}</dt>
-          <dd>
+          <dd className="break-all">
             {me.email} <span className="block text-sm text-muted">{t.emailPrivate}</span>
           </dd>
         </div>
@@ -117,6 +118,8 @@ export function ProfileView() {
           <dd>{t.planFree}</dd>
         </div>
       </dl>
+
+      <SentLetters />
 
       <form onSubmit={save} className="flex flex-col gap-3">
         <label className="flex flex-col gap-1 text-sm font-semibold">
