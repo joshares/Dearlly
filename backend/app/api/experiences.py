@@ -1,5 +1,6 @@
 """Love notes (and later dates, vacations, gifts): create, list, revoke; open and reply by link."""
 
+import contextlib
 import math
 import uuid
 from datetime import UTC, datetime, timedelta
@@ -13,14 +14,19 @@ from app.api.deps import AppSettings, CurrentUser, DbSession, Limiter, current_u
 from app.core.csrf import require_csrf
 from app.core.net import client_ip
 from app.core.ratelimit import Limit
-from app.models import Experience, User
+from app.models import Experience, Report, User
 from app.services import experiences as engine
+from app.services import letter_mail
+from app.services.email import Email, EmailDeliveryError, send_email
+from app.services.profiles import ProfileFieldError, normalize_email
 
 router = APIRouter(tags=["experiences"], dependencies=[Depends(require_csrf)])
 
 CREATE_PER_USER = Limit("experience-create-user", max_requests=30, window_seconds=24 * 3600)
 LETTER_PER_IP = Limit("letter-view-ip", max_requests=120, window_seconds=60)
 REPLY_PER_IP = Limit("letter-reply-ip", max_requests=10, window_seconds=3600)
+REPORT_PER_IP = Limit("letter-report-ip", max_requests=5, window_seconds=3600)
+REPORT_REASONS = ("harassment", "scam", "sexual", "hate", "spam", "other")
 MAX_SCHEDULE_AHEAD = timedelta(days=366)
 
 NOT_FOUND = "This letter doesn't exist or was taken back by the sender."
@@ -74,6 +80,8 @@ class CreateIn(BaseModel):
     theme: str = Field(max_length=32)
     content: dict[str, str | None]
     opens_at: AwareDatetime | None = None
+    # Optional: email them the link (when it opens, for scheduled letters).
+    recipient_email: str | None = Field(default=None, max_length=254)
 
 
 class ReplyOut(BaseModel):
@@ -97,6 +105,8 @@ class MyExperienceOut(BaseModel):
     open_count: int
     reply: ReplyOut | None
     revoked: bool
+    email_status: str | None
+    email_sent_at: datetime | None
 
 
 class MyExperiencesPage(BaseModel):
@@ -150,6 +160,8 @@ def _mine(e: Experience, settings: AppSettings) -> MyExperienceOut:
         open_count=e.open_count,
         reply=_reply(e),
         revoked=e.revoked_at is not None,
+        email_status=e.email_status,
+        email_sent_at=e.email_sent_at,
     )
 
 
@@ -209,8 +221,10 @@ async def create_experience(
     except engine.ExperienceError as exc:
         raise _bad(str(exc)) from exc
 
+    email_fields = await _email_fields(db, settings, user, body.recipient_email)
     token = engine.new_link_token()
     experience = Experience(
+        **email_fields,
         type=kind.key,
         owner_id=user.id,
         token_hash=engine.link_hash(token),
@@ -226,6 +240,44 @@ async def create_experience(
     await db.commit()
     await db.refresh(experience)
     return _mine(experience, settings)
+
+
+async def _email_fields(
+    db: DbSession, settings: AppSettings, user: User, raw: str | None
+) -> dict[str, Any]:
+    """Checks an optional recipient email and prepares it (encrypted) for the worker to send."""
+    if raw is None or not raw.strip():
+        return {}
+    try:
+        email = normalize_email(raw)
+    except ProfileFieldError as exc:
+        raise _bad("Their email doesn't look right. Check it, or leave it empty.") from exc
+    since = datetime.now(UTC) - timedelta(days=1)
+    emailed_today = (
+        await db.execute(
+            select(func.count())
+            .select_from(Experience)
+            .where(
+                Experience.owner_id == user.id,
+                Experience.email_status.is_not(None),
+                Experience.created_at > since,
+            )
+        )
+    ).scalar_one()
+    if emailed_today >= letter_mail.EMAILS_PER_DAY:
+        raise _bad(
+            f"You can email up to {letter_mail.EMAILS_PER_DAY} letters a day. "
+            "Leave their email empty and share the link instead."
+        )
+    fingerprint = engine.email_fingerprint(settings, email)
+    if await letter_mail.is_blocked(db, fingerprint, user.id):
+        # They asked not to be emailed; the sender can still share the link themselves.
+        return {"recipient_email_hash": fingerprint, "email_status": "blocked"}
+    return {
+        "recipient_email_hash": fingerprint,
+        "recipient_email_encrypted": engine.encrypt_email(settings, email),
+        "email_status": "scheduled",
+    }
 
 
 @router.get("/me/experiences")
@@ -264,6 +316,8 @@ async def revoke_experience(
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not found.")
     if experience.revoked_at is None:
         experience.revoked_at = datetime.now(UTC)
+        if experience.email_status == "scheduled":
+            letter_mail.forget_address(experience, "cancelled")
         await db.commit()
     return _mine(experience, settings)
 
@@ -387,3 +441,52 @@ async def reply_to_letter(
     e.first_opened_at = e.first_opened_at or now
     await db.commit()
     return ReplyOut(reaction=body.reaction, note=note, replied_at=now)
+
+
+class ReportIn(BaseModel):
+    reason: str = Field(max_length=32)
+    note: str | None = Field(default=None, max_length=280)
+
+
+@router.post("/letters/{token}/report", status_code=status.HTTP_204_NO_CONTENT)
+async def report_letter(
+    token: str,
+    body: ReportIn,
+    request: Request,
+    response: Response,
+    db: DbSession,
+    settings: AppSettings,
+    limiter: Limiter,
+) -> None:
+    """The recipient flags a letter. It's saved and emailed to the founder to review."""
+    await limiter.hit(REPORT_PER_IP, client_ip(request, settings))
+    response.headers.update(PRIVATE_HEADERS)
+    e = await _by_token(db, token)
+    if body.reason not in REPORT_REASONS:
+        raise _bad("Pick a reason.")
+    try:
+        note = engine.clean_text(body.note, label="Your note", max_len=280, required=False)
+    except engine.ExperienceError as exc:
+        raise _bad(str(exc)) from exc
+    report = Report(experience_id=e.id, sender_id=e.owner_id, reason=body.reason, note=note)
+    db.add(report)
+    await db.commit()
+    owner = await db.get(User, e.owner_id)
+    letter_text = "\n".join(f"{k}: {v}" for k, v in e.content.items())
+    text = (
+        f"Reason: {body.reason}\nNote: {note or '-'}\n\n"
+        f"Report: {report.id}\nLetter: {e.id}\n"
+        f"Sender: @{owner.username if owner else '(deleted)'} ({e.owner_id})\n"
+        f"Signed as: {e.sender_name}\nTo: {e.recipient_name}\n\n{letter_text}\n\n"
+        "To take it down (its link stops working for good), on your Mac run:\n"
+        f"  ssh -t dearlly docker exec dearlly-api-1 python -m app.admin takedown {e.id}\n"
+    )
+    # Saved in the database either way; the email is the founder's nudge to look.
+    with contextlib.suppress(EmailDeliveryError):
+        await send_email(
+            request.app.state.http,
+            settings,
+            Email(
+                to=settings.reports_to, subject=f"Dearlly report: {body.reason}", text=text, html=""
+            ),
+        )

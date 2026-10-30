@@ -41,4 +41,12 @@ class Experience(Base):
     reply_note: Mapped[str | None] = mapped_column(String(280))
     replied_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
+    # Emailing the letter (optional). The address is encrypted and deleted once sent.
+    # email_status: scheduled -> sending -> sent | failed; blocked = they asked not to be emailed.
+    recipient_email_encrypted: Mapped[str | None] = mapped_column(Text)
+    recipient_email_hash: Mapped[str | None] = mapped_column(String(64))
+    email_status: Mapped[str | None] = mapped_column(String(16), index=True)
+    email_attempts: Mapped[int] = mapped_column(Integer, default=0, server_default="0")
+    email_sent_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())

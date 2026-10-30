@@ -22,6 +22,7 @@ type Draft = {
   senderName: string;
   recipientName: string;
   recipientTitle: string;
+  recipientEmail: string;
   quoteTitle: string;
   quoteText: string;
   theme: LetterTheme;
@@ -29,12 +30,19 @@ type Draft = {
 };
 
 type Quote = { key: string; mood: Mood; title: string; text: string };
-type Sealed = { url: string; opens_at: string | null; letter: LetterContent };
+type Sealed = {
+  url: string;
+  opens_at: string | null;
+  email_status: "scheduled" | "blocked" | null;
+  letter: LetterContent;
+  email: string;
+};
 
 const EMPTY: Draft = {
   senderName: "",
   recipientName: "",
   recipientTitle: "",
+  recipientEmail: "",
   quoteTitle: "",
   quoteText: "",
   theme: "cream",
@@ -119,7 +127,7 @@ export function WriteLetter({ loggedIn = false }: { loggedIn?: boolean }) {
     setBusy(true);
     setError(null);
     try {
-      const result = await api<Omit<Sealed, "letter">>("/experiences", {
+      const result = await api<Omit<Sealed, "letter" | "email">>("/experiences", {
         method: "POST",
         body: {
           type: "love_note",
@@ -129,10 +137,11 @@ export function WriteLetter({ loggedIn = false }: { loggedIn?: boolean }) {
           theme: draft.theme,
           content: { quote_title: draft.quoteTitle || null, quote_text: draft.quoteText },
           opens_at: lagosIso(draft.opensAt),
+          recipient_email: draft.recipientEmail.trim() || null,
         },
       });
       saveDraft(null);
-      setSealed({ ...result, letter: asLetter(draft) });
+      setSealed({ ...result, letter: asLetter(draft), email: draft.recipientEmail.trim() });
     } catch (err) {
       if (err instanceof ApiError && err.status === 401) {
         // The account step: their draft is saved; they come straight back here.
@@ -180,6 +189,13 @@ export function WriteLetter({ loggedIn = false }: { loggedIn?: boolean }) {
             <input className={input} name="recipient_title" maxLength={LIMITS.title}
               value={draft.recipientTitle} onChange={(e) => update({ recipientTitle: e.target.value })} />
             <span className={hint}>{t.titleHint}</span>
+          </label>
+          <label className={label}>
+            {t.emailLabel}
+            <input className={input} type="email" name="recipient_email" autoComplete="off"
+              inputMode="email" maxLength={254} value={draft.recipientEmail}
+              onChange={(e) => update({ recipientEmail: e.target.value })} />
+            <span className={hint}>{t.emailHint}</span>
           </label>
         </fieldset>
 
@@ -311,6 +327,12 @@ function SealedPanel({ sealed, onAnother }: { sealed: Sealed; onAnother: () => v
       <h1 className="text-4xl md:text-5xl">{t.sealedTitle}</h1>
       <p className="text-lg text-muted">{t.sealedLead}</p>
       {when && <p className="font-semibold">{t.sealedUntil.replace("{when}", when)}</p>}
+      {sealed.email_status === "scheduled" && (
+        <p className="font-semibold">
+          {(sealed.opens_at ? t.emailWhenOpens : t.emailScheduled).replace("{email}", sealed.email)}
+        </p>
+      )}
+      {sealed.email_status === "blocked" && <p className="font-semibold">{t.emailBlocked}</p>}
       <p className="rounded-md border-2 border-dashed border-line bg-surface p-3 text-sm break-all">{sealed.url}</p>
       <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <button type="button" onClick={copy}

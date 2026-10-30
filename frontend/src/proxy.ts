@@ -18,8 +18,8 @@ export function proxy(request: NextRequest) {
 
   const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set("Content-Security-Policy", csp);
-  // Private letters (/l/<token>): never indexed, even if a link leaks somewhere public.
-  if (request.nextUrl.pathname.startsWith("/l/")) {
+  // Private letters (/l/<token>) and email links: never indexed, even if a link leaks.
+  if (request.nextUrl.pathname.startsWith("/l/") || request.nextUrl.pathname === "/unsubscribe") {
     response.headers.set("X-Robots-Tag", "noindex, nofollow");
   }
   return response;

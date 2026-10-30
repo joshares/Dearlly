@@ -23,6 +23,8 @@ export type SentLetter = {
   open_count: number;
   reply: { reaction: string; note: string | null; replied_at: string } | null;
   revoked: boolean;
+  email_status?: "scheduled" | "sent" | "failed" | "blocked" | "cancelled" | null;
+  email_sent_at?: string | null;
 };
 
 type Page = { items: SentLetter[]; total: number; page: number; per_page: number };
@@ -160,6 +162,13 @@ function statusLines(letter: SentLetter, reactionLabel: string): string[] {
   } else {
     lines.push(t.waiting);
   }
+  const opensLater = Boolean(letter.opens_at && new Date(letter.opens_at).getTime() > Date.now());
+  if (letter.email_status === "scheduled") lines.push(opensLater ? t.emailWhenOpens : t.emailOnItsWay);
+  if (letter.email_status === "sent" && letter.email_sent_at) {
+    lines.push(fill(t.emailSent, { date: lagosDateTime(letter.email_sent_at) }));
+  }
+  if (letter.email_status === "failed") lines.push(t.emailFailed);
+  if (letter.email_status === "blocked") lines.push(t.emailBlocked);
   if (letter.reply) {
     const reaction = `${REACTION_EMOJI[letter.reply.reaction] ?? ""} ${reactionLabel}`.trim();
     lines.push(fill(t.replied, { reaction }));
@@ -181,6 +190,7 @@ function SentItem({
   const [busy, setBusy] = useState(false);
   const name = letter.recipient_title?.trim() || letter.recipient_name;
   const done = Boolean(letter.reply);
+  const lines = statusLines(letter, reactionLabel);
 
   async function copy() {
     if (!letter.url) return;
@@ -209,8 +219,9 @@ function SentItem({
         <span className="text-sm text-muted">{fill(t.sentOn, { date: lagosDate(letter.created_at) })}</span>
       </div>
       <ul className="flex flex-col gap-0.5 text-sm font-bold">
-        {statusLines(letter, reactionLabel).map((line, i) => (
-          <li key={line} className={done && i > 0 ? "text-accent-text" : ""}>
+        {lines.map((line, i) => (
+          // The reply (always last) is the highlight.
+          <li key={line} className={done && i === lines.length - 1 ? "text-accent-text" : ""}>
             {line}
           </li>
         ))}

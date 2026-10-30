@@ -8,6 +8,8 @@
 """
 
 import base64
+import hashlib
+import hmac
 import re
 import unicodedata
 from dataclasses import dataclass
@@ -130,8 +132,8 @@ def link_hash(token: str) -> str:
     return hash_token(token)
 
 
-def _fernet(settings: Settings) -> Fernet:
-    key = HKDF(algorithm=hashes.SHA256(), length=32, salt=None, info=b"dearlly-link-tokens").derive(
+def _fernet(settings: Settings, purpose: bytes = b"dearlly-link-tokens") -> Fernet:
+    key = HKDF(algorithm=hashes.SHA256(), length=32, salt=None, info=purpose).derive(
         settings.secret_key.get_secret_value().encode()
     )
     return Fernet(base64.urlsafe_b64encode(key))
@@ -146,6 +148,29 @@ def decrypt_token(settings: Settings, encrypted: str) -> str | None:
         return _fernet(settings).decrypt(encrypted.encode()).decode()
     except InvalidToken:
         return None
+
+
+# --- recipient emails ------------------------------------------------------------------------
+# Kept encrypted only until the letter is emailed, then deleted. What stays is a keyed
+# fingerprint, so "Stop messages" and "Never email me" can be honoured without keeping the address.
+
+_EMAIL_PURPOSE = b"dearlly-recipient-emails"
+
+
+def encrypt_email(settings: Settings, email: str) -> str:
+    return _fernet(settings, _EMAIL_PURPOSE).encrypt(email.encode()).decode()
+
+
+def decrypt_email(settings: Settings, encrypted: str) -> str | None:
+    try:
+        return _fernet(settings, _EMAIL_PURPOSE).decrypt(encrypted.encode()).decode()
+    except InvalidToken:
+        return None
+
+
+def email_fingerprint(settings: Settings, email: str) -> str:
+    key = settings.secret_key.get_secret_value().encode()
+    return hmac.new(key, f"recipient-email:{email}".encode(), hashlib.sha256).hexdigest()
 
 
 def letter_url(settings: Settings, token: str) -> str:
