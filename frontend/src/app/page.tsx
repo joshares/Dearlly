@@ -7,18 +7,19 @@ import { StampCard } from "@/components/StampCard";
 import { getMessages } from "@/i18n";
 import { seemsLoggedIn } from "@/lib/session";
 
+// href: the form for letters that work today; the rest say "opening soon".
 const EXPERIENCES = [
-  { key: "loveNote", tone: "kraft", tilt: "-rotate-3" },
-  { key: "date", tone: "stamp", tilt: "rotate-2" },
-  { key: "vacation", tone: "ink", tilt: "-rotate-1" },
-  { key: "gift", tone: "paper", tilt: "rotate-3" },
+  { key: "loveNote", tone: "kraft", tilt: "-rotate-3", href: "/write" },
+  { key: "date", tone: "stamp", tilt: "rotate-2", href: "/write/date" },
+  { key: "vacation", tone: "ink", tilt: "-rotate-1", href: undefined },
+  { key: "gift", tone: "paper", tilt: "rotate-3", href: undefined },
 ] as const;
 
 export default async function HomePage() {
   return <Home loggedIn={await seemsLoggedIn()} />;
 }
 
-/** The home page; logged-in people get "Write" and "Your letters" instead of "Create your account". */
+/** The home page; logged-in people get "Write" and "Invite them on a date" instead of "Create your account". */
 export function Home({ loggedIn }: { loggedIn: boolean }) {
   const t = getMessages();
   const home = t.home;
@@ -46,10 +47,10 @@ export function Home({ loggedIn }: { loggedIn: boolean }) {
                 {loggedIn ? home.secondaryCta : home.primaryCta}
               </Link>
               <Link
-                href={loggedIn ? "/letters" : "/write"}
+                href={loggedIn ? "/write/date" : "/write"}
                 className="inline-flex min-h-14 items-center justify-center gap-2 rounded-lg border-2 border-fg px-6 whitespace-nowrap text-lg font-extrabold"
               >
-                {loggedIn ? home.lettersCta : home.secondaryCta}
+                {loggedIn ? home.dateCta : home.secondaryCta}
               </Link>
             </div>
             <p className="font-hand text-lg leading-[2.2] text-muted">{home.signOff}</p>
@@ -64,13 +65,16 @@ export function Home({ loggedIn }: { loggedIn: boolean }) {
             {home.experiencesHeading}
           </h2>
           <ul className="grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-8">
-            {EXPERIENCES.map(({ key, tone, tilt }) => (
+            {EXPERIENCES.map(({ key, tone, tilt, href }) => (
               <li key={key}>
                 <StampCard
                   title={home.experiences[key].title}
                   body={home.experiences[key].body}
                   tone={tone}
                   tilt={tilt}
+                  href={href}
+                  action={home.open}
+                  soon={home.soon}
                 />
               </li>
             ))}

@@ -42,8 +42,9 @@ export function Turnstile({
     const widgetId = api.render(container.current, {
       sitekey: TURNSTILE_SITE_KEY,
       theme: "auto",
-      // The normal widget is 300px wide: too wide for small phones inside the letter sheet.
-      size: window.innerWidth < 420 ? "compact" : "normal",
+      // "flexible" is a slim bar that fills the form (at least 300px wide; a few pixels may sit in
+      // the sheet's padding). Only very narrow phones get the tall, square "compact" one.
+      size: container.current.offsetWidth >= 288 ? "flexible" : "compact",
       callback: (token: string) => callback.current(token),
       "expired-callback": () => callback.current(null),
       "error-callback": () => callback.current(null),
@@ -59,7 +60,7 @@ export function Turnstile({
         strategy="afterInteractive"
         onReady={() => setLoaded(true)}
       />
-      <div ref={container} className="min-h-16" />
+      <div ref={container} className="min-h-16 w-full" />
     </>
   );
 }

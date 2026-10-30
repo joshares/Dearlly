@@ -36,7 +36,7 @@ type Draft = {
   quoteTitle: string;
   quoteText: string;
   theme: LetterTheme;
-  opensAt: string; // datetime-local value, Lagos time
+  opensAt: string; // datetime-local value, WAT
 };
 
 type Quote = { key: string; mood: Mood; title: string; text: string };

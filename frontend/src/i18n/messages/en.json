@@ -14,7 +14,6 @@
     "lead": "Love notes, date invitations, vacation surprises and gift reveals — sealed in an envelope and sent by private link. Plus games for two.",
     "primaryCta": "Create your account",
     "secondaryCta": "Write a love note",
-    "lettersCta": "Your letters",
     "soon": "opening soon",
     "signOff": "Yours, always — Dearlly",
     "art": {
@@ -43,8 +42,10 @@
     },
     "gamesHeading": "Games for two",
     "gamesBody": "Answer privately, reveal together. From talking stage to deep talk — the server deals the questions, so nobody can peek.",
-    "adultsOnly": "For adults 18+ in Nigeria.",
-    "privacyLink": "Privacy"
+    "adultsOnly": "For adults 18+.",
+    "privacyLink": "Privacy",
+    "dateCta": "Invite them on a date",
+    "open": "Write one"
   },
   "nav": {
     "label": "Main",
@@ -173,7 +174,7 @@
       "kraft": "Kraft",
       "rose": "Rose"
     },
-    "scheduleLabel": "Keep it sealed until (optional, Lagos time)",
+    "scheduleLabel": "Keep it sealed until (optional, WAT)",
     "scheduleHint": "Leave empty to open straight away. Great for 00:00 on 14 February.",
     "previewHeading": "Preview",
     "seal": "Seal it",
@@ -212,7 +213,7 @@
     "breakHint": "Tap the envelope or the button to open it.",
     "envelopeLabel": "Sealed letter for {name} from {sender}. Tap to open.",
     "sealedTitle": "Not yet…",
-    "sealedLead": "{sender} sealed this letter until {when} (Lagos time).",
+    "sealedLead": "{sender} sealed this letter until {when} (WAT).",
     "opensIn": "Opens in",
     "units": {
       "d": "d",
@@ -464,16 +465,16 @@
     "loadingPlaces": "Finding places…",
     "noPlaces": "No places with that vibe yet. Try another, or type your own.",
     "placesFailed": "Couldn't load places. Type your own instead.",
-    "whenLabel": "Date and time (Lagos time)",
+    "whenLabel": "Date and time (WAT)",
     "noteLabel": "Anything else? (optional)",
     "noteHint": "What to wear, when you'll pick them up…",
     "cardTitle": "You're invited",
     "where": "Where",
     "when": "When",
     "note": "Note",
-    "lagosTime": "Lagos time",
     "whatsappText": "I've got a question for you 💌 Open it here:",
     "another": "Write another invitation",
-    "placeholder": "Your invitation will appear here…"
+    "placeholder": "Your invitation will appear here…",
+    "timeZone": "WAT"
   }
 }

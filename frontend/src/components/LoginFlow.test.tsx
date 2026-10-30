@@ -7,7 +7,9 @@ import { LoginFlow } from "./LoginFlow";
 
 const push = vi.fn();
 const refresh = vi.fn();
-vi.mock("next/navigation", () => ({ useRouter: () => ({ push, replace: push, refresh }) }));
+// One router object, like Next.js's own (a new one per render would re-run effects).
+const router = { push, replace: push, refresh };
+vi.mock("next/navigation", () => ({ useRouter: () => router }));
 // Stand-in for Cloudflare's widget: passes immediately.
 vi.mock("@/components/Turnstile", () => ({
   Turnstile: ({ onToken }: { onToken: (token: string) => void }) => (

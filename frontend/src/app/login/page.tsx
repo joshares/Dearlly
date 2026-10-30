@@ -41,11 +41,11 @@ export default async function LoginPage({
           <p className="font-hand max-w-md text-2xl leading-[1.8]">“{t.loginPanel.quote}”</p>
         </aside>
 
-        <main className="flex flex-col gap-6 pt-5 pr-5 pb-32 pl-9 md:items-center md:justify-center md:p-12">
+        <main className="flex flex-col gap-6 pt-5 pr-3 pb-32 pl-5 md:items-center md:justify-center md:p-12">
           <Link href="/" aria-label={t.header.home} className="text-fg md:hidden">
             <Logo size={34} />
           </Link>
-          <div className="letter-sheet w-full max-w-lg rounded-sm py-8 pr-4 pl-10 md:rotate-1 md:py-12 md:pr-10 md:pl-16">
+          <div className="letter-sheet w-full max-w-lg rounded-sm py-8 pr-3 pl-9 md:rotate-1 md:py-12 md:pr-10 md:pl-16">
             <LoginFlow
               nonce={nonce}
               from={from}
