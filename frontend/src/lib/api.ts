@@ -7,6 +7,9 @@
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8100";
 
+/** Set by the API next to the login cookies; holds only "1" (see backend app/api/deps.py). */
+export const LOGIN_HINT = "dl_in";
+
 export type MyProfile = {
   id: string;
   username: string;
@@ -36,9 +39,40 @@ async function getCsrfToken(): Promise<string> {
   return csrfToken;
 }
 
-/** Test hook: forget the cached CSRF token. */
+/**
+ * Answers already fetched in this tab (your profile, your letters), so moving between pages
+ * shows them at once while a fresh copy loads quietly. Cleared on log in and log out.
+ */
+const remembered = new Map<string, unknown>();
+
+export function peek<T>(path: string): T | undefined {
+  return remembered.get(path) as T | undefined;
+}
+
+export function remember(path: string, value: unknown): void {
+  remembered.set(path, value);
+}
+
+/** After logging in as someone (maybe someone else): nothing remembered may carry over. */
+export function forgetRemembered(): void {
+  remembered.clear();
+}
+
+/** Forget everything about the current login in this tab, including the "logged in" hint. */
+export function forgetLogin(): void {
+  remembered.clear();
+  if (typeof document !== "undefined") {
+    // The server clears it too; this covers the case where its reply never arrived.
+    const host = window.location.hostname;
+    document.cookie = `${LOGIN_HINT}=; Max-Age=0; Path=/`;
+    document.cookie = `${LOGIN_HINT}=; Max-Age=0; Path=/; Domain=${host}`;
+  }
+}
+
+/** Test hook: forget the cached CSRF token and remembered answers. */
 export function resetApiState(): void {
   csrfToken = null;
+  remembered.clear();
 }
 
 async function send(path: string, method: string, body: unknown): Promise<Response> {
@@ -84,6 +118,7 @@ export async function api<T>(
   if (response.status === 401 && !path.startsWith("/auth/")) {
     const refreshed = await send("/auth/refresh", "POST", undefined);
     if (refreshed.ok) response = await send(path, method, body);
+    else forgetLogin();
   }
 
   if (!response.ok) throw await errorFrom(response);

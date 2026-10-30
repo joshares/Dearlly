@@ -18,6 +18,7 @@ const READY: Letter = {
   recipient_title: "my love",
   theme: "rose",
   opens_at: null,
+  opens_in_seconds: 0,
   content: { quote_title: "Na you", quote_text: "Na you my heart choose." },
   reactions: [
     { key: "love_it", label: "I love this" },
@@ -95,11 +96,33 @@ describe("OpenLetter", () => {
       status: "sealed_until",
       content: null,
       opens_at: new Date(Date.now() + 2 * 86400_000 + 3600_000 + 30_000).toISOString(),
+      opens_in_seconds: 2 * 86400 + 3600 + 30,
     };
     render(<OpenLetter token={TOKEN} />);
     expect(await screen.findByText("Not yet…")).toBeTruthy();
     expect(screen.getByRole("timer").textContent).toMatch(/^02d01h/);
     expect(screen.queryByRole("button", { name: "Break the seal" })).toBeNull();
+  });
+
+  it("opens by itself when the countdown ends, even if the server is a moment behind", async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    const sealed: Letter = { ...READY, status: "sealed_until", content: null, opens_in_seconds: 2,
+      opens_at: new Date(Date.now() + 2000).toISOString() };
+    let asks = 0;
+    // The first two answers still say "sealed" (a phone clock running ahead), then it opens.
+    vi.mocked(fetch).mockImplementation(async () => {
+      asks += 1;
+      return json(200, asks <= 2 ? { ...sealed, opens_in_seconds: 1 } : READY);
+    });
+    try {
+      render(<OpenLetter token={TOKEN} />);
+      expect(await screen.findByText("Not yet…")).toBeTruthy();
+      await vi.advanceTimersByTimeAsync(10_000);
+      expect(await screen.findByRole("button", { name: "Break the seal" })).toBeTruthy();
+      expect(asks).toBeGreaterThanOrEqual(3);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it("tells the sender a preview doesn't count, with no reply form", async () => {

@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { getMessages, locales } from "@/i18n";
 
-import HomePage from "./page";
+import { Home } from "./page";
 
 beforeEach(() => {
   // Visitor is not logged in.
@@ -19,12 +19,12 @@ afterEach(() => {
 
 describe("home page", () => {
   it("shows the headline from the translation file", () => {
-    render(<HomePage />);
+    render(<Home loggedIn={false} />);
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(getMessages().home.title);
   });
 
   it("has phone navigation with Home as the current page", () => {
-    render(<HomePage />);
+    render(<Home loggedIn={false} />);
     const nav = screen.getByRole("navigation", { name: "Main" });
     const home = nav.querySelector('[aria-current="page"]');
     expect(home?.textContent).toContain("Home");
@@ -32,15 +32,26 @@ describe("home page", () => {
   });
 
   it("links only to pages that exist", () => {
-    render(<HomePage />);
+    render(<Home loggedIn={false} />);
     const hrefs = [...document.querySelectorAll("a")].map((a) => a.getAttribute("href"));
     expect(new Set(hrefs)).toEqual(new Set(["/", "/login", "/profile", "/write"]));
   });
 
   it("offers sign-up as the main action", () => {
-    render(<HomePage />);
+    render(<Home loggedIn={false} />);
     const cta = screen.getByRole("link", { name: getMessages().home.primaryCta });
     expect(cta.getAttribute("href")).toBe("/login");
+  });
+});
+
+describe("home page when logged in", () => {
+  it("drops 'Create your account' and offers writing and your letters", () => {
+    render(<Home loggedIn />);
+    const home = getMessages().home;
+    expect(screen.queryByRole("link", { name: home.primaryCta })).toBeNull();
+    expect(screen.getByRole("link", { name: home.secondaryCta }).getAttribute("href")).toBe("/write");
+    expect(screen.getByRole("link", { name: home.lettersCta }).getAttribute("href")).toBe("/letters");
+    expect(screen.getByRole("link", { name: "My profile" }).getAttribute("href")).toBe("/profile");
   });
 });
 

@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import { Turnstile } from "@/components/Turnstile";
 import { getMessages } from "@/i18n";
-import { API_URL, ApiError, api, type MyProfile } from "@/lib/api";
+import { API_URL, ApiError, api, forgetRemembered, type MyProfile } from "@/lib/api";
 
 type Step = "email" | "code" | "signup";
 type Method = "code" | "password";
@@ -30,8 +30,11 @@ export function LoginFlow({
   nonce,
   from,
   next = "/profile",
+  checking = false,
 }: {
   nonce?: string;
+  /** The browser says it's probably logged in: confirm quietly before showing the form. */
+  checking?: boolean;
   from?: "signup" | "google-error";
   /** Where to go once logged in (already checked with safeNext). */
   next?: string;
@@ -56,6 +59,24 @@ export function LoginFlow({
   );
 
   const [googleEnabled, setGoogleEnabled] = useState(false);
+  const [confirming, setConfirming] = useState(checking);
+
+  // Logged in (as anyone): drop what this tab remembered, and go on without leaving
+  // the login page in the back-button history.
+  const done = useCallback(() => {
+    forgetRemembered();
+    router.replace(next);
+    router.refresh();
+  }, [router, next]);
+
+  // Already logged in? Renewing the session answers it, and also sets the "logged in" hint
+  // for sessions started before the hint existed.
+  useEffect(() => {
+    if (from === "signup") return;
+    api("/auth/refresh", { method: "POST" })
+      .then(done)
+      .catch(() => setConfirming(false));
+  }, [from, done]);
 
   const onToken = useCallback((token: string | null) => setTurnstileToken(token), []);
 
@@ -107,7 +128,7 @@ export function LoginFlow({
           method: "POST",
           body: { email, password, turnstile_token: turnstileToken },
         });
-        router.push(next);
+        done();
       });
       return;
     }
@@ -128,7 +149,7 @@ export function LoginFlow({
         method: "POST",
         body: { email, code },
       });
-      if (result.status === "logged_in") router.push(next);
+      if (result.status === "logged_in") done();
       else setStep("signup");
     });
   };
@@ -145,7 +166,7 @@ export function LoginFlow({
           password: newPassword || null,
         },
       });
-      router.push(next);
+      done();
     });
   };
 
@@ -155,6 +176,14 @@ export function LoginFlow({
     setTurnstileKey((key) => key + 1);
     setError(null);
   };
+
+  if (confirming) {
+    return (
+      <p role="status" className="font-hand py-10 text-center text-lg text-muted">
+        {t.checking}
+      </p>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-5">

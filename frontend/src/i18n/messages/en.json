@@ -14,6 +14,7 @@
     "lead": "Love notes, date invitations, vacation surprises and gift reveals — sealed in an envelope and sent by private link. Plus games for two.",
     "primaryCta": "Create your account",
     "secondaryCta": "Write a love note",
+    "lettersCta": "Your letters",
     "soon": "opening soon",
     "signOff": "Yours, always — Dearlly",
     "art": {
@@ -64,7 +65,7 @@
     "codeLead": "We sent a 6-digit code to {email}. It works once and expires in 10 minutes.",
     "codeLabel": "6-digit code",
     "checkCode": "Continue",
-    "checking": "Checking…",
+    "checking": "Checking you're logged in…",
     "differentEmail": "Use a different email or get a new code",
     "signupTitle": "Choose your name",
     "signupLead": "Your username is public. Your email is never shown to anyone.",

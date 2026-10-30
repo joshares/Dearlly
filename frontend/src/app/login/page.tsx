@@ -7,6 +7,7 @@ import { HeroArt, Logo } from "@/components/brand";
 import { LoginFlow } from "@/components/LoginFlow";
 import { getMessages } from "@/i18n";
 import { safeNext } from "@/lib/safe-next";
+import { seemsLoggedIn } from "@/lib/session";
 
 export const metadata: Metadata = { title: "Log in · Dearlly" };
 
@@ -45,7 +46,12 @@ export default async function LoginPage({
             <Logo size={34} />
           </Link>
           <div className="letter-sheet w-full max-w-lg rounded-sm py-8 pr-4 pl-10 md:rotate-1 md:py-12 md:pr-10 md:pl-16">
-            <LoginFlow nonce={nonce} from={from} next={safeNext(params.next)} />
+            <LoginFlow
+              nonce={nonce}
+              from={from}
+              next={safeNext(params.next)}
+              checking={await seemsLoggedIn()}
+            />
           </div>
         </main>
       </div>

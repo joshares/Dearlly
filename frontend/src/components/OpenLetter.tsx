@@ -23,6 +23,7 @@ export type Letter = {
   recipient_title: string | null;
   theme: LetterTheme;
   opens_at: string | null;
+  opens_in_seconds: number;
   content: { quote_title?: string | null; quote_text: string } | null;
   reactions: Reaction[];
   reply: Reply | null;
@@ -51,12 +52,18 @@ function reducedMotion(): boolean {
 /** The recipient's page: a sealed envelope, then the letter and "Seal a reply". */
 export function OpenLetter({ token }: { token: string }) {
   const [letter, setLetter] = useState<Letter | null>(null);
+  // When a sealed letter opens, by this phone's clock. Counted from the server's "seconds left",
+  // so a phone whose clock is wrong still opens on time.
+  const [opensAt, setOpensAt] = useState(0);
   const [missing, setMissing] = useState<string | null>(null);
   const [stage, setStage] = useState<"closed" | "opening" | "open">("closed");
 
   const load = useCallback(() => {
     api<Letter>(`/letters/${encodeURIComponent(token)}`)
-      .then(setLetter)
+      .then((fresh) => {
+        setLetter(fresh);
+        setOpensAt(Date.now() + fresh.opens_in_seconds * 1000);
+      })
       .catch((err: unknown) => {
         setMissing(
           err instanceof ApiError && err.status !== 404
@@ -113,7 +120,7 @@ export function OpenLetter({ token }: { token: string }) {
               when: lagosDateTime(letter.opens_at),
             })}
           </p>
-          <Countdown until={letter.opens_at} onDone={load} />
+          <Countdown until={opensAt} onDone={load} />
         </section>
       </div>
     );
@@ -260,17 +267,22 @@ function Envelope({
   );
 }
 
-function Countdown({ until, onDone }: { until: string; onDone: () => void }) {
+const RECHECK_MS = 3000;
+
+function Countdown({ until, onDone }: { until: number; onDone: () => void }) {
   const [now, setNow] = useState(() => Date.now());
   const left = timeLeft(until, now);
   const done = left.d + left.h + left.m + left.s === 0;
 
   useEffect(() => {
-    if (done) {
-      onDone();
-      return;
+    if (!done) {
+      const id = window.setInterval(() => setNow(Date.now()), 1000);
+      return () => window.clearInterval(id);
     }
-    const id = window.setInterval(() => setNow(Date.now()), 1000);
+    // Time's up: ask the server now, and keep asking until it says the letter is open
+    // (this page then shows "Break the seal" by itself).
+    onDone();
+    const id = window.setInterval(onDone, RECHECK_MS);
     return () => window.clearInterval(id);
   }, [done, onDone]);
 

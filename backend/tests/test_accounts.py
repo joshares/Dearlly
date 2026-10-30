@@ -163,6 +163,46 @@ def test_refresh_rotates_and_detects_reuse(auth_client: AuthClient) -> None:
     assert auth_client.get("/me").status_code == 401
 
 
+def test_login_hint_follows_the_session(auth_client: AuthClient) -> None:
+    """The website reads dl_in to draw the logged-in page at once; it never outlives the login."""
+    auth_client.sign_up(EMAIL, "ada_demo")
+    assert auth_client.cookies.get("dl_in") == "1"
+    auth_client.post("/auth/logout")
+    assert auth_client.cookies.get("dl_in") is None
+
+    auth_client.use_csrf()
+    code = auth_client.request_code(EMAIL)
+    auth_client.post("/auth/verify", json={"email": EMAIL, "code": code})
+    assert auth_client.cookies.get("dl_in") == "1"
+    auth_client.replace_cookies(dl_refresh="not-a-real-token")
+    assert auth_client.post("/auth/refresh").status_code == 401
+    assert auth_client.cookies.get("dl_in") is None
+
+
+def test_login_hint_is_shared_with_the_website_domain() -> None:
+    from fastapi import Response
+
+    from app.api.deps import clear_auth_cookies, set_session_cookies
+    from app.services.auth import SessionTokens
+
+    from .conftest import make_settings, production_settings
+
+    tokens = SessionTokens(access_token="a", refresh_token="r")
+    live = Response()
+    set_session_cookies(live, production_settings(), tokens)
+    hint = [h for h in live.headers.getlist("set-cookie") if h.startswith("dl_in=")]
+    assert hint and "Domain=dearlly.example" in hint[0] and "HttpOnly" not in hint[0]
+    cleared = Response()
+    clear_auth_cookies(cleared, production_settings())
+    assert any(
+        h.startswith('dl_in=""') and "Domain=dearlly.example" in h
+        for h in cleared.headers.getlist("set-cookie")
+    )
+    local = Response()
+    set_session_cookies(local, make_settings(), tokens)
+    assert all("Domain" not in h for h in local.headers.getlist("set-cookie"))
+
+
 def test_refresh_without_cookie_is_refused(auth_client: AuthClient) -> None:
     assert auth_client.post("/auth/refresh").status_code == 401
 

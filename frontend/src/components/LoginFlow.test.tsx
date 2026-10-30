@@ -6,7 +6,8 @@ import { resetApiState } from "@/lib/api";
 import { LoginFlow } from "./LoginFlow";
 
 const push = vi.fn();
-vi.mock("next/navigation", () => ({ useRouter: () => ({ push, replace: push }) }));
+const refresh = vi.fn();
+vi.mock("next/navigation", () => ({ useRouter: () => ({ push, replace: push, refresh }) }));
 // Stand-in for Cloudflare's widget: passes immediately.
 vi.mock("@/components/Turnstile", () => ({
   Turnstile: ({ onToken }: { onToken: (token: string) => void }) => (
@@ -21,6 +22,7 @@ const json = (status: number, body: unknown) =>
 
 let bodies: Record<string, unknown>;
 let googleOn = false;
+let refreshOk = false;
 
 function mockApi(verifyStatus: "logged_in" | "signup_required", signup: Response) {
   bodies = {};
@@ -30,6 +32,7 @@ function mockApi(verifyStatus: "logged_in" | "signup_required", signup: Response
       const path = new URL(url).pathname;
       if (init.body) bodies[path] = JSON.parse(init.body as string);
       if (path === "/auth/csrf") return json(200, { csrf_token: "tok" });
+      if (path === "/auth/refresh") return refreshOk ? new Response(null, { status: 204 }) : json(401, {});
       if (path === "/auth/providers") return json(200, { google: googleOn });
       if (path === "/auth/start") return json(202, { status: "code_sent" });
       if (path === "/auth/verify") return json(200, { status: verifyStatus, user: null });
@@ -153,5 +156,33 @@ describe("LoginFlow", () => {
     mockApi("logged_in", json(500, {}));
     render(<LoginFlow from="google-error" />);
     expect((await screen.findByRole("alert")).textContent).toMatch(/Google sign-in didn't work/);
+  });
+});
+
+describe("LoginFlow when already logged in", () => {
+  afterEach(() => {
+    refreshOk = false;
+    cleanup();
+    vi.unstubAllGlobals();
+  });
+
+  it("confirms quietly and goes on, without showing the form", async () => {
+    resetApiState();
+    push.mockReset();
+    refreshOk = true;
+    mockApi("logged_in", json(201, {}));
+    render(<LoginFlow next="/letters" checking />);
+    expect(screen.getByRole("status").textContent).toMatch(/Checking/);
+    expect(screen.queryByLabelText("Your email")).toBeNull();
+    await waitFor(() => expect(push).toHaveBeenCalledWith("/letters"));
+  });
+
+  it("shows the form once the check says not logged in", async () => {
+    resetApiState();
+    push.mockReset();
+    mockApi("logged_in", json(201, {}));
+    render(<LoginFlow next="/letters" checking />);
+    expect(await screen.findByLabelText("Your email")).toBeTruthy();
+    expect(push).not.toHaveBeenCalled();
   });
 });

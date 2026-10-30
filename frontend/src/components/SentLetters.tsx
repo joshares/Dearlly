@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 import { REACTION_EMOJI } from "@/components/OpenLetter";
 import { getMessages } from "@/i18n";
-import { ApiError, api } from "@/lib/api";
+import { ApiError, api, peek, remember } from "@/lib/api";
 import { lagosDate, lagosDateTime } from "@/lib/dates";
 
 const t = getMessages().sent;
@@ -38,13 +38,20 @@ function fill(text: string, values: Record<string, string | number>): string {
  */
 export function SentLetters({ perPage, page = 1, paged = false }: { perPage: number; page?: number; paged?: boolean }) {
   const router = useRouter();
-  const [data, setData] = useState<Page | null>(null);
-  const [labels, setLabels] = useState<Record<string, string>>({});
+  const path = `/me/experiences?page=${page}&per_page=${perPage}`;
+  // Shown at once if this tab already loaded it; a fresh copy replaces it quietly.
+  const [data, setData] = useState<Page | null>(() => peek<Page>(path) ?? null);
+  const [labels, setLabels] = useState<Record<string, string>>(
+    () => peek<Record<string, string>>("reaction-labels") ?? {},
+  );
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    api<Page>(`/me/experiences?page=${page}&per_page=${perPage}`)
-      .then(setData)
+    api<Page>(path)
+      .then((fresh) => {
+        remember(path, fresh);
+        setData(fresh);
+      })
       .catch((err: unknown) => {
         if (err instanceof ApiError && err.status === 401 && paged) {
           router.replace(`/login?next=${encodeURIComponent("/letters")}`);
@@ -53,11 +60,13 @@ export function SentLetters({ perPage, page = 1, paged = false }: { perPage: num
         }
       });
     api<ExperienceType[]>("/experience-types")
-      .then((types) =>
-        setLabels(Object.fromEntries(types.flatMap((k) => k.reactions.map((r) => [r.key, r.label])))),
-      )
-      .catch(() => setLabels({}));
-  }, [page, perPage, paged, router]);
+      .then((types) => {
+        const found = Object.fromEntries(types.flatMap((k) => k.reactions.map((r) => [r.key, r.label])));
+        remember("reaction-labels", found);
+        setLabels(found);
+      })
+      .catch(() => undefined);
+  }, [path, paged, router]);
 
   const letters = data?.items;
   const pages = data ? Math.max(1, Math.ceil(data.total / data.per_page)) : 1;
@@ -69,6 +78,17 @@ export function SentLetters({ perPage, page = 1, paged = false }: { perPage: num
         {t.title}
       </Heading>
       {error && <p role="alert">{error}</p>}
+      {!data && !error && (
+        <ul className="flex flex-col gap-3" aria-hidden="true">
+          {Array.from({ length: Math.min(perPage, 3) }, (_, i) => (
+            <li key={i} className="flex animate-pulse flex-col gap-3 rounded-md border-2 border-line/40 p-4">
+              <div className="h-5 w-32 rounded bg-line/30" />
+              <div className="h-4 w-48 rounded bg-line/30" />
+              <div className="h-12 w-56 max-w-full rounded bg-line/20" />
+            </li>
+          ))}
+        </ul>
+      )}
       {data && data.total === 0 && (
         <div className="flex flex-col items-start gap-2">
           <p className="text-muted">{t.empty}</p>
@@ -85,7 +105,12 @@ export function SentLetters({ perPage, page = 1, paged = false }: { perPage: num
               letter={letter}
               reactionLabel={letter.reply ? (labels[letter.reply.reaction] ?? letter.reply.reaction) : ""}
               onChange={(updated) =>
-                setData((d) => d && { ...d, items: d.items.map((l) => (l.id === updated.id ? updated : l)) })
+                setData((d) => {
+                  if (!d) return d;
+                  const next = { ...d, items: d.items.map((l) => (l.id === updated.id ? updated : l)) };
+                  remember(path, next);
+                  return next;
+                })
               }
             />
           ))}

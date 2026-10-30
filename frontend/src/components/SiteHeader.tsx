@@ -1,11 +1,10 @@
 import Link from "next/link";
 
-import { AccountLink } from "@/components/AccountLink";
 import { Logo } from "@/components/brand";
 import type { Messages } from "@/i18n";
 
 /** Top bar: logo, and on laptops the main menu. Phones use the bottom bar instead. */
-export function SiteHeader({ t }: { t: Messages["header"] }) {
+export function SiteHeader({ t, loggedIn }: { t: Messages["header"]; loggedIn: boolean }) {
   // Games and Our Stamp arrive in later stages, so they are labelled, not linked.
   const soon = [t.games, t.stamps];
   return (
@@ -29,11 +28,12 @@ export function SiteHeader({ t }: { t: Messages["header"] }) {
             </li>
           ))}
         </ul>
-        <AccountLink
-          logIn={t.logIn}
-          myProfile={t.myProfile}
+        <Link
+          href={loggedIn ? "/profile" : "/login"}
           className="inline-flex min-h-12 items-center rounded-full border-2 border-fg px-5 font-bold text-fg hover:bg-fg hover:text-bg"
-        />
+        >
+          {loggedIn ? t.myProfile : t.logIn}
+        </Link>
       </nav>
     </header>
   );
