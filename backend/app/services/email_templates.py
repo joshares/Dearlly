@@ -60,8 +60,10 @@ def letter_email(
     heading: str,
     paragraphs: list[Paragraph],
     highlight: str | None = None,
+    button: tuple[str, str] | None = None,
     sign_off: str = "Yours, always — Dearlly",
     footer: str,
+    footer_links: list[tuple[str, str]] | None = None,
 ) -> str:
     """One email, laid out as a letter on cream paper inside an airmail border."""
     esc = html.escape
@@ -86,6 +88,28 @@ def letter_email(
             f'style="margin:8px 0 24px"><tr>{boxes}</tr></table>'
         )
 
+    button_block = ""
+    if button:
+        label, url = button
+        button_block = (
+            '<table role="presentation" cellpadding="0" cellspacing="0" border="0" '
+            f'style="margin:8px 0 24px"><tr><td style="background:{STAMP};border:2px solid {INK};'
+            f'border-radius:10px"><a href="{esc(url, quote=True)}" style="display:inline-block;'
+            f"padding:14px 26px;font-family:{SANS};font-weight:bold;font-size:17px;"
+            f'color:{PAPER};text-decoration:none">{esc(label)}</a></td></tr></table>'
+        )
+    links_block = ""
+    if footer_links:
+        links = " &middot; ".join(
+            f'<a href="{esc(url, quote=True)}" style="color:{INK};text-decoration:underline">'
+            f"{esc(label)}</a>"
+            for label, url in footer_links
+        )
+        links_block = (
+            f'<p style="margin:10px 0 0;font-family:{SANS};font-size:12px;line-height:1.8">'
+            f"{links}</p>"
+        )
+
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -107,12 +131,12 @@ def letter_email(
 <td style="border-left:2px solid {STAMP};padding:4px 0 0 18px">
 <p style="margin:0 0 6px;font-family:{SERIF};font-style:italic;font-size:18px;color:{INK}">{esc(greeting)}</p>
 <h1 style="margin:0 0 18px;font-family:{SERIF};font-weight:normal;font-size:30px;line-height:1.15;color:{INK}">{esc(heading)}</h1>
-{code_block}{body}
+{code_block}{body}{button_block}
 <p style="margin:8px 0 24px;font-family:{SERIF};font-style:italic;font-size:17px;color:{INK}">{esc(sign_off)}</p>
 </td></tr></table>
 </td></tr>
 <tr><td style="padding:16px 32px 24px;border-top:2px dashed {KRAFT}">
-<p style="margin:0;font-family:{SANS};font-size:12px;line-height:1.6;color:{MUTED}">{esc(footer)}</p>
+<p style="margin:0;font-family:{SANS};font-size:12px;line-height:1.6;color:{MUTED}">{esc(footer)}</p>{links_block}
 </td></tr>
 <tr><td>{_airmail_stripe()}</td></tr>
 </table>

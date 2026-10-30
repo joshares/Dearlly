@@ -49,6 +49,8 @@ class Settings(BaseSettings):
     email_delivery: Literal["log", "resend"] = "log"
     resend_api_key: SecretStr | None = None
     email_from: str = "Dearlly <hello@dearlly.localhost>"
+    # Where reports about letters go, for the founder to review.
+    reports_to: str = "hello@dearlly.app"
 
     turnstile_secret_key: SecretStr = SecretStr(TURNSTILE_TEST_SECRET)
 

@@ -31,7 +31,11 @@ beforeEach(() => {
       if (path === "/experiences") {
         if (!loggedIn) return json(401, { detail: "Please log in." });
         created = JSON.parse(init.body as string);
-        return json(201, { url: "https://dearlly.app/l/abc123abc123abc123abc123abc123ab", opens_at: null });
+        return json(201, {
+          url: "https://dearlly.app/l/abc123abc123abc123abc123abc123ab",
+          opens_at: null,
+          email_status: created?.recipient_email ? "scheduled" : null,
+        });
       }
       throw new Error(`unexpected ${path}`);
     }),
@@ -88,6 +92,17 @@ describe("WriteLetter", () => {
     expect(whatsapp).toContain("https://wa.me/?text=");
     expect(decodeURIComponent(whatsapp ?? "")).toContain("https://dearlly.app/l/");
     expect(window.localStorage.getItem("dearlly:draft:love_note")).toBeNull();
+  });
+
+  it("can email the link to them", async () => {
+    render(<WriteLetter loggedIn />);
+    fillIn();
+    fireEvent.change(screen.getByLabelText(/Your message/), { target: { value: "Hi" } });
+    fireEvent.change(screen.getByLabelText(/Their email/), { target: { value: " tolu_demo@example.com " } });
+    expect(screen.queryByText(/create a free account/)).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Seal it" }));
+    expect(await screen.findByText("We'll email it to tolu_demo@example.com within a minute.")).toBeTruthy();
+    expect(created).toMatchObject({ recipient_email: "tolu_demo@example.com" });
   });
 
   it("asks for an account at the seal step and keeps the draft", async () => {

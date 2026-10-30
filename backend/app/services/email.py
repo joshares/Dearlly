@@ -1,7 +1,7 @@
 """Transactional email. Locally emails are logged, not sent; production sends through Resend."""
 
 import logging
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 import httpx
 
@@ -19,6 +19,8 @@ class Email:
     subject: str
     text: str
     html: str
+    # Extra mail headers, e.g. List-Unsubscribe for one-click "stop" in Gmail and Yahoo.
+    headers: dict[str, str] = field(default_factory=dict)
 
 
 class EmailDeliveryError(Exception):
@@ -76,7 +78,8 @@ async def send_email(client: httpx.AsyncClient, settings: Settings, email: Email
                 "to": [email.to],
                 "subject": email.subject,
                 "text": email.text,
-                "html": email.html,
+                **({"html": email.html} if email.html else {}),
+                **({"headers": email.headers} if email.headers else {}),
             },
             timeout=10.0,
         )

@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from redis.asyncio import Redis
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from app.api import auth, experiences, google, health, users
+from app.api import auth, email_prefs, experiences, google, health, users
 from app.core.config import Settings, get_settings
 from app.core.logging import configure_logging
 from app.core.middleware import REQUEST_ID_HEADER, RequestContextMiddleware
@@ -68,4 +68,5 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(google.router)
     app.include_router(users.router)
     app.include_router(experiences.router)
+    app.include_router(email_prefs.router)
     return app

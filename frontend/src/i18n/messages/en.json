@@ -142,6 +142,8 @@
     "recipientLabel": "Their name",
     "titleLabel": "What you call them (optional)",
     "titleHint": "e.g. my love, babe, sunshine. Used as \"Dear …\".",
+    "emailLabel": "Their email (optional)",
+    "emailHint": "We'll email them the link (when it opens, if you set a time). Up to 10 a day. Used only for this letter.",
     "wordsHeading": "Your words",
     "pickQuote": "Pick a quote to start from",
     "allMoods": "All",
@@ -183,7 +185,10 @@
     "viewLetter": "See your letter",
     "writeAnother": "Write another",
     "trackIt": "You'll see when it's opened and their reply on your profile.",
-    "sealedUntil": "It stays sealed until {when}."
+    "sealedUntil": "It stays sealed until {when}.",
+    "emailScheduled": "We'll email it to {email} within a minute.",
+    "emailWhenOpens": "We'll email it to {email} when it opens.",
+    "emailBlocked": "We can't email this address. Share the link instead."
   },
   "letter": {
     "metaTitle": "A letter for you · Dearlly",
@@ -217,7 +222,24 @@
     "repliedLead": "{sender} will see it on Dearlly.",
     "theirReply": "Their reply",
     "writeBack": "Write your own love note",
-    "writeBackLead": "Dearlly is free. Make one for someone you love."
+    "writeBackLead": "Dearlly is free. Make one for someone you love.",
+    "report": "Report this letter",
+    "reportHeading": "Report this letter",
+    "reportLead": "Tell us what's wrong. The sender won't know it was you.",
+    "reportReasons": {
+      "harassment": "Harassment or threats",
+      "scam": "Scam or asking for money",
+      "sexual": "Sexual content",
+      "hate": "Hate",
+      "spam": "Spam",
+      "other": "Something else"
+    },
+    "reportNote": "Anything else? (optional)",
+    "reportSend": "Send report",
+    "reportSending": "Sending…",
+    "reportCancel": "Cancel",
+    "reportPick": "Pick a reason first.",
+    "reportThanks": "Thank you. We'll look at it. If it came by email, you can also stop emails from this sender with the link at the bottom of that email."
   },
   "sent": {
     "title": "Letters you've sent",
@@ -243,7 +265,12 @@
     "newer": "← Newer",
     "older": "Older →",
     "pageOf": "Page {page} of {pages}",
-    "metaTitle": "Your letters · Dearlly"
+    "metaTitle": "Your letters · Dearlly",
+    "emailOnItsWay": "Email on its way",
+    "emailWhenOpens": "Will be emailed when it opens",
+    "emailSent": "Emailed {date}",
+    "emailFailed": "Couldn't email it: share the link instead",
+    "emailBlocked": "Not emailed: share the link instead"
   },
   "save": {
     "heading": "Keep this letter",
@@ -253,5 +280,18 @@
     "failed": "Couldn't save it on this browser. Try a screenshot instead.",
     "qrLine": "Make one for someone you love",
     "site": "dearlly.app"
+  },
+  "unsubscribe": {
+    "metaTitle": "Email settings · Dearlly",
+    "title": "Your emails from Dearlly",
+    "lead": "Dearlly only emails you when someone sends you a letter. Choose what you'd like:",
+    "stopSender": "Stop letters from {sender}",
+    "stopSenderHint": "Others can still email you letters.",
+    "never": "Never email me again",
+    "neverHint": "No letters from anyone, ever. People can still share a link with you themselves.",
+    "saving": "Saving…",
+    "doneSender": "Done. You won't get any more emails from {sender}.",
+    "doneAll": "Done. Dearlly will never email you again.",
+    "loading": "Checking your link…"
   }
 }

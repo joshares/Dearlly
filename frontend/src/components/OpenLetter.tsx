@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import { WaxSeal } from "@/components/brand";
 import { LetterCard, type LetterContent, type LetterTheme } from "@/components/LetterCard";
+import { ReportLetter } from "@/components/ReportLetter";
 import { SaveLetter } from "@/components/SaveLetter";
 import { getMessages } from "@/i18n";
 import { ApiError, api } from "@/lib/api";
@@ -50,7 +51,7 @@ function reducedMotion(): boolean {
 }
 
 /** The recipient's page: a sealed envelope, then the letter and "Seal a reply". */
-export function OpenLetter({ token }: { token: string }) {
+export function OpenLetter({ token, reportOpen = false }: { token: string; reportOpen?: boolean }) {
   const [letter, setLetter] = useState<Letter | null>(null);
   // When a sealed letter opens, by this phone's clock. Counted from the server's "seconds left",
   // so a phone whose clock is wrong still opens on time.
@@ -122,6 +123,7 @@ export function OpenLetter({ token }: { token: string }) {
           </p>
           <Countdown until={opensAt} onDone={load} />
         </section>
+        {!letter.is_sender && <ReportLetter token={token} startOpen={reportOpen} />}
       </div>
     );
   }
@@ -144,6 +146,7 @@ export function OpenLetter({ token }: { token: string }) {
           {t.breakSeal}
         </button>
         <p className="text-sm text-muted">{t.breakHint}</p>
+        {!letter.is_sender && <ReportLetter token={token} startOpen={reportOpen} />}
       </div>
     );
   }
@@ -179,6 +182,7 @@ export function OpenLetter({ token }: { token: string }) {
           onSent={(reply) => setLetter({ ...letter, reply })}
         />
       )}
+      {!letter.is_sender && <ReportLetter token={token} startOpen={reportOpen} />}
     </div>
   );
 }

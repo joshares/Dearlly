@@ -296,6 +296,7 @@ Update this section as each stage finishes.
 | 29 Oct 2026 | Pages use a per-request CSP nonce, so HTML is rendered per request. Stage 4 decides how invitation pages are cached at Cloudflare without weakening the CSP |
 | 30 Oct 2026 | The "break the seal" opening is built in code (CSS) for now, in the brand colours, and respects "reduce motion". The Rive version replaces it when the illustrator's seal and envelope art arrive; the page doesn't change. Letter pages are never indexed and never pass the link on to other sites (no-referrer) |
 | 30 Oct 2026 | **Downloads:** the recipient can save the letter as a picture or PDF **without an account** (founder); the sender saves from the "Sealed" screen or the letter page. Drawn on the phone (nothing uploaded). The QR code on a saved letter opens **dearlly.app, never the private link**, because saved letters get posted publicly and a stranger must not be able to open the letter or use up its one reply |
+| 30 Oct 2026 | **Emailing letters:** optional recipient email when sealing; max 10 emailed letters a day per sender (sharing links has no cap). The email never quotes the letter (the words stay behind the seal). The address is stored encrypted only until sent, then deleted; a keyed fingerprint remains so "Stop messages from this sender" / "Never email me again" (plus Gmail one-click unsubscribe) are honoured. Scheduled letters are emailed when they open. **Reports** are saved and emailed to hello@dearlly.app with a one-line take-down command for the founder |
 
 ## First prompt for Claude Code (Stage 1)
 
