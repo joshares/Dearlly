@@ -236,10 +236,10 @@ function Envelope({
         />
       </svg>
       <span className="absolute right-0 bottom-3 left-0 z-30 flex flex-col items-start gap-0.5 px-6 text-left text-ink">
-        <span className="font-hand text-lg leading-snug">
+        <span className="font-hand block w-full truncate text-lg leading-snug">
           {t.to} {name}
         </span>
-        <span className="font-hand text-sm leading-snug opacity-80">
+        <span className="font-hand block w-full truncate text-sm leading-snug opacity-80">
           {t.from} {letter.sender_name}
         </span>
       </span>

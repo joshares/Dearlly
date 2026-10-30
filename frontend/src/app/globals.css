@@ -49,6 +49,9 @@
 
 body {
   padding: var(--frame);
+  /* People type long names and words without spaces (and emoji runs): break them anywhere
+     rather than let one word stretch the page wider than the phone. */
+  overflow-wrap: anywhere;
   background-color: var(--bg);
   /* Ruled writing paper with a red margin line. */
   background-image:
