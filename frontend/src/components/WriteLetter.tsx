@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
-import { LetterCard, type LetterTheme } from "@/components/LetterCard";
+import { LetterCard, type LetterContent, type LetterTheme, PAPER } from "@/components/LetterCard";
+import { SaveLetter } from "@/components/SaveLetter";
 import { getMessages } from "@/i18n";
 import { ApiError, api } from "@/lib/api";
 
@@ -14,11 +15,6 @@ const DRAFT_KEY = "dearlly:draft:love_note";
 // Same limits as the server (backend/config/experience_types.yaml); the server checks again.
 const LIMITS = { name: 60, title: 60, quoteTitle: 80, quoteText: 600 };
 const THEMES: LetterTheme[] = ["cream", "kraft", "rose"];
-const THEME_SWATCH: Record<LetterTheme, string> = {
-  cream: "#FBF6EE",
-  kraft: "#E8D2B4",
-  rose: "#F7E1DA",
-};
 type Mood = keyof typeof t.moods;
 const MOODS = Object.keys(t.moods) as Mood[];
 
@@ -33,7 +29,7 @@ type Draft = {
 };
 
 type Quote = { key: string; mood: Mood; title: string; text: string };
-type Sealed = { url: string; opens_at: string | null };
+type Sealed = { url: string; opens_at: string | null; letter: LetterContent };
 
 const EMPTY: Draft = {
   senderName: "",
@@ -62,6 +58,17 @@ function saveDraft(draft: Draft | null): void {
   } catch {
     // Private browsing or storage blocked: the form still works, just without saving.
   }
+}
+
+function asLetter(draft: Draft): LetterContent {
+  return {
+    senderName: draft.senderName,
+    recipientName: draft.recipientName,
+    recipientTitle: draft.recipientTitle,
+    quoteTitle: draft.quoteTitle,
+    quoteText: draft.quoteText,
+    theme: draft.theme,
+  };
 }
 
 /** Lagos is UTC+1 all year (no daylight saving). */
@@ -112,7 +119,7 @@ export function WriteLetter() {
     setBusy(true);
     setError(null);
     try {
-      const result = await api<Sealed>("/experiences", {
+      const result = await api<Omit<Sealed, "letter">>("/experiences", {
         method: "POST",
         body: {
           type: "love_note",
@@ -125,7 +132,7 @@ export function WriteLetter() {
         },
       });
       saveDraft(null);
-      setSealed(result);
+      setSealed({ ...result, letter: asLetter(draft) });
     } catch (err) {
       if (err instanceof ApiError && err.status === 401) {
         // The account step: their draft is saved; they come straight back here.
@@ -142,19 +149,7 @@ export function WriteLetter() {
     return <SealedPanel sealed={sealed} onAnother={() => { setDraft(EMPTY); setSealed(null); }} />;
   }
 
-  const preview = (
-    <LetterCard
-      placeholder={t.placeholder}
-      letter={{
-        senderName: draft.senderName,
-        recipientName: draft.recipientName,
-        recipientTitle: draft.recipientTitle,
-        quoteTitle: draft.quoteTitle,
-        quoteText: draft.quoteText,
-        theme: draft.theme,
-      }}
-    />
-  );
+  const preview = <LetterCard placeholder={t.placeholder} letter={asLetter(draft)} />;
 
   return (
     <form onSubmit={seal} className="grid gap-10 md:grid-cols-[1fr_1fr] md:gap-12">
@@ -250,7 +245,7 @@ export function WriteLetter() {
                   <input type="radio" name="theme" value={theme} className="sr-only"
                     checked={draft.theme === theme} onChange={() => update({ theme })} />
                   <span aria-hidden="true" className="h-6 w-6 rounded-full border-2 border-fg"
-                    style={{ backgroundColor: THEME_SWATCH[theme] }} />
+                    style={{ backgroundColor: PAPER[theme] }} />
                   {t.themes[theme]}
                 </label>
               ))}
@@ -333,6 +328,7 @@ function SealedPanel({ sealed, onAnother }: { sealed: Sealed; onAnother: () => v
           </button>
         )}
       </div>
+      <SaveLetter letter={sealed.letter} />
       <p className="text-sm text-muted">{t.trackIt}</p>
       <div className="flex flex-wrap gap-4 text-sm font-bold underline">
         <Link href={path}>{t.viewLetter}</Link>

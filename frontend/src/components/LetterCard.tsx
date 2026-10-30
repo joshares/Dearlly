@@ -3,7 +3,7 @@ import { WaxSeal } from "@/components/brand";
 export type LetterTheme = "cream" | "kraft" | "rose";
 
 // Paper colours for each theme. Ink text on all of them; always light paper (no dark mode).
-const PAPER: Record<LetterTheme, string> = {
+export const PAPER: Record<LetterTheme, string> = {
   cream: "#FBF6EE",
   kraft: "#E8D2B4",
   rose: "#F7E1DA",
