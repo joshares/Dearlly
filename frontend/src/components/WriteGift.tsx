@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { PhotoField } from "@/components/PhotoField";
+import { draftPhoto, NO_PHOTO, PhotoField } from "@/components/PhotoField";
 import { LetterCard, type LetterTheme } from "@/components/LetterCard";
 import { ScratchCard } from "@/components/ScratchCard";
 import {
@@ -25,6 +25,7 @@ import { ApiError, api } from "@/lib/api";
 import { giftLetter } from "@/lib/invitation";
 
 const t = getMessages().gift;
+const p = getMessages().photo;
 const w = getMessages().write;
 
 const DRAFT_KEY = "dearlly:draft:gift_reveal";
@@ -42,7 +43,10 @@ type Draft = {
   note: string;
   theme: LetterTheme;
   photoId: string;
-  photoUrl: string; // a signed link, refreshed when a saved draft comes back
+  photoUrl: string;
+  photoSmallUrl: string;
+  photoWidth: number;
+  photoHeight: number;
   opensAt: string; // datetime-local value, WAT
 };
 
@@ -56,8 +60,7 @@ const EMPTY: Draft = {
   hint: "",
   note: "",
   theme: "cream",
-  photoId: "",
-  photoUrl: "",
+  ...NO_PHOTO,
   opensAt: "",
 };
 
@@ -69,7 +72,7 @@ function asLetter(draft: Draft, withGift = false) {
       recipientName: draft.recipientName,
       recipientTitle: draft.recipientTitle,
       theme: draft.theme,
-      photo: draft.photoUrl,
+      photo: draftPhoto(draft),
     },
     withGift,
   );
@@ -144,11 +147,12 @@ export function WriteGift({ loggedIn = false }: { loggedIn?: boolean }) {
   const preview = (
     <div className="flex flex-col gap-6">
       <LetterCard placeholder={t.placeholder} letter={asLetter(draft)} />
-      {draft.gift.trim() && (
+      {(draft.gift.trim() || draft.photoId) && (
         <div className="flex flex-col gap-2">
           <span className="text-sm font-semibold">{t.tryIt}</span>
           {/* A fresh stamp whenever the gift or hint changes. */}
-          <ScratchCard key={`${draft.gift}|${draft.hint}`} gift={draft.gift} hint={draft.hint} />
+          <ScratchCard key={`${draft.gift}|${draft.hint}|${draft.photoId}`} gift={draft.gift} hint={draft.hint}
+            photo={draftPhoto(draft)} />
         </div>
       )}
     </div>
@@ -220,7 +224,8 @@ export function WriteGift({ loggedIn = false }: { loggedIn?: boolean }) {
           </label>
         </fieldset>
 
-        <PhotoField value={draft} onChange={update} loggedIn={loggedIn} next="/write/gift" />
+        <PhotoField value={draft} onChange={update} loggedIn={loggedIn} next="/write/gift"
+          labelText={p.giftLabel} hintText={p.giftHint} />
 
         <LookFields draft={draft} update={update} />
 

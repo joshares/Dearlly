@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { PhotoField } from "@/components/PhotoField";
+import { draftPhoto, NO_PHOTO, PhotoField } from "@/components/PhotoField";
 import { LetterCard, type LetterTheme } from "@/components/LetterCard";
 import { PlacePicker, type PlaceChoice } from "@/components/PlacePicker";
 import {
@@ -41,7 +41,10 @@ type Draft = PlaceChoice & {
   note: string;
   theme: LetterTheme;
   photoId: string;
-  photoUrl: string; // a signed link, refreshed when a saved draft comes back
+  photoUrl: string;
+  photoSmallUrl: string;
+  photoWidth: number;
+  photoHeight: number;
   opensAt: string;
 };
 
@@ -59,8 +62,7 @@ const EMPTY: Draft = {
   dateAt: "",
   note: "",
   theme: "rose",
-  photoId: "",
-  photoUrl: "",
+  ...NO_PHOTO,
   opensAt: "",
 };
 
@@ -79,7 +81,7 @@ function asLetter(draft: Draft) {
       recipientName: draft.recipientName,
       recipientTitle: draft.recipientTitle,
       theme: draft.theme,
-      photo: draft.photoUrl,
+      photo: draftPhoto(draft),
     },
   );
 }

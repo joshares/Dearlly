@@ -267,5 +267,38 @@ describe("OpenLetter", () => {
     expect(calls.find((c) => c.path.endsWith("/reply"))?.body).toEqual({ reaction: "thank_you", note: null });
     expect(screen.getByRole("link", { name: "Send your own gift reveal" }).getAttribute("href")).toBe("/write/gift");
   });
+
+  it("hides a gift's photo under the stamp until it's revealed", async () => {
+    vi.stubGlobal("HTMLCanvasElement", class { getContext() { return null; } });
+    letter = {
+      ...READY,
+      type: "gift_reveal",
+      content: { message: "For you.", gift: "New shoes" },
+      photo: { url: "http://localhost:8100/photos/p.jpg?e=1&s=x", small_url: "http://localhost:8100/photos/p.jpg?e=1&s=x&size=small", width: 1200, height: 900 },
+    };
+    render(<OpenLetter token={TOKEN} />);
+    fireEvent.click(await screen.findByRole("button", { name: "Break the seal" }));
+    const pic = await screen.findByAltText("A photo of your gift");
+    // Not on the letter itself, and under the (closed) stamp.
+    expect(screen.queryByAltText(/A photo from/)).toBeNull();
+    expect(pic.closest("[aria-hidden]")?.getAttribute("aria-hidden")).toBe("true");
+    expect(pic.parentElement?.style.aspectRatio).toMatch(/^1\.333/); // 1200×900 keeps 4:3
+    fireEvent.click(screen.getByRole("button", { name: "Reveal it" }));
+    expect(await screen.findByText("Surprise!")).toBeTruthy();
+    expect(pic.closest("[aria-hidden]")?.getAttribute("aria-hidden")).toBe("false");
+  });
+
+  it("shows a love note's photo, the phone copy first, with its space kept", async () => {
+    letter = {
+      ...READY,
+      photo: { url: "http://localhost:8100/photos/p.jpg?e=1&s=x", small_url: "http://localhost:8100/photos/p.jpg?e=1&s=x&size=small", width: 1600, height: 1066 },
+    };
+    render(<OpenLetter token={TOKEN} />);
+    fireEvent.click(await screen.findByRole("button", { name: "Break the seal" }));
+    const pic = await screen.findByAltText("A photo from Ada");
+    expect(pic.getAttribute("src")).toContain("size=small");
+    expect(pic.getAttribute("srcset")).toContain("1600w");
+    expect([pic.getAttribute("width"), pic.getAttribute("height")]).toEqual(["1600", "1066"]);
+  });
 });
 

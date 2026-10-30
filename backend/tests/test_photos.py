@@ -64,8 +64,9 @@ def _upload(client: AuthClient, data: bytes, kind: str = "image/jpeg") -> Any:
     return client.post("/photos", content=data, headers={"Content-Type": kind})
 
 
-def _files(tmp_path: Path) -> list[Path]:
-    return list((tmp_path / "photos").glob("*.jpg")) if (tmp_path / "photos").exists() else []
+def _files(tmp_path: Path, pattern: str = "*.jpg") -> list[Path]:
+    folder = tmp_path / "photos"
+    return list(folder.glob(pattern)) if folder.exists() else []
 
 
 # --- cleaning ---------------------------------------------------------------------------------
@@ -119,14 +120,22 @@ def test_upload_view_and_links_expire(
     assert created.status_code == 201, created.text
     body = created.json()
     assert (body["width"], body["height"]) == (800, 1200)
-    [stored] = _files(tmp_path)
-    assert b"SnoopCam" not in stored.read_bytes()
+    # A full copy and a lighter one for phones; neither carries the hidden data.
+    [small] = _files(tmp_path, "*-sm.jpg")
+    assert len(_files(tmp_path)) == 2
+    for stored in _files(tmp_path):
+        assert b"SnoopCam" not in stored.read_bytes()
+    assert Image.open(small).size == (640, 960)
+    assert small.stat().st_size < 0.8 * max(f.stat().st_size for f in _files(tmp_path))
 
     path = body["url"].removeprefix("http://localhost:8100")
     shown = auth_client.get(path)
     assert shown.status_code == 200
     assert shown.headers["content-type"] == "image/jpeg"
     assert "noindex" in shown.headers["x-robots-tag"]
+    phone = auth_client.get(body["small_url"].removeprefix("http://localhost:8100"))
+    assert phone.status_code == 200
+    assert Image.open(io.BytesIO(phone.content)).size == (640, 960)
     # A changed signature, an expired link or another photo's id: nothing.
     assert auth_client.get(path[:-3] + "AAA").status_code == 404
     expired = photos.view_url(
@@ -202,13 +211,12 @@ def test_a_photo_goes_on_one_letter_and_shows_once_open(
     ).json()
 
     _become_recipient(auth_client)
-    shown = auth_client.get(f"/letters/{_token(letter.json()['url'])}").json()
-    assert shown["photo_url"].startswith("http://localhost:8100/photos/")
-    assert (
-        auth_client.get(shown["photo_url"].removeprefix("http://localhost:8100")).status_code == 200
-    )
+    shown = auth_client.get(f"/letters/{_token(letter.json()['url'])}").json()["photo"]
+    assert shown["url"].startswith("http://localhost:8100/photos/")
+    assert (shown["width"], shown["height"]) == (800, 1200)  # so the page can save its space
+    assert auth_client.get(shown["url"].removeprefix("http://localhost:8100")).status_code == 200
     # Still sealed: no photo yet.
-    assert auth_client.get(f"/letters/{_token(sealed['url'])}").json()["photo_url"] is None
+    assert auth_client.get(f"/letters/{_token(sealed['url'])}").json()["photo"] is None
 
 
 def test_someone_elses_photo_cant_be_used(auth_client: AuthClient, checker: Checker) -> None:
@@ -229,7 +237,7 @@ def test_deleting_the_account_deletes_the_photo_files(
 ) -> None:
     auth_client.sign_up(SENDER, "ada_demo")
     _upload(auth_client, _jpeg())
-    assert len(_files(tmp_path)) == 1
+    assert len(_files(tmp_path)) == 2
     deleted = auth_client.post("/me/delete", json={"confirm_username": "ada_demo"})
     assert deleted.status_code == 204
     assert _files(tmp_path) == []
@@ -262,6 +270,6 @@ def test_the_sweep_removes_unused_and_orphaned_photos(
         return removed, left
 
     removed, left = asyncio.run(run())
-    assert removed == 2  # the unused photo and the leftover file
+    assert removed == 3  # the unused photo (both copies) and the leftover file
     assert left == {used}
-    assert unused not in left and len(_files(tmp_path)) == 1
+    assert unused not in left and len(_files(tmp_path)) == 2

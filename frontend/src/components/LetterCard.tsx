@@ -12,6 +12,22 @@ export const PAPER: Record<LetterTheme, string> = {
   rose: "#F7E1DA",
 };
 
+/** Signed links to a photo: full size (saving, big screens) and a lighter one for phones. The size
+ *  lets the page keep the photo's space before it loads, so nothing jumps. */
+export type LetterPhoto = { url: string; smallUrl?: string; width?: number; height?: number };
+
+/** Props for an <img> of a letter photo: the phone copy on phones, the full one on big screens. */
+export function photoImgProps(photo: LetterPhoto, display: string) {
+  return {
+    src: photo.smallUrl ?? photo.url,
+    srcSet: photo.smallUrl ? `${photo.smallUrl} 960w, ${photo.url} 1600w` : undefined,
+    sizes: display,
+    width: photo.width,
+    height: photo.height,
+    decoding: "async" as const,
+  };
+}
+
 export type LetterContent = {
   senderName: string;
   recipientName: string;
@@ -19,8 +35,10 @@ export type LetterContent = {
   quoteTitle?: string | null;
   quoteText: string;
   theme: LetterTheme;
-  // A signed link to the letter's photo, shown as a taped polaroid.
-  photo?: string | null;
+  // The letter's photo, shown as a taped polaroid.
+  photo?: LetterPhoto | null;
+  // Gift reveals: the photo hidden under the scratch-off stamp instead.
+  giftPhoto?: LetterPhoto | null;
   // Date invitations: "Where", "When", "Note" under the message.
   details?: { label: string; value: string }[];
 };
@@ -45,9 +63,9 @@ export function LetterCard({ letter, placeholder }: { letter: LetterContent; pla
         <figure className="mx-auto my-4 w-fit max-w-full -rotate-2 bg-white p-2 pb-6 shadow-[3px_4px_0_var(--shadow)]">
           {/* eslint-disable-next-line @next/next/no-img-element -- a private, signed link */}
           <img
-            src={letter.photo}
+            {...photoImgProps(letter.photo, "(max-width: 640px) 80vw, 480px")}
             alt={letterPhotoAlt.replace("{sender}", letter.senderName || "…")}
-            className="block max-h-80 w-auto max-w-full object-contain"
+            className="block h-auto max-h-80 w-auto max-w-full object-contain"
           />
         </figure>
       )}

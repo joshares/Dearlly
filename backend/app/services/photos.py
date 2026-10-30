@@ -1,7 +1,8 @@
 """Photos on letters: clean them, check them, store them privately, hand them out by signed link.
 
-- Cleaning: every upload is decoded and re-saved as a fresh JPEG (at most 1600 px). Nothing from
-  the original file survives, so GPS location, camera details and other hidden data are gone.
+- Cleaning: every upload is decoded and re-saved as fresh JPEGs: 1600 px for saving and big
+  screens, 960 px for phones. Nothing from the original file survives, so GPS location, camera
+  details and other hidden data are gone.
 - Checking: an on-server model (Marqo nsfw-image-detection-384, Apache-2.0) scores the photo before
   it's stored. Anything at or over the threshold is refused and never saved.
 - Storage: a private Cloudflare R2 bucket in production (a folder locally). Nothing is public; the
@@ -36,8 +37,10 @@ logger = logging.getLogger(__name__)
 
 MAX_UPLOAD_BYTES = 10 * 1024 * 1024
 MAX_PIXELS = 40_000_000  # bigger than any phone photo; stops "decompression bomb" files
-MAX_SIDE = 1600
+MAX_SIDE = 1600  # saved letters and big screens
+SMALL_SIDE = 960  # what phones show: about a third of the bytes
 JPEG_QUALITY = 85
+SMALL_QUALITY = 80
 NSFW_THRESHOLD = 0.5
 UNATTACHED_FOR = timedelta(days=1)
 ACCEPTED_TYPES = {"image/jpeg", "image/png", "image/webp"}
@@ -59,9 +62,18 @@ class PhotoError(ValueError):
 @dataclass(frozen=True)
 class Cleaned:
     jpeg: bytes
+    small_jpeg: bytes
     width: int
     height: int
     image: Image.Image  # the cleaned picture, for the nudity check
+
+
+def _jpeg(image: Image.Image, quality: int) -> bytes:
+    out = io.BytesIO()
+    # No exif= or icc_profile= passed: the new file carries none of the original's metadata.
+    # Progressive: on slow data the whole picture appears at once and sharpens as it loads.
+    image.save(out, "JPEG", quality=quality, optimize=True, progressive=True)
+    return out.getvalue()
 
 
 def clean(raw: bytes) -> Cleaned:
@@ -83,10 +95,15 @@ def clean(raw: bytes) -> Cleaned:
     else:
         image = upright.convert("RGB")
     image.thumbnail((MAX_SIDE, MAX_SIDE), Image.Resampling.LANCZOS)
-    out = io.BytesIO()
-    # No exif= or icc_profile= passed: the new file carries none of the original's metadata.
-    image.save(out, "JPEG", quality=JPEG_QUALITY, optimize=True, progressive=True)
-    return Cleaned(jpeg=out.getvalue(), width=image.width, height=image.height, image=image)
+    small = image.copy()
+    small.thumbnail((SMALL_SIDE, SMALL_SIDE), Image.Resampling.LANCZOS)
+    return Cleaned(
+        jpeg=_jpeg(image, JPEG_QUALITY),
+        small_jpeg=_jpeg(small, SMALL_QUALITY),
+        width=image.width,
+        height=image.height,
+        image=image,
+    )
 
 
 class NsfwChecker:
@@ -223,6 +240,15 @@ def new_key() -> str:
     return f"photos/{secrets.token_hex(16)}.jpg"
 
 
+def small_key(key: str) -> str:
+    """The lighter copy sits next to the full one: photos/abc.jpg -> photos/abc-sm.jpg."""
+    return key.removesuffix(".jpg") + "-sm.jpg"
+
+
+def all_keys(keys: list[str]) -> list[str]:
+    return [k for key in keys for k in (key, small_key(key))]
+
+
 # --- signed view links -------------------------------------------------------------------------
 
 
@@ -232,13 +258,16 @@ def _sign(settings: Settings, photo_id: uuid.UUID, expires: int) -> str:
     return base64.urlsafe_b64encode(mac[:24]).decode().rstrip("=")
 
 
-def view_url(settings: Settings, photo_id: uuid.UUID, now: datetime | None = None) -> str:
+def view_url(
+    settings: Settings, photo_id: uuid.UUID, now: datetime | None = None, *, small: bool = False
+) -> str:
     """A link that works for one to two hours. Rounded to the hour so browsers can cache it."""
     now = now or datetime.now(UTC)
     expires = (int(now.timestamp()) // 3600 + 2) * 3600
     signature = _sign(settings, photo_id, expires)
     api = settings.public_api_url.rstrip("/")
-    return f"{api}/photos/{photo_id}.jpg?e={expires}&s={signature}"
+    size = "&size=small" if small else ""
+    return f"{api}/photos/{photo_id}.jpg?e={expires}&s={signature}{size}"
 
 
 def valid_link(settings: Settings, photo_id: uuid.UUID, expires: int, signature: str) -> bool:
@@ -261,9 +290,9 @@ def delete_files(storage: Storage | None, keys: list[str]) -> None:
 
 
 async def owned_keys(db: AsyncSession, user_id: uuid.UUID) -> list[str]:
-    return list(
-        (await db.execute(select(Photo.storage_key).where(Photo.owner_id == user_id))).scalars()
-    )
+    """Every file of the user's photos (full and small copies)."""
+    rows = await db.execute(select(Photo.storage_key).where(Photo.owner_id == user_id))
+    return all_keys(list(rows.scalars()))
 
 
 async def sweep(
@@ -279,9 +308,9 @@ async def sweep(
                 .returning(Photo.storage_key)
             )
         ).scalars()
-        removed = list(stale)
+        removed = all_keys(list(stale))
         await db.commit()
-        known = set((await db.execute(select(Photo.storage_key))).scalars())
+        known = set(all_keys(list((await db.execute(select(Photo.storage_key))).scalars())))
     orphans = [k for k in storage.keys_older_than(now - timedelta(hours=1)) if k not in known]
     delete_files(storage, removed + orphans)
     return len(set(removed + orphans))

@@ -11,12 +11,13 @@ from pydantic import AwareDatetime, BaseModel, Field
 from sqlalchemy import func, select
 
 from app.api.deps import AppSettings, CurrentUser, DbSession, Limiter, current_user
+from app.api.photos import PhotoOut, photo_out
 from app.core.csrf import require_csrf
 from app.core.net import client_ip
 from app.core.ratelimit import Limit
 from app.models import Experience, Photo, Report, User
 from app.services import experiences as engine
-from app.services import letter_mail, photos
+from app.services import letter_mail
 from app.services.email import Email, EmailDeliveryError, send_email
 from app.services.profiles import ProfileFieldError, normalize_email
 
@@ -128,8 +129,8 @@ class LetterOut(BaseModel):
     opens_in_seconds: int
     content: dict[str, Any] | None
     reply_kind: str
-    # A signed link to the letter's photo, once it's open.
-    photo_url: str | None
+    # Signed links to the letter's photo (full and phone sizes), once it's open.
+    photo: PhotoOut | None
     reactions: list[Reaction]
     reply: ReplyOut | None
     is_sender: bool
@@ -371,6 +372,12 @@ async def _by_token(db: DbSession, token: str) -> Experience:
     return experience
 
 
+async def _letter_photo(db: DbSession, settings: AppSettings, e: Experience) -> PhotoOut | None:
+    photo_id = e.content.get("photo")
+    photo = await db.get(Photo, uuid.UUID(photo_id)) if photo_id else None
+    return photo_out(settings, photo) if photo is not None else None
+
+
 def _is_sealed(e: Experience) -> bool:
     return e.opens_at is not None and e.opens_at > datetime.now(UTC)
 
@@ -406,11 +413,7 @@ async def view_letter(
         ),
         content=None if sealed else e.content,
         reply_kind=kind.reply,
-        photo_url=(
-            photos.view_url(settings, uuid.UUID(e.content["photo"]))
-            if not sealed and e.content.get("photo")
-            else None
-        ),
+        photo=await _letter_photo(db, settings, e) if not sealed else None,
         reactions=[Reaction(key=k, label=label) for k, label in kind.reactions],
         reply=_reply(e),
         is_sender=viewer is not None and viewer.id == e.owner_id,

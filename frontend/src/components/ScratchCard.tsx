@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { type LetterPhoto, photoImgProps } from "@/components/LetterCard";
 import { getMessages } from "@/i18n";
 
 const t = getMessages().gift;
@@ -23,11 +24,13 @@ function reducedMotion(): boolean {
 export function ScratchCard({
   gift,
   hint,
+  photo,
   startRevealed = false,
   onReveal,
 }: {
   gift: string;
   hint?: string | null;
+  photo?: LetterPhoto | null;
   startRevealed?: boolean;
   onReveal?: () => void;
 }) {
@@ -63,9 +66,14 @@ export function ScratchCard({
     if (revealed || !canScratch || !el || !holder) return;
     const ctx = el.getContext("2d");
     if (!ctx) return;
+    let painted = "";
     const paint = () => {
       const ratio = window.devicePixelRatio || 1;
       const { width, height } = holder.getBoundingClientRect();
+      // Only a real size change repaints (that would also undo scratching so far).
+      const size = `${Math.round(width)}x${Math.round(height)}`;
+      if (size === painted) return;
+      painted = size;
       el.width = Math.round(width * ratio);
       el.height = Math.round(height * ratio);
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -140,8 +148,26 @@ export function ScratchCard({
         className="relative w-full max-w-sm overflow-hidden rounded-md border-2 border-ink bg-[#FBF6EE] shadow-[6px_6px_0_var(--shadow)]"
       >
         {/* The gift, under the stamp. Hidden from screen readers until revealed. */}
-        <div className="flex min-h-40 flex-col items-center justify-center gap-1 px-6 py-8 text-center" aria-hidden={!revealed}>
+        <div
+          className={`flex min-h-40 flex-col items-center justify-center gap-3 px-5 text-center ${photo ? "py-5" : "py-8"}`}
+          aria-hidden={!revealed}
+        >
           <span className="text-xs font-extrabold tracking-[0.14em] text-muted uppercase">{t.yourGift}</span>
+          {photo && (
+            // The photo's space is kept from the start (its shape is known), so scratching never
+            // jumps when it finishes loading. Very tall or wide photos are cropped to fit.
+            <div
+              className={`w-full overflow-hidden rounded-sm border-2 border-ink bg-white ${revealed ? "gift-pop" : ""}`}
+              style={{ aspectRatio: shape(photo) }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- a private, signed link */}
+              <img
+                {...photoImgProps(photo, "(max-width: 640px) 85vw, 360px")}
+                alt={t.giftPhotoAlt}
+                className="block h-full w-full object-cover"
+              />
+            </div>
+          )}
           <span className={`text-2xl leading-tight font-heading ${revealed ? "gift-pop" : ""}`}>{gift}</span>
         </div>
         {!revealed && (
@@ -181,4 +207,10 @@ export function ScratchCard({
       )}
     </div>
   );
+}
+
+/** The photo's width:height, kept between portrait 4:5 and wide 16:9. */
+function shape(photo: LetterPhoto): string {
+  const ratio = photo.width && photo.height ? photo.width / photo.height : 4 / 3;
+  return String(Math.min(16 / 9, Math.max(4 / 5, ratio)));
 }

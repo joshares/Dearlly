@@ -105,8 +105,8 @@ export type GiftContent = {
   note?: string | null;
 };
 
-/** The gift letter. The gift itself sits under the scratch-off stamp, so it's only added here
- *  (for saving as a picture or PDF) once it has been revealed. */
+/** The gift letter. The gift (and its photo) sit under the scratch-off stamp, so on the letter
+ *  they only appear (for saving as a picture or PDF) once revealed. `giftPhoto` is for the stamp. */
 export function giftLetter(
   c: Partial<GiftContent>,
   people: People,
@@ -115,5 +115,12 @@ export function giftLetter(
   const details: { label: string; value: string }[] = [];
   if (withGift && c.gift?.trim()) details.push({ label: g.giftDetail, value: c.gift.trim() });
   if (c.note?.trim()) details.push({ label: g.note, value: c.note.trim() });
-  return { ...people, quoteTitle: g.cardTitle, quoteText: c.message ?? "", details };
+  return {
+    ...people,
+    photo: withGift ? people.photo : null,
+    giftPhoto: people.photo ?? null,
+    quoteTitle: g.cardTitle,
+    quoteText: c.message ?? "",
+    details,
+  };
 }
