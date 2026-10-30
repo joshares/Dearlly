@@ -8,6 +8,7 @@ import { REACTION_EMOJI } from "@/components/OpenLetter";
 import { getMessages } from "@/i18n";
 import { ApiError, api, peek, remember } from "@/lib/api";
 import { lagosDate, lagosDateTime } from "@/lib/dates";
+import { tripDates } from "@/lib/invitation";
 
 const t = getMessages().sent;
 
@@ -219,6 +220,13 @@ function SentItem({
         <span className="font-hand text-lg">{fill(t.to, { name })}</span>
         <span className="text-sm text-muted">{fill(t.sentOn, { date: lagosDate(letter.created_at) })}</span>
       </div>
+      {letter.type === "vacation_invite" && (
+        <p className="text-sm">
+          <span className="font-bold">{t.kinds.vacation_invite}</span>
+          {letter.content?.destination && ` · ${letter.content.destination}`}
+          {letter.content?.start_date && ` · ${tripDates(letter.content.start_date, letter.content.end_date ?? undefined)}`}
+        </p>
+      )}
       {letter.type === "date_invite" && (
         <p className="text-sm">
           <span className="font-bold">{t.kinds.date_invite}</span>
