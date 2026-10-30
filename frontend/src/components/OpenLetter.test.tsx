@@ -5,7 +5,7 @@ import { resetApiState } from "@/lib/api";
 
 import { type Letter, OpenLetter } from "./OpenLetter";
 
-const TOKEN = "oR8ri9iYc44a-I_OWwi3cCzg7vBAjz81";
+const TOKEN = "a".repeat(32); // a fake link token
 
 const json = (status: number, body: unknown) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });

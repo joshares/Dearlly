@@ -11,7 +11,7 @@ const json = (status: number, body: unknown) =>
 const base: SentLetter = {
   id: "1",
   type: "love_note",
-  url: "https://dearlly.app/l/oR8ri9iYc44a-I_OWwi3cCzg7vBAjz81",
+  url: "https://dearlly.app/l/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
   recipient_name: "Tolu",
   recipient_title: null,
   created_at: "2026-10-29T09:00:00Z",
