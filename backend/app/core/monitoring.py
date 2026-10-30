@@ -16,21 +16,34 @@ from app.core.logging import redact
 
 logger = logging.getLogger(__name__)
 
-_DROP_HEADERS = {"cookie", "authorization", "x-csrf-token", "cf-connecting-ip", "x-forwarded-for"}
+_DROP_HEADERS = {
+    "cookie",
+    "authorization",
+    "x-csrf-token",
+    "cf-connecting-ip",
+    "x-forwarded-for",
+    "referer",  # can repeat a private letter link
+}
 
 
 # "?code=123456", "?token=…": query strings can carry private links and codes.
 _QUERY_RE = re.compile(r"\?[^\s\"']*")
+# "/l/<token>", "/letters/<token>/open": the token is the only key to a private letter.
+_LINK_RE = re.compile(r"/(l|letters)/[A-Za-z0-9_-]+")
+
+
+def scrub_url(text: str) -> str:
+    return _LINK_RE.sub(r"/\1/[link]", _QUERY_RE.sub("", text))
 
 
 def scrub_breadcrumb(crumb: Any, _hint: Any = None) -> Any:
     if isinstance(crumb.get("message"), str):
-        crumb["message"] = _QUERY_RE.sub("", crumb["message"])
+        crumb["message"] = scrub_url(crumb["message"])
     data = crumb.get("data")
     if isinstance(data, dict):
         for key in ("url", "http.query", "http.fragment"):
             if isinstance(data.get(key), str):
-                data[key] = _QUERY_RE.sub("", data[key]) if key == "url" else ""
+                data[key] = scrub_url(data[key]) if key == "url" else ""
     return redact(crumb)
 
 
@@ -40,11 +53,15 @@ def scrub_event(event: Any, _hint: Any = None) -> Any:
         request.pop("cookies", None)
         request.pop("data", None)
         request.pop("query_string", None)  # private links and codes can live in URLs
+        if isinstance(request.get("url"), str):
+            request["url"] = scrub_url(request["url"])
         headers = request.get("headers")
         if isinstance(headers, dict):
             request["headers"] = {
                 k: v for k, v in headers.items() if k.lower() not in _DROP_HEADERS
             }
+    if isinstance(event.get("transaction"), str):
+        event["transaction"] = scrub_url(event["transaction"])
     user = event.get("user")
     if isinstance(user, dict):
         # Keep only the internal account id, never email or IP.

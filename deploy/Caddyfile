@@ -20,9 +20,15 @@
 		}
 	}
 	header -Server
+	# Access log without private letter links: the token in /l/<token> and /letters/<token>
+	# is the only key to a letter, so it is masked, and the Referer (which can repeat it) dropped.
 	log {
 		output stdout
-		format json
+		format filter {
+			request>uri regexp "/(l|letters)/[A-Za-z0-9_-]+" "/${1}/[link]"
+			request>headers>Referer delete
+			wrap json
+		}
 	}
 }
 

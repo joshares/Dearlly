@@ -4,7 +4,7 @@ import sentry_sdk
 from fastapi.testclient import TestClient
 
 from app.core.logging import REDACTED
-from app.core.monitoring import init_sentry, scrub_event
+from app.core.monitoring import init_sentry, scrub_breadcrumb, scrub_event
 from app.main import create_app
 
 from .conftest import make_settings
@@ -33,6 +33,27 @@ def test_scrubbing_removes_personal_data() -> None:
     assert clean["user"] == {"id": "u1"}
     assert clean["extra"]["password"] == REDACTED
     assert "abc123" not in clean["extra"]["note"]
+
+
+def test_private_letter_links_never_reach_sentry() -> None:
+    token = "a" * 32  # a fake link token
+    event = {
+        "transaction": f"/letters/{token}/reply",
+        "request": {
+            "url": f"https://api.dearlly.app/letters/{token}/reply",
+            "headers": {"Referer": f"https://dearlly.app/l/{token}", "User-Agent": "phone"},
+        },
+    }
+    clean = scrub_event(event)
+    assert token not in repr(clean)
+    assert clean["request"]["url"] == "https://api.dearlly.app/letters/[link]/reply"
+    assert clean["request"]["headers"] == {"User-Agent": "phone"}
+
+    crumb = scrub_breadcrumb(
+        {"message": f"GET https://dearlly.app/l/{token}", "data": {"url": f"/l/{token}?x=1"}}
+    )
+    assert token not in repr(crumb)
+    assert crumb["data"]["url"] == "/l/[link]"
 
 
 def test_api_errors_reach_sentry_without_secrets() -> None:
