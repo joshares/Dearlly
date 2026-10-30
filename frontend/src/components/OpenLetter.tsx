@@ -7,6 +7,7 @@ import { WaxSeal } from "@/components/brand";
 import { LetterCard, type LetterContent, type LetterTheme } from "@/components/LetterCard";
 import { ReportLetter } from "@/components/ReportLetter";
 import { SaveLetter } from "@/components/SaveLetter";
+import { ScratchCard } from "@/components/ScratchCard";
 import { getMessages } from "@/i18n";
 import { ApiError, api } from "@/lib/api";
 import { lagosDateTime, timeLeft } from "@/lib/dates";
@@ -14,11 +15,14 @@ import {
   type DateContent,
   dateLetter,
   directionsUrl,
+  type GiftContent,
+  giftLetter,
   type VacationContent,
   vacationLetter,
 } from "@/lib/invitation";
 
 const t = getMessages().letter;
+const g = getMessages().gift;
 const CITY_NAMES: Record<string, string> = { lagos: "Lagos", abuja: "Abuja" };
 
 type Reaction = { key: string; label: string };
@@ -47,12 +51,15 @@ export const REACTION_EMOJI: Record<string, string> = {
   aww: "🥹",
   smiling: "😊",
   forever: "💌",
+  thank_you: "🙏",
+  cant_wait: "🤩",
+  you_shouldnt: "🥰",
   yes: "🎉",
   no: "🤍",
 };
 
 /** The letter as shown on paper, for whichever type it is. */
-function asContent(letter: Letter): LetterContent {
+function asContent(letter: Letter, giftRevealed = false): LetterContent {
   const people = {
     senderName: letter.sender_name,
     recipientName: letter.recipient_name,
@@ -62,6 +69,7 @@ function asContent(letter: Letter): LetterContent {
   const c = letter.content ?? {};
   if (letter.type === "date_invite") return dateLetter(c as Partial<DateContent>, people);
   if (letter.type === "vacation_invite") return vacationLetter(c as Partial<VacationContent>, people);
+  if (letter.type === "gift_reveal") return giftLetter(c as Partial<GiftContent>, people, giftRevealed);
   return { ...people, quoteTitle: c.quote_title, quoteText: c.quote_text ?? "" };
 }
 
@@ -84,6 +92,8 @@ export function OpenLetter({ token, reportOpen = false }: { token: string; repor
   const [opensAt, setOpensAt] = useState(0);
   const [missing, setMissing] = useState<string | null>(null);
   const [stage, setStage] = useState<"closed" | "opening" | "open">("closed");
+  // Gift reveals: the gift stays under the scratch-off stamp until they scratch it.
+  const [giftScratched, setGiftScratched] = useState(false);
 
   const load = useCallback(() => {
     api<Letter>(`/letters/${encodeURIComponent(token)}`)
@@ -177,7 +187,12 @@ export function OpenLetter({ token, reportOpen = false }: { token: string; repor
     );
   }
 
+  const isGift = letter.type === "gift_reveal";
+  const giftAlreadyKnown = letter.is_sender || letter.reply !== null;
+  const giftRevealed = !isGift || giftScratched || giftAlreadyKnown;
+  // On screen the gift is on its stamp; a saved picture or PDF lists it (once revealed).
   const content = asContent(letter);
+  const saved = asContent(letter, giftRevealed);
 
   return (
     <div className="flex flex-col gap-10">
@@ -189,8 +204,18 @@ export function OpenLetter({ token, reportOpen = false }: { token: string; repor
       <div className="rise-in">
         <LetterCard placeholder="" letter={content} />
       </div>
-      <SaveLetter letter={content} />
-      {letter.reply ? (
+      {isGift && letter.content?.gift && (
+        <ScratchCard
+          gift={letter.content.gift}
+          hint={letter.content.hint}
+          startRevealed={giftAlreadyKnown}
+          onReveal={() => setGiftScratched(true)}
+        />
+      )}
+      {giftRevealed && <SaveLetter letter={saved} />}
+      {!giftRevealed ? (
+        <p className="text-center text-muted">{g.scratchFirst}</p>
+      ) : letter.reply ? (
         <ReplyShown letter={letter} reply={letter.reply} />
       ) : letter.is_sender ? (
         <p className="text-muted">{t.senderNoReply}</p>
@@ -368,6 +393,7 @@ const WRITE_BACK: Record<string, { href: string; text: string }> = {
   love_note: { href: "/write", text: t.writeBack },
   date_invite: { href: "/write/date", text: t.writeBackDate },
   vacation_invite: { href: "/write/vacation", text: t.writeBackTrip },
+  gift_reveal: { href: "/write/gift", text: t.writeBackGift },
 };
 
 function WriteBack({ type }: { type: string }) {

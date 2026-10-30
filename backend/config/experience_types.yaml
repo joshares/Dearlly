@@ -103,3 +103,33 @@ experience_types:
         label: "Let's go!"
       - key: "no"
         label: Not this time
+
+  - key: gift_reveal
+    name: Gift reveal
+    email_subject: "{sender} has a gift for you 🎁"
+    fields:
+      message:
+        max: 400
+        required: true
+      # Hidden under the scratch-off stamp until they scratch it.
+      gift:
+        max: 120
+        required: true
+      # Shown on the stamp before scratching, e.g. "Something you've wanted for months".
+      hint:
+        max: 80
+        required: false
+      note:
+        max: 200
+        required: false
+    themes: [cream, kraft, rose]
+    reply: reaction
+    reactions:
+      - key: love_it
+        label: I love it!
+      - key: thank_you
+        label: Thank you!
+      - key: cant_wait
+        label: Can't wait!
+      - key: you_shouldnt
+        label: You shouldn't have!

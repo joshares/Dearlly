@@ -7,12 +7,12 @@ import { StampCard } from "@/components/StampCard";
 import { getMessages } from "@/i18n";
 import { seemsLoggedIn } from "@/lib/session";
 
-// href: the form for letters that work today; the rest say "opening soon".
+// href: the form for each letter (one without a form says "opening soon").
 const EXPERIENCES = [
   { key: "loveNote", tone: "kraft", tilt: "-rotate-3", href: "/write" },
   { key: "date", tone: "stamp", tilt: "rotate-2", href: "/write/date" },
   { key: "vacation", tone: "ink", tilt: "-rotate-1", href: "/write/vacation" },
-  { key: "gift", tone: "paper", tilt: "rotate-3", href: undefined },
+  { key: "gift", tone: "paper", tilt: "rotate-3", href: "/write/gift" },
 ] as const;
 
 export default async function HomePage() {

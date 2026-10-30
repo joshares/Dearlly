@@ -220,6 +220,12 @@ function SentItem({
         <span className="font-hand text-lg">{fill(t.to, { name })}</span>
         <span className="text-sm text-muted">{fill(t.sentOn, { date: lagosDate(letter.created_at) })}</span>
       </div>
+      {letter.type === "gift_reveal" && (
+        <p className="text-sm">
+          <span className="font-bold">{t.kinds.gift_reveal}</span>
+          {letter.content?.gift && ` · ${letter.content.gift}`}
+        </p>
+      )}
       {letter.type === "vacation_invite" && (
         <p className="text-sm">
           <span className="font-bold">{t.kinds.vacation_invite}</span>

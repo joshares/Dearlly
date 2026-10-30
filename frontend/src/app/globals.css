@@ -213,3 +213,14 @@ h3 {
     transition-delay: 0s !important;
   }
 }
+
+/* The gift, as the scratch-off stamp falls away. */
+@keyframes gift-pop {
+  0% { transform: scale(0.85); }
+  60% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+.gift-pop {
+  display: inline-block;
+  animation: gift-pop 450ms ease-out;
+}

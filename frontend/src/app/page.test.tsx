@@ -34,7 +34,7 @@ describe("home page", () => {
   it("links only to pages that exist", () => {
     render(<Home loggedIn={false} />);
     const hrefs = [...document.querySelectorAll("a")].map((a) => a.getAttribute("href"));
-    expect(new Set(hrefs)).toEqual(new Set(["/", "/login", "/privacy", "/profile", "/write", "/write/date", "/write/vacation"]));
+    expect(new Set(hrefs)).toEqual(new Set(["/", "/login", "/privacy", "/profile", "/write", "/write/date", "/write/vacation", "/write/gift"]));
   });
 
   it("offers sign-up as the main action", () => {
@@ -45,14 +45,14 @@ describe("home page", () => {
 });
 
 describe("letter cards", () => {
-  it("open the forms that work, and say 'opening soon' on the rest", () => {
+  it("each open their form", () => {
     render(<Home loggedIn={false} />);
     const home = getMessages().home;
     expect(screen.getByRole("link", { name: new RegExp(home.experiences.loveNote.title) }).getAttribute("href")).toBe("/write");
     expect(screen.getByRole("link", { name: new RegExp(home.experiences.date.title) }).getAttribute("href")).toBe("/write/date");
-    expect(screen.queryByRole("link", { name: new RegExp(home.experiences.gift.title) })).toBeNull();
+    expect(screen.getByRole("link", { name: new RegExp(home.experiences.gift.title) }).getAttribute("href")).toBe("/write/gift");
     expect(screen.getByRole("link", { name: new RegExp(home.experiences.vacation.title) }).getAttribute("href")).toBe("/write/vacation");
-    expect(screen.getAllByText(home.soon)).toHaveLength(1);
+    expect(screen.queryByText(home.soon)).toBeNull();
   });
 });
 
