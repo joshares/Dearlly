@@ -23,7 +23,9 @@ const base: SentLetter = {
 };
 
 const replace = vi.fn();
-vi.mock("next/navigation", () => ({ useRouter: () => ({ push: replace, replace }) }));
+// One router object, like Next.js's own: a new one per render would re-run the page's effects.
+const router = { push: replace, replace };
+vi.mock("next/navigation", () => ({ useRouter: () => router }));
 
 let letters: SentLetter[];
 
@@ -54,7 +56,11 @@ beforeEach(() => {
       }
       if (path === "/experience-types")
         return json(200, [{ key: "love_note", reactions: [{ key: "love_it", label: "I love this" }] }]);
-      if (path === "/me/experiences/1/revoke") return json(200, { ...base, url: null, revoked: true });
+      if (path === "/me/experiences/1/revoke") {
+        // Like the server: once taken back, every later list shows it taken back.
+        letters = letters.map((l) => (l.id === "1" ? { ...l, url: null, revoked: true } : l));
+        return json(200, { ...base, url: null, revoked: true });
+      }
       throw new Error(`unexpected ${path}`);
     }),
   );

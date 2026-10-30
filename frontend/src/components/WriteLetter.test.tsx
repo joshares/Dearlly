@@ -6,7 +6,9 @@ import { resetApiState } from "@/lib/api";
 import { WriteLetter } from "./WriteLetter";
 
 const push = vi.fn();
-vi.mock("next/navigation", () => ({ useRouter: () => ({ push, replace: push }) }));
+// One router object, like Next.js's own (a new one per render would re-run effects).
+const router = { push, replace: push };
+vi.mock("next/navigation", () => ({ useRouter: () => router }));
 
 const json = (status: number, body: unknown) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });

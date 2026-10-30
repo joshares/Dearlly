@@ -6,7 +6,9 @@ import { resetApiState } from "@/lib/api";
 import { ProfileView } from "./ProfileView";
 
 const replace = vi.fn();
-vi.mock("next/navigation", () => ({ useRouter: () => ({ replace, push: replace }) }));
+// One router object, like Next.js's own (a new one per render would re-run effects).
+const router = { replace, push: replace };
+vi.mock("next/navigation", () => ({ useRouter: () => router }));
 
 const json = (status: number, body: unknown) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
