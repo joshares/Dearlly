@@ -294,6 +294,7 @@ Update this section as each stage finishes.
 | 29 Oct 2026 | Quote library: ~40 original quotes drafted by the builder (incl. Pidgin), **for the founder to review** before launch (`backend/config/quotes.yaml`) |
 | 29 Oct 2026 | "Opened" counts only when the recipient breaks the seal, not when a link preview (WhatsApp etc.) loads the page; the sender's own previews never count |
 | 29 Oct 2026 | Pages use a per-request CSP nonce, so HTML is rendered per request. Stage 4 decides how invitation pages are cached at Cloudflare without weakening the CSP |
+| 30 Oct 2026 | The "break the seal" opening is built in code (CSS) for now, in the brand colours, and respects "reduce motion". The Rive version replaces it when the illustrator's seal and envelope art arrive; the page doesn't change. Letter pages are never indexed and never pass the link on to other sites (no-referrer) |
 
 ## First prompt for Claude Code (Stage 1)
 
