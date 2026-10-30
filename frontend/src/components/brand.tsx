@@ -3,7 +3,7 @@
  * Colours are the brand tokens; fonts come from the CSS variables set in app/fonts.ts.
  */
 
-const SEAL_PATH =
+export const SEAL_PATH =
   "M32 4c8-1 14 4 17 9 7 1 11 9 8 15 4 6 1 15-6 17-3 8-12 12-19 9-7 4-17 1-20-6-7-3-10-12-6-19-3-8 2-16 10-17 3-5 9-8 16-8z";
 
 export function WaxSeal({ size = 44, label }: { size?: number; label?: string }) {

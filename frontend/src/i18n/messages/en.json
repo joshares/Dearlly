@@ -237,5 +237,14 @@
     "takeBackConfirm": "Take it back? The link will stop working for good.",
     "takeBackYes": "Yes, take it back",
     "takeBackNo": "Keep it"
+  },
+  "save": {
+    "heading": "Keep this letter",
+    "png": "Save as picture",
+    "pdf": "Save as PDF",
+    "saving": "Saving…",
+    "failed": "Couldn't save it on this browser. Try a screenshot instead.",
+    "qrLine": "Make one for someone you love",
+    "site": "dearlly.app"
   }
 }

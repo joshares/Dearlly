@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
 import { WaxSeal } from "@/components/brand";
-import { LetterCard, type LetterTheme } from "@/components/LetterCard";
+import { LetterCard, type LetterContent, type LetterTheme } from "@/components/LetterCard";
+import { SaveLetter } from "@/components/SaveLetter";
 import { getMessages } from "@/i18n";
 import { ApiError, api } from "@/lib/api";
 import { lagosDateTime, timeLeft } from "@/lib/dates";
@@ -140,6 +141,15 @@ export function OpenLetter({ token }: { token: string }) {
     );
   }
 
+  const content: LetterContent = {
+    senderName: letter.sender_name,
+    recipientName: letter.recipient_name,
+    recipientTitle: letter.recipient_title,
+    quoteTitle: letter.content.quote_title,
+    quoteText: letter.content.quote_text,
+    theme: letter.theme,
+  };
+
   return (
     <div className="flex flex-col gap-10">
       {letter.is_sender && (
@@ -148,18 +158,9 @@ export function OpenLetter({ token }: { token: string }) {
         </p>
       )}
       <div className="rise-in">
-        <LetterCard
-          placeholder=""
-          letter={{
-            senderName: letter.sender_name,
-            recipientName: letter.recipient_name,
-            recipientTitle: letter.recipient_title,
-            quoteTitle: letter.content.quote_title,
-            quoteText: letter.content.quote_text,
-            theme: letter.theme,
-          }}
-        />
+        <LetterCard placeholder="" letter={content} />
       </div>
+      <SaveLetter letter={content} />
       {letter.reply ? (
         <ReplyShown letter={letter} reply={letter.reply} />
       ) : letter.is_sender ? (
