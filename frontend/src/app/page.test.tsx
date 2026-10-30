@@ -34,7 +34,7 @@ describe("home page", () => {
   it("links only to pages that exist", () => {
     render(<Home loggedIn={false} />);
     const hrefs = [...document.querySelectorAll("a")].map((a) => a.getAttribute("href"));
-    expect(new Set(hrefs)).toEqual(new Set(["/", "/login", "/profile", "/write"]));
+    expect(new Set(hrefs)).toEqual(new Set(["/", "/login", "/privacy", "/profile", "/write"]));
   });
 
   it("offers sign-up as the main action", () => {
