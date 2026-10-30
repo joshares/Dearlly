@@ -119,7 +119,7 @@ export function ProfileView() {
         </div>
       </dl>
 
-      <SentLetters />
+      <SentLetters perPage={3} />
 
       <form onSubmit={save} className="flex flex-col gap-3">
         <label className="flex flex-col gap-1 text-sm font-semibold">

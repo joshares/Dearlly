@@ -4,9 +4,9 @@ import uuid
 from datetime import UTC, datetime, timedelta
 from typing import Annotated, Any, Literal
 
-from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response, status
 from pydantic import AwareDatetime, BaseModel, Field
-from sqlalchemy import select
+from sqlalchemy import func, select
 
 from app.api.deps import AppSettings, CurrentUser, DbSession, Limiter, current_user
 from app.core.csrf import require_csrf
@@ -96,6 +96,13 @@ class MyExperienceOut(BaseModel):
     open_count: int
     reply: ReplyOut | None
     revoked: bool
+
+
+class MyExperiencesPage(BaseModel):
+    items: list[MyExperienceOut]
+    total: int
+    page: int
+    per_page: int
 
 
 class LetterOut(BaseModel):
@@ -220,17 +227,29 @@ async def create_experience(
 
 @router.get("/me/experiences")
 async def my_experiences(
-    user: CurrentUser, db: DbSession, settings: AppSettings
-) -> list[MyExperienceOut]:
+    user: CurrentUser,
+    db: DbSession,
+    settings: AppSettings,
+    page: Annotated[int, Query(ge=1, le=10_000)] = 1,
+    per_page: Annotated[int, Query(ge=1, le=50)] = 10,
+) -> MyExperiencesPage:
+    """The sender's letters, newest first, one page at a time."""
+    mine = Experience.owner_id == user.id
+    total = (
+        await db.execute(select(func.count()).select_from(Experience).where(mine))
+    ).scalar_one()
     rows = (
         await db.execute(
             select(Experience)
-            .where(Experience.owner_id == user.id)
-            .order_by(Experience.created_at.desc())
-            .limit(200)
+            .where(mine)
+            .order_by(Experience.created_at.desc(), Experience.id.desc())
+            .offset((page - 1) * per_page)
+            .limit(per_page)
         )
     ).scalars()
-    return [_mine(e, settings) for e in rows]
+    return MyExperiencesPage(
+        items=[_mine(e, settings) for e in rows], total=total, page=page, per_page=per_page
+    )
 
 
 @router.post("/me/experiences/{experience_id}/revoke")
