@@ -8,3 +8,8 @@ export const WriteLetterClient = dynamic(
   () => import("@/components/WriteLetter").then((m) => m.WriteLetter),
   { ssr: false },
 );
+
+export const WriteDateClient = dynamic(
+  () => import("@/components/WriteDate").then((m) => m.WriteDate),
+  { ssr: false },
+);

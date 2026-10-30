@@ -25,6 +25,7 @@ export type SentLetter = {
   revoked: boolean;
   email_status?: "scheduled" | "sent" | "failed" | "blocked" | "cancelled" | null;
   email_sent_at?: string | null;
+  content?: Record<string, string | null | undefined>;
 };
 
 type Page = { items: SentLetter[]; total: number; page: number; per_page: number };
@@ -218,6 +219,13 @@ function SentItem({
         <span className="font-hand text-lg">{fill(t.to, { name })}</span>
         <span className="text-sm text-muted">{fill(t.sentOn, { date: lagosDate(letter.created_at) })}</span>
       </div>
+      {letter.type === "date_invite" && (
+        <p className="text-sm">
+          <span className="font-bold">{t.kinds.date_invite}</span>
+          {letter.content?.place_name && ` · ${letter.content.place_name}`}
+          {letter.content?.date_at && ` · ${lagosDateTime(letter.content.date_at)}`}
+        </p>
+      )}
       <ul className="flex flex-col gap-0.5 text-sm font-bold">
         {lines.map((line, i) => (
           // The reply (always last) is the highlight.

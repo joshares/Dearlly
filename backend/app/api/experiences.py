@@ -1,4 +1,4 @@
-"""Love notes (and later dates, vacations, gifts): create, list, revoke; open and reply by link."""
+"""Love notes and date invitations (later vacations, gifts): create, list, revoke; open, reply."""
 
 import contextlib
 import math
@@ -127,6 +127,7 @@ class LetterOut(BaseModel):
     # Counted by the server, so a phone whose clock is wrong still opens on time.
     opens_in_seconds: int
     content: dict[str, Any] | None
+    reply_kind: str
     reactions: list[Reaction]
     reply: ReplyOut | None
     is_sender: bool
@@ -174,7 +175,9 @@ async def list_types() -> list[ExperienceTypeOut]:
         ExperienceTypeOut(
             key=t.key,
             name=t.name,
-            fields={f.key: {"max": f.max, "required": f.required} for f in t.fields},
+            fields={
+                f.key: {"max": f.max, "required": f.required, "kind": f.kind} for f in t.fields
+            },
             themes=list(t.themes),
             reply=t.reply,
             reactions=[Reaction(key=k, label=label) for k, label in t.reactions],
@@ -205,7 +208,10 @@ async def create_experience(
     if body.opens_at is not None and not now < body.opens_at <= now + MAX_SCHEDULE_AHEAD:
         raise _bad("Pick an opening time in the future, within a year.")
     try:
-        content = engine.validate_content(kind, body.content)
+        content = engine.validate_content(kind, body.content, now)
+        date_at = content.get("date_at")
+        if date_at and body.opens_at and datetime.fromisoformat(date_at) <= body.opens_at:
+            raise engine.ExperienceError("The date has to be after the invitation opens.")
         sender = engine.clean_text(
             body.sender_name, label="Your name", max_len=engine.NAME_MAX, required=True
         )
@@ -372,6 +378,7 @@ async def view_letter(
             else 0
         ),
         content=None if sealed else e.content,
+        reply_kind=kind.reply,
         reactions=[Reaction(key=k, label=label) for k, label in kind.reactions],
         reply=_reply(e),
         is_sender=viewer is not None and viewer.id == e.owner_id,

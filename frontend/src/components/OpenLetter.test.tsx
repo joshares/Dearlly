@@ -10,6 +10,25 @@ const TOKEN = "a".repeat(32); // a fake link token
 const json = (status: number, body: unknown) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
 
+const DATE: Partial<Letter> = {
+  type: "date_invite",
+  content: {
+    message: "Dinner with me, Saturday?",
+    city: "lagos",
+    place_key: "shiro",
+    place_name: "Shiro Lagos",
+    place_area: "Victoria Island",
+    place_address: "Water Corporation Road",
+    date_at: "2026-11-07T19:00:00+01:00",
+    note: "Wear the blue dress.",
+  },
+  reply_kind: "yes_no",
+  reactions: [
+    { key: "yes", label: "Yes!" },
+    { key: "no", label: "Not this time" },
+  ],
+};
+
 const READY: Letter = {
   status: "ready",
   type: "love_note",
@@ -20,6 +39,7 @@ const READY: Letter = {
   opens_at: null,
   opens_in_seconds: 0,
   content: { quote_title: "Na you", quote_text: "Na you my heart choose." },
+  reply_kind: "reaction",
   reactions: [
     { key: "love_it", label: "I love this" },
     { key: "aww", label: "Aww" },
@@ -138,5 +158,52 @@ describe("OpenLetter", () => {
     render(<OpenLetter token={TOKEN} />);
     expect(await screen.findByText("No letter here")).toBeTruthy();
     expect(screen.getByRole("alert").textContent).toMatch(/taken back by the sender/);
+  });
+
+  it("shows a date invitation with where and when, and they say yes", async () => {
+    letter = { ...READY, ...DATE };
+    render(<OpenLetter token={TOKEN} />);
+    fireEvent.click(await screen.findByRole("button", { name: "Break the seal" }));
+    expect(await screen.findByText("Dinner with me, Saturday?")).toBeTruthy();
+    expect(screen.getByText(/Shiro Lagos/)).toBeTruthy();
+    expect(screen.getByText(/7 Nov 2026/)).toBeTruthy();
+
+    fireEvent.click(screen.getByRole("radio", { name: /Yes!/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Send my answer" }));
+    expect(await screen.findByText("You said yes! 🎉")).toBeTruthy();
+    expect(calls.find((c) => c.path.endsWith("/reply"))?.body).toEqual({ reaction: "yes", note: null });
+    const directions = screen.getByRole("link", { name: "Get directions" }).getAttribute("href") ?? "";
+    expect(decodeURIComponent(directions)).toContain("Shiro Lagos, Water Corporation Road, Victoria Island, Lagos");
+    expect(screen.getByRole("link", { name: "Send your own invitation" }).getAttribute("href")).toBe("/write/date");
+  });
+
+  it("No runs away a few times, then can always be said", async () => {
+    letter = { ...READY, ...DATE };
+    render(<OpenLetter token={TOKEN} />);
+    fireEvent.click(await screen.findByRole("button", { name: "Break the seal" }));
+    const no = await screen.findByRole("radio", { name: "Not this time" });
+    // Animations on for this part, so No can dodge.
+    vi.stubGlobal("matchMedia", () => ({ matches: false }));
+    for (const line of ["Are you sure?", "Think about it…", "Okay, okay. You can say no."]) {
+      fireEvent.pointerDown(no, { pointerType: "touch" });
+      fireEvent.click(no);
+      expect(no.getAttribute("aria-checked")).toBe("false");
+      expect(screen.getByText(line)).toBeTruthy();
+    }
+    fireEvent.pointerDown(no, { pointerType: "touch" });
+    fireEvent.click(no);
+    expect(no.getAttribute("aria-checked")).toBe("true");
+    fireEvent.click(screen.getByRole("button", { name: "Send my answer" }));
+    expect(await screen.findByText("Answer sent.")).toBeTruthy();
+  });
+
+  it("with reduced motion, No never moves", async () => {
+    letter = { ...READY, ...DATE };
+    render(<OpenLetter token={TOKEN} />);
+    fireEvent.click(await screen.findByRole("button", { name: "Break the seal" }));
+    const no = await screen.findByRole("radio", { name: "Not this time" });
+    fireEvent.pointerDown(no, { pointerType: "touch" });
+    fireEvent.click(no);
+    expect(no.getAttribute("aria-checked")).toBe("true");
   });
 });

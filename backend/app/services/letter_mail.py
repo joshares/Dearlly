@@ -133,7 +133,9 @@ def letter_invite_email(
     )
     return Email(
         to=to,
-        subject=f"{sender} sealed a letter for you 💌",
+        subject=engine.experience_types()[experience.type].email_subject.replace(
+            "{sender}", sender
+        ),
         text=text,
         html=body,
         headers={
