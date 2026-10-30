@@ -1,6 +1,7 @@
 # Starter library of ORIGINAL love-note quotes (written for Dearlly; no copied poems or lyrics).
-# DRAFT for the founder to review: edit, add or delete freely. Each needs a unique key.
-# moods: sweet, romantic, playful, deep, apology, anniversary, missing_you, naija
+# Reviewed by the founder (30 Oct 2026). Edit, add or delete freely. Each needs a unique key.
+# moods: sweet, romantic, poetic, playful, deep, birthday, anniversary, friendship, missing_you, apology
+# friendship = for friends (not romantic). No pidgin: founder prefers poetic English.
 
 quotes:
   - {key: q01, mood: sweet, title: "Good morning, you", text: "Every morning I check two things: the time, and whether I still get to love you. So far, the answer is always yes."}
@@ -10,7 +11,7 @@ quotes:
   - {key: q05, mood: sweet, title: "Home", text: "You are not a place, but every time I'm with you, I'm home."}
   - {key: q06, mood: romantic, title: "Sealed with love", text: "If I could fold my whole heart into an envelope, I would seal it with wax and post it to you every single day."}
   - {key: q07, mood: romantic, title: "The answer", text: "Whatever the question is today — the answer is still you."}
-  - {key: q08, mood: romantic, title: "Slowly, then all at once", text: "I didn't fall for you in one moment. I fell a little every day, until there was nothing left that wasn't yours."}
+  - {key: q08, mood: romantic, title: "A little every day", text: "I didn't fall for you in one moment. I fell a little every day, until there was nothing left that wasn't yours."}
   - {key: q09, mood: romantic, title: "Under the same sky", text: "Wherever you are tonight, look up. The same sky is holding both of us, and I'm thinking of you."}
   - {key: q10, mood: romantic, title: "My best story", text: "Of all the stories I could tell, the best one starts with the day I met you."}
   - {key: q11, mood: romantic, title: "Still you", text: "Through the busy days and the quiet nights, through traffic and through rain — still you. Always you."}
@@ -35,11 +36,56 @@ quotes:
   - {key: q30, mood: missing_you, title: "Empty seat", text: "There is an empty seat beside me that only fits you. It's waiting, and so am I."}
   - {key: q31, mood: missing_you, title: "Soon", text: "Every day apart is one day closer to seeing you. I'm counting down."}
   - {key: q32, mood: missing_you, title: "Thinking of you", text: "Just a small letter to say: I'm thinking of you, right now, and smiling."}
-  - {key: q33, mood: naija, title: "Na you", text: "Out of everybody for this Lagos, na you my heart choose. No shaking."}
-  - {key: q34, mood: naija, title: "My person", text: "You be my person — for traffic, for rain, for suya at midnight. Anywhere wey you dey, na there I wan dey."}
-  - {key: q35, mood: naija, title: "Correct", text: "Everything about you just correct. I no fit explain am, I just dey feel am."}
-  - {key: q36, mood: naija, title: "Jollof for two", text: "Life with you sweet pass party jollof. Make we dey together like this forever."}
-  - {key: q37, mood: naija, title: "Sure guy", text: "You be my sure person. When everything dey shake, you dey stand gidigba."}
   - {key: q38, mood: sweet, title: "Thank you", text: "Thank you for the little things you think I don't notice. I notice. I always do."}
   - {key: q39, mood: romantic, title: "Dear you", text: "If my heart could write, this whole letter would just be your name, over and over."}
   - {key: q40, mood: deep, title: "Forever plan", text: "I don't know everything about the future. But I know I want you in all of it."}
+
+  # poetic
+  - {key: q41, mood: poetic, title: "Ink", text: "I wrote your name in ink, because I never meant to erase it."}
+  - {key: q42, mood: poetic, title: "Harmattan", text: "Even in the harmattan, when the whole city turns to dust and haze, you are the one clear thing I can see."}
+  - {key: q43, mood: poetic, title: "First rain", text: "You arrived the way the first rain does: the air changed, the ground softened, and everything in me began to grow."}
+  - {key: q44, mood: poetic, title: "When the lights go out", text: "When the power goes and the street falls quiet, I don't miss the light. I have the sound of you breathing beside me."}
+  - {key: q45, mood: poetic, title: "Tide", text: "My thoughts drift out like the tide each morning, and like the tide, they always find their way back to you."}
+  - {key: q46, mood: poetic, title: "Unfinished letter", text: "I have started this letter a hundred times. Every version ends the same way: with your name, and a heart too full to say more."}
+  - {key: q47, mood: poetic, title: "Map", text: "Somewhere between your laugh and your silence, I found a map of every place I want to go."}
+  - {key: q48, mood: poetic, title: "Morning light", text: "You are the soft light that comes through the window before the day gets loud, the part of the morning I would wake early for."}
+  - {key: q49, mood: poetic, title: "Under the seal", text: "Some words are too precious to say out loud. So I fold them, seal them, and send them to the only one who holds the key: you."}
+  - {key: q50, mood: poetic, title: "Leaning toward you", text: "You never asked me to change. You simply loved me, and I grew toward you the way flowers lean toward the sun."}
+  - {key: q51, mood: poetic, title: "Quiet", text: "With you, even silence sounds like a song I already know the words to."}
+  - {key: q52, mood: poetic, title: "Keepsake", text: "If memories were letters, I would keep every one of ours in a box by my bed and read them on the long nights."}
+  - {key: q53, mood: poetic, title: "Golden hour", text: "When the sun goes down over the lagoon and the water turns to gold, I always think: this is how you look to me."}
+  - {key: q54, mood: poetic, title: "Ordinary days", text: "I don't need grand moments. Give me ordinary days with you, and I will make poems out of every one."}
+  - {key: q55, mood: poetic, title: "The last song", text: "If love were music, ours would be the slow song at the end of the night, when everyone has gone home and we keep dancing anyway."}
+  - {key: q56, mood: poetic, title: "Ink and paper", text: "You are the ink and I am the paper. Without you, I am only empty pages waiting for a story."}
+  - {key: q57, mood: poetic, title: "Every road", text: "I have lost my way more times than I can count. Somehow, every road still bends back toward you."}
+  - {key: q58, mood: poetic, title: "Candle", text: "Love, to me, is a small flame you shelter through every storm. I will keep ours burning."}
+  - {key: q59, mood: poetic, title: "Seasons", text: "Seasons change, cities change, we change. But the way my heart turns when you walk into a room has never changed once."}
+  - {key: q60, mood: poetic, title: "Starlight", text: "Tonight the stars look like letters no one ever posted. I'm sending this one, so mine reaches you."}
+
+  # birthday
+  - {key: q61, mood: birthday, title: "Happy birthday, love", text: "Years ago today, the world got you. Later, I got lucky. Happy birthday to my favourite gift."}
+  - {key: q62, mood: birthday, title: "Make a wish", text: "Make a wish and blow out the candles. Mine already came true the day I met you."}
+  - {key: q63, mood: birthday, title: "Another year of you", text: "Another year older, and somehow even more beautiful. Happy birthday. I'm so glad I get to love you through every one of them."}
+  - {key: q64, mood: birthday, title: "A birthday letter", text: "On your birthday I wanted to give you something you can keep forever: these words. You make my life brighter every single day."}
+  - {key: q65, mood: birthday, title: "Cake and candles", text: "Cake, candles and all my love. The cake will be gone by tonight; the love stays."}
+  - {key: q66, mood: birthday, title: "The best day", text: "Of all the days in the year, this one is my favourite, because it's the day you arrived."}
+  - {key: q67, mood: birthday, title: "Winning", text: "Happy birthday! You're another year older, and I'm another year more in love. I think I'm winning."}
+  - {key: q68, mood: birthday, title: "One for every candle", text: "For every candle on your cake, here is one reason I love you. We're going to need a bigger cake."}
+  - {key: q69, mood: birthday, title: "Celebrate you", text: "Today isn't only about getting older. It's about celebrating everything you are, and you are so much."}
+  - {key: q70, mood: birthday, title: "Here's to you", text: "Here's to your laugh, your kindness, your big dreams, and a year ahead that is waiting to be wonderful. Happy birthday."}
+  - {key: q71, mood: birthday, title: "Your year", text: "May this be the year your prayers are answered, your plans come together, and you feel just how loved you are."}
+  - {key: q72, mood: birthday, title: "My wish for you", text: "My birthday wish for you: more peace, more joy, more good surprises, and me right beside you for all of it."}
+
+  # friendship
+  - {key: q73, mood: friendship, title: "Thank you, friend", text: "Thank you for being the friend who picks up on the first ring, laughs at my worst jokes, and tells me the truth when I need it."}
+  - {key: q74, mood: friendship, title: "Chosen family", text: "We didn't grow up under the same roof, but you became family anyway. I'm so grateful I get to call you my friend."}
+  - {key: q75, mood: friendship, title: "Through it all", text: "Through every season, the good, the broke and the confusing, you stayed. That means more than I ever say."}
+  - {key: q76, mood: friendship, title: "First to know", text: "Good news, bad news, random news: you're always the first person I want to tell."}
+  - {key: q77, mood: friendship, title: "Proud of you, friend", text: "I see how hard you work and how big your heart is. I'm proud to be your friend."}
+  - {key: q78, mood: friendship, title: "Awards night", text: "If friendship had awards, you'd win Best Supporting Friend, Funniest Voice Note, and Most Likely to Show Up With Food."}
+  - {key: q79, mood: friendship, title: "Never far", text: "Life gets busy and we don't always talk every day, but you are never far from my thoughts."}
+  - {key: q80, mood: friendship, title: "Lighter days", text: "Some of my hardest days were lighter because you were in them. Thank you for that."}
+  - {key: q81, mood: friendship, title: "Where we left off", text: "Years go by, but with you it always feels like we're picking up exactly where we left off."}
+  - {key: q82, mood: friendship, title: "Cheering for you", text: "Thank you for cheering for me even when I didn't believe in myself. I'm cheering for you, always."}
+  - {key: q83, mood: friendship, title: "Happy birthday, friend", text: "Happy birthday to the friend who makes life louder, funnier and kinder. May your year be as good as you are to everyone around you."}
+  - {key: q84, mood: friendship, title: "Just because", text: "No special occasion. I just wanted you to know that I appreciate you, and I'm lucky to have you."}

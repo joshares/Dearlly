@@ -31,6 +31,18 @@ def test_registries_load_and_start_empty() -> None:
     assert len(registries["quotes"]) >= 40
 
 
+def test_quotes_are_tidy() -> None:
+    quotes = load_registry("quotes")
+    keys = [q["key"] for q in quotes]
+    assert len(keys) == len(set(keys)), "two quotes share a key"
+    # Every mood needs a button label in the write page (frontend en.json, write.moods).
+    moods = {"sweet", "romantic", "poetic", "playful", "deep", "birthday", "anniversary",
+             "friendship", "missing_you", "apology"}  # fmt: skip
+    assert {q["mood"] for q in quotes} == moods
+    # They must fit the letter: title up to 80 characters, message up to 600.
+    assert all(len(q["title"]) <= 80 and len(q["text"]) <= 600 for q in quotes)
+
+
 def test_broken_registry_is_refused(tmp_path: Path) -> None:
     (tmp_path / "cities.yaml").write_text("wrong_key: []\n")
     with pytest.raises(RegistryError):

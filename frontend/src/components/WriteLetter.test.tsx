@@ -25,7 +25,7 @@ beforeEach(() => {
     vi.fn(async (url: string, init: RequestInit = {}) => {
       const path = new URL(url).pathname;
       if (path === "/quotes")
-        return json(200, [{ key: "q33", mood: "naija", title: "Na you", text: "Na you my heart choose." }]);
+        return json(200, [{ key: "q33", mood: "romantic", title: "Na you", text: "Na you my heart choose." }]);
       if (path === "/auth/csrf") return json(200, { csrf_token: "tok" });
       if (path === "/auth/refresh") return json(401, { detail: "Please log in." });
       if (path === "/experiences") {

@@ -46,7 +46,7 @@ def test_types_and_quotes_are_public(auth_client: AuthClient) -> None:
     assert [r["key"] for r in love["reactions"]][:2] == ["love_it", "aww"]
     quotes = auth_client.get("/quotes").json()
     assert len(quotes) >= 40
-    assert all(q["mood"] == "naija" for q in auth_client.get("/quotes?mood=naija").json())
+    assert all(q["mood"] == "poetic" for q in auth_client.get("/quotes?mood=poetic").json())
 
 
 # --- writing (account required) --------------------------------------------------------------
