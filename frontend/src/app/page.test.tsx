@@ -34,7 +34,7 @@ describe("home page", () => {
   it("links only to pages that exist", () => {
     render(<Home loggedIn={false} />);
     const hrefs = [...document.querySelectorAll("a")].map((a) => a.getAttribute("href"));
-    expect(new Set(hrefs)).toEqual(new Set(["/", "/login", "/privacy", "/profile", "/write"]));
+    expect(new Set(hrefs)).toEqual(new Set(["/", "/login", "/privacy", "/profile", "/write", "/write/date"]));
   });
 
   it("offers sign-up as the main action", () => {
@@ -44,13 +44,24 @@ describe("home page", () => {
   });
 });
 
+describe("letter cards", () => {
+  it("open the forms that work, and say 'opening soon' on the rest", () => {
+    render(<Home loggedIn={false} />);
+    const home = getMessages().home;
+    expect(screen.getByRole("link", { name: new RegExp(home.experiences.loveNote.title) }).getAttribute("href")).toBe("/write");
+    expect(screen.getByRole("link", { name: new RegExp(home.experiences.date.title) }).getAttribute("href")).toBe("/write/date");
+    expect(screen.queryByRole("link", { name: new RegExp(home.experiences.gift.title) })).toBeNull();
+    expect(screen.getAllByText(home.soon)).toHaveLength(2);
+  });
+});
+
 describe("home page when logged in", () => {
-  it("drops 'Create your account' and offers writing and your letters", () => {
+  it("drops 'Create your account' and offers a love note or a date", () => {
     render(<Home loggedIn />);
     const home = getMessages().home;
     expect(screen.queryByRole("link", { name: home.primaryCta })).toBeNull();
     expect(screen.getByRole("link", { name: home.secondaryCta }).getAttribute("href")).toBe("/write");
-    expect(screen.getByRole("link", { name: home.lettersCta }).getAttribute("href")).toBe("/letters");
+    expect(screen.getByRole("link", { name: home.dateCta }).getAttribute("href")).toBe("/write/date");
     expect(screen.getByRole("link", { name: "My profile" }).getAttribute("href")).toBe("/profile");
   });
 });

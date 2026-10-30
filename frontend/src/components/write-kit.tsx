@@ -57,7 +57,7 @@ export function TypeSwitch({ current }: { current: "love_note" | "date_invite" }
           key={item.key}
           href={item.href}
           aria-current={current === item.key ? "page" : undefined}
-          className={`inline-flex min-h-12 items-center rounded-full border-2 px-4 font-bold no-underline ${
+          className={`inline-flex min-h-12 items-center rounded-full border-2 px-4 font-bold whitespace-nowrap no-underline ${
             current === item.key ? "border-fg bg-fg text-bg" : "border-line"
           }`}
         >
@@ -120,13 +120,13 @@ export function LookFields({ draft, update }: { draft: Look; update: (changes: P
       </legend>
       <div className="flex flex-col gap-2">
         <span className="text-sm font-semibold">{t.themeLabel}</span>
-        <div className="flex gap-3" role="radiogroup" aria-label={t.themeLabel}>
+        <div className="grid max-w-md grid-cols-3 gap-2" role="radiogroup" aria-label={t.themeLabel}>
           {THEMES.map((theme) => (
-            <label key={theme} className={`flex min-h-12 cursor-pointer items-center gap-2 rounded-md border-2 px-3 font-bold ${
+            <label key={theme} className={`flex min-h-12 cursor-pointer items-center justify-center gap-1.5 rounded-md border-2 px-2 text-sm font-bold whitespace-nowrap [overflow-wrap:normal] sm:text-base ${
               draft.theme === theme ? "border-fg" : "border-line"}`}>
               <input type="radio" name="theme" value={theme} className="sr-only"
                 checked={draft.theme === theme} onChange={() => update({ theme })} />
-              <span aria-hidden="true" className="h-6 w-6 rounded-full border-2 border-fg"
+              <span aria-hidden="true" className="h-5 w-5 shrink-0 rounded-full border-2 border-fg"
                 style={{ backgroundColor: PAPER[theme] }} />
               {t.themes[theme]}
             </label>
@@ -135,7 +135,7 @@ export function LookFields({ draft, update }: { draft: Look; update: (changes: P
       </div>
       <label className={label}>
         {t.scheduleLabel}
-        <input className={input} type="datetime-local" name="opens_at" value={draft.opensAt}
+        <input className={`${input} sm:max-w-xs`} type="datetime-local" name="opens_at" value={draft.opensAt}
           onChange={(e) => update({ opensAt: e.target.value })} />
         <span className={hint}>{t.scheduleHint}</span>
       </label>

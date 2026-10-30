@@ -30,7 +30,7 @@ export function dateLetter(
   const where = placeLine(c);
   if (where) details.push({ label: t.where, value: where });
   if (c.date_at && !Number.isNaN(Date.parse(c.date_at))) {
-    details.push({ label: t.when, value: `${lagosDateTime(c.date_at)} (${t.lagosTime})` });
+    details.push({ label: t.when, value: `${lagosDateTime(c.date_at)} ${t.timeZone}` });
   }
   if (c.note?.trim()) details.push({ label: t.note, value: c.note.trim() });
   return { ...people, quoteTitle: t.cardTitle, quoteText: c.message ?? "", details };

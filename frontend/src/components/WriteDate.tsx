@@ -36,7 +36,7 @@ type Draft = PlaceChoice & {
   recipientTitle: string;
   recipientEmail: string;
   message: string;
-  dateAt: string; // datetime-local value, Lagos time
+  dateAt: string; // datetime-local value, WAT
   note: string;
   theme: LetterTheme;
   opensAt: string;
@@ -200,7 +200,7 @@ export function WriteDate({ loggedIn = false }: { loggedIn?: boolean }) {
           <PlacePicker value={draft} onChange={update} />
           <label className={label}>
             {t.whenLabel}
-            <input className={input} type="datetime-local" name="date_at" required value={draft.dateAt}
+            <input className={`${input} sm:max-w-xs`} type="datetime-local" name="date_at" required value={draft.dateAt}
               onChange={(e) => update({ dateAt: e.target.value })} />
           </label>
           <label className={label}>

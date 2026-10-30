@@ -67,6 +67,19 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Phones (iPhone especially) give date pickers their own fixed width, which can push past the
+   form. Keep them inside it, with the value on the left like the other boxes. */
+input[type="datetime-local"] {
+  min-width: 0;
+  max-width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+input[type="datetime-local"]::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+
 h1,
 h2,
 h3 {
