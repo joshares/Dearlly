@@ -153,12 +153,14 @@
     "moods": {
       "sweet": "Sweet",
       "romantic": "Romantic",
+      "poetic": "Poetic",
       "playful": "Playful",
       "deep": "Deep",
-      "apology": "Sorry",
+      "birthday": "Birthday",
       "anniversary": "Anniversary",
+      "friendship": "Friends",
       "missing_you": "Missing you",
-      "naija": "Naija"
+      "apology": "Sorry"
     },
     "useQuote": "Use this",
     "quoteTitleLabel": "Title (optional)",
