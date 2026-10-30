@@ -161,7 +161,7 @@ export function WriteLetter({ loggedIn = false }: { loggedIn?: boolean }) {
   const preview = <LetterCard placeholder={t.placeholder} letter={asLetter(draft)} />;
 
   return (
-    <form onSubmit={seal} className="grid gap-10 md:grid-cols-[1fr_1fr] md:gap-12">
+    <form onSubmit={seal} className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-12">
       <div className="flex flex-col gap-10">
         <header className="flex flex-col gap-2">
           <h1 className="text-4xl leading-tight md:text-5xl">{t.title}</h1>
