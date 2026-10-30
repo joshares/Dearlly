@@ -81,7 +81,7 @@ const input =
 const label = "flex flex-col gap-1 text-sm font-semibold";
 const hint = "text-sm font-normal text-muted";
 
-export function WriteLetter() {
+export function WriteLetter({ loggedIn = false }: { loggedIn?: boolean }) {
   const router = useRouter();
   const [draft, setDraft] = useState<Draft>(loadDraft);
   const [quotes, setQuotes] = useState<Quote[]>([]);
@@ -274,7 +274,7 @@ export function WriteLetter() {
             className="min-h-14 rounded-lg bg-stamp px-6 text-lg font-extrabold text-paper shadow-[4px_4px_0_var(--color-ink)] disabled:opacity-50 disabled:shadow-none">
             {busy ? t.sealing : t.seal}
           </button>
-          <p className="text-sm text-muted">{t.sealNeedsAccount}</p>
+          {!loggedIn && <p className="text-sm text-muted">{t.sealNeedsAccount}</p>}
         </div>
       </div>
 

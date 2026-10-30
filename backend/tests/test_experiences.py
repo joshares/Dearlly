@@ -150,6 +150,7 @@ def test_scheduled_letters_stay_sealed(auth_client: AuthClient) -> None:
     _become_recipient(auth_client)
     letter = auth_client.get(f"/letters/{token}").json()
     assert letter["status"] == "sealed_until" and letter["content"] is None
+    assert 2 * 86400 - 60 < letter["opens_in_seconds"] <= 2 * 86400
     assert letter["recipient_name"] == "Tolu"  # the envelope shows who it's for
     assert auth_client.post(f"/letters/{token}/reply", json={"reaction": "aww"}).status_code == 409
 

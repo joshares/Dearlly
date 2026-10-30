@@ -1,5 +1,6 @@
 """Love notes (and later dates, vacations, gifts): create, list, revoke; open and reply by link."""
 
+import math
 import uuid
 from datetime import UTC, datetime, timedelta
 from typing import Annotated, Any, Literal
@@ -113,6 +114,8 @@ class LetterOut(BaseModel):
     recipient_title: str | None
     theme: str
     opens_at: datetime | None
+    # Counted by the server, so a phone whose clock is wrong still opens on time.
+    opens_in_seconds: int
     content: dict[str, Any] | None
     reactions: list[Reaction]
     reply: ReplyOut | None
@@ -309,6 +312,11 @@ async def view_letter(
         recipient_title=e.recipient_title,
         theme=e.theme,
         opens_at=e.opens_at,
+        opens_in_seconds=(
+            max(1, math.ceil((e.opens_at - datetime.now(UTC)).total_seconds()))
+            if sealed and e.opens_at
+            else 0
+        ),
         content=None if sealed else e.content,
         reactions=[Reaction(key=k, label=label) for k, label in kind.reactions],
         reply=_reply(e),

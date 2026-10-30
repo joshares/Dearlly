@@ -12,8 +12,8 @@ export function lagosDate(iso: string): string {
 }
 
 /** Whole days, hours, minutes and seconds until a moment (all zero once it has passed). */
-export function timeLeft(iso: string, now: number): { d: number; h: number; m: number; s: number } {
-  const total = Math.max(0, Math.floor((new Date(iso).getTime() - now) / 1000));
+export function timeLeft(until: number, now: number): { d: number; h: number; m: number; s: number } {
+  const total = Math.max(0, Math.ceil((until - now) / 1000));
   return {
     d: Math.floor(total / 86400),
     h: Math.floor((total % 86400) / 3600),

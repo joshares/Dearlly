@@ -5,6 +5,7 @@ import { HeroArt } from "@/components/brand";
 import { SiteHeader } from "@/components/SiteHeader";
 import { StampCard } from "@/components/StampCard";
 import { getMessages } from "@/i18n";
+import { seemsLoggedIn } from "@/lib/session";
 
 const EXPERIENCES = [
   { key: "loveNote", tone: "kraft", tilt: "-rotate-3" },
@@ -13,13 +14,18 @@ const EXPERIENCES = [
   { key: "gift", tone: "paper", tilt: "rotate-3" },
 ] as const;
 
-export default function HomePage() {
+export default async function HomePage() {
+  return <Home loggedIn={await seemsLoggedIn()} />;
+}
+
+/** The home page; logged-in people get "Write" and "Your letters" instead of "Create your account". */
+export function Home({ loggedIn }: { loggedIn: boolean }) {
   const t = getMessages();
   const home = t.home;
 
   return (
     <>
-      <SiteHeader t={t.header} />
+      <SiteHeader t={t.header} loggedIn={loggedIn} />
       <main className="mx-auto flex w-full max-w-6xl flex-col gap-16 pt-4 pr-5 pb-36 pl-9 md:gap-24 md:px-12 md:pt-10 md:pb-24">
         <section className="grid items-center gap-10 md:grid-cols-[1.1fr_1fr] md:gap-12">
           <div className="flex flex-col gap-5 md:gap-6">
@@ -34,16 +40,16 @@ export default function HomePage() {
             <p className="max-w-xl text-lg leading-[1.8] text-muted md:text-xl">{home.lead}</p>
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Link
-                href="/login"
+                href={loggedIn ? "/write" : "/login"}
                 className="inline-flex min-h-14 items-center justify-center rounded-lg bg-stamp px-7 whitespace-nowrap text-lg font-extrabold text-paper shadow-[4px_4px_0_var(--color-ink)] transition-transform hover:-translate-y-0.5"
               >
-                {home.primaryCta}
+                {loggedIn ? home.secondaryCta : home.primaryCta}
               </Link>
               <Link
-                href="/write"
+                href={loggedIn ? "/letters" : "/write"}
                 className="inline-flex min-h-14 items-center justify-center gap-2 rounded-lg border-2 border-fg px-6 whitespace-nowrap text-lg font-extrabold"
               >
-                {home.secondaryCta}
+                {loggedIn ? home.lettersCta : home.secondaryCta}
               </Link>
             </div>
             <p className="font-hand text-lg leading-[2.2] text-muted">{home.signOff}</p>

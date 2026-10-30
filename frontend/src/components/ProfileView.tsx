@@ -5,14 +5,15 @@ import { useEffect, useState } from "react";
 
 import { SentLetters } from "@/components/SentLetters";
 import { getMessages } from "@/i18n";
-import { ApiError, api, type MyProfile } from "@/lib/api";
+import { ApiError, api, forgetLogin, type MyProfile, peek, remember } from "@/lib/api";
 
 const t = getMessages().profile;
 
 export function ProfileView() {
   const router = useRouter();
-  const [me, setMe] = useState<MyProfile | null>(null);
-  const [displayName, setDisplayName] = useState("");
+  // Shown at once if this tab already loaded it; a fresh copy replaces it quietly.
+  const [me, setMe] = useState<MyProfile | null>(() => peek<MyProfile>("/me") ?? null);
+  const [displayName, setDisplayName] = useState(me?.display_name ?? "");
   const [status, setStatus] = useState<"idle" | "saving" | "saved">("idle");
   const [error, setError] = useState<string | null>(null);
   const [confirmName, setConfirmName] = useState("");
@@ -24,11 +25,14 @@ export function ProfileView() {
   useEffect(() => {
     api<MyProfile>("/me")
       .then((profile) => {
+        remember("/me", profile);
         setMe(profile);
         setDisplayName(profile.display_name ?? "");
       })
       .catch((err: unknown) => {
-        if (err instanceof ApiError && err.status === 401) router.replace("/login");
+        if (err instanceof ApiError && err.status === 401) {
+          router.replace(`/login?next=${encodeURIComponent("/profile")}`);
+        }
         else setError(err instanceof ApiError ? err.detail : "Something went wrong.");
       });
   }, [router]);
@@ -42,6 +46,7 @@ export function ProfileView() {
         method: "PATCH",
         body: { display_name: displayName || null },
       });
+      remember("/me", updated);
       setMe(updated);
       setStatus("saved");
     } catch (err) {
@@ -63,6 +68,7 @@ export function ProfileView() {
           new_password: newPassword,
         },
       });
+      remember("/me", { ...me, has_password: true });
       setMe({ ...me, has_password: true });
       setCurrentPassword("");
       setNewPassword("");
@@ -79,7 +85,9 @@ export function ProfileView() {
     setError(null);
     try {
       await api("/me/delete", { method: "POST", body: { confirm_username: confirmName } });
+      forgetLogin();
       router.replace("/");
+      router.refresh();
     } catch (err) {
       setError(err instanceof ApiError ? err.detail : "Something went wrong.");
       setDeleting(false);
@@ -88,14 +96,16 @@ export function ProfileView() {
 
   async function logOut() {
     await api("/auth/logout", { method: "POST" }).catch(() => undefined);
+    forgetLogin();
     router.replace("/login");
+    router.refresh();
   }
 
   if (!me) {
     return error ? (
       <p role="alert">{error}</p>
     ) : (
-      <p className="font-hand text-lg text-muted">{t.loading}</p>
+      <ProfileSkeleton label={t.loading} />
     );
   }
 
@@ -242,6 +252,24 @@ export function ProfileView() {
           {deleting ? t.deleting : t.deleteButton}
         </button>
       </form>
+    </div>
+  );
+}
+
+/** Grey shapes where the profile will appear, instead of a blank or a "Log in" flash. */
+function ProfileSkeleton({ label }: { label: string }) {
+  const bar = "animate-pulse rounded bg-line/30";
+  return (
+    <div className="flex flex-col gap-6" role="status" aria-label={label}>
+      <div className={`${bar} h-11 w-2/3`} />
+      <div className="flex flex-col gap-3 rounded-md border-2 border-line/40 p-4">
+        <div className={`${bar} h-4 w-24`} />
+        <div className={`${bar} h-6 w-40`} />
+        <div className={`${bar} h-4 w-20`} />
+        <div className={`${bar} h-6 w-56 max-w-full`} />
+      </div>
+      <div className={`${bar} h-8 w-1/2`} />
+      <div className={`${bar} h-28 w-full`} />
     </div>
   );
 }
