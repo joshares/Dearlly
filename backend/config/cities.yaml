@@ -1,2 +1,115 @@
-# Cities with currency, timezone, language and curated places. Lagos and Abuja arrive in Stage 5.
-cities: []
+# Cities with currency, timezone and curated date places.
+#
+# Places come from published guides (listed under each city's `sources`, with their dates).
+# `rank` is the place's number in that guide; ranked guides count down a "best" list, other guides
+# are grouped by category, so their places have no rank. Dearlly orders places by how many guides
+# name them, then by their best rank.
+#
+# DRAFT for the founder to check (30 Oct 2026): confirm each place is open and the vibe is right.
+# `price` is only filled where a guide gave one: 1 = under ₦10k a person, 2 = ₦10k–₦25k,
+# 3 = ₦25k–₦45k, 4 = over ₦45k. Places a guide named without a location were left out.
+#
+# vibes: romantic_dinner, rooftop, waterfront, beach, outdoors, art, playful, lounge, spa,
+#        getaway, proposal, budget, luxury
+
+cities:
+  - key: lagos
+    name: Lagos
+    currency: NGN
+    timezone: Africa/Lagos
+    sources:
+      cruisewurld: {title: "15 Romantic Spots in Lagos: The 2026 Date Night Guide", publisher: CruiseWurld, url: "https://www.cruisewurld.com/blog/15-romantic-places-in-lagos-for-couples", published: "2026-03-08", ranked: true}
+      zikoko: {title: "12 of The Best Lagos Restaurants for a Picture Perfect Proposal", publisher: Zikoko, url: "https://www.zikoko.com/ships/best-lagos-restaurants-for-proposal/", published: "2026-07-06", ranked: true}
+      marieclaire: {title: "Your ultimate guide to Lagos date spots this Valentine's", publisher: Marie Claire Nigeria, url: "https://marieclaire.ng/list-of-date-spots-for-different-activites-this-valentines/", published: "2026-02-14", ranked: false}
+      pulse_proposal: {title: "10 Romantic Restaurants in Lagos for a Perfect Proposal", publisher: Pulse Nigeria, url: "https://www.pulse.ng/articles/pulse-picks/where-to-propose-in-lagos-restaurants-2025061917103919810", published: "2025-06-20", ranked: true}
+      foodieinlagos: {title: "Best Rooftop Restaurants in Lagos for a Romantic Date Night", publisher: Foodie in Lagos, url: "https://foodieinlagos.com/rooftop-restaurants-lagos-date-night/", published: "2025-05-18", ranked: true}
+      pulse_budget: {title: "11 Fun & Affordable Date Ideas in Lagos Under ₦30K", publisher: Pulse Nigeria, url: "https://www.pulse.ng/story/11-fun-and-affordable-date-ideas-in-lagos-under-naira30k-2025030415223336933", published: "2025-03-04", ranked: false}
+      discoverlagos: {title: "10 Date Night Spots to Explore in Lagos", publisher: Discover Lagos, url: "https://www.discoverlagos.ng/post/10-date-night-spots-to-explore-in-lagos", published: null, ranked: true}
+    places:
+      # Restaurants and rooftops
+      - {key: shiro, name: Shiro Lagos, area: Victoria Island, address: "Plot 3 & 4, Block XVI, Water Corporation Road, Oniru", kind: restaurant, vibes: [romantic_dinner, luxury, proposal], price: 3, price_note: "About ₦35,000 a person (Discover Lagos)", sources: [{source: cruisewurld, rank: 2}, {source: pulse_proposal, rank: 6}, {source: discoverlagos, rank: 1}, {source: marieclaire}]}
+      - {key: sora, name: Sora Lagos, area: Victoria Island, address: "15th floor, Trinity Towers, Chief Yesufu Abiodun Oniru Road", kind: rooftop, vibes: [rooftop, romantic_dinner, luxury, proposal], price: 4, price_note: "About ₦50,000 a person (Discover Lagos)", sources: [{source: zikoko, rank: 12}, {source: foodieinlagos, rank: 3}, {source: discoverlagos, rank: 3}, {source: marieclaire}]}
+      - {key: sky-eko, name: Sky Restaurant & Lounge (Eko Hotel), area: Victoria Island, address: "Top floor, Eko Hotel, 1415 Adetokunbo Ademola Street", kind: rooftop, vibes: [rooftop, romantic_dinner, luxury], sources: [{source: pulse_proposal, rank: 2}, {source: foodieinlagos, rank: 1}, {source: marieclaire}]}
+      - {key: kaly, name: Kaly, area: Victoria Island, address: "NumberOne Building, 1 Akin Adesola Street", kind: rooftop, vibes: [rooftop, romantic_dinner, proposal], sources: [{source: cruisewurld, rank: 9}, {source: zikoko, rank: 7}, {source: foodieinlagos, rank: 2}]}
+      - {key: turaka, name: Túraká, area: Victoria Island, address: "1637 Adetokunbo Ademola Street", kind: rooftop, vibes: [rooftop, lounge], sources: [{source: pulse_proposal, rank: 7}, {source: foodieinlagos, rank: 6}]}
+      - {key: the-view, name: The View Rooftop, area: Lekki Phase 1, address: "Twinwaters, off Remi Olowude Street", kind: rooftop, vibes: [rooftop, lounge], sources: [{source: cruisewurld, rank: 6}, {source: pulse_proposal, rank: 10}]}
+      - {key: the-terrace, name: The Terrace, area: Lekki Phase 1, address: "23B Kunle Ogunba Street", kind: rooftop, vibes: [rooftop, romantic_dinner], sources: [{source: pulse_proposal, rank: 4}, {source: foodieinlagos, rank: 5}]}
+      - {key: mood, name: Mood Lagos, area: Lekki Phase 1, kind: rooftop, vibes: [rooftop, lounge], sources: [{source: foodieinlagos, rank: 4}, {source: marieclaire}]}
+      - {key: nostalgia, name: Nostalgia, area: Lekki Phase 1, address: "88 Hakeem Dickson Road", kind: restaurant, vibes: [romantic_dinner, proposal], sources: [{source: cruisewurld, rank: 15}, {source: zikoko, rank: 6}]}
+      - {key: the-ona, name: The Ona, area: Victoria Island, address: "Violet Yough Close", kind: restaurant, vibes: [romantic_dinner, lounge, luxury], price: 3, price_note: "About ₦40,000 a person (Discover Lagos)", sources: [{source: discoverlagos, rank: 2}, {source: marieclaire}]}
+      - {key: mist, name: Mist (Art Hotel), area: Victoria Island, address: "Plot 13A, Block III, Chief Yesufu Abiodun Oniru Way", kind: restaurant, vibes: [romantic_dinner, proposal], sources: [{source: pulse_proposal, rank: 1}]}
+      - {key: 788-on-the-sea, name: 788 on the Sea, area: Lekki Phase 1, address: "Twinwaters Entertainment Centre, off Remi Olowude Street", kind: restaurant, vibes: [waterfront, romantic_dinner, proposal], sources: [{source: pulse_proposal, rank: 3}]}
+      - {key: nok, name: Nok by Alara, area: Victoria Island, kind: restaurant, vibes: [romantic_dinner], sources: [{source: cruisewurld, rank: 4}]}
+      - {key: sailors-lounge, name: Sailors Lounge, area: Lekki Phase 1, kind: restaurant, vibes: [waterfront, lounge], sources: [{source: cruisewurld, rank: 7}]}
+      - {key: hard-rock, name: Hard Rock Cafe Lagos, area: Victoria Island, kind: restaurant, vibes: [waterfront, lounge, playful], sources: [{source: cruisewurld, rank: 10}]}
+      - {key: dani, name: Dani by The Delborough, area: Victoria Island, address: "Plot 1501 Itirin Court, off Bishop Aboyade Cole Street", kind: restaurant, vibes: [romantic_dinner, proposal], sources: [{source: zikoko, rank: 2}]}
+      - {key: rapa-nui, name: Rapa Nui, area: Victoria Island, address: "256 Etim Inyang Crescent", kind: restaurant, vibes: [romantic_dinner, proposal], sources: [{source: zikoko, rank: 4}]}
+      - {key: rora, name: Rora Lagos, area: Victoria Island, address: "20 Ologun Agbaje Street", kind: restaurant, vibes: [romantic_dinner, proposal], sources: [{source: zikoko, rank: 5}]}
+      - {key: oceans5, name: Oceans5, area: Victoria Island, address: "20 Elsie Femi Pearse Street", kind: restaurant, vibes: [romantic_dinner, proposal], sources: [{source: zikoko, rank: 8}]}
+      - {key: slow, name: Slow, area: Victoria Island, address: "2 Musa Yar'Adua Street", kind: restaurant, vibes: [romantic_dinner, proposal], sources: [{source: zikoko, rank: 10}]}
+      - {key: zayda, name: Zayda, area: Lekki Phase 1, address: "1 Chief Collins Uchidiuno Street", kind: restaurant, vibes: [romantic_dinner, proposal], sources: [{source: zikoko, rank: 11}]}
+      - {key: fiora-gardens, name: Fiora Gardens, area: Ikeja, address: "9 Sasegbon Street", kind: restaurant, vibes: [romantic_dinner, outdoors, proposal], sources: [{source: zikoko, rank: 1}]}
+      - {key: safron, name: Safron Rooftop, area: Ikeja GRA, kind: rooftop, vibes: [rooftop, lounge], sources: [{source: pulse_proposal, rank: 5}]}
+      - {key: trib3, name: Trib3, area: Victoria Island, address: "288B Ajose Adeogun Street", kind: restaurant, vibes: [lounge, playful], sources: [{source: pulse_proposal, rank: 8}]}
+      - {key: the-garden, name: The Garden, area: Ikoyi, address: "8 Bayo Kuku Road", kind: restaurant, vibes: [romantic_dinner, outdoors], sources: [{source: pulse_proposal, rank: 9}]}
+      - {key: piano-bistro, name: The Piano Bistro, area: Victoria Island, address: "Bishop Aboyade Cole Street", kind: restaurant, vibes: [romantic_dinner], price: 3, price_note: "From about ₦35,000 a person (Discover Lagos)", sources: [{source: discoverlagos, rank: 6}]}
+      - {key: see-lagos, name: See Lagos, area: Lekki Phase 1, address: "Wole Ariyo Street", kind: restaurant, vibes: [lounge, romantic_dinner], price: 3, price_note: "About ₦40,000 a person; open late (Discover Lagos)", sources: [{source: discoverlagos, rank: 8}]}
+      - {key: la-taverna, name: La Taverna, area: Ikoyi, kind: restaurant, vibes: [romantic_dinner], sources: [{source: marieclaire}]}
+      - {key: cilantro, name: Cilantro, area: Ikeja, kind: restaurant, vibes: [romantic_dinner], sources: [{source: marieclaire}]}
+      - {key: rsvp, name: RSVP, area: Victoria Island, kind: restaurant, vibes: [romantic_dinner, lounge], sources: [{source: marieclaire}]}
+      - {key: la-giara, name: La Giara (Sheraton), area: Ikeja, kind: restaurant, vibes: [romantic_dinner], sources: [{source: marieclaire}]}
+      - {key: yellow-chilli, name: The Yellow Chilli, area: Victoria Island, kind: restaurant, vibes: [romantic_dinner, luxury], sources: [{source: marieclaire}]}
+      # Art and culture
+      - {key: terra-kulture, name: Terra Kulture, area: Victoria Island, kind: art, vibes: [art], sources: [{source: marieclaire}]}
+      - {key: nike-gallery, name: Nike Art Gallery, area: Lekki, kind: art, vibes: [art, budget], sources: [{source: marieclaire}]}
+      - {key: rele, name: Rele Gallery, area: Ikoyi, kind: art, vibes: [art], sources: [{source: marieclaire}]}
+      - {key: freedom-park, name: Freedom Park, area: Lagos Island, kind: art, vibes: [art, outdoors], sources: [{source: cruisewurld, rank: 13}, {source: marieclaire}]}
+      # Outdoors and beaches
+      - {key: lekki-conservation, name: Lekki Conservation Centre, area: Lekki, kind: outdoors, vibes: [outdoors], sources: [{source: cruisewurld, rank: 11}, {source: marieclaire}]}
+      - {key: muri-okunola, name: Muri Okunola Park, area: Victoria Island, kind: outdoors, vibes: [outdoors, budget], sources: [{source: cruisewurld, rank: 12}]}
+      - {key: jjt-park, name: Johnson Jakande Tinubu Park, area: Ikeja, kind: outdoors, vibes: [outdoors, budget], sources: [{source: pulse_budget}, {source: marieclaire}]}
+      - {key: lufasi, name: Lufasi Nature Park, area: Lekki–Epe Expressway, kind: outdoors, vibes: [outdoors], sources: [{source: marieclaire}]}
+      - {key: tarkwa-bay, name: Tarkwa Bay, area: Lagos Harbour (by boat), kind: beach, vibes: [beach], sources: [{source: cruisewurld, rank: 14}, {source: marieclaire}]}
+      - {key: atican, name: Atican Beach, area: Lekki, kind: beach, vibes: [beach], sources: [{source: marieclaire}]}
+      # Fun and games
+      - {key: ceracerni, name: Ceracerni Art Hub (paint and sip), area: Lekki Phase 1, kind: activity, vibes: [playful, art, budget], sources: [{source: pulse_budget}]}
+      - {key: upbeat, name: Upbeat Recreation Centre, area: Lekki, kind: activity, vibes: [playful, budget], sources: [{source: pulse_budget}, {source: marieclaire}]}
+      - {key: rufus-bees, name: Rufus & Bees, area: Lekki, kind: activity, vibes: [playful, lounge], sources: [{source: marieclaire}]}
+      - {key: escape-room-33, name: Escape Room 33, area: Victoria Island, kind: activity, vibes: [playful], sources: [{source: marieclaire}]}
+      - {key: zen-archery, name: Zen Archery, area: Ilupeju, kind: activity, vibes: [playful, budget], price: 2, price_note: "From ₦15,000 an hour (Pulse)", sources: [{source: pulse_budget}]}
+      # Spa and getaways
+      - {key: oriki-spa, name: Oriki Spa, area: Ikoyi and Victoria Island, kind: spa, vibes: [spa], sources: [{source: marieclaire}]}
+      - {key: la-campagne, name: La Campagne Tropicana Beach Resort, area: Ibeju-Lekki, kind: getaway, vibes: [getaway, beach], sources: [{source: marieclaire}]}
+      - {key: whispering-palms, name: Whispering Palms Resort, area: Badagry, kind: getaway, vibes: [getaway, beach], sources: [{source: marieclaire}]}
+
+  - key: abuja
+    name: Abuja
+    currency: NGN
+    timezone: Africa/Lagos
+    sources:
+      wakaabuja_dinner: {title: "Top 10 Romantic Date Night Restaurants in Abuja 2026", publisher: WakaAbuja, url: "https://wakaabuja.com/romantic-date-night-restaurants-in-abuja/", published: "2026-10-29", ranked: true}
+      wakaabuja_fun: {title: "Fun Date Ideas in Abuja", publisher: WakaAbuja, url: "https://wakaabuja.com/fun-date-ideas-in-abuja/", published: "2026-10-29", ranked: true}
+      rexclarke: {title: "Top Fun Places in Abuja for Couples", publisher: Rex Clarke Adventures, url: "https://rexclarkeadventures.com/fun-places-abuja-couples/", published: "2025-12-18", ranked: true}
+      pulse_budget: {title: "11 Fun & Affordable Date Ideas in Lagos Under ₦30K", publisher: Pulse Nigeria, url: "https://www.pulse.ng/story/11-fun-and-affordable-date-ideas-in-lagos-under-naira30k-2025030415223336933", published: "2025-03-04", ranked: false}
+    places:
+      # Restaurants
+      - {key: istanbul, name: Istanbul Restaurant Café, area: Jabi, address: "Shop L32/33, Jabi Lake Mall", kind: restaurant, vibes: [romantic_dinner], sources: [{source: wakaabuja_dinner, rank: 1}]}
+      - {key: carneval, name: Carneval Restaurant, area: Wuse 2, address: "2nd floor, Mall 55, Kumasi Crescent", kind: restaurant, vibes: [romantic_dinner, lounge], sources: [{source: wakaabuja_dinner, rank: 2}]}
+      - {key: citypot, name: Citypot Restaurant, area: Wuse 2, address: "Ademola Adetokunbo Crescent", kind: restaurant, vibes: [romantic_dinner], sources: [{source: wakaabuja_dinner, rank: 3}]}
+      - {key: the-vue, name: The Vue, area: Wuse Zone 5, address: "Novare Central Mall", kind: restaurant, vibes: [romantic_dinner, rooftop], sources: [{source: wakaabuja_dinner, rank: 4}]}
+      - {key: asados, name: Asados, area: Maitama, address: "32A Katsina-Ala Street", kind: restaurant, vibes: [romantic_dinner], sources: [{source: wakaabuja_dinner, rank: 5}]}
+      - {key: blucabana, name: BluCabana, area: Mabushi, address: "1322 Shehu Yar'Adua Way", kind: restaurant, vibes: [romantic_dinner, outdoors], price: 2, price_note: "Meals about ₦10,000–₦20,000 a person (Rex Clarke)", sources: [{source: wakaabuja_dinner, rank: 6}, {source: rexclarke, rank: 6}]}
+      - {key: citro, name: Citro, area: Wuse 2, address: "4 Durban Street", kind: restaurant, vibes: [romantic_dinner], sources: [{source: wakaabuja_dinner, rank: 7}]}
+      - {key: field-and-ocean, name: Field and Ocean Butchery, area: Wuse 2, address: "4 Dar-Es-Salam Street, off Aminu Kano Crescent", kind: restaurant, vibes: [romantic_dinner], sources: [{source: wakaabuja_dinner, rank: 8}]}
+      - {key: halims, name: Halims Smokehouse, area: Garki, address: "Plot 704, Ahmadu Bello Way, Area 11", kind: restaurant, vibes: [romantic_dinner], sources: [{source: wakaabuja_dinner, rank: 9}]}
+      - {key: the-burgundy, name: The Burgundy, area: Central Area, address: "990 Sterling Bank Boulevard, behind Fraser Suites", kind: restaurant, vibes: [romantic_dinner, luxury, proposal], sources: [{source: wakaabuja_dinner, rank: 10}]}
+      - {key: crush-cafe, name: Crush Café, area: Wuse 2, kind: restaurant, vibes: [budget], price: 1, price_note: "Under ₦5,000 for two (Rex Clarke)", sources: [{source: rexclarke, rank: 8}]}
+      # Outdoors, art and fun
+      - {key: jabi-lake, name: Jabi Lake (sunset boat ride), area: Jabi, kind: outdoors, vibes: [waterfront, outdoors], sources: [{source: wakaabuja_fun, rank: 9}]}
+      - {key: jabi-lake-mall, name: Jabi Lake Mall, area: Jabi, address: "Bala Sokoto Way", kind: activity, vibes: [playful, waterfront, budget], price: 1, price_note: "Cinema about ₦3,500; meals ₦6,000–₦10,000 a person (Rex Clarke)", sources: [{source: rexclarke, rank: 1}]}
+      - {key: millennium-park, name: Millennium Park, area: Maitama, kind: outdoors, vibes: [outdoors, budget], price: 1, price_note: "Free entry (Rex Clarke)", sources: [{source: rexclarke, rank: 4}, {source: wakaabuja_fun, rank: 7}, {source: pulse_budget}]}
+      - {key: thought-pyramid, name: Thought Pyramid Art Centre, area: Wuse 2, address: "18 Libreville Crescent", kind: art, vibes: [art, budget], price: 1, price_note: "Free entry (Rex Clarke)", sources: [{source: rexclarke, rank: 2}]}
+      - {key: central-park, name: Central Park Abuja, area: Central Area, address: "Kur Mohammed Avenue", kind: activity, vibes: [playful, outdoors, budget], price: 1, price_note: "Free entry; go-karting ₦3,000–₦5,000 (Rex Clarke)", sources: [{source: rexclarke, rank: 3}]}
+      - {key: magicland, name: Magicland Amusement Park, area: Area 1, kind: activity, vibes: [playful, budget], price: 1, price_note: "Entry about ₦3,000 a person (Rex Clarke)", sources: [{source: rexclarke, rank: 5}]}
+      - {key: city-park, name: City Park, area: Wuse 2, kind: activity, vibes: [playful, budget], price: 1, price_note: "About ₦5,000 (Rex Clarke)", sources: [{source: rexclarke, rank: 7}]}
+      - {key: evenana-spa, name: Evenana Spa, area: Apo, kind: spa, vibes: [spa, luxury], price: 4, price_note: "Private jacuzzi and spa ₦30,000–₦80,000 (WakaAbuja)", sources: [{source: wakaabuja_fun, rank: 5}]}

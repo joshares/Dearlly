@@ -26,7 +26,8 @@ def test_registries_load_and_start_empty() -> None:
     registries = load_all_registries()
     assert set(registries) == set(REGISTRIES)
     # Filled in as stages arrive: love notes (Stage 4) and the quote library so far.
-    assert registries["cities"] == () and registries["game_formats"] == ()
+    assert registries["game_formats"] == ()
+    assert {c["key"] for c in registries["cities"]} == {"lagos", "abuja"}
     assert any(t["key"] == "love_note" for t in registries["experience_types"])
     assert len(registries["quotes"]) >= 40
 
