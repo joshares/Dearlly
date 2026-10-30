@@ -116,7 +116,7 @@ def test_recipient_opens_and_seals_a_reply(auth_client: AuthClient) -> None:
     # The sender logs back in and sees Opened + the reply.
     code = auth_client.request_code(SENDER)
     auth_client.post("/auth/verify", json={"email": SENDER, "code": code})
-    mine = auth_client.get("/me/experiences").json()[0]
+    mine = auth_client.get("/me/experiences").json()["items"][0]
     assert mine["open_count"] == 1 and mine["first_opened_at"] is not None
     assert mine["reply"]["reaction"] == "aww"
     assert mine["reply"]["note"] == "You made my day ❤️"
@@ -127,7 +127,7 @@ def test_sender_previews_do_not_count(auth_client: AuthClient) -> None:
     token = _token(_create(auth_client)["url"])
     assert auth_client.get(f"/letters/{token}").json()["is_sender"] is True
     auth_client.post(f"/letters/{token}/open")
-    assert auth_client.get("/me/experiences").json()[0]["open_count"] == 0
+    assert auth_client.get("/me/experiences").json()["items"][0]["open_count"] == 0
     own_reply = auth_client.post(f"/letters/{token}/reply", json={"reaction": "aww"})
     assert own_reply.status_code == 409
 
@@ -140,7 +140,7 @@ def test_viewing_alone_is_not_opening(auth_client: AuthClient) -> None:
     auth_client.get(f"/letters/{token}")
     code = auth_client.request_code(SENDER)
     auth_client.post("/auth/verify", json={"email": SENDER, "code": code})
-    assert auth_client.get("/me/experiences").json()[0]["open_count"] == 0
+    assert auth_client.get("/me/experiences").json()["items"][0]["open_count"] == 0
 
 
 def test_scheduled_letters_stay_sealed(auth_client: AuthClient) -> None:
@@ -174,7 +174,20 @@ def test_only_the_owner_can_take_a_letter_back(auth_client: AuthClient) -> None:
     auth_client.use_csrf()
     auth_client.sign_up("bola_demo@example.com", "bola_demo")
     assert auth_client.post(f"/me/experiences/{created['id']}/revoke").status_code == 404
-    assert auth_client.get("/me/experiences").json() == []
+    assert auth_client.get("/me/experiences").json()["items"] == []
+
+
+def test_my_letters_come_a_page_at_a_time(auth_client: AuthClient) -> None:
+    auth_client.sign_up(SENDER, "ada_demo")
+    ids = [_create(auth_client)["id"] for _ in range(5)]
+    first = auth_client.get("/me/experiences", params={"per_page": 3}).json()
+    assert first["total"] == 5 and first["page"] == 1
+    assert [e["id"] for e in first["items"]] == ids[::-1][:3]  # newest first
+    second = auth_client.get("/me/experiences", params={"per_page": 3, "page": 2}).json()
+    assert [e["id"] for e in second["items"]] == ids[::-1][3:]
+    assert auth_client.get("/me/experiences", params={"page": 9}).json()["items"] == []
+    assert auth_client.get("/me/experiences", params={"per_page": 500}).status_code == 422
+    assert auth_client.get("/me/experiences", params={"page": 0}).status_code == 422
 
 
 def test_deleting_the_account_deletes_its_letters(auth_client: AuthClient) -> None:

@@ -236,7 +236,13 @@
     "takeBack": "Take back",
     "takeBackConfirm": "Take it back? The link will stop working for good.",
     "takeBackYes": "Yes, take it back",
-    "takeBackNo": "Keep it"
+    "takeBackNo": "Keep it",
+    "seeAll": "See all your letters ({count})",
+    "pagesLabel": "Pages",
+    "newer": "← Newer",
+    "older": "Older →",
+    "pageOf": "Page {page} of {pages}",
+    "metaTitle": "Your letters · Dearlly"
   },
   "save": {
     "heading": "Keep this letter",

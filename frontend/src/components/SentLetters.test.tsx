@@ -22,6 +22,9 @@ const base: SentLetter = {
   revoked: false,
 };
 
+const replace = vi.fn();
+vi.mock("next/navigation", () => ({ useRouter: () => ({ push: replace, replace }) }));
+
 let letters: SentLetter[];
 
 beforeEach(() => {
@@ -43,7 +46,12 @@ beforeEach(() => {
     vi.fn(async (url: string) => {
       const path = new URL(url).pathname;
       if (path === "/auth/csrf") return json(200, { csrf_token: "tok" });
-      if (path === "/me/experiences") return json(200, letters);
+      if (path === "/me/experiences") {
+        const query = new URL(url).searchParams;
+        const page = Number(query.get("page")), perPage = Number(query.get("per_page"));
+        const items = letters.slice((page - 1) * perPage, page * perPage);
+        return json(200, { items, total: letters.length, page, per_page: perPage });
+      }
       if (path === "/experience-types")
         return json(200, [{ key: "love_note", reactions: [{ key: "love_it", label: "I love this" }] }]);
       if (path === "/me/experiences/1/revoke") return json(200, { ...base, url: null, revoked: true });
@@ -57,15 +65,18 @@ afterEach(() => {
 });
 
 it("shows Opened and Replied for each letter", async () => {
-  render(<SentLetters />);
+  render(<SentLetters perPage={10} />);
   expect(await screen.findByText("Not opened yet")).toBeTruthy();
   expect(screen.getByText(/Opened 29 Oct 2026.*· 3 times/)).toBeTruthy();
   await waitFor(() => expect(screen.getByText("Replied: ❤️ I love this")).toBeTruthy());
+  // Opened still shows once there's a reply.
+  const kemi = screen.getByText("To Kemi").closest("li") as HTMLElement;
+  expect(within(kemi).getByText(/^Opened 29 Oct 2026/)).toBeTruthy();
   expect(screen.getByText("“You too”")).toBeTruthy();
 });
 
 it("takes a letter back only after confirming", async () => {
-  render(<SentLetters />);
+  render(<SentLetters perPage={10} />);
   const item = (await screen.findByText("To Tolu")).closest("li") as HTMLElement;
   fireEvent.click(within(item).getByRole("button", { name: "Take back" }));
   fireEvent.click(within(item).getByRole("button", { name: "Keep it" }));
@@ -73,4 +84,22 @@ it("takes a letter back only after confirming", async () => {
   fireEvent.click(within(item).getByRole("button", { name: "Yes, take it back" }));
   expect(await within(item).findByText(/Taken back/)).toBeTruthy();
   expect(within(item).queryByRole("button", { name: "Copy link" })).toBeNull();
+});
+
+it("shows the latest few on the profile with a link to all of them", async () => {
+  letters = Array.from({ length: 5 }, (_, i) => ({ ...base, id: String(i), recipient_name: `R${i}` }));
+  render(<SentLetters perPage={3} />);
+  expect(await screen.findByText("To R2")).toBeTruthy();
+  expect(screen.queryByText("To R3")).toBeNull();
+  expect(screen.getByRole("link", { name: "See all your letters (5)" }).getAttribute("href")).toBe("/letters");
+});
+
+it("pages through every letter on the letters page", async () => {
+  letters = Array.from({ length: 12 }, (_, i) => ({ ...base, id: String(i), recipient_name: `R${i}` }));
+  render(<SentLetters perPage={10} page={2} paged />);
+  expect(await screen.findByText("To R10")).toBeTruthy();
+  expect(screen.getByText("Page 2 of 2")).toBeTruthy();
+  expect(screen.getByRole("link", { name: "← Newer" }).getAttribute("href")).toBe("/letters?page=1");
+  expect(screen.queryByRole("link", { name: "Older →" })).toBeNull();
+  expect(screen.queryByRole("link", { name: /See all/ })).toBeNull();
 });
