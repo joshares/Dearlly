@@ -44,12 +44,17 @@ export function saveDraft<T>(key: string, draft: T | null): void {
   }
 }
 
-/** "Love note · Date invitation · Vacation": which kind of letter this form makes. */
-export function TypeSwitch({ current }: { current: "love_note" | "date_invite" | "vacation_invite" }) {
+/** "Love note · Date invitation · Vacation · Gift": which kind of letter this form makes. */
+export function TypeSwitch({
+  current,
+}: {
+  current: "love_note" | "date_invite" | "vacation_invite" | "gift_reveal";
+}) {
   const items = [
     { key: "love_note", href: "/write", text: t.kinds.love_note },
     { key: "date_invite", href: "/write/date", text: t.kinds.date_invite },
     { key: "vacation_invite", href: "/write/vacation", text: t.kinds.vacation_invite },
+    { key: "gift_reveal", href: "/write/gift", text: t.kinds.gift_reveal },
   ] as const;
   return (
     <nav aria-label={t.kindsLabel} className="flex flex-wrap gap-2">

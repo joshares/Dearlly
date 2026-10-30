@@ -91,3 +91,26 @@ export function vacationLetter(
   if (c.note?.trim()) details.push({ label: v.note, value: c.note.trim() });
   return { ...people, quoteTitle: v.cardTitle, quoteText: c.message ?? "", details };
 }
+
+const g = getMessages().gift;
+
+/** What a gift reveal stores (backend/config/experience_types.yaml, gift_reveal). */
+export type GiftContent = {
+  message: string;
+  gift: string;
+  hint?: string | null;
+  note?: string | null;
+};
+
+/** The gift letter. The gift itself sits under the scratch-off stamp, so it's only added here
+ *  (for saving as a picture or PDF) once it has been revealed. */
+export function giftLetter(
+  c: Partial<GiftContent>,
+  people: { senderName: string; recipientName: string; recipientTitle?: string | null; theme: LetterTheme },
+  withGift = false,
+): LetterContent {
+  const details: { label: string; value: string }[] = [];
+  if (withGift && c.gift?.trim()) details.push({ label: g.giftDetail, value: c.gift.trim() });
+  if (c.note?.trim()) details.push({ label: g.note, value: c.note.trim() });
+  return { ...people, quoteTitle: g.cardTitle, quoteText: c.message ?? "", details };
+}

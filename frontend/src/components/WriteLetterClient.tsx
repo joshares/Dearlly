@@ -18,3 +18,8 @@ export const WriteVacationClient = dynamic(
   () => import("@/components/WriteVacation").then((m) => m.WriteVacation),
   { ssr: false },
 );
+
+export const WriteGiftClient = dynamic(
+  () => import("@/components/WriteGift").then((m) => m.WriteGift),
+  { ssr: false },
+);

@@ -235,5 +235,37 @@ describe("OpenLetter", () => {
     expect(screen.queryByRole("link", { name: "Get directions" })).toBeNull();
     expect(screen.getByRole("link", { name: "Plan your own trip invitation" }).getAttribute("href")).toBe("/write/vacation");
   });
+
+  it("keeps the gift under the stamp until it's revealed, then asks for a reply", async () => {
+    // jsdom can't draw, so the plain stamp with "Reveal it" shows (as on phones that can't).
+    vi.stubGlobal("HTMLCanvasElement", class { getContext() { return null; } });
+    letter = {
+      ...READY,
+      type: "gift_reveal",
+      content: { message: "For being you.", gift: "A spa day for two", hint: "Something relaxing" },
+      reactions: [
+        { key: "love_it", label: "I love it!" },
+        { key: "thank_you", label: "Thank you!" },
+      ],
+    };
+    render(<OpenLetter token={TOKEN} />);
+    fireEvent.click(await screen.findByRole("button", { name: "Break the seal" }));
+    expect(await screen.findByText("For being you.")).toBeTruthy();
+    expect(screen.getByText("Something relaxing")).toBeTruthy();
+    // Not readable yet, and no reply or download until it's revealed.
+    expect(screen.getByText("A spa day for two").closest("[aria-hidden]")?.getAttribute("aria-hidden")).toBe("true");
+    expect(screen.getByText(/Scratch the stamp to see your gift/)).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "Seal my reply" })).toBeNull();
+    expect(screen.queryByText("Save as picture")).toBeNull();
+
+    fireEvent.click(screen.getByRole("button", { name: "Reveal it" }));
+    expect(await screen.findByText("Surprise!")).toBeTruthy();
+    expect(screen.getByText("A spa day for two").closest("[aria-hidden]")?.getAttribute("aria-hidden")).toBe("false");
+    fireEvent.click(screen.getByLabelText(/Thank you!/));
+    fireEvent.click(screen.getByRole("button", { name: "Seal my reply" }));
+    expect(await screen.findByText("Reply sealed.")).toBeTruthy();
+    expect(calls.find((c) => c.path.endsWith("/reply"))?.body).toEqual({ reaction: "thank_you", note: null });
+    expect(screen.getByRole("link", { name: "Send your own gift reveal" }).getAttribute("href")).toBe("/write/gift");
+  });
 });
 

@@ -199,7 +199,8 @@
     "kinds": {
       "love_note": "Love note",
       "date_invite": "Date invitation",
-      "vacation_invite": "Vacation"
+      "vacation_invite": "Vacation",
+      "gift_reveal": "Gift"
     }
   },
   "letter": {
@@ -265,7 +266,8 @@
     "directions": "Get directions",
     "theirAnswer": "Their answer",
     "writeBackDate": "Send your own invitation",
-    "writeBackTrip": "Plan your own trip invitation"
+    "writeBackTrip": "Plan your own trip invitation",
+    "writeBackGift": "Send your own gift reveal"
   },
   "sent": {
     "title": "Letters you've sent",
@@ -300,7 +302,8 @@
     "kinds": {
       "love_note": "Love note",
       "date_invite": "Date invitation",
-      "vacation_invite": "Vacation invitation"
+      "vacation_invite": "Vacation invitation",
+      "gift_reveal": "Gift reveal"
     }
   },
   "save": {
@@ -514,5 +517,41 @@
     "whatsappText": "I'm planning something for us ✈️ Open it here:",
     "another": "Plan another trip",
     "placeholder": "Your invitation will appear here…"
+  },
+  "gift": {
+    "metaTitle": "Reveal a gift · Dearlly",
+    "title": "Reveal a gift",
+    "lead": "Hide the gift under a stamp. They scratch it off with a finger to see what it is.",
+    "inviteHeading": "Your message",
+    "suggestionsLabel": "Start from one of these",
+    "suggestions": [
+      "I saw this and thought of you.",
+      "For every time you made my day better.",
+      "Just because. You deserve nice things.",
+      "Happy birthday! Scratch to see what's coming."
+    ],
+    "use": "Use this",
+    "messageLabel": "Your message",
+    "giftHeading": "The gift",
+    "giftLabel": "What's the gift?",
+    "giftHint": "Hidden until they scratch it, e.g. \"A weekend spa day for two\".",
+    "hintLabel": "A hint on the stamp (optional)",
+    "hintHint": "e.g. \"Something you've wanted for months\".",
+    "noteLabel": "Anything else? (optional)",
+    "noteHint": "Where it is, when it arrives…",
+    "cardTitle": "A little something",
+    "note": "Note",
+    "giftDetail": "The gift",
+    "tryIt": "Try it: this is what they'll see",
+    "scratchHere": "Scratch here",
+    "giftInside": "A gift inside 🎁",
+    "yourGift": "Your gift",
+    "reveal": "Reveal it",
+    "revealInstead": "Or tap to reveal it",
+    "revealed": "Surprise!",
+    "scratchFirst": "Scratch the stamp to see your gift, then seal a reply.",
+    "whatsappText": "I got you something 🎁 Open it here:",
+    "another": "Reveal another gift",
+    "placeholder": "Your message will appear here…"
   }
 }
