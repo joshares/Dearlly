@@ -2,8 +2,12 @@
 #
 # key:        stable id stored with each experience (never rename once live)
 # name:       shown in the app
-# fields:     the type's own content; every value is plain text
-#   max:        maximum characters
+# email_subject: subject of the email to the recipient ({sender} is filled in)
+# fields:     the type's own content
+#   kind:       text (default), datetime (in the future, within a year), city (from cities.yaml)
+#               or place (a place key from cities.yaml in the chosen city; the server copies its
+#               name, area and address into place_name / place_area / place_address)
+#   max:        maximum characters (text)
 #   required:   must be filled in
 # themes:     paper styles the sender can pick
 # reply:      how the recipient answers: "reaction" (pick one + optional note) or "yes_no" (Stage 5)
@@ -12,6 +16,7 @@
 experience_types:
   - key: love_note
     name: Love note
+    email_subject: "{sender} sealed a letter for you 💌"
     fields:
       quote_title:
         max: 80
@@ -30,3 +35,40 @@ experience_types:
         label: You made me smile
       - key: forever
         label: Forever yours
+
+  - key: date_invite
+    name: Date invitation
+    email_subject: "{sender} is asking you on a date 💌"
+    fields:
+      message:
+        max: 400
+        required: true
+      city:
+        kind: city
+        required: true
+      place_key:
+        kind: place
+        required: false
+      place_name:
+        max: 80
+        required: false
+      place_area:
+        max: 60
+        required: false
+      place_address:
+        max: 120
+        required: false
+      date_at:
+        kind: datetime
+        required: true
+      note:
+        max: 200
+        required: false
+    themes: [cream, kraft, rose]
+    reply: yes_no
+    reactions:
+      # Quoted: YAML would read a bare yes/no as true/false.
+      - key: "yes"
+        label: "Yes!"
+      - key: "no"
+        label: Not this time

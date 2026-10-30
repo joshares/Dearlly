@@ -16,9 +16,11 @@ export type LetterContent = {
   quoteTitle?: string | null;
   quoteText: string;
   theme: LetterTheme;
+  // Date invitations: "Where", "When", "Note" under the message.
+  details?: { label: string; value: string }[];
 };
 
-/** A love note on ruled letter paper. Used for the live preview and the recipient's letter. */
+/** A letter on ruled paper (love note or invitation). Used for the live preview and the recipient. */
 export function LetterCard({ letter, placeholder }: { letter: LetterContent; placeholder: string }) {
   const greeting = letter.recipientTitle?.trim() || letter.recipientName.trim();
   return (
@@ -40,6 +42,16 @@ export function LetterCard({ letter, placeholder }: { letter: LetterContent; pla
       <p className="mt-3 text-lg leading-[2.25rem] whitespace-pre-line">
         {letter.quoteText.trim() || <span className="text-muted">{placeholder}</span>}
       </p>
+      {letter.details && letter.details.length > 0 && (
+        <dl className="mt-5 flex flex-col gap-2 rounded-md border-2 border-dashed border-ink/40 bg-white/40 p-4">
+          {letter.details.map((d) => (
+            <div key={d.label} className="flex flex-col">
+              <dt className="text-xs font-extrabold tracking-[0.12em] text-muted uppercase">{d.label}</dt>
+              <dd className="text-lg font-semibold whitespace-pre-line">{d.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
       <p className="font-hand mt-6 text-right text-xl leading-[2.2]">
         — {letter.senderName.trim() || "…"}
       </p>

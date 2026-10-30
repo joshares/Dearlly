@@ -103,3 +103,25 @@ it("pages through every letter on the letters page", async () => {
   expect(screen.queryByRole("link", { name: "Older →" })).toBeNull();
   expect(screen.queryByRole("link", { name: /See all/ })).toBeNull();
 });
+
+it("shows where and when for a date invitation, and their Yes", async () => {
+  letters = [
+    {
+      ...base,
+      type: "date_invite",
+      content: { place_name: "Shiro Lagos", date_at: "2026-11-07T19:00:00+01:00" },
+      first_opened_at: "2026-10-30T10:00:00Z",
+      open_count: 1,
+      reply: { reaction: "yes", note: null, replied_at: "2026-10-30T10:01:00Z" },
+    },
+  ];
+  vi.mocked(fetch).mockImplementation(async (url) => {
+    const path = new URL(String(url)).pathname;
+    if (path === "/experience-types")
+      return json(200, [{ key: "date_invite", reactions: [{ key: "yes", label: "Yes!" }] }]);
+    return json(200, { items: letters, total: 1, page: 1, per_page: 10 });
+  });
+  render(<SentLetters perPage={10} />);
+  expect(await screen.findByText(/Shiro Lagos · 7 Nov 2026/)).toBeTruthy();
+  await waitFor(() => expect(screen.getByText("Replied: 🎉 Yes!")).toBeTruthy());
+});

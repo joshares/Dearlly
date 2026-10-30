@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { WaxSeal } from "@/components/brand";
 import { LetterCard, type LetterContent, type LetterTheme } from "@/components/LetterCard";
@@ -10,8 +10,10 @@ import { SaveLetter } from "@/components/SaveLetter";
 import { getMessages } from "@/i18n";
 import { ApiError, api } from "@/lib/api";
 import { lagosDateTime, timeLeft } from "@/lib/dates";
+import { type DateContent, dateLetter, directionsUrl } from "@/lib/invitation";
 
 const t = getMessages().letter;
+const CITY_NAMES: Record<string, string> = { lagos: "Lagos", abuja: "Abuja" };
 
 type Reaction = { key: string; label: string };
 type Reply = { reaction: string; note: string | null; replied_at: string };
@@ -25,7 +27,9 @@ export type Letter = {
   theme: LetterTheme;
   opens_at: string | null;
   opens_in_seconds: number;
-  content: { quote_title?: string | null; quote_text: string } | null;
+  // Love note: quote_title / quote_text. Date invitation: see DateContent.
+  content: Record<string, string | null | undefined> | null;
+  reply_kind: "reaction" | "yes_no";
   reactions: Reaction[];
   reply: Reply | null;
   is_sender: boolean;
@@ -37,7 +41,22 @@ export const REACTION_EMOJI: Record<string, string> = {
   aww: "🥹",
   smiling: "😊",
   forever: "💌",
+  yes: "🎉",
+  no: "🤍",
 };
+
+/** The letter as shown on paper, for whichever type it is. */
+function asContent(letter: Letter): LetterContent {
+  const people = {
+    senderName: letter.sender_name,
+    recipientName: letter.recipient_name,
+    recipientTitle: letter.recipient_title,
+    theme: letter.theme,
+  };
+  const c = letter.content ?? {};
+  if (letter.type === "date_invite") return dateLetter(c as Partial<DateContent>, people);
+  return { ...people, quoteTitle: c.quote_title, quoteText: c.quote_text ?? "" };
+}
 
 const OPENING_MS = 1600;
 const NOTE_MAX = 280;
@@ -151,14 +170,7 @@ export function OpenLetter({ token, reportOpen = false }: { token: string; repor
     );
   }
 
-  const content: LetterContent = {
-    senderName: letter.sender_name,
-    recipientName: letter.recipient_name,
-    recipientTitle: letter.recipient_title,
-    quoteTitle: letter.content.quote_title,
-    quoteText: letter.content.quote_text,
-    theme: letter.theme,
-  };
+  const content = asContent(letter);
 
   return (
     <div className="flex flex-col gap-10">
@@ -175,6 +187,8 @@ export function OpenLetter({ token, reportOpen = false }: { token: string; repor
         <ReplyShown letter={letter} reply={letter.reply} />
       ) : letter.is_sender ? (
         <p className="text-muted">{t.senderNoReply}</p>
+      ) : letter.reply_kind === "yes_no" ? (
+        <YesNoForm token={token} letter={letter} onSent={(reply) => setLetter({ ...letter, reply })} />
       ) : (
         <ReplyForm
           token={token}
@@ -311,7 +325,13 @@ function ReplyShown({ letter, reply }: { letter: Letter; reply: Reply }) {
   return (
     <section className="flex flex-col gap-4" aria-live="polite">
       <div className="letter-sheet flex flex-col gap-2 rounded-sm py-6 pr-6 pl-12 md:pl-16">
-        <h2 className="text-2xl">{letter.is_sender ? t.theirReply : t.repliedTitle}</h2>
+        <h2 className="text-2xl">
+          {letter.is_sender
+            ? letter.reply_kind === "yes_no" ? t.theirAnswer : t.theirReply
+            : letter.reply_kind === "yes_no"
+              ? reply.reaction === "yes" ? t.saidYes : t.answerSent
+              : t.repliedTitle}
+        </h2>
         {!letter.is_sender && (
           <p className="text-sm text-muted">{fill(t.repliedLead, { sender: letter.sender_name })}</p>
         )}
@@ -321,20 +341,30 @@ function ReplyShown({ letter, reply }: { letter: Letter; reply: Reply }) {
         </p>
         {reply.note && <p className="font-hand text-lg leading-loose">{reply.note}</p>}
       </div>
-      {!letter.is_sender && <WriteBack />}
+      {letter.type === "date_invite" && reply.reaction === "yes" && letter.content && (
+        <a
+          href={directionsUrl(letter.content as DateContent, CITY_NAMES[letter.content.city ?? ""] ?? "")}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-12 items-center self-start rounded-lg bg-stamp px-5 font-extrabold text-paper no-underline shadow-[3px_3px_0_var(--color-ink)]"
+        >
+          {t.directions}
+        </a>
+      )}
+      {!letter.is_sender && <WriteBack date={letter.type === "date_invite"} />}
     </section>
   );
 }
 
-function WriteBack() {
+function WriteBack({ date = false }: { date?: boolean }) {
   return (
     <div className="flex flex-col items-start gap-2">
       <p className="text-muted">{t.writeBackLead}</p>
       <Link
-        href="/write"
+        href={date ? "/write/date" : "/write"}
         className="inline-flex min-h-12 items-center rounded-lg border-2 border-fg px-5 font-bold no-underline"
       >
-        {t.writeBack}
+        {date ? t.writeBackDate : t.writeBack}
       </Link>
     </div>
   );
@@ -432,6 +462,144 @@ function ReplyForm({
       >
         {busy ? t.sendingReply : t.sendReply}
       </button>
+    </form>
+  );
+}
+
+const DODGES = 3;
+
+/**
+ * Yes, or the No that runs away. It dodges a few taps (it's a joke, not a trap), then stays still
+ * so No can always be said. Keyboard users and "reduce motion" get a No that never moves.
+ */
+function YesNoForm({
+  token,
+  letter,
+  onSent,
+}: {
+  token: string;
+  letter: Letter;
+  onSent: (reply: Reply) => void;
+}) {
+  const [answer, setAnswer] = useState<"yes" | "no" | null>(null);
+  const [dodged, setDodged] = useState(0);
+  const [spot, setSpot] = useState({ x: 0, y: 0 });
+  const [note, setNote] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const area = useRef<HTMLDivElement>(null);
+  // The tap that made No jump away must not also choose it.
+  const skipClick = useRef(false);
+  const label = (key: string) => letter.reactions.find((r) => r.key === key)?.label ?? key;
+
+  function dodge(event: React.PointerEvent) {
+    if (dodged >= DODGES || answer === "no" || reducedMotion()) return;
+    event.preventDefault();
+    const box = area.current?.getBoundingClientRect();
+    const roomX = Math.max(0, (box?.width ?? 300) / 2 - 80);
+    const roomY = 56;
+    setSpot({ x: (Math.random() * 2 - 1) * roomX, y: (Math.random() * 2 - 1) * roomY });
+    setDodged((n) => n + 1);
+    skipClick.current = true;
+    navigator.vibrate?.(15);
+  }
+
+  async function send(event: React.FormEvent) {
+    event.preventDefault();
+    if (!answer) return;
+    setBusy(true);
+    setError(null);
+    try {
+      const reply = await api<Reply>(`/letters/${encodeURIComponent(token)}/reply`, {
+        method: "POST",
+        body: { reaction: answer, note: note.trim() || null },
+      });
+      onSent(reply);
+    } catch (err) {
+      setError(err instanceof ApiError ? err.detail : "Something went wrong. Please try again.");
+      setBusy(false);
+    }
+  }
+
+  const choice = (key: "yes" | "no") =>
+    `min-h-14 w-full rounded-lg border-2 px-6 text-lg font-extrabold transition-transform duration-200 ${
+      answer === key ? "border-stamp bg-stamp text-paper shadow-[4px_4px_0_var(--color-ink)]" : "border-fg bg-surface"
+    }`;
+
+  return (
+    <form onSubmit={send} className="flex flex-col gap-4" aria-labelledby="answer-title">
+      <div>
+        <h2 id="answer-title" className="text-3xl">
+          {t.answerHeading}
+        </h2>
+        <p className="text-muted">{fill(t.answerLead, { sender: letter.sender_name })}</p>
+      </div>
+      <div ref={area} className="grid grid-cols-2 gap-3 py-16" role="radiogroup" aria-labelledby="answer-title">
+        <button type="button" role="radio" aria-checked={answer === "yes"} className={choice("yes")}
+          onClick={() => setAnswer("yes")}>
+          {REACTION_EMOJI.yes} {label("yes")}
+        </button>
+        <button
+          type="button"
+          role="radio"
+          aria-checked={answer === "no"}
+          className={choice("no")}
+          style={{ transform: `translate(${spot.x}px, ${spot.y}px)` }}
+          // Touch: jump on the tap. Mouse: jump as the pointer arrives. (Phones also send a fake
+          // mouse hover with each tap, so hover only counts for a real mouse.)
+          onPointerDown={(e) => {
+            if (e.pointerType !== "mouse") dodge(e);
+          }}
+          onPointerEnter={(e) => {
+            if (e.pointerType === "mouse") dodge(e);
+          }}
+          onClick={() => {
+            if (skipClick.current) {
+              skipClick.current = false;
+              return;
+            }
+            setAnswer("no");
+          }}
+        >
+          {label("no")}
+        </button>
+      </div>
+      {dodged > 0 && answer !== "no" && (
+        <p className="text-center font-hand text-lg" aria-live="polite">
+          {t.dodges[Math.min(dodged, t.dodges.length) - 1]}
+        </p>
+      )}
+      {answer && (
+        <>
+          <label className="flex flex-col gap-1 text-sm font-semibold">
+            <span className="flex justify-between">
+              {t.noteLabel}
+              <span className="font-normal text-muted">
+                {note.length}/{NOTE_MAX}
+              </span>
+            </span>
+            <textarea
+              name="note"
+              maxLength={NOTE_MAX}
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              className="min-h-24 w-full rounded-md border-2 border-fg bg-surface px-3 py-2 text-base leading-relaxed"
+            />
+          </label>
+          {error && (
+            <p role="alert" className="rounded-md border-2 border-stamp p-3 text-sm font-semibold">
+              {error}
+            </p>
+          )}
+          <button
+            type="submit"
+            disabled={busy}
+            className="min-h-14 rounded-lg bg-stamp px-6 text-lg font-extrabold text-paper shadow-[4px_4px_0_var(--color-ink)] disabled:opacity-60"
+          >
+            {busy ? t.sendingReply : t.sendAnswer}
+          </button>
+        </>
+      )}
     </form>
   );
 }

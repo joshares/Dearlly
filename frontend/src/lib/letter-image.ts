@@ -211,7 +211,10 @@ export async function drawLetter(letter: LetterContent, text: SaveText): Promise
   // Short letters are written big; long ones shrink until they fit above the footer.
   const signOffSpace = 120;
   let size = 60;
-  const message = letter.quoteText.trim().replace(/\n{3,}/g, "\n\n");
+  const details = (letter.details ?? []).map((d) => `${d.label}: ${d.value.replace(/\n/g, ", ")}`);
+  const message = [letter.quoteText.trim().replace(/\n{3,}/g, "\n\n"), details.join("\n")]
+    .filter(Boolean)
+    .join("\n\n");
   let lines: string[] = [];
   let lineHeight = RULE;
   for (; size >= 24; size -= 2) {

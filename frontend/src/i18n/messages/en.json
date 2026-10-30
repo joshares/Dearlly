@@ -193,7 +193,12 @@
     "sealedUntil": "It stays sealed until {when}.",
     "emailScheduled": "We'll email it to {email} within a minute.",
     "emailWhenOpens": "We'll email it to {email} when it opens.",
-    "emailBlocked": "We can't email this address. Share the link instead."
+    "emailBlocked": "We can't email this address. Share the link instead.",
+    "kindsLabel": "What are you sending?",
+    "kinds": {
+      "love_note": "Love note",
+      "date_invite": "Date invitation"
+    }
   },
   "letter": {
     "metaTitle": "A letter for you · Dearlly",
@@ -244,7 +249,20 @@
     "reportSending": "Sending…",
     "reportCancel": "Cancel",
     "reportPick": "Pick a reason first.",
-    "reportThanks": "Thank you. We'll look at it. If it came by email, you can also stop emails from this sender with the link at the bottom of that email."
+    "reportThanks": "Thank you. We'll look at it. If it came by email, you can also stop emails from this sender with the link at the bottom of that email.",
+    "answerHeading": "Your answer",
+    "answerLead": "{sender} is waiting…",
+    "dodges": [
+      "Are you sure?",
+      "Think about it…",
+      "Okay, okay. You can say no."
+    ],
+    "sendAnswer": "Send my answer",
+    "saidYes": "You said yes! 🎉",
+    "answerSent": "Answer sent.",
+    "directions": "Get directions",
+    "theirAnswer": "Their answer",
+    "writeBackDate": "Send your own invitation"
   },
   "sent": {
     "title": "Letters you've sent",
@@ -275,7 +293,11 @@
     "emailWhenOpens": "Will be emailed when it opens",
     "emailSent": "Emailed {date}",
     "emailFailed": "Couldn't email it: share the link instead",
-    "emailBlocked": "Not emailed: share the link instead"
+    "emailBlocked": "Not emailed: share the link instead",
+    "kinds": {
+      "love_note": "Love note",
+      "date_invite": "Date invitation"
+    }
   },
   "save": {
     "heading": "Keep this letter",
@@ -393,5 +415,65 @@
     "contactHeading": "Contact us",
     "contactBody": "Questions or requests about your data:",
     "contactEmail": "hello@dearlly.app"
+  },
+  "date": {
+    "metaTitle": "Ask them on a date · Dearlly",
+    "title": "Ask them on a date",
+    "lead": "Pick a place and a time, then seal the invitation. They answer Yes, or try to say No.",
+    "inviteHeading": "The invitation",
+    "suggestionsLabel": "Start from one of these",
+    "suggestions": [
+      "Will you go on a date with me?",
+      "Dinner with me this weekend? I'll pick you up.",
+      "I found the perfect spot. All it's missing is you.",
+      "Let's make a memory together. Say yes?"
+    ],
+    "use": "Use this",
+    "messageLabel": "Your invitation",
+    "whereHeading": "Where?",
+    "cityLabel": "City",
+    "vibesLabel": "What kind of date?",
+    "allVibes": "Any",
+    "vibes": {
+      "romantic_dinner": "Romantic dinner",
+      "rooftop": "Rooftop",
+      "waterfront": "By the water",
+      "beach": "Beach",
+      "outdoors": "Outdoors",
+      "art": "Art",
+      "playful": "Fun",
+      "lounge": "Lounge",
+      "spa": "Spa",
+      "getaway": "Getaway",
+      "proposal": "Proposal",
+      "budget": "Budget",
+      "luxury": "Luxury"
+    },
+    "featuredMany": "Featured in {count} guides",
+    "featuredOne": "Featured in 1 guide",
+    "sourcesToggle": "Why we suggest it",
+    "rankIn": "#{rank} on {publisher}",
+    "listedIn": "Listed by {publisher}",
+    "choose": "Choose",
+    "chosen": "Chosen ✓",
+    "somewhereElse": "Somewhere else",
+    "fromList": "Pick from our list",
+    "placeNameLabel": "Place name",
+    "placeAreaLabel": "Area (optional)",
+    "placeAddressLabel": "Address (optional)",
+    "loadingPlaces": "Finding places…",
+    "noPlaces": "No places with that vibe yet. Try another, or type your own.",
+    "placesFailed": "Couldn't load places. Type your own instead.",
+    "whenLabel": "Date and time (Lagos time)",
+    "noteLabel": "Anything else? (optional)",
+    "noteHint": "What to wear, when you'll pick them up…",
+    "cardTitle": "You're invited",
+    "where": "Where",
+    "when": "When",
+    "note": "Note",
+    "lagosTime": "Lagos time",
+    "whatsappText": "I've got a question for you 💌 Open it here:",
+    "another": "Write another invitation",
+    "placeholder": "Your invitation will appear here…"
   }
 }

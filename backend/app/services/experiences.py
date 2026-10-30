@@ -1,8 +1,10 @@
-"""The experience engine: one set of rules for every type (love note now; more in Stage 5).
+"""The experience engine: one set of rules for every type (love note, date invitation, ...).
 
 - Types come from config/experience_types.yaml; content is validated against the type's fields.
 - Private links: 192 random bits. The database stores a SHA-256 hash to find the letter and an
   encrypted copy (key derived from SECRET_KEY) so the sender can copy their link again later.
+- Fields are plain text unless the type says otherwise: a date and time, a city, or a curated
+  place (whose name and address the server copies in, so the invitation never changes later).
 - Text is plain text only. Links and long digit runs (bank account numbers) are refused: these
   letters reach people who never signed up, and that's where scams start.
 """
@@ -13,6 +15,7 @@ import hmac
 import re
 import unicodedata
 from dataclasses import dataclass
+from datetime import UTC, datetime, timedelta
 from functools import lru_cache
 from typing import Any
 
@@ -23,11 +26,14 @@ from cryptography.hazmat.primitives.kdf.hkdf import HKDF
 from app.core.config import Settings
 from app.core.registries import load_registry
 from app.core.security import hash_token, new_token
+from app.services import places
 
 LINK_TOKEN_BYTES = 24  # 192 bits; the plan asks for at least 128
 NAME_MAX = 60
 TITLE_MAX = 60
 REPLY_NOTE_MAX = 280
+MAX_AHEAD = timedelta(days=366)
+FIELD_KINDS = ("text", "datetime", "city", "place")
 
 _LINK_RE = re.compile(r"(?i)(https?://|www\.|\b[a-z0-9-]+\.(com|ng|net|org|app|io|co|me|ly)\b)")
 _ACCOUNT_NUMBER_RE = re.compile(r"\d[\d\s-]{8,}\d")
@@ -42,6 +48,7 @@ class FieldSpec:
     key: str
     max: int
     required: bool
+    kind: str = "text"
 
 
 @dataclass(frozen=True)
@@ -52,6 +59,7 @@ class ExperienceType:
     themes: tuple[str, ...]
     reply: str
     reactions: tuple[tuple[str, str], ...]
+    email_subject: str = "{sender} sealed a letter for you 💌"
 
 
 @lru_cache
@@ -59,9 +67,17 @@ def experience_types() -> dict[str, ExperienceType]:
     types: dict[str, ExperienceType] = {}
     for entry in load_registry("experience_types"):
         fields = tuple(
-            FieldSpec(key, int(spec["max"]), bool(spec.get("required", False)))
+            FieldSpec(
+                key,
+                int(spec.get("max", 64)),
+                bool(spec.get("required", False)),
+                str(spec.get("kind", "text")),
+            )
             for key, spec in (entry.get("fields") or {}).items()
         )
+        for spec in fields:
+            if spec.kind not in FIELD_KINDS:
+                raise ValueError(f"{entry['key']}.{spec.key}: unknown kind {spec.kind!r}")
         reactions = tuple((r["key"], r["label"]) for r in entry.get("reactions") or [])
         types[entry["key"]] = ExperienceType(
             key=entry["key"],
@@ -70,6 +86,7 @@ def experience_types() -> dict[str, ExperienceType]:
             themes=tuple(entry.get("themes") or ["cream"]),
             reply=entry.get("reply", "reaction"),
             reactions=reactions,
+            email_subject=str(entry.get("email_subject") or ExperienceType.email_subject),
         )
     return types
 
@@ -105,20 +122,71 @@ def clean_text(value: str | None, *, label: str, max_len: int, required: bool) -
     return text
 
 
-def validate_content(kind: ExperienceType, content: dict[str, Any]) -> dict[str, str]:
+def validate_content(
+    kind: ExperienceType, content: dict[str, Any], now: datetime | None = None
+) -> dict[str, str]:
     unknown = set(content) - {f.key for f in kind.fields}
     if unknown:
         raise ExperienceError(f"Unknown fields: {', '.join(sorted(unknown))}.")
+    now = now or datetime.now(UTC)
     cleaned: dict[str, str] = {}
     for spec in kind.fields:
         raw = content.get(spec.key)
         if raw is not None and not isinstance(raw, str):
             raise ExperienceError(f"{spec.key} must be text.")
         label = spec.key.replace("_", " ").capitalize()
-        value = clean_text(raw, label=label, max_len=spec.max, required=spec.required)
+        if spec.kind == "text":
+            value = clean_text(raw, label=label, max_len=spec.max, required=spec.required)
+        elif raw is None or not raw.strip():
+            if spec.required:
+                raise ExperienceError(f"{label} is required.")
+            value = None
+        elif spec.kind == "datetime":
+            value = _future_time(raw.strip(), now)
+        elif spec.kind == "city":
+            if raw not in places.cities():
+                raise ExperienceError("Pick a city we cover.")
+            value = raw
+        else:  # place: checked below, once the city is known
+            value = raw
         if value is not None:
             cleaned[spec.key] = value
+    _fill_place(kind, cleaned)
     return cleaned
+
+
+def _future_time(raw: str, now: datetime) -> str:
+    try:
+        when = datetime.fromisoformat(raw)
+    except ValueError as exc:
+        raise ExperienceError("Pick a date and time.") from exc
+    if when.tzinfo is None:
+        raise ExperienceError("Pick a date and time.")
+    if not now < when <= now + MAX_AHEAD:
+        raise ExperienceError("Pick a date and time in the future, within a year.")
+    return when.isoformat()
+
+
+def _fill_place(kind: ExperienceType, cleaned: dict[str, str]) -> None:
+    """A curated place's details come from our list, not the browser; otherwise a name is needed."""
+    place_fields = [f.key for f in kind.fields if f.kind == "place"]
+    if not place_fields:
+        return
+    key = cleaned.get(place_fields[0])
+    if key is None:
+        if "place_name" not in cleaned:
+            raise ExperienceError("Pick a place, or type where you'll go.")
+        return
+    city = places.cities().get(cleaned.get("city", ""))
+    place = next((p for p in city.places if p.key == key), None) if city else None
+    if place is None:
+        raise ExperienceError("That place isn't on our list. Pick another or type it in.")
+    cleaned["place_name"] = place.name
+    cleaned["place_area"] = place.area
+    if place.address:
+        cleaned["place_address"] = place.address
+    else:
+        cleaned.pop("place_address", None)
 
 
 # --- private links ---------------------------------------------------------------------------
