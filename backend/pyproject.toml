@@ -24,7 +24,8 @@ plugins = ["pydantic.mypy"]
 packages = ["app"]
 
 [[tool.mypy.overrides]]
-module = ["celery.*"]
+# These ship without type hints.
+module = ["celery.*", "onnxruntime.*", "boto3.*", "botocore.*"]
 ignore_missing_imports = true
 
 # Celery ships without type hints, so its task decorators are untyped.

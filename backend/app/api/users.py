@@ -3,6 +3,7 @@
 import logging
 from datetime import UTC, datetime
 
+import anyio
 from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
 from sqlalchemy import select
 
@@ -28,7 +29,7 @@ from app.core.net import client_ip
 from app.core.ratelimit import Limit
 from app.models import User
 from app.services import auth as auth_service
-from app.services import passwords
+from app.services import passwords, photos
 from app.services.profiles import ProfileFieldError, normalize_display_name, normalize_username
 
 logger = logging.getLogger(__name__)
@@ -97,7 +98,8 @@ async def delete_me(
 ) -> None:
     """Delete the account and everything tied to it (NDPA right to erasure).
 
-    Sessions and refresh tokens go with it (ON DELETE CASCADE), so every device is logged out.
+    Sessions, refresh tokens, letters and photos go with it (ON DELETE CASCADE), so every device
+    is logged out; the photo files in storage are deleted right after.
     """
     await limiter.hit(DELETE_PER_IP, client_ip(request, settings))
     if body.confirm_username.strip().lower() != user.username:
@@ -106,8 +108,11 @@ async def delete_me(
             detail="Type your username exactly to confirm.",
         )
     user_id = str(user.id)
+    photo_keys = await photos.owned_keys(db, user.id)
     await db.delete(user)
     await db.commit()
+    # Their photos' files go too (the rows went with the account; the daily sweep is the backstop).
+    await anyio.to_thread.run_sync(photos.delete_files, request.app.state.photo_storage, photo_keys)
     clear_auth_cookies(response, settings)
     logger.info("account deleted", extra={"user_id": user_id})
 

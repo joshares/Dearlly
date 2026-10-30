@@ -62,6 +62,8 @@ jobs:
         run: mypy
       - name: Migrations apply, roll back and re-apply cleanly
         run: alembic upgrade head && alembic downgrade base && alembic upgrade head
+      - name: Download the photo nudity-check model (checked by fingerprint)
+        run: python models/fetch_nsfw_model.py models/marqo-nsfw-384.onnx
       - name: Pytest
         run: pytest
       - name: pip-audit (runtime)

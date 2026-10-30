@@ -1,8 +1,11 @@
-import type { LetterContent, LetterTheme } from "@/components/LetterCard";
+import type { LetterContent } from "@/components/LetterCard";
 import { getMessages } from "@/i18n";
 import { lagosDateTime } from "@/lib/dates";
 
 const t = getMessages().date;
+
+/** Who it's from and to, the paper, and the photo (if any): shared by every letter type. */
+type People = Pick<LetterContent, "senderName" | "recipientName" | "recipientTitle" | "theme" | "photo">;
 
 /** What a date invitation stores (backend/config/experience_types.yaml, date_invite). */
 export type DateContent = {
@@ -24,7 +27,7 @@ export function placeLine(c: Pick<DateContent, "place_name" | "place_area" | "pl
 /** The invitation drawn as a letter: the message, then Where / When / Note. */
 export function dateLetter(
   c: Partial<DateContent>,
-  people: { senderName: string; recipientName: string; recipientTitle?: string | null; theme: LetterTheme },
+  people: People,
 ): LetterContent {
   const details: { label: string; value: string }[] = [];
   const where = placeLine(c);
@@ -81,7 +84,7 @@ export function tripDates(start?: string, end?: string): string {
 /** The trip drawn as a letter: the message, then Where / When / Pack / Note. */
 export function vacationLetter(
   c: Partial<VacationContent>,
-  people: { senderName: string; recipientName: string; recipientTitle?: string | null; theme: LetterTheme },
+  people: People,
 ): LetterContent {
   const details: { label: string; value: string }[] = [];
   if (c.destination?.trim()) details.push({ label: v.where, value: c.destination.trim() });
@@ -106,7 +109,7 @@ export type GiftContent = {
  *  (for saving as a picture or PDF) once it has been revealed. */
 export function giftLetter(
   c: Partial<GiftContent>,
-  people: { senderName: string; recipientName: string; recipientTitle?: string | null; theme: LetterTheme },
+  people: People,
   withGift = false,
 ): LetterContent {
   const details: { label: string; value: string }[] = [];

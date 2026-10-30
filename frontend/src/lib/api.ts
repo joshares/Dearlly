@@ -80,13 +80,15 @@ async function send(path: string, method: string, body: unknown): Promise<Respon
   if (method !== "GET") {
     headers["X-CSRF-Token"] = await getCsrfToken();
   }
+  // A file (photo uploads) is sent as itself; everything else as JSON.
+  const file = typeof Blob !== "undefined" && body instanceof Blob ? body : null;
   if (body !== undefined) {
-    headers["Content-Type"] = "application/json";
+    headers["Content-Type"] = file ? file.type : "application/json";
   }
   return fetch(`${API_URL}${path}`, {
     method,
     headers,
-    body: body === undefined ? undefined : JSON.stringify(body),
+    body: body === undefined ? undefined : (file ?? JSON.stringify(body)),
     credentials: "include",
   });
 }

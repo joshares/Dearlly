@@ -8,6 +8,9 @@ RUN python -m venv /venv \
     && /venv/bin/pip install --require-hashes --no-deps -r requirements.txt \
     # pip isn't needed at runtime; removing it keeps image scans clean.
     && /venv/bin/pip uninstall -y pip
+# The on-server nudity check model for photos, checked against its SHA-256 fingerprint.
+COPY models/fetch_nsfw_model.py ./
+RUN /venv/bin/python fetch_nsfw_model.py /build/models/marqo-nsfw-384.onnx
 
 FROM python:3.12-slim-trixie AS runtime
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -17,6 +20,9 @@ RUN python -m pip uninstall -y pip \
     && groupadd --system --gid 10001 app \
     && useradd --system --uid 10001 --gid app --no-create-home --shell /usr/sbin/nologin app
 COPY --from=build /venv /venv
+COPY --from=build /build/models /app/models
+# Local development keeps photos in a volume here (production uses the private R2 bucket).
+RUN mkdir -p /data/photos && chown 10001:10001 /data/photos
 WORKDIR /app
 # Code is owned by root and read-only to the app user.
 COPY alembic.ini ./

@@ -331,7 +331,7 @@
   "privacy": {
     "metaTitle": "Privacy · Dearlly",
     "title": "Privacy notice",
-    "updated": "Last updated 30 October 2026",
+    "updated": "Last updated 30 October 2026 (photos added)",
     "intro": "Dearlly is a love-letter post office. You trust us with words meant for one person, so we collect as little as we can, keep it locked, and never sell it. This notice explains what we keep, why, and how to have it removed, in line with the Nigeria Data Protection Act 2023.",
     "sections": [
       {
@@ -353,6 +353,14 @@
           "We keep what you write so the person you send it to can open it: the names, the message, the date it opens, and their reply. We also keep whether and when it was opened, so you can see \"Opened\".",
           "We don't read your letters. The only time someone at Dearlly looks at one is when it is reported, to decide whether to take it down.",
           "Unsent drafts stay on your own phone or computer until you seal them. Downloads (pictures and PDFs) are made on your device; nothing is sent to us."
+        ]
+      },
+      {
+        "heading": "Photos",
+        "paragraphs": [
+          "If you add a photo to a letter, we save a fresh copy of it: location and other hidden details from your phone are removed.",
+          "Before anyone sees it, a program on our own server checks it for nudity or sexual content. Photos it flags are refused and never stored. No photo is sent to another company for this check.",
+          "Photos are kept in private storage and shown only through links that expire within two hours. A photo you add but never send is deleted after a day; your photos are deleted with your account."
         ]
       },
       {
@@ -383,7 +391,7 @@
         ],
         "items": [
           "Hostinger: our server, in the European Union.",
-          "Cloudflare: website protection, the \"are you human\" check, and our encrypted backups.",
+          "Cloudflare: website protection, the \"are you human\" check, private photo storage and our encrypted backups.",
           "Resend: sends our emails.",
           "Sentry: error reports, with personal details removed.",
           "Google: only if you choose \"Continue with Google\"."
@@ -553,5 +561,17 @@
     "whatsappText": "I got you something 🎁 Open it here:",
     "another": "Reveal another gift",
     "placeholder": "Your message will appear here…"
+  },
+  "photo": {
+    "label": "Add a photo (optional)",
+    "hint": "We remove location and other hidden details, and check it for nudity before anyone sees it.",
+    "choose": "Choose a photo",
+    "change": "Change photo",
+    "remove": "Remove photo",
+    "checking": "Checking your photo…",
+    "logIn": "Log in to add a photo",
+    "alt": "A photo from {sender}",
+    "previewAlt": "Your photo",
+    "failed": "Couldn't add that photo. Try another."
   }
 }

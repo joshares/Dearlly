@@ -64,6 +64,16 @@ class Settings(BaseSettings):
     google_client_id: str = ""
     google_client_secret: SecretStr | None = None
 
+    # Photos. "local" keeps them in a folder (development and tests only); "r2" uses the private
+    # Cloudflare R2 bucket. In production photos stay off until the R2 settings are all set.
+    photo_storage: Literal["local", "r2"] = "local"
+    photo_dir: str = "/data/photos"
+    r2_endpoint: str = ""
+    r2_photos_bucket: str = ""
+    r2_photos_access_key_id: str = ""
+    r2_photos_secret_access_key: SecretStr | None = None
+    nsfw_model_path: str = "/app/models/marqo-nsfw-384.onnx"
+
     # Error alerts (Sentry, EU). Off when unset. APP_VERSION is the deployed commit.
     sentry_dsn: SecretStr | None = None
     app_version: str = ""
@@ -77,6 +87,22 @@ class Settings(BaseSettings):
     @property
     def google_enabled(self) -> bool:
         return bool(self.google_client_id and self.google_client_secret)
+
+    @property
+    def r2_configured(self) -> bool:
+        return bool(
+            self.r2_endpoint
+            and self.r2_photos_bucket
+            and self.r2_photos_access_key_id
+            and self.r2_photos_secret_access_key
+        )
+
+    @property
+    def photos_enabled(self) -> bool:
+        if self.photo_storage == "r2":
+            return self.r2_configured
+        # A folder on the server is never used for real people's photos.
+        return not self.is_production
 
     @property
     def cookie_secure(self) -> bool:

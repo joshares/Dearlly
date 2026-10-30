@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { PhotoField } from "@/components/PhotoField";
 import { LetterCard, type LetterTheme } from "@/components/LetterCard";
 import { ScratchCard } from "@/components/ScratchCard";
 import {
@@ -40,6 +41,8 @@ type Draft = {
   hint: string;
   note: string;
   theme: LetterTheme;
+  photoId: string;
+  photoUrl: string; // a signed link, refreshed when a saved draft comes back
   opensAt: string; // datetime-local value, WAT
 };
 
@@ -53,6 +56,8 @@ const EMPTY: Draft = {
   hint: "",
   note: "",
   theme: "cream",
+  photoId: "",
+  photoUrl: "",
   opensAt: "",
 };
 
@@ -64,6 +69,7 @@ function asLetter(draft: Draft, withGift = false) {
       recipientName: draft.recipientName,
       recipientTitle: draft.recipientTitle,
       theme: draft.theme,
+      photo: draft.photoUrl,
     },
     withGift,
   );
@@ -108,6 +114,7 @@ export function WriteGift({ loggedIn = false }: { loggedIn?: boolean }) {
             gift: draft.gift,
             hint: draft.hint || null,
             note: draft.note || null,
+            photo: draft.photoId || null,
           },
           opens_at: lagosIso(draft.opensAt),
           recipient_email: draft.recipientEmail.trim() || null,
@@ -212,6 +219,8 @@ export function WriteGift({ loggedIn = false }: { loggedIn?: boolean }) {
             <span className={hint}>{t.noteHint}</span>
           </label>
         </fieldset>
+
+        <PhotoField value={draft} onChange={update} loggedIn={loggedIn} next="/write/gift" />
 
         <LookFields draft={draft} update={update} />
 

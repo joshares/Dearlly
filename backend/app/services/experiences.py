@@ -14,6 +14,7 @@ import hashlib
 import hmac
 import re
 import unicodedata
+import uuid
 from dataclasses import dataclass
 from datetime import UTC, date, datetime, timedelta
 from functools import lru_cache
@@ -33,7 +34,7 @@ NAME_MAX = 60
 TITLE_MAX = 60
 REPLY_NOTE_MAX = 280
 MAX_AHEAD = timedelta(days=366)
-FIELD_KINDS = ("text", "datetime", "date", "city", "place")
+FIELD_KINDS = ("text", "datetime", "date", "city", "place", "photo")
 MAX_TRIP_DAYS = 60
 WAT = timedelta(hours=1)  # dates are days in West Africa Time (UTC+1, no daylight saving)
 
@@ -147,6 +148,12 @@ def validate_content(
             value = _future_time(raw.strip(), now)
         elif spec.kind == "date":
             value = _coming_day(raw.strip(), now)
+        elif spec.kind == "photo":
+            # Who owns it and whether it's free is checked against the database when sealing.
+            try:
+                value = str(uuid.UUID(raw))
+            except ValueError as exc:
+                raise ExperienceError("Add the photo again.") from exc
         elif spec.kind == "city":
             if raw not in places.cities():
                 raise ExperienceError("Pick a city we cover.")

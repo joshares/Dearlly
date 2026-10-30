@@ -40,6 +40,7 @@ export type Letter = {
   // Love note: quote_title / quote_text. Date invitation: see DateContent.
   content: Record<string, string | null | undefined> | null;
   reply_kind: "reaction" | "yes_no";
+  photo_url?: string | null;
   reactions: Reaction[];
   reply: Reply | null;
   is_sender: boolean;
@@ -65,6 +66,7 @@ function asContent(letter: Letter, giftRevealed = false): LetterContent {
     recipientName: letter.recipient_name,
     recipientTitle: letter.recipient_title,
     theme: letter.theme,
+    photo: letter.photo_url,
   };
   const c = letter.content ?? {};
   if (letter.type === "date_invite") return dateLetter(c as Partial<DateContent>, people);

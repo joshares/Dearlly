@@ -10,6 +10,8 @@ describe("buildCsp", () => {
     expect(csp).toContain("frame-ancestors 'none'");
     expect(csp).toContain("object-src 'none'");
     expect(csp).toContain("connect-src 'self' https://api.dearlly.example");
+    // Letter photos come from the API (signed links), and nowhere else.
+    expect(csp).toContain("img-src 'self' data: blob: https://api.dearlly.example;");
     expect(csp).toContain("frame-src https://challenges.cloudflare.com");
   });
 
