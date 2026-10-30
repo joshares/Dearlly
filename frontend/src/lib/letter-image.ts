@@ -163,7 +163,17 @@ function drawQr(ctx: CanvasRenderingContext2D, url: string, x: number, y: number
   }
 }
 
-/** Draws the letter on a canvas: the same paper, words and seal as on screen. */
+async function loadPhoto(url: string): Promise<ImageBitmap | null> {
+  try {
+    const response = await fetch(url, { mode: "cors", credentials: "omit" });
+    if (!response.ok) return null;
+    return await createImageBitmap(await response.blob());
+  } catch {
+    return null;
+  }
+}
+
+/** Draws the letter on a canvas: the same paper, words, seal and photo as on screen. */
 export async function drawLetter(letter: LetterContent, text: SaveText): Promise<HTMLCanvasElement> {
   const heading = fontFamily("--font-gloock", "Georgia, serif");
   const body = fontFamily("--font-figtree", "system-ui, sans-serif");
@@ -195,6 +205,29 @@ export async function drawLetter(letter: LetterContent, text: SaveText): Promise
   for (const line of wrapText(`Dear ${greeting},`, width - 130, (s) => ctx.measureText(s).width)) {
     ctx.fillText(line, TEXT_X, y);
     y += RULE;
+  }
+
+  // The photo, as a slightly tilted polaroid under the greeting. If it can't be loaded (an expired
+  // link, no connection), the letter is saved without it rather than not at all.
+  const photo = letter.photo ? await loadPhoto(letter.photo) : null;
+  if (photo) {
+    const scale = Math.min((width * 0.7) / photo.width, 340 / photo.height, 1);
+    const w = Math.round(photo.width * scale);
+    const h = Math.round(photo.height * scale);
+    const x = TEXT_X + (width - w) / 2;
+    y += 10;
+    ctx.save();
+    ctx.translate(x + w / 2, y + h / 2);
+    ctx.rotate((-2 * Math.PI) / 180);
+    ctx.fillStyle = "rgba(31, 42, 107, 0.18)";
+    ctx.fillRect(-w / 2 - 12, -h / 2 - 10, w + 24, h + 46);
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(-w / 2 - 16, -h / 2 - 16, w + 32, h + 52);
+    ctx.drawImage(photo, -w / 2, -h / 2, w, h);
+    ctx.restore();
+    photo.close();
+    ctx.fillStyle = INK;
+    y += h + 60;
   }
 
   const title = letter.quoteTitle?.trim();

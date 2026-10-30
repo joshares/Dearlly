@@ -16,7 +16,11 @@ export type CspOptions = {
 
 export function buildCsp({ nonce, dev, apiOrigin }: CspOptions): string {
   const connect = ["'self'"];
-  if (apiOrigin) connect.push(new URL(apiOrigin).origin);
+  const images = ["'self'", "data:", "blob:"];
+  if (apiOrigin) {
+    connect.push(new URL(apiOrigin).origin);
+    images.push(new URL(apiOrigin).origin); // letter photos, served by the API behind signed links
+  }
   if (dev) connect.push("ws:"); // hot reload
 
   const directives: Record<string, string[]> = {
@@ -24,7 +28,7 @@ export function buildCsp({ nonce, dev, apiOrigin }: CspOptions): string {
     // 'unsafe-eval' only in development: React's dev tooling needs it.
     "script-src": ["'self'", `'nonce-${nonce}'`, "'strict-dynamic'", ...(dev ? ["'unsafe-eval'"] : [])],
     "style-src": ["'self'", "'unsafe-inline'"],
-    "img-src": ["'self'", "data:", "blob:"],
+    "img-src": images,
     "font-src": ["'self'"],
     "connect-src": connect,
     "media-src": ["'self'"],

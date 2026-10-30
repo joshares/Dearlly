@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { PhotoField } from "@/components/PhotoField";
 import { LetterCard, type LetterTheme } from "@/components/LetterCard";
 import { PlacePicker, type PlaceChoice } from "@/components/PlacePicker";
 import {
@@ -39,6 +40,8 @@ type Draft = PlaceChoice & {
   dateAt: string; // datetime-local value, WAT
   note: string;
   theme: LetterTheme;
+  photoId: string;
+  photoUrl: string; // a signed link, refreshed when a saved draft comes back
   opensAt: string;
 };
 
@@ -56,6 +59,8 @@ const EMPTY: Draft = {
   dateAt: "",
   note: "",
   theme: "rose",
+  photoId: "",
+  photoUrl: "",
   opensAt: "",
 };
 
@@ -74,6 +79,7 @@ function asLetter(draft: Draft) {
       recipientName: draft.recipientName,
       recipientTitle: draft.recipientTitle,
       theme: draft.theme,
+      photo: draft.photoUrl,
     },
   );
 }
@@ -123,6 +129,7 @@ export function WriteDate({ loggedIn = false }: { loggedIn?: boolean }) {
             place_address: draft.placeKey ? null : draft.placeAddress || null,
             date_at: lagosIso(draft.dateAt),
             note: draft.note || null,
+            photo: draft.photoId || null,
           },
           opens_at: lagosIso(draft.opensAt),
           recipient_email: draft.recipientEmail.trim() || null,
@@ -210,6 +217,8 @@ export function WriteDate({ loggedIn = false }: { loggedIn?: boolean }) {
             <span className={hint}>{t.noteHint}</span>
           </label>
         </fieldset>
+
+        <PhotoField value={draft} onChange={update} loggedIn={loggedIn} next="/write/date" />
 
         <LookFields draft={draft} update={update} />
 

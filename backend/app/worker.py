@@ -12,6 +12,7 @@ from app.core.config import get_settings
 from app.core.logging import configure_logging
 from app.core.monitoring import init_sentry
 from app.db.session import create_engine, create_sessionmaker
+from app.services import photos
 from app.services.letter_mail import send_due_letter_emails
 
 settings = get_settings()
@@ -36,6 +37,8 @@ celery_app.conf.update(
     beat_schedule={
         # Letters to email: sent ones go out within 30 seconds, scheduled ones when they open.
         "send-letter-emails": {"task": "dearlly.send_letter_emails", "schedule": 30.0},
+        # Photos never added to a letter, and files left by deleted accounts.
+        "sweep-photos": {"task": "dearlly.sweep_photos", "schedule": 6 * 3600.0},
     },
 )
 
@@ -62,3 +65,19 @@ async def _send_letter_emails() -> int:
 @celery_app.task(name="dearlly.send_letter_emails")
 def send_letter_emails() -> int:
     return asyncio.run(_send_letter_emails())
+
+
+async def _sweep_photos() -> int:
+    storage = photos.storage_for(settings)
+    if storage is None:
+        return 0
+    engine = create_engine(settings)
+    try:
+        return await photos.sweep(create_sessionmaker(engine), storage)
+    finally:
+        await engine.dispose()
+
+
+@celery_app.task(name="dearlly.sweep_photos")
+def sweep_photos() -> int:
+    return asyncio.run(_sweep_photos())

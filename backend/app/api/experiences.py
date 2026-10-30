@@ -14,9 +14,9 @@ from app.api.deps import AppSettings, CurrentUser, DbSession, Limiter, current_u
 from app.core.csrf import require_csrf
 from app.core.net import client_ip
 from app.core.ratelimit import Limit
-from app.models import Experience, Report, User
+from app.models import Experience, Photo, Report, User
 from app.services import experiences as engine
-from app.services import letter_mail
+from app.services import letter_mail, photos
 from app.services.email import Email, EmailDeliveryError, send_email
 from app.services.profiles import ProfileFieldError, normalize_email
 
@@ -128,6 +128,8 @@ class LetterOut(BaseModel):
     opens_in_seconds: int
     content: dict[str, Any] | None
     reply_kind: str
+    # A signed link to the letter's photo, once it's open.
+    photo_url: str | None
     reactions: list[Reaction]
     reply: ReplyOut | None
     is_sender: bool
@@ -234,6 +236,7 @@ async def create_experience(
     except engine.ExperienceError as exc:
         raise _bad(str(exc)) from exc
 
+    photo = await _own_free_photo(db, settings, user, content.get("photo"))
     email_fields = await _email_fields(db, settings, user, body.recipient_email)
     token = engine.new_link_token()
     experience = Experience(
@@ -250,9 +253,26 @@ async def create_experience(
         opens_at=body.opens_at,
     )
     db.add(experience)
+    if photo is not None:
+        await db.flush()
+        photo.experience_id = experience.id
     await db.commit()
     await db.refresh(experience)
     return _mine(experience, settings)
+
+
+async def _own_free_photo(
+    db: DbSession, settings: AppSettings, user: User, photo_id: str | None
+) -> Photo | None:
+    """The writer's own photo, not yet on another letter."""
+    if photo_id is None:
+        return None
+    if not settings.photos_enabled:
+        raise _bad("Photos aren't switched on yet. Remove the photo to send it.")
+    photo = await db.get(Photo, uuid.UUID(photo_id))
+    if photo is None or photo.owner_id != user.id or photo.experience_id is not None:
+        raise _bad("That photo can't be used. Add it again.")
+    return photo
 
 
 async def _email_fields(
@@ -386,6 +406,11 @@ async def view_letter(
         ),
         content=None if sealed else e.content,
         reply_kind=kind.reply,
+        photo_url=(
+            photos.view_url(settings, uuid.UUID(e.content["photo"]))
+            if not sealed and e.content.get("photo")
+            else None
+        ),
         reactions=[Reaction(key=k, label=label) for k, label in kind.reactions],
         reply=_reply(e),
         is_sender=viewer is not None and viewer.id == e.owner_id,

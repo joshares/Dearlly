@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
+import { PhotoField } from "@/components/PhotoField";
 import { LetterCard, type LetterContent, type LetterTheme } from "@/components/LetterCard";
 import {
   input,
@@ -36,6 +37,8 @@ type Draft = {
   quoteTitle: string;
   quoteText: string;
   theme: LetterTheme;
+  photoId: string;
+  photoUrl: string; // a signed link, refreshed when a saved draft comes back
   opensAt: string; // datetime-local value, WAT
 };
 
@@ -49,6 +52,8 @@ const EMPTY: Draft = {
   quoteTitle: "",
   quoteText: "",
   theme: "cream",
+  photoId: "",
+  photoUrl: "",
   opensAt: "",
 };
 
@@ -60,6 +65,7 @@ function asLetter(draft: Draft): LetterContent {
     quoteTitle: draft.quoteTitle,
     quoteText: draft.quoteText,
     theme: draft.theme,
+    photo: draft.photoUrl,
   };
 }
 
@@ -109,7 +115,11 @@ export function WriteLetter({ loggedIn = false }: { loggedIn?: boolean }) {
           recipient_name: draft.recipientName,
           recipient_title: draft.recipientTitle || null,
           theme: draft.theme,
-          content: { quote_title: draft.quoteTitle || null, quote_text: draft.quoteText },
+          content: {
+            quote_title: draft.quoteTitle || null,
+            quote_text: draft.quoteText,
+            photo: draft.photoId || null,
+          },
           opens_at: lagosIso(draft.opensAt),
           recipient_email: draft.recipientEmail.trim() || null,
         },
@@ -193,6 +203,8 @@ export function WriteLetter({ loggedIn = false }: { loggedIn?: boolean }) {
               onChange={(e) => update({ quoteText: e.target.value })} />
           </label>
         </fieldset>
+
+        <PhotoField value={draft} onChange={update} loggedIn={loggedIn} next="/write" />
 
         <LookFields draft={draft} update={update} />
 

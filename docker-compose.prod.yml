@@ -33,6 +33,10 @@ x-backend: &backend
     EMAIL_FROM: Dearlly <hello@send.dearlly.app>
     # Only Cloudflare can reach the server, so its header carries the visitor's real IP.
     CLIENT_IP_HEADER: CF-Connecting-IP
+    # Photos: the private R2 bucket. They stay off until R2_PHOTOS_ACCESS_KEY_ID and
+    # R2_PHOTOS_SECRET_ACCESS_KEY are saved with set-secret.sh (R2_ENDPOINT is the backups' one).
+    PHOTO_STORAGE: r2
+    R2_PHOTOS_BUCKET: dearlly-photos
     # Shown in Sentry so each error is tied to the exact deployed commit.
     APP_VERSION: ${IMAGE_TAG}
   depends_on:

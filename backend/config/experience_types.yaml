@@ -5,7 +5,8 @@
 # email_subject: subject of the email to the recipient ({sender} is filled in)
 # fields:     the type's own content
 #   kind:       text (default), datetime (in the future, within a year), date (a day, today or
-#               later, within a year), city (from cities.yaml)
+#               later, within a year), city (from cities.yaml), photo (one of the writer's
+#               uploaded photos, checked and attached when the letter is sealed)
 #               or place (a place key from cities.yaml in the chosen city; the server copies its
 #               name, area and address into place_name / place_area / place_address)
 #   max:        maximum characters (text)
@@ -19,6 +20,9 @@ experience_types:
     name: Love note
     email_subject: "{sender} sealed a letter for you 💌"
     fields:
+      photo:
+        kind: photo
+        required: false
       quote_title:
         max: 80
         required: false
@@ -41,6 +45,9 @@ experience_types:
     name: Date invitation
     email_subject: "{sender} is asking you on a date 💌"
     fields:
+      photo:
+        kind: photo
+        required: false
       message:
         max: 400
         required: true
@@ -78,6 +85,9 @@ experience_types:
     name: Vacation invitation
     email_subject: "{sender} is planning a trip for you two 💌"
     fields:
+      photo:
+        kind: photo
+        required: false
       message:
         max: 400
         required: true
@@ -108,6 +118,9 @@ experience_types:
     name: Gift reveal
     email_subject: "{sender} has a gift for you 🎁"
     fields:
+      photo:
+        kind: photo
+        required: false
       message:
         max: 400
         required: true

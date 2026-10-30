@@ -1,5 +1,7 @@
+import logging
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 import httpx
 from fastapi import FastAPI
@@ -7,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from redis.asyncio import Redis
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from app.api import auth, email_prefs, experiences, google, health, places, users
+from app.api import auth, email_prefs, experiences, google, health, photos, places, users
 from app.core.config import Settings, get_settings
 from app.core.logging import configure_logging
 from app.core.middleware import REQUEST_ID_HEADER, RequestContextMiddleware
@@ -15,7 +17,10 @@ from app.core.monitoring import init_sentry
 from app.core.ratelimit import RateLimitedError, RateLimiter, rate_limited_handler
 from app.core.registries import load_all_registries
 from app.db.session import create_engine, create_sessionmaker
+from app.services import photos as photo_service
 from app.services import places as places_catalogue
+
+logger = logging.getLogger(__name__)
 
 
 def create_app(settings: Settings | None = None) -> FastAPI:
@@ -50,6 +55,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         openapi_url="/openapi.json" if docs_enabled else None,
     )
     app.state.settings = settings
+    # Photos: off unless storage is configured and the nudity check model is in place.
+    app.state.photo_storage = photo_service.storage_for(settings)
+    app.state.photo_checker = _load_checker(settings)
     app.add_exception_handler(RateLimitedError, rate_limited_handler)
 
     app.add_middleware(
@@ -72,4 +80,16 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(experiences.router)
     app.include_router(email_prefs.router)
     app.include_router(places.router)
+    app.include_router(photos.router)
     return app
+
+
+def _load_checker(settings: Settings) -> photo_service.Checker | None:
+    if not settings.photos_enabled:
+        return None
+    if not Path(settings.nsfw_model_path).is_file():
+        logger.warning(
+            "photos off: nudity check model missing", extra={"path": settings.nsfw_model_path}
+        )
+        return None
+    return photo_service.NsfwChecker(settings.nsfw_model_path)

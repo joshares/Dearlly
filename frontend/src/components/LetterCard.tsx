@@ -1,4 +1,7 @@
 import { WaxSeal } from "@/components/brand";
+import { getMessages } from "@/i18n";
+
+const letterPhotoAlt = getMessages().photo.alt;
 
 export type LetterTheme = "cream" | "kraft" | "rose";
 
@@ -16,6 +19,8 @@ export type LetterContent = {
   quoteTitle?: string | null;
   quoteText: string;
   theme: LetterTheme;
+  // A signed link to the letter's photo, shown as a taped polaroid.
+  photo?: string | null;
   // Date invitations: "Where", "When", "Note" under the message.
   details?: { label: string; value: string }[];
 };
@@ -36,6 +41,16 @@ export function LetterCard({ letter, placeholder }: { letter: LetterContent; pla
         <WaxSeal size={52} />
       </div>
       <p className="font-hand text-xl leading-[2.2]">Dear {greeting || "…"},</p>
+      {letter.photo && (
+        <figure className="mx-auto my-4 w-fit max-w-full -rotate-2 bg-white p-2 pb-6 shadow-[3px_4px_0_var(--shadow)]">
+          {/* eslint-disable-next-line @next/next/no-img-element -- a private, signed link */}
+          <img
+            src={letter.photo}
+            alt={letterPhotoAlt.replace("{sender}", letter.senderName || "…")}
+            className="block max-h-80 w-auto max-w-full object-contain"
+          />
+        </figure>
+      )}
       {letter.quoteTitle?.trim() && (
         <h2 className="mt-2 text-3xl leading-tight md:text-4xl">{letter.quoteTitle}</h2>
       )}

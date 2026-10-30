@@ -1,0 +1,2 @@
+# Downloaded at build time (fetch_nsfw_model.py), never committed.
+*.onnx
