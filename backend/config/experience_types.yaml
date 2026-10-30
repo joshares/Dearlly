@@ -4,7 +4,8 @@
 # name:       shown in the app
 # email_subject: subject of the email to the recipient ({sender} is filled in)
 # fields:     the type's own content
-#   kind:       text (default), datetime (in the future, within a year), city (from cities.yaml)
+#   kind:       text (default), datetime (in the future, within a year), date (a day, today or
+#               later, within a year), city (from cities.yaml)
 #               or place (a place key from cities.yaml in the chosen city; the server copies its
 #               name, area and address into place_name / place_area / place_address)
 #   max:        maximum characters (text)
@@ -70,5 +71,35 @@ experience_types:
       # Quoted: YAML would read a bare yes/no as true/false.
       - key: "yes"
         label: "Yes!"
+      - key: "no"
+        label: Not this time
+
+  - key: vacation_invite
+    name: Vacation invitation
+    email_subject: "{sender} is planning a trip for you two 💌"
+    fields:
+      message:
+        max: 400
+        required: true
+      destination:
+        max: 80
+        required: true
+      start_date:
+        kind: date
+        required: true
+      end_date:
+        kind: date
+        required: true
+      packing:
+        max: 300
+        required: false
+      note:
+        max: 200
+        required: false
+    themes: [cream, kraft, rose]
+    reply: yes_no
+    reactions:
+      - key: "yes"
+        label: "Let's go!"
       - key: "no"
         label: Not this time

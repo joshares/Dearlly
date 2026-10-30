@@ -206,4 +206,34 @@ describe("OpenLetter", () => {
     fireEvent.click(no);
     expect(no.getAttribute("aria-checked")).toBe("true");
   });
+
+  it("shows a vacation invitation, and they say Let's go", async () => {
+    letter = {
+      ...READY,
+      type: "vacation_invite",
+      reply_kind: "yes_no",
+      content: {
+        message: "Pack your bags.",
+        destination: "Zanzibar",
+        start_date: "2026-12-12",
+        end_date: "2026-12-16",
+        packing: "Swimsuit",
+      },
+      reactions: [
+        { key: "yes", label: "Let's go!" },
+        { key: "no", label: "Not this time" },
+      ],
+    };
+    render(<OpenLetter token={TOKEN} />);
+    fireEvent.click(await screen.findByRole("button", { name: "Break the seal" }));
+    expect(await screen.findByText("Let's get away")).toBeTruthy();
+    expect(screen.getByText("Zanzibar")).toBeTruthy();
+    expect(screen.getByText("12–16 Dec 2026 · 4 nights")).toBeTruthy();
+    fireEvent.click(screen.getByRole("radio", { name: /Let's go!/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Send my answer" }));
+    expect(await screen.findByText("You said yes! 🎉")).toBeTruthy();
+    expect(screen.queryByRole("link", { name: "Get directions" })).toBeNull();
+    expect(screen.getByRole("link", { name: "Plan your own trip invitation" }).getAttribute("href")).toBe("/write/vacation");
+  });
 });
+

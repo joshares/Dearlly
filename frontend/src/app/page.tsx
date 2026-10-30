@@ -11,7 +11,7 @@ import { seemsLoggedIn } from "@/lib/session";
 const EXPERIENCES = [
   { key: "loveNote", tone: "kraft", tilt: "-rotate-3", href: "/write" },
   { key: "date", tone: "stamp", tilt: "rotate-2", href: "/write/date" },
-  { key: "vacation", tone: "ink", tilt: "-rotate-1", href: undefined },
+  { key: "vacation", tone: "ink", tilt: "-rotate-1", href: "/write/vacation" },
   { key: "gift", tone: "paper", tilt: "rotate-3", href: undefined },
 ] as const;
 

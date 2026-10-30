@@ -198,7 +198,8 @@
     "kindsLabel": "What are you sending?",
     "kinds": {
       "love_note": "Love note",
-      "date_invite": "Date invitation"
+      "date_invite": "Date invitation",
+      "vacation_invite": "Vacation"
     }
   },
   "letter": {
@@ -263,7 +264,8 @@
     "answerSent": "Answer sent.",
     "directions": "Get directions",
     "theirAnswer": "Their answer",
-    "writeBackDate": "Send your own invitation"
+    "writeBackDate": "Send your own invitation",
+    "writeBackTrip": "Plan your own trip invitation"
   },
   "sent": {
     "title": "Letters you've sent",
@@ -297,7 +299,8 @@
     "emailBlocked": "Not emailed: share the link instead",
     "kinds": {
       "love_note": "Love note",
-      "date_invite": "Date invitation"
+      "date_invite": "Date invitation",
+      "vacation_invite": "Vacation invitation"
     }
   },
   "save": {
@@ -476,5 +479,40 @@
     "another": "Write another invitation",
     "placeholder": "Your invitation will appear here…",
     "timeZone": "WAT"
+  },
+  "vacation": {
+    "metaTitle": "Plan a trip for two · Dearlly",
+    "title": "Plan a trip for two",
+    "lead": "Say where you're going and when, then seal it. They answer \"Let's go!\", or try to say No.",
+    "inviteHeading": "The invitation",
+    "suggestionsLabel": "Start from one of these",
+    "suggestions": [
+      "Pack your bags. We're going away, just us.",
+      "You've worked so hard. Let me take you somewhere beautiful.",
+      "New place, same favourite person. Will you come with me?",
+      "I booked us an escape. All it needs is your yes."
+    ],
+    "use": "Use this",
+    "messageLabel": "Your invitation",
+    "tripHeading": "The trip",
+    "destinationLabel": "Where to?",
+    "destinationHint": "A city, a beach, a resort: anywhere.",
+    "startLabel": "Leaving on",
+    "endLabel": "Coming back on",
+    "packingLabel": "What to pack (optional)",
+    "packingHint": "Swimsuit, sunglasses, your passport…",
+    "noteLabel": "Anything else? (optional)",
+    "noteHint": "Flight times, a surprise hint…",
+    "cardTitle": "Let's get away",
+    "where": "Where",
+    "dates": "When",
+    "packing": "Pack",
+    "note": "Note",
+    "nights": "{count} nights",
+    "oneNight": "1 night",
+    "dayTrip": "Day trip",
+    "whatsappText": "I'm planning something for us ✈️ Open it here:",
+    "another": "Plan another trip",
+    "placeholder": "Your invitation will appear here…"
   }
 }

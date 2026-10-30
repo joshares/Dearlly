@@ -69,13 +69,15 @@ body {
 
 /* Phones (iPhone especially) give date pickers their own fixed width, which can push past the
    form. Keep them inside it, with the value on the left like the other boxes. */
-input[type="datetime-local"] {
+input[type="datetime-local"],
+input[type="date"] {
   min-width: 0;
   max-width: 100%;
   -webkit-appearance: none;
   appearance: none;
 }
-input[type="datetime-local"]::-webkit-date-and-time-value {
+input[type="datetime-local"]::-webkit-date-and-time-value,
+input[type="date"]::-webkit-date-and-time-value {
   text-align: left;
 }
 

@@ -15,7 +15,7 @@ import hmac
 import re
 import unicodedata
 from dataclasses import dataclass
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 from functools import lru_cache
 from typing import Any
 
@@ -33,7 +33,9 @@ NAME_MAX = 60
 TITLE_MAX = 60
 REPLY_NOTE_MAX = 280
 MAX_AHEAD = timedelta(days=366)
-FIELD_KINDS = ("text", "datetime", "city", "place")
+FIELD_KINDS = ("text", "datetime", "date", "city", "place")
+MAX_TRIP_DAYS = 60
+WAT = timedelta(hours=1)  # dates are days in West Africa Time (UTC+1, no daylight saving)
 
 _LINK_RE = re.compile(r"(?i)(https?://|www\.|\b[a-z0-9-]+\.(com|ng|net|org|app|io|co|me|ly)\b)")
 _ACCOUNT_NUMBER_RE = re.compile(r"\d[\d\s-]{8,}\d")
@@ -143,6 +145,8 @@ def validate_content(
             value = None
         elif spec.kind == "datetime":
             value = _future_time(raw.strip(), now)
+        elif spec.kind == "date":
+            value = _coming_day(raw.strip(), now)
         elif spec.kind == "city":
             if raw not in places.cities():
                 raise ExperienceError("Pick a city we cover.")
@@ -152,7 +156,29 @@ def validate_content(
         if value is not None:
             cleaned[spec.key] = value
     _fill_place(kind, cleaned)
+    _check_trip(cleaned)
     return cleaned
+
+
+def _coming_day(raw: str, now: datetime) -> str:
+    try:
+        day = date.fromisoformat(raw)
+    except ValueError as exc:
+        raise ExperienceError("Pick a date.") from exc
+    today = (now + WAT).date()
+    if not today <= day <= today + MAX_AHEAD:
+        raise ExperienceError("Pick a date from today, within a year.")
+    return day.isoformat()
+
+
+def _check_trip(cleaned: dict[str, str]) -> None:
+    if "start_date" not in cleaned or "end_date" not in cleaned:
+        return
+    start, end = date.fromisoformat(cleaned["start_date"]), date.fromisoformat(cleaned["end_date"])
+    if end < start:
+        raise ExperienceError("The trip has to end on or after the day it starts.")
+    if (end - start).days >= MAX_TRIP_DAYS:
+        raise ExperienceError(f"Trips can be up to {MAX_TRIP_DAYS} days.")
 
 
 def _future_time(raw: str, now: datetime) -> str:

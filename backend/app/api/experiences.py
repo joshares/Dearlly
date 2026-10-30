@@ -1,9 +1,9 @@
-"""Love notes and date invitations (later vacations, gifts): create, list, revoke; open, reply."""
+"""Love notes, date and vacation invitations (later gifts): create, list, revoke; open, reply."""
 
 import contextlib
 import math
 import uuid
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 from typing import Annotated, Any, Literal
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response, status
@@ -212,6 +212,13 @@ async def create_experience(
         date_at = content.get("date_at")
         if date_at and body.opens_at and datetime.fromisoformat(date_at) <= body.opens_at:
             raise engine.ExperienceError("The date has to be after the invitation opens.")
+        trip = content.get("start_date")
+        if (
+            trip
+            and body.opens_at
+            and date.fromisoformat(trip) < (body.opens_at + engine.WAT).date()
+        ):
+            raise engine.ExperienceError("The trip has to start after the invitation opens.")
         sender = engine.clean_text(
             body.sender_name, label="Your name", max_len=engine.NAME_MAX, required=True
         )

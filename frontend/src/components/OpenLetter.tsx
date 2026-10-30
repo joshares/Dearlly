@@ -10,7 +10,13 @@ import { SaveLetter } from "@/components/SaveLetter";
 import { getMessages } from "@/i18n";
 import { ApiError, api } from "@/lib/api";
 import { lagosDateTime, timeLeft } from "@/lib/dates";
-import { type DateContent, dateLetter, directionsUrl } from "@/lib/invitation";
+import {
+  type DateContent,
+  dateLetter,
+  directionsUrl,
+  type VacationContent,
+  vacationLetter,
+} from "@/lib/invitation";
 
 const t = getMessages().letter;
 const CITY_NAMES: Record<string, string> = { lagos: "Lagos", abuja: "Abuja" };
@@ -55,6 +61,7 @@ function asContent(letter: Letter): LetterContent {
   };
   const c = letter.content ?? {};
   if (letter.type === "date_invite") return dateLetter(c as Partial<DateContent>, people);
+  if (letter.type === "vacation_invite") return vacationLetter(c as Partial<VacationContent>, people);
   return { ...people, quoteTitle: c.quote_title, quoteText: c.quote_text ?? "" };
 }
 
@@ -351,20 +358,28 @@ function ReplyShown({ letter, reply }: { letter: Letter; reply: Reply }) {
           {t.directions}
         </a>
       )}
-      {!letter.is_sender && <WriteBack date={letter.type === "date_invite"} />}
+      {!letter.is_sender && <WriteBack type={letter.type} />}
     </section>
   );
 }
 
-function WriteBack({ date = false }: { date?: boolean }) {
+// "Write your own…": the same kind of letter they just received.
+const WRITE_BACK: Record<string, { href: string; text: string }> = {
+  love_note: { href: "/write", text: t.writeBack },
+  date_invite: { href: "/write/date", text: t.writeBackDate },
+  vacation_invite: { href: "/write/vacation", text: t.writeBackTrip },
+};
+
+function WriteBack({ type }: { type: string }) {
+  const target = WRITE_BACK[type] ?? WRITE_BACK.love_note!;
   return (
     <div className="flex flex-col items-start gap-2">
       <p className="text-muted">{t.writeBackLead}</p>
       <Link
-        href={date ? "/write/date" : "/write"}
+        href={target.href}
         className="inline-flex min-h-12 items-center rounded-lg border-2 border-fg px-5 font-bold no-underline"
       >
-        {date ? t.writeBackDate : t.writeBack}
+        {target.text}
       </Link>
     </div>
   );

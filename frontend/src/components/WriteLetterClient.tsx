@@ -13,3 +13,8 @@ export const WriteDateClient = dynamic(
   () => import("@/components/WriteDate").then((m) => m.WriteDate),
   { ssr: false },
 );
+
+export const WriteVacationClient = dynamic(
+  () => import("@/components/WriteVacation").then((m) => m.WriteVacation),
+  { ssr: false },
+);
