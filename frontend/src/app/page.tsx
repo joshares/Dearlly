@@ -82,7 +82,12 @@ export function Home({ loggedIn }: { loggedIn: boolean }) {
           <p className="text-lg leading-[2.25rem] text-muted">{home.gamesBody}</p>
         </section>
 
-        <p className="text-sm text-muted">{home.adultsOnly}</p>
+        <p className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted">
+          <span>{home.adultsOnly}</span>
+          <Link href="/privacy" className="font-bold underline">
+            {home.privacyLink}
+          </Link>
+        </p>
       </main>
       <BottomNav t={t.nav} current="home" />
     </>

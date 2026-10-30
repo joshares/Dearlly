@@ -43,7 +43,8 @@
     },
     "gamesHeading": "Games for two",
     "gamesBody": "Answer privately, reveal together. From talking stage to deep talk — the server deals the questions, so nobody can peek.",
-    "adultsOnly": "For adults 18+ in Nigeria."
+    "adultsOnly": "For adults 18+ in Nigeria.",
+    "privacyLink": "Privacy"
   },
   "nav": {
     "label": "Main",
@@ -88,7 +89,9 @@
     "newPasswordHint": "At least 10 characters. Skip it and you can always log in with a code.",
     "google": "Continue with Google",
     "or": "or",
-    "googleFailed": "Google sign-in didn't work. Please try again, or use an emailed code."
+    "googleFailed": "Google sign-in didn't work. Please try again, or use an emailed code.",
+    "privacyNote": "How we look after your details:",
+    "privacyLink": "Privacy notice"
   },
   "profile": {
     "title": "Your profile",
@@ -293,5 +296,100 @@
     "doneSender": "Done. You won't get any more emails from {sender}.",
     "doneAll": "Done. Dearlly will never email you again.",
     "loading": "Checking your link…"
+  },
+  "privacy": {
+    "metaTitle": "Privacy · Dearlly",
+    "title": "Privacy notice",
+    "updated": "Last updated 30 October 2026",
+    "intro": "Dearlly is a love-letter post office. You trust us with words meant for one person, so we collect as little as we can, keep it locked, and never sell it. This notice explains what we keep, why, and how to have it removed, in line with the Nigeria Data Protection Act 2023.",
+    "sections": [
+      {
+        "heading": "What we keep about you",
+        "paragraphs": [
+          "When you create an account:"
+        ],
+        "items": [
+          "Your email address, so you can log in and we can send you login codes.",
+          "Your username and the display name you choose.",
+          "Your password, if you set one. We only keep a scrambled version that can't be turned back into the password.",
+          "That you confirmed you're 18 or older, and when.",
+          "If you use \"Continue with Google\": your Google account ID and email. We never see your Google password."
+        ]
+      },
+      {
+        "heading": "Your letters",
+        "paragraphs": [
+          "We keep what you write so the person you send it to can open it: the names, the message, the date it opens, and their reply. We also keep whether and when it was opened, so you can see \"Opened\".",
+          "We don't read your letters. The only time someone at Dearlly looks at one is when it is reported, to decide whether to take it down.",
+          "Unsent drafts stay on your own phone or computer until you seal them. Downloads (pictures and PDFs) are made on your device; nothing is sent to us."
+        ]
+      },
+      {
+        "heading": "People who receive a letter",
+        "paragraphs": [
+          "If a sender types in your email address, we use it once to deliver that letter and then delete it. It is never used for marketing and never shared.",
+          "Every email has \"Stop messages from this sender\" and \"Never email me again\". To honour those, we keep a coded fingerprint of your address, not the address itself.",
+          "If you report a letter, we keep the report and your reason so we can review it and spot repeat abuse."
+        ]
+      },
+      {
+        "heading": "Keeping Dearlly safe",
+        "paragraphs": [
+          "Like every website, our servers see your IP address. We use it briefly to stop spam and attacks (for example, limiting how many login codes can be requested). Server logs are overwritten automatically, and private letter links are removed from them.",
+          "When something breaks, an error report is sent to our error-tracking service. Private links, passwords and letter content are removed before it leaves our server."
+        ]
+      },
+      {
+        "heading": "Cookies",
+        "paragraphs": [
+          "We only use cookies Dearlly needs to work: ones that keep you logged in, one that protects forms from forgery, and a small one that only says \"logged in\" so pages load fast. No advertising cookies, no tracking across other sites, no analytics."
+        ]
+      },
+      {
+        "heading": "Who helps us run Dearlly",
+        "paragraphs": [
+          "These companies handle data only to provide their service to us, under their own privacy and security terms:"
+        ],
+        "items": [
+          "Hostinger: our server, in the European Union.",
+          "Cloudflare: website protection, the \"are you human\" check, and our encrypted backups.",
+          "Resend: sends our emails.",
+          "Sentry: error reports, with personal details removed.",
+          "Google: only if you choose \"Continue with Google\"."
+        ]
+      },
+      {
+        "heading": "How long we keep it",
+        "items": [
+          "Your account and letters: until you delete your account.",
+          "\"Take back\" closes a letter's link straight away; the letter itself is deleted with your account.",
+          "Recipient email addresses: deleted as soon as the letter is emailed, or if it is cancelled.",
+          "Backups: encrypted, and each one is deleted after 35 days."
+        ],
+        "paragraphs": []
+      },
+      {
+        "heading": "Your rights",
+        "paragraphs": [
+          "You can ask to see the data we hold about you, correct it, move it, object to how we use it, or have it deleted. You can change your name and password and delete your account yourself in Profile. Deleting your account removes your letters and replies straight away.",
+          "Write to us and we'll reply within 30 days. If you're not happy with our answer, you can complain to the Nigeria Data Protection Commission (ndpc.gov.ng)."
+        ]
+      },
+      {
+        "heading": "Adults only",
+        "paragraphs": [
+          "Dearlly is for people aged 18 and over. If we learn that an account belongs to someone younger, we delete it."
+        ]
+      },
+      {
+        "heading": "Changes",
+        "paragraphs": [
+          "When we add something new, like photos or games, we'll update this notice and change the date at the top. If a change matters, we'll tell you by email before it takes effect."
+        ]
+      }
+    ],
+    "contactHeading": "Contact us",
+    "contactBody": "Questions or requests about your data:",
+    "contactEmail": "hello@dearlly.app"
   }
 }

@@ -102,6 +102,7 @@ def test_the_letter_is_emailed_and_the_address_forgotten(
     assert "Na you" not in email.text and "Na you" not in email.html
     for label in ("Report this letter", "Stop messages from this sender", "Never email me again"):
         assert label in email.text and label in email.html
+    assert "/privacy" in email.text and "/privacy" in email.html
     assert "@ada_demo" in email.text
     assert email.headers["List-Unsubscribe-Post"] == "List-Unsubscribe=One-Click"
     assert email.headers["List-Unsubscribe"].startswith("<http://localhost:8100/email/one-click/")

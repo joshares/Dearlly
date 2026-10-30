@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
@@ -392,6 +393,12 @@ export function LoginFlow({
           >
             {busy ? t.creating : t.createAccount}
           </button>
+          <p className="text-sm text-muted">
+            {t.privacyNote}{" "}
+            <Link href="/privacy" className="font-bold underline">
+              {t.privacyLink}
+            </Link>
+          </p>
         </form>
       )}
 

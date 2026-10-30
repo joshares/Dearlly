@@ -104,6 +104,7 @@ def letter_invite_email(
         ("Report this letter", f"{url}?report=1"),
         ("Stop messages from this sender", f"{web}/unsubscribe?t={stop}"),
         ("Never email me again", f"{web}/unsubscribe?t={stop}&all=1"),
+        ("Privacy", f"{web}/privacy"),
     ]
     footer = (
         f"Sent through Dearlly by @{username}, who typed in your email address. "
