@@ -36,7 +36,7 @@ def test_scrubbing_removes_personal_data() -> None:
 
 
 def test_private_letter_links_never_reach_sentry() -> None:
-    token = "oR8ri9iYc44a-I_OWwi3cCzg7vBAjz81"
+    token = "a" * 32  # a fake link token
     event = {
         "transaction": f"/letters/{token}/reply",
         "request": {

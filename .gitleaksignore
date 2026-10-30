@@ -1,0 +1,4 @@
+# Known false alarms only (Gitleaks fingerprints: commit:file:rule:line). Each line must say why.
+# A fake letter-link token used in tests (local demo data, never a real secret); the tests now use "aaaa…".
+d2b38b36b47b499b37ad83d8cc47d32ac534290d:backend/tests/test_monitoring.py:generic-api-key:39
+55e03463557f007187d03e1ad754d210c9530009:frontend/src/components/OpenLetter.test.tsx:generic-api-key:8
