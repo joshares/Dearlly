@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
+import type { LetterPhoto } from "@/components/LetterCard";
 import { hint, label } from "@/components/write-kit";
 import { getMessages } from "@/i18n";
 import { ApiError, api, peek, remember } from "@/lib/api";
@@ -10,8 +11,36 @@ import { ApiError, api, peek, remember } from "@/lib/api";
 const t = getMessages().photo;
 
 type Status = { enabled: boolean; max_bytes: number };
-type Uploaded = { id: string; url: string; width: number; height: number };
-export type PhotoValue = { photoId: string; photoUrl: string };
+type Uploaded = { id: string; url: string; small_url: string; width: number; height: number };
+export type PhotoValue = {
+  photoId: string;
+  photoUrl: string; // signed links, refreshed when a saved draft comes back
+  photoSmallUrl: string;
+  photoWidth: number;
+  photoHeight: number;
+};
+export const NO_PHOTO: PhotoValue = { photoId: "", photoUrl: "", photoSmallUrl: "", photoWidth: 0, photoHeight: 0 };
+
+function asValue(photo: Uploaded): PhotoValue {
+  return {
+    photoId: photo.id,
+    photoUrl: photo.url,
+    photoSmallUrl: photo.small_url,
+    photoWidth: photo.width,
+    photoHeight: photo.height,
+  };
+}
+
+/** The draft's photo for the letter preview, or none. */
+export function draftPhoto(value: PhotoValue): LetterPhoto | null {
+  if (!value.photoUrl) return null;
+  return {
+    url: value.photoUrl,
+    smallUrl: value.photoSmallUrl || undefined,
+    width: value.photoWidth || undefined,
+    height: value.photoHeight || undefined,
+  };
+}
 
 const MAX_SIDE = 2000;
 
@@ -43,11 +72,15 @@ export function PhotoField({
   onChange,
   loggedIn,
   next,
+  labelText = t.label,
+  hintText = t.hint,
 }: {
   value: PhotoValue;
   onChange: (value: PhotoValue) => void;
   loggedIn: boolean;
   next: string;
+  labelText?: string;
+  hintText?: string;
 }) {
   const [status, setStatus] = useState<Status | null>(() => peek<Status>("/photos/status") ?? null);
   const [busy, setBusy] = useState(false);
@@ -69,8 +102,8 @@ export function PhotoField({
     if (!value.photoId || !loggedIn || refreshed.current) return;
     refreshed.current = true;
     api<Uploaded>(`/photos/${value.photoId}/link`)
-      .then((fresh) => onChange({ photoId: fresh.id, photoUrl: fresh.url }))
-      .catch(() => onChange({ photoId: "", photoUrl: "" }));
+      .then((fresh) => onChange(asValue(fresh)))
+      .catch(() => onChange(NO_PHOTO));
   }, [value.photoId, loggedIn, onChange]);
 
   if (!status?.enabled) return null;
@@ -78,7 +111,7 @@ export function PhotoField({
   if (!loggedIn) {
     return (
       <div className="flex flex-col gap-1 text-sm">
-        <span className="font-semibold">{t.label}</span>
+        <span className="font-semibold">{labelText}</span>
         <Link href={`/login?next=${encodeURIComponent(next)}`} className="self-start font-bold underline">
           {t.logIn}
         </Link>
@@ -94,7 +127,7 @@ export function PhotoField({
       if (small.size > (status?.max_bytes ?? Infinity)) throw new ApiError(413, t.failed);
       const done = await api<Uploaded>("/photos", { method: "POST", body: small });
       refreshed.current = true; // a brand-new link: nothing to refresh
-      onChange({ photoId: done.id, photoUrl: done.url });
+      onChange(asValue(done));
     } catch (err) {
       setError(err instanceof ApiError ? err.detail : t.failed);
     } finally {
@@ -106,7 +139,7 @@ export function PhotoField({
   return (
     <div className="flex flex-col gap-2">
       <label className={label}>
-        {t.label}
+        {labelText}
         <input
           ref={picker}
           type="file"
@@ -118,12 +151,13 @@ export function PhotoField({
             if (file) void upload(file);
           }}
         />
-        <span className={hint}>{t.hint}</span>
+        <span className={hint}>{hintText}</span>
       </label>
       <div className="flex flex-wrap items-center gap-3">
         {value.photoUrl && (
           // eslint-disable-next-line @next/next/no-img-element -- a private, signed link
-          <img src={value.photoUrl} alt={t.previewAlt} className="h-20 w-20 rounded border-2 border-ink object-cover" />
+          <img src={value.photoSmallUrl || value.photoUrl} alt={t.previewAlt} width={80} height={80}
+            decoding="async" className="h-20 w-20 rounded border-2 border-ink object-cover" />
         )}
         <button
           type="button"
@@ -134,7 +168,7 @@ export function PhotoField({
           {busy ? t.checking : value.photoId ? t.change : t.choose}
         </button>
         {value.photoId && !busy && (
-          <button type="button" onClick={() => onChange({ photoId: "", photoUrl: "" })}
+          <button type="button" onClick={() => onChange(NO_PHOTO)}
             className="min-h-12 px-2 text-sm font-bold text-accent-text underline">
             {t.remove}
           </button>

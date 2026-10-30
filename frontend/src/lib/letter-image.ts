@@ -209,7 +209,7 @@ export async function drawLetter(letter: LetterContent, text: SaveText): Promise
 
   // The photo, as a slightly tilted polaroid under the greeting. If it can't be loaded (an expired
   // link, no connection), the letter is saved without it rather than not at all.
-  const photo = letter.photo ? await loadPhoto(letter.photo) : null;
+  const photo = letter.photo ? await loadPhoto(letter.photo.url) : null;
   if (photo) {
     const scale = Math.min((width * 0.7) / photo.width, 340 / photo.height, 1);
     const w = Math.round(photo.width * scale);

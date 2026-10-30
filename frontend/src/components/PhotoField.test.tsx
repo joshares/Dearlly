@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { resetApiState } from "@/lib/api";
 
-import { PhotoField, type PhotoValue } from "./PhotoField";
+import { NO_PHOTO, PhotoField, type PhotoValue } from "./PhotoField";
 
 const json = (status: number, body: unknown) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
@@ -27,7 +27,13 @@ beforeEach(() => {
       if (path === "/photos") {
         const body = init.body as Blob;
         sent = { type: (init.headers as Record<string, string>)["Content-Type"] ?? "", size: body.size };
-        return verdict ?? json(201, { id: "p1", url: "http://localhost:8100/photos/p1.jpg?e=1&s=x", width: 800, height: 600 });
+        return verdict ?? json(201, {
+          id: "p1",
+          url: "http://localhost:8100/photos/p1.jpg?e=1&s=x",
+          small_url: "http://localhost:8100/photos/p1.jpg?e=1&s=x&size=small",
+          width: 800,
+          height: 600,
+        });
       }
       throw new Error(`unexpected ${path}`);
     }),
@@ -39,7 +45,7 @@ afterEach(() => {
 });
 
 function Harness({ loggedIn = true }: { loggedIn?: boolean }) {
-  const [value, setValue] = useState<PhotoValue>({ photoId: "", photoUrl: "" });
+  const [value, setValue] = useState<PhotoValue>(NO_PHOTO);
   return (
     <>
       <PhotoField value={value} onChange={setValue} loggedIn={loggedIn} next="/write" />
@@ -57,7 +63,8 @@ describe("PhotoField", () => {
     fireEvent.change(input, { target: { files: [photo()] } });
     await waitFor(() => expect(screen.getByTestId("value").textContent).toBe("p1"));
     expect(sent).toEqual({ type: "image/jpeg", size: 2048 });
-    expect(screen.getByAltText("Your photo").getAttribute("src")).toContain("/photos/p1.jpg");
+    // The thumbnail uses the lighter phone copy.
+    expect(screen.getByAltText("Your photo").getAttribute("src")).toContain("size=small");
     fireEvent.click(screen.getByRole("button", { name: "Remove photo" }));
     expect(screen.getByTestId("value").textContent).toBe("");
   });

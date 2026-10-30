@@ -560,7 +560,8 @@
     "scratchFirst": "Scratch the stamp to see your gift, then seal a reply.",
     "whatsappText": "I got you something 🎁 Open it here:",
     "another": "Reveal another gift",
-    "placeholder": "Your message will appear here…"
+    "placeholder": "Your message will appear here…",
+    "giftPhotoAlt": "A photo of your gift"
   },
   "photo": {
     "label": "Add a photo (optional)",
@@ -572,6 +573,8 @@
     "logIn": "Log in to add a photo",
     "alt": "A photo from {sender}",
     "previewAlt": "Your photo",
-    "failed": "Couldn't add that photo. Try another."
+    "failed": "Couldn't add that photo. Try another.",
+    "giftLabel": "Add a photo of the gift (optional)",
+    "giftHint": "Hidden under the stamp with the gift until they scratch it. We remove location and other hidden details, and check it for nudity first."
   }
 }

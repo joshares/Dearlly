@@ -40,7 +40,7 @@ export type Letter = {
   // Love note: quote_title / quote_text. Date invitation: see DateContent.
   content: Record<string, string | null | undefined> | null;
   reply_kind: "reaction" | "yes_no";
-  photo_url?: string | null;
+  photo?: { url: string; small_url: string; width: number; height: number } | null;
   reactions: Reaction[];
   reply: Reply | null;
   is_sender: boolean;
@@ -66,7 +66,14 @@ function asContent(letter: Letter, giftRevealed = false): LetterContent {
     recipientName: letter.recipient_name,
     recipientTitle: letter.recipient_title,
     theme: letter.theme,
-    photo: letter.photo_url,
+    photo: letter.photo
+      ? {
+          url: letter.photo.url,
+          smallUrl: letter.photo.small_url,
+          width: letter.photo.width,
+          height: letter.photo.height,
+        }
+      : null,
   };
   const c = letter.content ?? {};
   if (letter.type === "date_invite") return dateLetter(c as Partial<DateContent>, people);
@@ -210,6 +217,7 @@ export function OpenLetter({ token, reportOpen = false }: { token: string; repor
         <ScratchCard
           gift={letter.content.gift}
           hint={letter.content.hint}
+          photo={content.giftPhoto}
           startRevealed={giftAlreadyKnown}
           onReveal={() => setGiftScratched(true)}
         />
