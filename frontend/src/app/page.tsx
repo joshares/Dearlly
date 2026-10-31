@@ -115,6 +115,9 @@ export function Home({ loggedIn }: { loggedIn: boolean }) {
 
         <p className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted">
           <span>{home.adultsOnly}</span>
+          <Link href="/blog" className="font-bold underline">
+            {home.blogLink}
+          </Link>
           <Link href="/privacy" className="font-bold underline">
             {home.privacyLink}
           </Link>

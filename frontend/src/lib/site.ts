@@ -6,12 +6,12 @@
 
 export const SITE_URL = (process.env.SITE_URL ?? "https://dearlly.app").replace(/\/$/, "");
 
-export const PUBLIC_PAGES = ["/", "/quotes", "/date-ideas", "/games", "/privacy", "/terms", "/safety"] as const;
+export const PUBLIC_PAGES = ["/", "/quotes", "/date-ideas", "/blog", "/games", "/privacy", "/terms", "/safety"] as const;
 
 export function isPublicPath(path: string): boolean {
   if ((PUBLIC_PAGES as readonly string[]).includes(path)) return true;
   if (path === "/robots.txt" || path === "/sitemap.xml") return true;
-  return /^\/date-ideas\/[a-z0-9_-]+$/.test(path);
+  return /^\/(date-ideas|blog)\/[a-z0-9_-]+$/.test(path);
 }
 
 /**
