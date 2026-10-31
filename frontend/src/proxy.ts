@@ -20,7 +20,7 @@ export function proxy(request: NextRequest) {
   response.headers.set("Content-Security-Policy", csp);
   // Private letters (/l/<token>), game links and email links: never indexed, even if leaked.
   const path = request.nextUrl.pathname;
-  if (path.startsWith("/l/") || path.startsWith("/play/") || path === "/unsubscribe" || path === "/admin") {
+  if (path.startsWith("/l/") || path.startsWith("/play/") || path === "/unsubscribe" || path === "/admin" || path === "/community") {
     response.headers.set("X-Robots-Tag", "noindex, nofollow");
   }
   return response;
