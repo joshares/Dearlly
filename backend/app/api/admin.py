@@ -190,7 +190,7 @@ async def take_down(report_id: uuid.UUID, admin: Admin, db: DbSession) -> None:
     report.status, report.resolution, report.resolved_at = "resolved", "taken_down", now
     await db.commit()
     logger.info(
-        "admin took down a letter", extra={"admin": str(admin.id), "report": str(report_id)}
+        "admin took down a letter", extra={"admin": str(admin.id), "report": str(report.id)}
     )
 
 
@@ -201,7 +201,7 @@ async def dismiss(report_id: uuid.UUID, admin: Admin, db: DbSession) -> None:
     report.resolved_at = datetime.now(UTC)
     await db.commit()
     logger.info(
-        "admin dismissed a report", extra={"admin": str(admin.id), "report": str(report_id)}
+        "admin dismissed a report", extra={"admin": str(admin.id), "report": str(report.id)}
     )
 
 
@@ -297,7 +297,8 @@ class RetireIn(BaseModel):
 @router.post("/questions/{key}/retired", status_code=status.HTTP_204_NO_CONTENT)
 async def retire(key: str, body: RetireIn, admin: Admin, db: DbSession) -> None:
     """Retired questions are never dealt again (they stay in the files; this is reversible)."""
-    if key not in bank().questions:
+    question = bank().questions.get(key)
+    if question is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "No such question.")
     await db.execute(
         insert(GameQuestionStat)
@@ -307,7 +308,9 @@ async def retire(key: str, body: RetireIn, admin: Admin, db: DbSession) -> None:
     await db.commit()
     logger.info(
         "admin retired a question" if body.retired else "admin restored a question",
-        extra={"admin": str(admin.id), "question": key},
+        # Logged from our own question files and saved records, never the address typed in,
+        # so a crafted address can't fake a log line.
+        extra={"admin": str(admin.id), "question": question.key},
     )
 
 
