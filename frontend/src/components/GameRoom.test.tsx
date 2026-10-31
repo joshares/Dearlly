@@ -189,4 +189,19 @@ describe("GameRoom", () => {
     expect(screen.getByText("Your love language: Quality time")).toBeTruthy();
     expect(screen.getByText("Tolu's love language: Physical touch")).toBeTruthy();
   });
+
+  it("offers a skip in games that have them", async () => {
+    const ws = await connected();
+    const players = view().players.map((p) => ({ ...p, skips_left: p.id === ADA ? 2 : 0 }));
+    ws.serve({
+      t: "state",
+      state: view({ status: "playing", players, round: { ...ROUND, format: "get_to_know", format_name: "Get to know you", answer: "text", options: [], text: "What do you do for fun?" } }),
+    });
+    fireEvent.click(screen.getByRole("button", { name: "Skip (2 left)" }));
+    expect(ws.sent).toContainEqual({ t: "skip" });
+    fireEvent.change(screen.getByLabelText("Your answer"), { target: { value: "Dancing" } });
+    fireEvent.click(screen.getAllByRole("button", { name: "Send" })[0]!);
+    expect(ws.sent).toContainEqual({ t: "answer", value: "Dancing" });
+  });
 });
+

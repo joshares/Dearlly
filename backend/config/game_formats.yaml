@@ -45,6 +45,14 @@ game_formats:
     seconds: 0
     skips: 0
     in_mix: true
+  - key: get_to_know
+    name: Get to know you
+    blurb: Open questions about each other. Answer in your own words, then read theirs.
+    answer: text
+    scoring: none
+    seconds: 0
+    skips: 2
+    in_mix: true
   - key: finish_sentence
     name: Finish my sentence
     blurb: Both finish the same sentence, then read each other's.
