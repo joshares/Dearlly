@@ -74,9 +74,27 @@ function asLetter(draft: Draft): LetterContent {
   };
 }
 
-export function WriteLetter({ loggedIn = false }: { loggedIn?: boolean }) {
+export function WriteLetter({
+  loggedIn = false,
+  start,
+}: {
+  loggedIn?: boolean;
+  /** A quote chosen on the quotes page: it replaces the message in their draft. */
+  start?: Pick<Draft, "quoteTitle" | "quoteText">;
+}) {
   const router = useRouter();
-  const [draft, setDraft] = useState<Draft>(() => loadDraft(DRAFT_KEY, EMPTY));
+  const [draft, setDraft] = useState<Draft>(() => {
+    const saved = loadDraft(DRAFT_KEY, EMPTY);
+    if (!start) return saved;
+    const next = { ...saved, ...start };
+    saveDraft(DRAFT_KEY, next);
+    return next;
+  });
+
+  // The quote is in the draft now: drop it from the address, so a refresh keeps their edits.
+  useEffect(() => {
+    if (start) router.replace("/write", { scroll: false });
+  }, [start, router]);
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [mood, setMood] = useState<Mood | "all">("all");
   const [busy, setBusy] = useState(false);

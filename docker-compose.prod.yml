@@ -25,7 +25,8 @@ x-backend: &backend
     LOG_LEVEL: INFO
     DATABASE_URL: postgresql+asyncpg://dearlly:${POSTGRES_PASSWORD:?run set-secret.sh POSTGRES_PASSWORD --generate}@postgres:5432/dearlly
     REDIS_URL: redis://redis:6379/0
-    ALLOWED_HOSTS: api.dearlly.app,localhost,127.0.0.1
+    # "api": the website asking from inside the server (only reachable there).
+    ALLOWED_HOSTS: api.dearlly.app,localhost,127.0.0.1,api
     CORS_ORIGINS: https://dearlly.app
     PUBLIC_WEB_URL: https://dearlly.app
     PUBLIC_API_URL: https://api.dearlly.app
@@ -117,6 +118,9 @@ services:
     tmpfs: ["/tmp", "/app/.next/cache"]
     environment:
       NEXT_PUBLIC_API_URL: https://api.dearlly.app
+      # Public pages (quotes, date ideas) are made on the server: it asks the API directly,
+      # inside the server, never out through Cloudflare.
+      API_INTERNAL_URL: http://api:8000
     ports:
       - "127.0.0.1:3100:3000"
     depends_on:

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { draftPhoto, NO_PHOTO, PhotoField } from "@/components/PhotoField";
 import { LetterCard, type LetterTheme } from "@/components/LetterCard";
@@ -86,9 +86,27 @@ function asLetter(draft: Draft) {
   );
 }
 
-export function WriteDate({ loggedIn = false }: { loggedIn?: boolean }) {
+export function WriteDate({
+  loggedIn = false,
+  start,
+}: {
+  loggedIn?: boolean;
+  /** A place chosen on the date ideas pages: it replaces the place in their draft. */
+  start?: PlaceChoice;
+}) {
   const router = useRouter();
-  const [draft, setDraft] = useState<Draft>(() => loadDraft(DRAFT_KEY, EMPTY));
+  const [draft, setDraft] = useState<Draft>(() => {
+    const saved = loadDraft(DRAFT_KEY, EMPTY);
+    if (!start) return saved;
+    const next = { ...saved, ...start };
+    saveDraft(DRAFT_KEY, next);
+    return next;
+  });
+
+  // The place is in the draft now: drop it from the address, so a refresh keeps their edits.
+  useEffect(() => {
+    if (start) router.replace("/write/date", { scroll: false });
+  }, [start, router]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sealed, setSealed] = useState<Sealed | null>(null);
