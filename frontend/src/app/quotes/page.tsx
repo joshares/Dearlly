@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { getMessages } from "@/i18n";
 import { serverGet } from "@/lib/server-api";
 import { seemsLoggedIn } from "@/lib/session";
+import { shareCard } from "@/lib/site";
 
 const t = getMessages();
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
   title: t.quotes.metaTitle,
   description: t.quotes.metaDescription,
   alternates: { canonical: "/quotes" },
+  openGraph: shareCard(t.quotes.metaTitle, t.quotes.metaDescription),
 };
 
 type Mood = keyof typeof t.write.moods;

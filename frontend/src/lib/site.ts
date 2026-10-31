@@ -13,3 +13,11 @@ export function isPublicPath(path: string): boolean {
   if (path === "/robots.txt" || path === "/sitemap.xml") return true;
   return /^\/date-ideas\/[a-z0-9_-]+$/.test(path);
 }
+
+/**
+ * The title and line shown under a shared link's picture. A page's own openGraph replaces the
+ * site-wide one (it isn't merged), so every page that sets it goes through here.
+ */
+export function shareCard(title: string, description: string) {
+  return { siteName: "Dearlly", type: "website" as const, title, description };
+}

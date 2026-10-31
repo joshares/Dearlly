@@ -5,10 +5,14 @@ import { GameLibrary } from "@/components/GameLibrary";
 import { SiteHeader } from "@/components/SiteHeader";
 import { getMessages } from "@/i18n";
 import { seemsLoggedIn } from "@/lib/session";
+import { shareCard } from "@/lib/site";
 
 const t = getMessages();
 
-export const metadata: Metadata = { title: t.games.metaTitle };
+export const metadata: Metadata = {
+  title: t.games.metaTitle,
+  openGraph: shareCard(t.games.metaTitle, t.og.games.line),
+};
 
 export default async function GamesPage() {
   const loggedIn = await seemsLoggedIn();

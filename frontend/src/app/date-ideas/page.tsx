@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { getMessages } from "@/i18n";
 import { serverGet } from "@/lib/server-api";
 import { seemsLoggedIn } from "@/lib/session";
+import { shareCard } from "@/lib/site";
 
 const t = getMessages();
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
   title: t.dateIdeas.metaTitle,
   description: t.dateIdeas.metaDescription,
   alternates: { canonical: "/date-ideas" },
+  openGraph: shareCard(t.dateIdeas.metaTitle, t.dateIdeas.metaDescription),
 };
 
 export default async function DateIdeasPage() {
