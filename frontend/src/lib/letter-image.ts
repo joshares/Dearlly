@@ -14,12 +14,12 @@ import { type LetterContent, PAPER } from "@/components/LetterCard";
 export const WIDTH = 1080;
 export const HEIGHT = 1350;
 
-const INK = "#1F2A6B";
-const STAMP = "#D7392B";
-const KRAFT = "#C89B6D";
-const PAPER_BG = "#F3EADB";
+export const INK = "#1F2A6B";
+export const STAMP = "#D7392B";
+export const KRAFT = "#C89B6D";
+export const PAPER_BG = "#F3EADB";
 
-const FRAME = 28; // airmail stripe border
+export const FRAME = 28; // airmail stripe border
 const MARGIN_X = FRAME + 104; // red margin line
 const TEXT_X = MARGIN_X + 44;
 const TEXT_RIGHT = WIDTH - FRAME - 72;
@@ -69,12 +69,12 @@ export function fileName(recipient: string, ext: "png" | "pdf"): string {
   return `dearlly-letter${slug ? `-to-${slug}` : ""}.${ext}`;
 }
 
-function fontFamily(variable: string, fallback: string): string {
+export function fontFamily(variable: string, fallback: string): string {
   const value = getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
   return value || fallback;
 }
 
-function drawFrame(ctx: CanvasRenderingContext2D, paper: string) {
+export function drawFrame(ctx: CanvasRenderingContext2D, paper: string) {
   ctx.fillStyle = PAPER_BG;
   ctx.fillRect(0, 0, WIDTH, HEIGHT);
   // Diagonal airmail stripes, then the letter paper laid on top.
@@ -120,7 +120,7 @@ function drawFrame(ctx: CanvasRenderingContext2D, paper: string) {
   ctx.stroke();
 }
 
-function drawSeal(ctx: CanvasRenderingContext2D, x: number, y: number, size: number, heading: string) {
+export function drawSeal(ctx: CanvasRenderingContext2D, x: number, y: number, size: number, heading: string) {
   ctx.save();
   ctx.translate(x, y);
   ctx.rotate((6 * Math.PI) / 180);
@@ -139,7 +139,7 @@ function drawSeal(ctx: CanvasRenderingContext2D, x: number, y: number, size: num
   ctx.restore();
 }
 
-function drawQr(ctx: CanvasRenderingContext2D, url: string, x: number, y: number, size: number) {
+export function drawQr(ctx: CanvasRenderingContext2D, url: string, x: number, y: number, size: number) {
   const qr = qrcode(0, "M");
   qr.addData(url);
   qr.make();
@@ -296,7 +296,7 @@ export async function drawLetter(letter: LetterContent, text: SaveText): Promise
   return canvas;
 }
 
-function toBlob(canvas: HTMLCanvasElement, type: string, quality?: number): Promise<Blob> {
+export function toBlob(canvas: HTMLCanvasElement, type: string, quality?: number): Promise<Blob> {
   return new Promise((resolve, reject) => {
     canvas.toBlob(
       (blob) => (blob ? resolve(blob) : reject(new Error("Couldn't save the picture."))),
@@ -349,7 +349,7 @@ export function jpegToPdf(jpeg: Uint8Array, width: number, height: number): Blob
   return new Blob(parts as BlobPart[], { type: "application/pdf" });
 }
 
-function download(blob: Blob, name: string) {
+export function download(blob: Blob, name: string) {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;

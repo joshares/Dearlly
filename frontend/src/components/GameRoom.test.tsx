@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { resetApiState } from "@/lib/api";
 import type { GameView } from "@/lib/game-socket";
 
-import { GameRoom } from "./GameRoom";
+import { GameRoom, resultCard } from "./GameRoom";
 
 const replace = vi.fn();
 // One router object, like Next.js's own (a new one per render would re-run effects).
@@ -204,6 +204,27 @@ describe("GameRoom", () => {
     fireEvent.change(screen.getByLabelText("Your answer"), { target: { value: "Dancing" } });
     fireEvent.click(screen.getAllByRole("button", { name: "Send" })[0]!);
     expect(ws.sent).toContainEqual({ t: "answer", value: "Dancing" });
+  });
+
+  it("words the shareable card for each kind of result", () => {
+    const info = { ...INFO, intensity: "romantic" as const, status: "ended" as const, you: "host" as const };
+    const ended = (summary: Partial<GameView["summary"] & object>) =>
+      view({ status: "ended", summary: { rounds: 10, matched: 0, scored: 0, guesses: {}, love_languages: {}, ...summary } });
+    const matched = resultCard(info, ended({ matched: 7, scored: 10 }));
+    expect(matched).toMatchObject({ game: "Same page", level: "Romantic", names: ["Ada", "Tolu"], headline: "7 of 10 matched" });
+    const love = resultCard(info, ended({ love_languages: { [ADA]: "Quality time", [TOLU]: "Physical touch" } }));
+    expect(love?.headline).toBe("Our love languages");
+    expect(love?.lines).toEqual(["Ada: Quality time", "Tolu: Physical touch"]);
+    const guess = resultCard(info, ended({ guesses: { [ADA]: 2, [TOLU]: 4 } }));
+    expect(guess?.lines).toEqual(["Ada guessed 2 right", "Tolu guessed 4 right"]);
+    expect(resultCard(info, ended({}))?.headline).toBe("10 questions, answered together");
+  });
+
+  it("offers to share or save the result", async () => {
+    const ws = await connected();
+    ws.serve({ t: "state", state: view({ status: "ended", summary: { rounds: 3, matched: 2, scored: 3, guesses: {}, love_languages: {} } }) });
+    expect(screen.getByRole("button", { name: "Share our result" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Save as picture" })).toBeTruthy();
   });
 });
 

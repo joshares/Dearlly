@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from "react";
 
 import { getMessages } from "@/i18n";
 import { ApiError, api } from "@/lib/api";
+import { lagosDate } from "@/lib/dates";
+import type { ResultCard } from "@/lib/result-card";
 import { type ChatMessage, type GameRound, type GameView, type Move, useGame } from "@/lib/game-socket";
 
 const t = getMessages().games;
@@ -135,7 +137,7 @@ function Live({ info }: { info: GameInfo }) {
         {view.status === "playing" && view.round && (
           <Round view={view} round={view.round} names={names} otherName={other?.name ?? ""} send={send} />
         )}
-        {view.status === "ended" && <Results view={view} names={names} />}
+        {view.status === "ended" && <Results info={info} view={view} names={names} />}
         {error && (
           <p role="alert" className="rounded-md border-2 border-stamp bg-surface p-3 text-sm font-semibold">{error}</p>
         )}
@@ -423,7 +425,79 @@ function EndGame({ send }: { send: (m: Move) => void }) {
 
 // --- results -------------------------------------------------------------------------------
 
-function Results({ view, names }: { view: GameView; names: Record<string, string> }) {
+/** The card's words: the result in one line, then the details (with everyone's real names). */
+export function resultCard(info: GameInfo, view: GameView): ResultCard | null {
+  const s = view.summary;
+  if (!s) return null;
+  const real = Object.fromEntries(view.players.map((p) => [p.id, p.name]));
+  const order = [view.host, ...view.players.map((p) => p.id).filter((id) => id !== view.host)];
+  const langs = order.filter((id) => s.love_languages[id]);
+  let headline = fill(t.cardTalked, { count: s.rounds });
+  const lines: string[] = [];
+  if (s.scored > 0) headline = fill(t.cardMatched, { matched: s.matched, scored: s.scored });
+  if (langs.length) {
+    headline = t.cardLoveTitle;
+    for (const id of langs) lines.push(fill(t.cardLove, { name: real[id] ?? "", lang: s.love_languages[id] ?? "" }));
+  }
+  for (const id of order) {
+    if ((s.guesses[id] ?? 0) > 0) lines.push(fill(t.cardGuessed, { name: real[id] ?? "", count: s.guesses[id] ?? 0 }));
+  }
+  return {
+    game: info.format_name,
+    level: t.levels[info.intensity],
+    names: [real[order[0] ?? ""] ?? "", real[order[1] ?? ""] ?? ""],
+    headline,
+    lines,
+    date: lagosDate(new Date().toISOString()),
+    kicker: t.cardKicker,
+    footer: t.cardFooter,
+    site: "dearlly.app",
+  };
+}
+
+function ShareResult({ info, view }: { info: GameInfo; view: GameView }) {
+  const [busy, setBusy] = useState<"share" | "save" | null>(null);
+  const [note, setNote] = useState<string | null>(null);
+  const card = resultCard(info, view);
+  if (!card) return null;
+
+  async function run(kind: "share" | "save") {
+    if (!card) return;
+    setBusy(kind);
+    setNote(null);
+    try {
+      // The drawing code loads only when it's needed.
+      const cards = await import("@/lib/result-card");
+      if (kind === "share") {
+        const done = await cards.shareResultCard(card, fill(t.shareText, { game: info.format_name }));
+        if (done === "saved") setNote(t.savedCard);
+      } else {
+        await cards.saveResultCard(card);
+        setNote(t.savedCard);
+      }
+    } catch {
+      setNote(t.error);
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+        <button type="button" className={primary} disabled={busy !== null} onClick={() => run("share")}>
+          {busy === "share" ? t.sharing : t.share}
+        </button>
+        <button type="button" className={secondary} disabled={busy !== null} onClick={() => run("save")}>
+          {busy === "save" ? t.sharing : t.saveCard}
+        </button>
+      </div>
+      {note && <p role="status" className="text-sm font-semibold">{note}</p>}
+    </div>
+  );
+}
+
+function Results({ info, view, names }: { info: GameInfo; view: GameView; names: Record<string, string> }) {
   const s = view.summary;
   if (!s) return null;
   const lines: string[] = [];
@@ -445,7 +519,8 @@ function Results({ view, names }: { view: GameView; names: Record<string, string
         {lines.map((line) => <li key={line}>{line}</li>)}
       </ul>
       <p className="text-sm text-muted">{fill(t.rounds, { count: s.rounds })}</p>
-      <Link href="/games" className={`${primary} inline-flex items-center justify-center self-start no-underline`}>
+      <ShareResult info={info} view={view} />
+      <Link href="/games" className={`${secondary} inline-flex items-center justify-center self-start no-underline`}>
         {t.playAgain}
       </Link>
     </section>
