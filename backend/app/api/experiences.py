@@ -624,7 +624,8 @@ async def report_letter(
         f"Sender: @{owner.username if owner else '(deleted)'} ({e.owner_id})\n"
         f"Signed as: {e.sender_name}{' (sent as a secret admirer)' if e.anonymous else ''}\n"
         f"To: {e.recipient_name}\n\n{letter_text}\n\n"
-        "To take it down (its link stops working for good), on your Mac run:\n"
+        f"Review it, take it down or dismiss it: {settings.public_web_url.rstrip('/')}/admin\n\n"
+        "Or take it down from your Mac (its link stops working for good):\n"
         f"  ssh -t dearlly docker exec dearlly-api-1 python -m app.admin takedown {e.id}\n"
     )
     # Saved in the database either way; the email is the founder's nudge to look.

@@ -17,6 +17,7 @@ export type MyProfile = {
   email: string;
   plan: "free" | "premium";
   has_password: boolean;
+  is_admin?: boolean;
   created_at: string;
 };
 

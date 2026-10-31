@@ -10,6 +10,7 @@ from redis.asyncio import Redis
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from app.api import (
+    admin,
     auth,
     email_prefs,
     experiences,
@@ -94,6 +95,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(places.router)
     app.include_router(photos.router)
     app.include_router(games.router)
+    app.include_router(admin.router)
     return app
 
 

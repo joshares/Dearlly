@@ -37,3 +37,9 @@ class Report(Base):
     reason: Mapped[str] = mapped_column(String(32))
     note: Mapped[str | None] = mapped_column(String(280))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    # open -> resolved (resolution: taken_down or dismissed), from the admin page.
+    status: Mapped[str] = mapped_column(
+        String(16), default="open", server_default="open", index=True
+    )
+    resolution: Mapped[str | None] = mapped_column(String(16))
+    resolved_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
