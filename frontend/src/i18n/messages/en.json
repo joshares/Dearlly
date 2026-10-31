@@ -716,6 +716,10 @@
     "joinLead": "Someone invited you? Type the 6-letter game code.",
     "joinLabel": "Game code",
     "joinButton": "Join",
-    "orCreate": "Or start a new game"
+    "orCreate": "Or start a new game",
+    "rateLabel": "Good question?",
+    "rateUp": "Good question",
+    "rateDown": "Not a good question",
+    "rated": "Thanks! It helps us pick better questions."
   }
 }

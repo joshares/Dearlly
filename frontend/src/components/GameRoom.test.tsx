@@ -56,7 +56,7 @@ function view(over: Partial<GameView> = {}): GameView {
 const ROUND = {
   number: 1, format: "same_page", format_name: "Same page", answer: "choice" as const, text: "Tea or coffee?",
   options: ["Tea", "Coffee"], subject: null, choice: null, can_answer: true, answered: [], my_answer: null,
-  my_choice: null, revealed: false, answers: null, match: null, seconds_left: null,
+  my_choice: null, my_rating: null, revealed: false, answers: null, match: null, seconds_left: null,
 };
 
 let info: Record<string, unknown>;
@@ -138,6 +138,8 @@ describe("GameRoom", () => {
       state: view({ status: "playing", round: { ...ROUND, can_answer: false, my_choice: 1, revealed: true, answers: { [ADA]: "Coffee", [TOLU]: "Coffee" }, match: true } }),
     });
     expect(screen.getByText("It's a match! 💞")).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "Good question" }));
+    expect(ws.sent).toContainEqual({ t: "rate", value: "up" });
     fireEvent.click(screen.getByRole("button", { name: "Next question" }));
     expect(ws.sent).toContainEqual({ t: "next" });
   });

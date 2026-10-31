@@ -281,6 +281,7 @@ function Round({
       )}
 
       {round.revealed && <Reveal view={view} round={round} names={names} otherName={otherName} />}
+      {round.revealed && round.text && <Rate round={round} send={send} />}
 
       <div className="flex flex-wrap items-center gap-3 border-t-2 border-dashed border-line pt-4">
         {/* Games with skips (Deep talk, Get to know you): each player has a few. */}
@@ -370,6 +371,23 @@ function Reveal({ view, round, names, otherName }: { view: GameView; round: Game
         ))}
       </div>
       {verdict && <p className="font-hand text-2xl text-accent-text">{verdict}</p>}
+    </div>
+  );
+}
+
+/** 👍 / 👎 on the question, once: weak questions get retired. */
+function Rate({ round, send }: { round: GameRound; send: (m: Move) => void }) {
+  if (round.my_rating) return <p className="text-sm text-muted">{t.rated}</p>;
+  const button = "min-h-12 min-w-12 rounded-full border-2 border-line bg-surface px-3 text-xl";
+  return (
+    <div className="flex items-center gap-2" role="group" aria-label={t.rateLabel}>
+      <span className="text-sm font-semibold text-muted">{t.rateLabel}</span>
+      <button type="button" className={button} aria-label={t.rateUp} onClick={() => send({ t: "rate", value: "up" })}>
+        👍
+      </button>
+      <button type="button" className={button} aria-label={t.rateDown} onClick={() => send({ t: "rate", value: "down" })}>
+        👎
+      </button>
     </div>
   );
 }
