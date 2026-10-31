@@ -54,7 +54,7 @@ afterEach(() => {
 
 function fillIn() {
   fireEvent.change(screen.getByLabelText(/Your name/), { target: { value: "Ada" } });
-  fireEvent.change(screen.getByLabelText("Their name"), { target: { value: "Tolu" } });
+  fireEvent.change(screen.getByLabelText(/^Their name/), { target: { value: "Tolu" } });
   fireEvent.click(screen.getAllByRole("button", { name: "Use this" })[0]!);
   fireEvent.change(screen.getByLabelText(/Date and time/), { target: { value: "2026-11-07T19:00" } });
 }
@@ -94,7 +94,7 @@ describe("WriteDate", () => {
     const seal = screen.getByRole("button", { name: "Seal it" }) as HTMLButtonElement;
     expect(seal.disabled).toBe(true);
     fireEvent.click(await screen.findByRole("button", { name: "Somewhere else" }));
-    fireEvent.change(screen.getByLabelText("Place name"), { target: { value: "Mama Put, Yaba" } });
+    fireEvent.change(screen.getByLabelText(/^Place name/), { target: { value: "Mama Put, Yaba" } });
     expect(seal.disabled).toBe(false);
     fireEvent.click(seal);
     expect(await screen.findByText("Sealed with love.")).toBeTruthy();

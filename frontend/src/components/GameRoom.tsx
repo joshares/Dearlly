@@ -272,7 +272,8 @@ function Round({
             </p>
           )}
           <h1 className="text-3xl leading-tight md:text-4xl">{round.text}</h1>
-          <Answer round={round} send={send} otherName={otherName} />
+          {/* A fresh answer box for every question (a new round or a skip), never last round's text. */}
+          <Answer key={`${round.number}:${round.text}`} round={round} send={send} otherName={otherName} />
         </>
       )}
 

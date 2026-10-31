@@ -226,5 +226,15 @@ describe("GameRoom", () => {
     expect(screen.getByRole("button", { name: "Share our result" })).toBeTruthy();
     expect(screen.getByRole("button", { name: "Save as picture" })).toBeTruthy();
   });
+
+  it("starts every new question with an empty answer box", async () => {
+    const ws = await connected();
+    const textRound = { ...ROUND, format: "get_to_know", format_name: "Get to know you", answer: "text" as const, options: [] };
+    ws.serve({ t: "state", state: view({ status: "playing", round: { ...textRound, number: 1, text: "What do you do for fun?" } }) });
+    fireEvent.change(screen.getByLabelText("Your answer"), { target: { value: "Dancing, mostly" } });
+    // The host moves on before this player sends it.
+    ws.serve({ t: "state", state: view({ status: "playing", round: { ...textRound, number: 2, text: "Where did you grow up?" } }) });
+    expect((screen.getByLabelText("Your answer") as HTMLTextAreaElement).value).toBe("");
+  });
 });
 
