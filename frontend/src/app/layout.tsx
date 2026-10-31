@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 
 import { figtree, gloock, homemadeApple } from "@/app/fonts";
 import { defaultLocale, getMessages } from "@/i18n";
+import { SITE_URL } from "@/lib/site";
 
 import "./globals.css";
 
@@ -11,8 +12,9 @@ const t = getMessages();
 export const metadata: Metadata = {
   title: t.meta.title,
   description: t.meta.description,
-  // Not indexed until launch.
-  robots: { index: false, follow: false },
+  metadataBase: new URL(SITE_URL),
+  // Which pages search engines may list is decided in src/proxy.ts (src/lib/site.ts).
+  openGraph: { siteName: "Dearlly", type: "website" },
 };
 
 export const viewport: Viewport = {

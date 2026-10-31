@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 import { buildCsp } from "@/lib/security-headers";
+import { isPublicPath } from "@/lib/site";
 
 export function proxy(request: NextRequest) {
   const nonce = btoa(crypto.randomUUID());
@@ -18,9 +19,9 @@ export function proxy(request: NextRequest) {
 
   const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set("Content-Security-Policy", csp);
-  // Private letters (/l/<token>), game links and email links: never indexed, even if leaked.
-  const path = request.nextUrl.pathname;
-  if (path.startsWith("/l/") || path.startsWith("/play/") || path === "/unsubscribe" || path === "/admin" || path === "/community") {
+  // Only the public pages may be listed by search engines. Everything else (private letters,
+  // game links, email links, accounts, the community) says "noindex", even if a link leaks.
+  if (!isPublicPath(request.nextUrl.pathname)) {
     response.headers.set("X-Robots-Tag", "noindex, nofollow");
   }
   return response;

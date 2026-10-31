@@ -107,6 +107,9 @@ services:
         NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${NEXT_PUBLIC_TURNSTILE_SITE_KEY}
     image: dearlly-web:local
     tmpfs: ["/tmp", "/app/.next/cache"]
+    environment:
+      # Public pages (quotes, date ideas) are made on the server: it asks the API directly.
+      API_INTERNAL_URL: http://api:8000
     ports:
       - "127.0.0.1:${WEB_PORT:-3100}:3000"
     depends_on:

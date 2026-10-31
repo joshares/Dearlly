@@ -101,3 +101,14 @@ describe("WriteDate", () => {
     expect(created).toMatchObject({ content: { place_key: null, place_name: "Mama Put, Yaba" } });
   });
 });
+
+describe("starting from the date ideas pages", () => {
+  it("has the place chosen, keeps the rest of the draft, and cleans the address", async () => {
+    window.localStorage.setItem("dearlly:draft:date_invite", JSON.stringify({ senderName: "Ada", placeName: "Old place" }));
+    render(<WriteDate loggedIn start={{ city: "lagos", placeKey: "shiro", placeName: "Shiro Lagos", placeArea: "Victoria Island", placeAddress: "Water Corporation Road" }} />);
+    expect((screen.getByLabelText(/Your name/) as HTMLInputElement).value).toBe("Ada");
+    const row = (await screen.findByText("Shiro Lagos", { selector: "strong" })).closest("li")!;
+    expect(within(row).getByRole("button", { name: "Chosen ✓" })).toBeTruthy();
+    expect(push).toHaveBeenCalledWith("/write/date", { scroll: false });
+  });
+});

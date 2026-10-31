@@ -15,6 +15,11 @@ const EXPERIENCES = [
   { key: "gift", tone: "paper", tilt: "rotate-3", href: "/write/gift" },
 ] as const;
 
+const IDEAS = [
+  { href: "/quotes", title: "quotesLink", body: "quotesBody" },
+  { href: "/date-ideas", title: "dateIdeasLink", body: "dateIdeasBody" },
+] as const;
+
 export default async function HomePage() {
   return <Home loggedIn={await seemsLoggedIn()} />;
 }
@@ -90,6 +95,22 @@ export function Home({ loggedIn }: { loggedIn: boolean }) {
           >
             {home.gamesCta}
           </Link>
+        </section>
+
+        <section aria-labelledby="ideas" className="flex flex-col gap-5">
+          <h2 id="ideas" className="text-3xl md:text-4xl">
+            {home.ideasHeading}
+          </h2>
+          <ul className="grid grid-cols-[minmax(0,1fr)] gap-4 sm:grid-cols-2 md:max-w-3xl">
+            {IDEAS.map(({ href, title, body }) => (
+              <li key={href}>
+                <Link href={href} className="letter-sheet flex min-h-24 flex-col gap-1 rounded-sm py-5 pr-5 pl-10 no-underline">
+                  <span className="font-heading text-2xl">{home[title]}</span>
+                  <span className="text-muted">{home[body]}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <p className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted">

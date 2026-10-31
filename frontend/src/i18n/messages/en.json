@@ -150,6 +150,11 @@
     "dateCta": "Invite them on a date",
     "open": "Write one",
     "gamesCta": "Play a game",
+    "ideasHeading": "Need a little help?",
+    "quotesLink": "Words to borrow",
+    "quotesBody": "Original love note lines for every mood. Send one as it is, or make it yours.",
+    "dateIdeasLink": "Date ideas",
+    "dateIdeasBody": "Places worth the trip, picked from trusted guides.",
     "termsLink": "Terms",
     "safetyLink": "Safety"
   },
@@ -1048,5 +1053,38 @@
     "deleteYes": "Yes, delete it",
     "photoAlt": "A photo posted by @{username}",
     "error": "Something went wrong. Try again."
+  },
+  "quotes": {
+    "metaTitle": "Love note ideas: sweet, romantic and funny messages · Dearlly",
+    "metaDescription": "Original love note ideas for every mood: sweet, romantic, playful, deep, birthday, anniversary and sorry. Send one as a sealed love letter, free.",
+    "title": "Love note ideas",
+    "lead": "Original lines, written for Dearlly. Send one as it is, or start from it and make it yours.",
+    "moodsLabel": "Jump to a mood",
+    "send": "Send this as a love note",
+    "failed": "These couldn't load just now. Please refresh the page.",
+    "ctaHeading": "Rather write your own?",
+    "ctaBody": "Start with a blank page. Your words, sealed in an envelope, opened by private link.",
+    "cta": "Write a love note"
+  },
+  "dateIdeas": {
+    "metaTitle": "Date ideas: romantic places to go together · Dearlly",
+    "metaDescription": "Romantic date ideas and places to go, picked from trusted guides: dinners, rooftops, art, the water and more. Invite them with a sealed date invitation.",
+    "title": "Date ideas",
+    "lead": "Places worth dressing up for, picked from guides people trust. Find one, then invite them properly.",
+    "citiesLabel": "Choose a city",
+    "placeCount": "{count} places",
+    "cityMetaTitle": "Date ideas in {city}: romantic places to go · Dearlly",
+    "cityMetaDescription": "{count} date ideas in {city}, picked from trusted guides: romantic dinners, rooftops, art, the water and more. Invite them with a sealed date invitation.",
+    "cityTitle": "Date ideas in {city}",
+    "cityLead": "Grouped by the kind of date. Each place shows the guides that recommend it, so you can check for yourself.",
+    "vibesLabel": "Jump to a kind of date",
+    "invite": "Invite them here",
+    "otherCities": "Other cities",
+    "allCities": "All cities",
+    "checkFirst": "Opening hours and prices change. Check with the place before you go.",
+    "failed": "These couldn't load just now. Please refresh the page.",
+    "ctaHeading": "Somewhere else in mind?",
+    "ctaBody": "Any place works. Type it in and choose a time.",
+    "cta": "Invite them on a date"
   }
 }

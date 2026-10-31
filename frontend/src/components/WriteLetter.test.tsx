@@ -128,6 +128,20 @@ describe("WriteLetter", () => {
   });
 });
 
+describe("starting from the quotes page", () => {
+  it("fills in the chosen quote over the saved draft, keeps the names, and cleans the address", () => {
+    window.localStorage.setItem(
+      "dearlly:draft:love_note",
+      JSON.stringify({ senderName: "Ada", recipientName: "Tolu", quoteText: "Old words" }),
+    );
+    render(<WriteLetter start={{ quoteTitle: "The answer", quoteText: "Still you." }} />);
+    expect((screen.getByLabelText(/Your message/) as HTMLTextAreaElement).value).toBe("Still you.");
+    expect((screen.getByLabelText(/Your name/) as HTMLInputElement).value).toBe("Ada");
+    expect(JSON.parse(window.localStorage.getItem("dearlly:draft:love_note")!).quoteText).toBe("Still you.");
+    expect(push).toHaveBeenCalledWith("/write", { scroll: false });
+  });
+});
+
 describe("secret admirer", () => {
   it("hides the name in the preview, drops the photo option and sends it as secret", async () => {
     render(<WriteLetter loggedIn />);
