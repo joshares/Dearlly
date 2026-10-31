@@ -33,6 +33,11 @@ LINK_TOKEN_BYTES = 24  # 192 bits; the plan asks for at least 128
 NAME_MAX = 60
 TITLE_MAX = 60
 REPLY_NOTE_MAX = 280
+# What recipients see instead of a secret admirer's name, until the sender reveals it.
+ADMIRER_NAME = "A secret admirer"
+ADMIRER_PER_DAY = 3
+# Blocked by this many recipients: secret admirer mode is switched off for the sender.
+ADMIRER_BLOCKS_LIMIT = 3
 MAX_AHEAD = timedelta(days=366)
 FIELD_KINDS = ("text", "datetime", "date", "city", "place", "photo")
 MAX_TRIP_DAYS = 60
@@ -63,6 +68,7 @@ class ExperienceType:
     reply: str
     reactions: tuple[tuple[str, str], ...]
     email_subject: str = "{sender} sealed a letter for you 💌"
+    secret_admirer: bool = False
 
 
 @lru_cache
@@ -90,6 +96,7 @@ def experience_types() -> dict[str, ExperienceType]:
             reply=entry.get("reply", "reaction"),
             reactions=reactions,
             email_subject=str(entry.get("email_subject") or ExperienceType.email_subject),
+            secret_admirer=bool(entry.get("secret_admirer", False)),
         )
     return types
 
@@ -276,3 +283,10 @@ def email_fingerprint(settings: Settings, email: str) -> str:
 
 def letter_url(settings: Settings, token: str) -> str:
     return f"{settings.public_web_url.rstrip('/')}/l/{token}"
+
+
+def shown_sender(e: Any, *, to_sender: bool = False) -> str:
+    """The sender's name as the recipient sees it: hidden for a secret admirer until revealed."""
+    if e.anonymous and e.revealed_at is None and not to_sender:
+        return ADMIRER_NAME
+    return str(e.sender_name)

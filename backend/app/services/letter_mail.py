@@ -36,8 +36,17 @@ UNSUBSCRIBE_TTL = timedelta(days=400)
 # --- "stop" links ------------------------------------------------------------------------------
 
 
-def unsubscribe_token(settings: Settings, email_hash: str, sender_id: uuid.UUID) -> str:
-    return encode_jwt(settings, "unsubscribe", email_hash, UNSUBSCRIBE_TTL, snd=str(sender_id))
+def unsubscribe_token(
+    settings: Settings, email_hash: str, sender_id: uuid.UUID, *, secret: bool = False
+) -> str:
+    extra: dict[str, object] = {"snd": str(sender_id)}
+    if secret:
+        extra["sec"] = True  # the "stop" page then says "this secret admirer", not their username
+    return encode_jwt(settings, "unsubscribe", email_hash, UNSUBSCRIBE_TTL, **extra)
+
+
+def token_is_secret(settings: Settings, token: str) -> bool:
+    return bool(decode_jwt(settings, token, "unsubscribe").get("sec"))
 
 
 def read_unsubscribe_token(settings: Settings, token: str) -> tuple[str, uuid.UUID]:
@@ -97,17 +106,21 @@ def letter_invite_email(
     web = settings.public_web_url.rstrip("/")
     api = settings.public_api_url.rstrip("/")
     url = engine.letter_url(settings, link_token)
-    stop = unsubscribe_token(settings, experience.recipient_email_hash or "", experience.owner_id)
+    secret = experience.anonymous and experience.revealed_at is None
+    stop = unsubscribe_token(
+        settings, experience.recipient_email_hash or "", experience.owner_id, secret=secret
+    )
     name = experience.recipient_title or experience.recipient_name
-    sender = experience.sender_name
+    sender = engine.shown_sender(experience)
     links = [
         ("Report this letter", f"{url}?report=1"),
         ("Stop messages from this sender", f"{web}/unsubscribe?t={stop}"),
         ("Never email me again", f"{web}/unsubscribe?t={stop}&all=1"),
         ("Privacy", f"{web}/privacy"),
     ]
+    by = "a secret admirer (Dearlly knows who they are)" if secret else f"@{username}"
     footer = (
-        f"Sent through Dearlly by @{username}, who typed in your email address. "
+        f"Sent through Dearlly by {by}, who typed in your email address. "
         "We use it only to deliver this letter, never for marketing. Dearlly is for adults 18+."
     )
     text = (

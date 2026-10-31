@@ -127,3 +127,17 @@ describe("WriteLetter", () => {
     expect((screen.getByLabelText(/Your message/) as HTMLTextAreaElement).value).toBe("Back again");
   });
 });
+
+describe("secret admirer", () => {
+  it("hides the name in the preview, drops the photo option and sends it as secret", async () => {
+    render(<WriteLetter loggedIn />);
+    fillIn();
+    fireEvent.change(screen.getByLabelText(/Your message/), { target: { value: "I see you." } });
+    fireEvent.click(screen.getByLabelText(/Send as a secret admirer/));
+    expect(screen.getAllByText("— A secret admirer").length).toBeGreaterThan(0);
+    expect(screen.queryByText(/Add a photo/)).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Seal it" }));
+    expect(await screen.findByText(/They'll see "A secret admirer"/)).toBeTruthy();
+    expect(created).toMatchObject({ secret: true, sender_name: "Ada", content: { photo: null } });
+  });
+});

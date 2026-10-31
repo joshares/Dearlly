@@ -151,6 +151,7 @@ export function LookFields({ draft, update }: { draft: Look; update: (changes: P
 
 export type Sealed = {
   url: string;
+  secret?: boolean;
   opens_at: string | null;
   email_status: "scheduled" | "blocked" | null;
   letter: LetterContent;
@@ -162,11 +163,13 @@ export function SealedPanel({
   onAnother,
   whatsappText = t.whatsappText,
   anotherText = t.writeAnother,
+  note,
 }: {
   sealed: Sealed;
   onAnother: () => void;
   whatsappText?: string;
   anotherText?: string;
+  note?: string;
 }) {
   const [copied, setCopied] = useState(false);
   const canShare = typeof navigator !== "undefined" && "share" in navigator;
@@ -190,6 +193,7 @@ export function SealedPanel({
       <h1 className="text-4xl md:text-5xl">{t.sealedTitle}</h1>
       <p className="text-lg text-muted">{t.sealedLead}</p>
       {when && <p className="font-semibold">{t.sealedUntil.replace("{when}", when)}</p>}
+      {note && <p className="font-semibold">{note}</p>}
       {sealed.email_status === "scheduled" && (
         <p className="font-semibold">
           {(sealed.opens_at ? t.emailWhenOpens : t.emailScheduled).replace("{email}", sealed.email)}

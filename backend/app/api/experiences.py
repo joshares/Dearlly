@@ -1,6 +1,7 @@
 """Love notes, date and vacation invitations (later gifts): create, list, revoke; open, reply."""
 
 import contextlib
+import logging
 import math
 import uuid
 from datetime import UTC, date, datetime, timedelta
@@ -20,6 +21,8 @@ from app.services import experiences as engine
 from app.services import letter_mail
 from app.services.email import Email, EmailDeliveryError, send_email
 from app.services.profiles import ProfileFieldError, normalize_email
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(tags=["experiences"], dependencies=[Depends(require_csrf)])
 
@@ -83,6 +86,8 @@ class CreateIn(BaseModel):
     opens_at: AwareDatetime | None = None
     # Optional: email them the link (when it opens, for scheduled letters).
     recipient_email: str | None = Field(default=None, max_length=254)
+    # Secret admirer: they see "A secret admirer" until the sender reveals their name.
+    secret: bool = False
 
 
 class ReplyOut(BaseModel):
@@ -108,6 +113,9 @@ class MyExperienceOut(BaseModel):
     revoked: bool
     email_status: str | None
     email_sent_at: datetime | None
+    secret: bool
+    revealed: bool
+    blocked: bool
 
 
 class MyExperiencesPage(BaseModel):
@@ -134,6 +142,8 @@ class LetterOut(BaseModel):
     reactions: list[Reaction]
     reply: ReplyOut | None
     is_sender: bool
+    # From a secret admirer who hasn't revealed their name (sender_name is then "A secret admirer").
+    secret: bool
 
 
 class ReplyIn(BaseModel):
@@ -152,7 +162,12 @@ def _mine(e: Experience, settings: AppSettings) -> MyExperienceOut:
     return MyExperienceOut(
         id=e.id,
         type=e.type,
-        url=engine.letter_url(settings, token) if token and e.revoked_at is None else None,
+        # A taken-back or blocked letter's link no longer opens anything.
+        url=(
+            engine.letter_url(settings, token)
+            if token and e.revoked_at is None and e.blocked_at is None
+            else None
+        ),
         sender_name=e.sender_name,
         recipient_name=e.recipient_name,
         recipient_title=e.recipient_title,
@@ -166,6 +181,9 @@ def _mine(e: Experience, settings: AppSettings) -> MyExperienceOut:
         revoked=e.revoked_at is not None,
         email_status=e.email_status,
         email_sent_at=e.email_sent_at,
+        secret=e.anonymous,
+        revealed=e.revealed_at is not None,
+        blocked=e.blocked_at is not None,
     )
 
 
@@ -205,6 +223,8 @@ async def create_experience(
     kind = engine.experience_types().get(body.type)
     if kind is None:
         raise _bad("Unknown experience type.")
+    if body.secret and not kind.secret_admirer:
+        raise _bad("Only love notes can be sent as a secret admirer.")
     if body.theme not in kind.themes:
         raise _bad("Unknown theme.")
     now = datetime.now(UTC)
@@ -237,6 +257,8 @@ async def create_experience(
     except engine.ExperienceError as exc:
         raise _bad(str(exc)) from exc
 
+    if body.secret:
+        await _check_secret(db, user, content)
     photo = await _own_free_photo(db, settings, user, content.get("photo"))
     email_fields = await _email_fields(db, settings, user, body.recipient_email)
     token = engine.new_link_token()
@@ -252,6 +274,7 @@ async def create_experience(
         theme=body.theme,
         content=content,
         opens_at=body.opens_at,
+        anonymous=body.secret,
     )
     db.add(experience)
     if photo is not None:
@@ -260,6 +283,36 @@ async def create_experience(
     await db.commit()
     await db.refresh(experience)
     return _mine(experience, settings)
+
+
+async def _check_secret(db: DbSession, user: User, content: dict[str, str]) -> None:
+    """Secret admirer limits: no photos, 3 a day, off after 3 blocks."""
+    if content.get("photo"):
+        raise _bad("Secret admirer letters can't have photos. Remove the photo to send it.")
+    mine = (Experience.owner_id == user.id, Experience.anonymous.is_(True))
+    blocks = (
+        await db.execute(
+            select(func.count())
+            .select_from(Experience)
+            .where(*mine, Experience.blocked_at.is_not(None))
+        )
+    ).scalar_one()
+    if blocks >= engine.ADMIRER_BLOCKS_LIMIT:
+        raise _bad(
+            "Secret admirer is switched off for your account because people blocked your letters. "
+            "You can still send letters with your name."
+        )
+    since = datetime.now(UTC) - timedelta(days=1)
+    today = (
+        await db.execute(
+            select(func.count()).select_from(Experience).where(*mine, Experience.created_at > since)
+        )
+    ).scalar_one()
+    if today >= engine.ADMIRER_PER_DAY:
+        raise _bad(
+            f"You can send up to {engine.ADMIRER_PER_DAY} secret admirer letters a day. "
+            "Try again tomorrow, or send it with your name."
+        )
 
 
 async def _own_free_photo(
@@ -356,6 +409,24 @@ async def revoke_experience(
     return _mine(experience, settings)
 
 
+@router.post("/me/experiences/{experience_id}/reveal")
+async def reveal_name(
+    experience_id: uuid.UUID, user: CurrentUser, db: DbSession, settings: AppSettings
+) -> MyExperienceOut:
+    """A secret admirer shows their name: from now on the letter is signed with it."""
+    experience = await db.get(Experience, experience_id)
+    if experience is None or experience.owner_id != user.id:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not found.")
+    if not experience.anonymous:
+        raise _bad("This letter already has your name.")
+    if experience.blocked_at is not None or experience.revoked_at is not None:
+        raise _bad("This letter can't be opened any more.")
+    if experience.revealed_at is None:
+        experience.revealed_at = datetime.now(UTC)
+        await db.commit()
+    return _mine(experience, settings)
+
+
 # --- the recipient's side (no account needed; the link is the key) ---------------------------
 
 
@@ -365,7 +436,7 @@ async def _by_token(db: DbSession, token: str) -> Experience:
     experience = (
         await db.execute(select(Experience).where(Experience.token_hash == engine.link_hash(token)))
     ).scalar_one_or_none()
-    if experience is None or experience.revoked_at is not None:
+    if experience is None or experience.revoked_at is not None or experience.blocked_at is not None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail=NOT_FOUND, headers=PRIVATE_HEADERS
         )
@@ -398,10 +469,11 @@ async def view_letter(
     e = await _by_token(db, token)
     kind = engine.experience_types()[e.type]
     sealed = _is_sealed(e)
+    is_sender = viewer is not None and viewer.id == e.owner_id
     return LetterOut(
         status="sealed_until" if sealed else "ready",
         type=e.type,
-        sender_name=e.sender_name,
+        sender_name=engine.shown_sender(e, to_sender=is_sender),
         recipient_name=e.recipient_name,
         recipient_title=e.recipient_title,
         theme=e.theme,
@@ -416,7 +488,8 @@ async def view_letter(
         photo=await _letter_photo(db, settings, e) if not sealed else None,
         reactions=[Reaction(key=k, label=label) for k, label in kind.reactions],
         reply=_reply(e),
-        is_sender=viewer is not None and viewer.id == e.owner_id,
+        is_sender=is_sender,
+        secret=e.anonymous and e.revealed_at is None,
     )
 
 
@@ -485,6 +558,36 @@ async def reply_to_letter(
     return ReplyOut(reaction=body.reaction, note=note, replied_at=now)
 
 
+@router.post("/letters/{token}/block", status_code=status.HTTP_204_NO_CONTENT)
+async def block_secret_admirer(
+    token: str,
+    request: Request,
+    response: Response,
+    db: DbSession,
+    settings: AppSettings,
+    limiter: Limiter,
+    viewer: OptionalUser,
+) -> None:
+    """One tap: the secret admirer's letter is gone for good, and if it came by email, they can't
+    email this address again. Enough blocks switch secret admirer mode off for the sender."""
+    await limiter.hit(REPORT_PER_IP, client_ip(request, settings))
+    response.headers.update(PRIVATE_HEADERS)
+    e = await _by_token(db, token)
+    if not e.anonymous:
+        raise _bad("Only secret admirer letters can be blocked here. You can report it instead.")
+    if viewer is not None and viewer.id == e.owner_id:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT, detail="You can't block your own letter."
+        )
+    e.blocked_at = datetime.now(UTC)
+    if e.email_status == "scheduled":
+        letter_mail.forget_address(e, "blocked")
+    await db.commit()
+    if e.recipient_email_hash:
+        await letter_mail.block(db, e.recipient_email_hash, e.owner_id)
+    logger.info("secret admirer blocked", extra={"experience_id": str(e.id)})
+
+
 class ReportIn(BaseModel):
     reason: str = Field(max_length=32)
     note: str | None = Field(default=None, max_length=280)
@@ -519,7 +622,8 @@ async def report_letter(
         f"Reason: {body.reason}\nNote: {note or '-'}\n\n"
         f"Report: {report.id}\nLetter: {e.id}\n"
         f"Sender: @{owner.username if owner else '(deleted)'} ({e.owner_id})\n"
-        f"Signed as: {e.sender_name}\nTo: {e.recipient_name}\n\n{letter_text}\n\n"
+        f"Signed as: {e.sender_name}{' (sent as a secret admirer)' if e.anonymous else ''}\n"
+        f"To: {e.recipient_name}\n\n{letter_text}\n\n"
         "To take it down (its link stops working for good), on your Mac run:\n"
         f"  ssh -t dearlly docker exec dearlly-api-1 python -m app.admin takedown {e.id}\n"
     )

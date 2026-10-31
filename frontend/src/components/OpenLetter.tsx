@@ -44,6 +44,8 @@ export type Letter = {
   reactions: Reaction[];
   reply: Reply | null;
   is_sender: boolean;
+  // From a secret admirer who hasn't revealed their name (sender_name is "A secret admirer").
+  secret?: boolean;
 };
 
 // Shown next to each reaction; the words come from the server's config.
@@ -58,6 +60,12 @@ export const REACTION_EMOJI: Record<string, string> = {
   yes: "🎉",
   no: "🤍",
 };
+
+/** The sender's name inside a sentence ("Let your secret admirer know…"), or starting one. */
+function inSentence(letter: Letter, starts = false): string {
+  if (!letter.secret || letter.is_sender) return letter.sender_name;
+  return starts ? t.secretSender.charAt(0).toUpperCase() + t.secretSender.slice(1) : t.secretSender;
+}
 
 /** The letter as shown on paper, for whichever type it is. */
 function asContent(letter: Letter, giftRevealed = false): LetterContent {
@@ -103,6 +111,7 @@ export function OpenLetter({ token, reportOpen = false }: { token: string; repor
   const [stage, setStage] = useState<"closed" | "opening" | "open">("closed");
   // Gift reveals: the gift stays under the scratch-off stamp until they scratch it.
   const [giftScratched, setGiftScratched] = useState(false);
+  const [blocked, setBlocked] = useState(false);
 
   const load = useCallback(() => {
     api<Letter>(`/letters/${encodeURIComponent(token)}`)
@@ -148,11 +157,30 @@ export function OpenLetter({ token, reportOpen = false }: { token: string; repor
     );
   }
 
+  if (blocked) {
+    return (
+      <section className="letter-sheet flex flex-col gap-4 rounded-sm py-10 pr-6 pl-12 md:pl-16" aria-live="polite">
+        <h1 className="text-4xl">{t.blockedTitle}</h1>
+        <p className="text-lg text-muted">{t.blockedLead}</p>
+        <Link href="/" className="font-bold underline">
+          {t.goHome}
+        </Link>
+      </section>
+    );
+  }
+
   if (!letter) {
     return <p className="font-hand py-16 text-center text-lg text-muted">{t.loading}</p>;
   }
 
   const name = letter.recipient_title?.trim() || letter.recipient_name;
+  // Report (every letter) and one-tap block (secret admirers), for the recipient.
+  const safety = !letter.is_sender && (
+    <>
+      {letter.secret && <BlockAdmirer token={token} onBlocked={() => setBlocked(true)} />}
+      <ReportLetter token={token} startOpen={reportOpen} />
+    </>
+  );
 
   if (letter.status === "sealed_until" && letter.opens_at) {
     return (
@@ -168,7 +196,7 @@ export function OpenLetter({ token, reportOpen = false }: { token: string; repor
           </p>
           <Countdown until={opensAt} onDone={load} />
         </section>
-        {!letter.is_sender && <ReportLetter token={token} startOpen={reportOpen} />}
+        {safety}
       </div>
     );
   }
@@ -191,7 +219,7 @@ export function OpenLetter({ token, reportOpen = false }: { token: string; repor
           {t.breakSeal}
         </button>
         <p className="text-sm text-muted">{t.breakHint}</p>
-        {!letter.is_sender && <ReportLetter token={token} startOpen={reportOpen} />}
+        {safety}
       </div>
     );
   }
@@ -207,7 +235,7 @@ export function OpenLetter({ token, reportOpen = false }: { token: string; repor
     <div className="flex flex-col gap-10">
       {letter.is_sender && (
         <p className="rounded-md border-2 border-dashed border-line bg-surface p-3 text-sm font-semibold">
-          {t.senderNote}
+          {t.senderNote} {letter.secret && t.senderSecretNote}
         </p>
       )}
       <div className="rise-in">
@@ -238,7 +266,7 @@ export function OpenLetter({ token, reportOpen = false }: { token: string; repor
           onSent={(reply) => setLetter({ ...letter, reply })}
         />
       )}
-      {!letter.is_sender && <ReportLetter token={token} startOpen={reportOpen} />}
+      {safety}
     </div>
   );
 }
@@ -375,7 +403,7 @@ function ReplyShown({ letter, reply }: { letter: Letter; reply: Reply }) {
               : t.repliedTitle}
         </h2>
         {!letter.is_sender && (
-          <p className="text-sm text-muted">{fill(t.repliedLead, { sender: letter.sender_name })}</p>
+          <p className="text-sm text-muted">{fill(t.repliedLead, { sender: inSentence(letter, true) })}</p>
         )}
         <p className="text-xl font-bold">
           <span aria-hidden="true">{REACTION_EMOJI[reply.reaction]} </span>
@@ -461,7 +489,7 @@ function ReplyForm({
         <h2 id="reply-title" className="text-3xl">
           {t.replyHeading}
         </h2>
-        <p className="text-muted">{fill(t.replyLead, { sender: letter.sender_name })}</p>
+        <p className="text-muted">{fill(t.replyLead, { sender: inSentence(letter) })}</p>
       </div>
       <div className="grid grid-cols-2 gap-3" role="radiogroup" aria-labelledby="reply-title">
         {letter.reactions.map((r) => (
@@ -652,5 +680,38 @@ function YesNoForm({
         </>
       )}
     </form>
+  );
+}
+
+/** One tap, no questions: the letter is gone for good (and they can't email this address). */
+function BlockAdmirer({ token, onBlocked }: { token: string; onBlocked: () => void }) {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function block() {
+    setBusy(true);
+    setError(null);
+    try {
+      await api(`/letters/${encodeURIComponent(token)}/block`, { method: "POST" });
+      onBlocked();
+    } catch (err) {
+      setError(err instanceof ApiError ? err.detail : "Something went wrong. Please try again.");
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="flex w-full flex-col items-center gap-1 text-center">
+      <button type="button" onClick={block} disabled={busy}
+        className="min-h-12 rounded-lg border-2 border-stamp px-5 font-bold text-accent-text disabled:opacity-60">
+        {busy ? t.blocking : t.block}
+      </button>
+      <p className="max-w-sm text-sm text-muted">{t.blockHint}</p>
+      {error && (
+        <p role="alert" className="text-sm font-semibold text-accent-text">
+          {error}
+        </p>
+      )}
+    </div>
   );
 }

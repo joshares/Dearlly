@@ -300,5 +300,30 @@ describe("OpenLetter", () => {
     expect(pic.getAttribute("srcset")).toContain("1600w");
     expect([pic.getAttribute("width"), pic.getAttribute("height")]).toEqual(["1600", "1066"]);
   });
+
+  it("lets the recipient block a secret admirer with one tap", async () => {
+    letter = { ...READY, sender_name: "A secret admirer", secret: true };
+    vi.mocked(fetch).mockImplementation(async (url, init) => {
+      const path = new URL(String(url)).pathname;
+      calls.push({ path, method: init?.method ?? "GET" });
+      if (path === "/auth/csrf") return json(200, { csrf_token: "tok" });
+      if (path.endsWith("/block")) return new Response(null, { status: 204 });
+      if (path.endsWith("/open")) return new Response(null, { status: 204 });
+      return json(200, letter);
+    });
+    render(<OpenLetter token={TOKEN} />);
+    expect(await screen.findByRole("button", { name: /from A secret admirer/ })).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "Break the seal" }));
+    expect(await screen.findByText("Let your secret admirer know how this made you feel.")).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "Block this secret admirer" }));
+    expect(await screen.findByText("Blocked.")).toBeTruthy();
+    expect(calls.some((c) => c.path === `/letters/${TOKEN}/block` && c.method === "POST")).toBe(true);
+  });
+
+  it("has no block button on letters with a name", async () => {
+    render(<OpenLetter token={TOKEN} />);
+    await screen.findByRole("button", { name: "Break the seal" });
+    expect(screen.queryByRole("button", { name: "Block this secret admirer" })).toBeNull();
+  });
 });
 

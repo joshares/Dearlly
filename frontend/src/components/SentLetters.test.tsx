@@ -131,3 +131,27 @@ it("shows where and when for a date invitation, and their Yes", async () => {
   expect(await screen.findByText(/Shiro Lagos · 7 Nov 2026/)).toBeTruthy();
   await waitFor(() => expect(screen.getByText("Replied: 🎉 Yes!")).toBeTruthy());
 });
+
+it("lets a secret admirer reveal their name, after confirming", async () => {
+  letters = [{ ...base, secret: true, revealed: false, blocked: false }];
+  vi.mocked(fetch).mockImplementation(async (url) => {
+    const path = new URL(String(url)).pathname;
+    if (path === "/auth/csrf") return json(200, { csrf_token: "tok" });
+    if (path === "/experience-types") return json(200, []);
+    if (path === "/me/experiences/1/reveal") return json(200, { ...letters[0], revealed: true });
+    return json(200, { items: letters, total: 1, page: 1, per_page: 10 });
+  });
+  render(<SentLetters perPage={10} />);
+  expect(await screen.findByText("Secret admirer · your name is hidden")).toBeTruthy();
+  fireEvent.click(screen.getByRole("button", { name: "Reveal my name" }));
+  fireEvent.click(screen.getByRole("button", { name: "Yes, reveal it" }));
+  expect(await screen.findByText("Secret admirer · you revealed your name")).toBeTruthy();
+  expect(screen.queryByRole("button", { name: "Reveal my name" })).toBeNull();
+});
+
+it("tells the sender when a secret letter was blocked", async () => {
+  letters = [{ ...base, url: null, secret: true, blocked: true }];
+  render(<SentLetters perPage={10} />);
+  expect(await screen.findByText("They blocked this secret admirer letter")).toBeTruthy();
+  expect(screen.queryByRole("button", { name: "Reveal my name" })).toBeNull();
+});

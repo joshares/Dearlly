@@ -27,6 +27,9 @@ export type SentLetter = {
   email_status?: "scheduled" | "sent" | "failed" | "blocked" | "cancelled" | null;
   email_sent_at?: string | null;
   content?: Record<string, string | null | undefined>;
+  secret?: boolean;
+  revealed?: boolean;
+  blocked?: boolean;
 };
 
 type Page = { items: SentLetter[]; total: number; page: number; per_page: number };
@@ -150,6 +153,7 @@ export function SentLetters({ perPage, page = 1, paged = false }: { perPage: num
 
 /** One line per fact: sealed or opened (or not yet), then the reply. */
 function statusLines(letter: SentLetter, reactionLabel: string): string[] {
+  if (letter.blocked) return [t.blocked];
   if (letter.revoked) return [t.revoked];
   const lines: string[] = [];
   if (letter.opens_at && new Date(letter.opens_at).getTime() > Date.now()) {
@@ -190,6 +194,7 @@ function SentItem({
   const [copied, setCopied] = useState(false);
   const [confirming, setConfirming] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [revealing, setRevealing] = useState(false);
   const name = letter.recipient_title?.trim() || letter.recipient_name;
   const done = Boolean(letter.reply);
   const lines = statusLines(letter, reactionLabel);
@@ -201,6 +206,16 @@ function SentItem({
       setCopied(true);
     } catch {
       setCopied(false);
+    }
+  }
+
+  async function reveal() {
+    setBusy(true);
+    try {
+      onChange(await api<SentLetter>(`/me/experiences/${letter.id}/reveal`, { method: "POST" }));
+    } finally {
+      setBusy(false);
+      setRevealing(false);
     }
   }
 
@@ -220,6 +235,9 @@ function SentItem({
         <span className="font-hand text-lg">{fill(t.to, { name })}</span>
         <span className="text-sm text-muted">{fill(t.sentOn, { date: lagosDate(letter.created_at) })}</span>
       </div>
+      {letter.secret && !letter.blocked && (
+        <p className="text-sm font-bold">{letter.revealed ? t.secretRevealed : t.secretHidden}</p>
+      )}
       {letter.type === "gift_reveal" && (
         <p className="text-sm">
           <span className="font-bold">{t.kinds.gift_reveal}</span>
@@ -249,7 +267,28 @@ function SentItem({
         ))}
       </ul>
       {letter.reply?.note && <p className="font-hand leading-loose">“{letter.reply.note}”</p>}
-      {letter.url && !confirming && (
+      {letter.secret && !letter.revealed && letter.url && !confirming && !revealing && (
+        <button type="button" onClick={() => setRevealing(true)}
+          className="min-h-12 self-start rounded-md border-2 border-stamp px-4 text-sm font-bold text-accent-text">
+          {t.reveal}
+        </button>
+      )}
+      {revealing && (
+        <div className="flex flex-col gap-2 rounded-md border-2 border-dashed border-stamp p-3">
+          <p className="text-sm font-semibold">{t.revealConfirm}</p>
+          <div className="flex flex-wrap gap-2">
+            <button type="button" disabled={busy} onClick={reveal}
+              className="min-h-12 rounded-md bg-stamp px-4 text-sm font-bold text-paper disabled:opacity-60">
+              {t.revealYes}
+            </button>
+            <button type="button" onClick={() => setRevealing(false)}
+              className="min-h-12 rounded-md border-2 border-fg px-4 text-sm font-bold">
+              {t.revealNo}
+            </button>
+          </div>
+        </div>
+      )}
+      {letter.url && !confirming && !revealing && (
         <div className="flex flex-wrap gap-2">
           <button type="button" onClick={copy} className="min-h-12 rounded-md border-2 border-fg px-4 text-sm font-bold">
             {copied ? t.copied : t.copyLink}
