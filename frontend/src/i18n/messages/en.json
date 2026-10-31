@@ -11,6 +11,7 @@
     "tabs": {
       "overview": "Overview",
       "reports": "Reports",
+      "community": "Community",
       "questions": "Questions",
       "users": "Accounts"
     },
@@ -87,7 +88,23 @@
     "accountReports": "{count} reports against",
     "accountBlocks": "{count} secret letters blocked",
     "adminTag": "admin",
-    "error": "Something went wrong. Try again."
+    "error": "Something went wrong. Try again.",
+    "postsShow": {
+      "all": "All",
+      "this_week": "This week by likes",
+      "removed": "Removed"
+    },
+    "noPosts": "No posts here.",
+    "postLikes": "{count} ❤️",
+    "postReports": "{count} reports",
+    "removePost": "Remove",
+    "restorePost": "Bring back",
+    "makeTop": "Make top post",
+    "backToLikes": "Back to most likes",
+    "topNow": "Top post now",
+    "topPickedNote": "You picked this week's top post.",
+    "topLikesNote": "Top post is chosen by likes.",
+    "postReport": "Community post"
   },
   "brand": {
     "name": "Dearlly",
@@ -438,7 +455,7 @@
   "privacy": {
     "metaTitle": "Privacy · Dearlly",
     "title": "Privacy notice",
-    "updated": "Last updated 31 October 2026 (photos, secret admirer and games added)",
+    "updated": "Last updated 31 October 2026 (photos, secret admirer, games and community added)",
     "intro": "Dearlly is a love-letter post office. You trust us with words meant for one person, so we collect as little as we can, keep it locked, and never sell it. This notice explains what we keep, why, and how to have it removed, in line with the Nigeria Data Protection Act 2023.",
     "sections": [
       {
@@ -476,6 +493,13 @@
         "paragraphs": [
           "When you play a game, your answers and the in-game chat are only shown to the two players. They're kept on our server while you play and deleted an hour after the game ends.",
           "We keep the result (for example, how many answers matched) and which questions the two of you have already played, so your next game doesn't repeat them. Both go when either account is deleted."
+        ]
+      },
+      {
+        "heading": "Community",
+        "paragraphs": [
+          "Stamps you post in Our Stamp (a photo and a caption) can be seen by other logged-in Dearlly members, not by the public, and they're not shown on search engines. Your username is shown with each post.",
+          "You can delete your own posts at any time; the photo is deleted too. Members can report a post, and we can remove posts that break our rules. Likes are counted to pick the top post of the week."
         ]
       },
       {
@@ -820,5 +844,56 @@
     "saveCard": "Save as picture",
     "savedCard": "Saved to your phone.",
     "shareText": "We played {game} on Dearlly 💌"
+  },
+  "community": {
+    "metaTitle": "Our Stamp · Dearlly",
+    "title": "Our Stamp",
+    "lead": "Little moments from Dearlly members. Post a photo with a caption, and like the ones that make you smile.",
+    "membersOnly": "Only Dearlly members can see these.",
+    "postButton": "Post a stamp",
+    "composerTitle": "Post a stamp",
+    "photoLabel": "Your photo (required)",
+    "photoHint": "We remove location and other hidden details, and check it for nudity before anyone sees it.",
+    "captionLabel": "Caption (required)",
+    "captionHint": "Up to 280 characters. No links.",
+    "captionPlaceholder": "Our first trip together 🌴",
+    "post": "Post it",
+    "posting": "Posting…",
+    "cancel": "Cancel",
+    "photosOff": "Posting photos isn't switched on yet.",
+    "topTitle": "Top post of the week",
+    "topPicked": "Picked by Dearlly",
+    "topLikes": "Most loved this week",
+    "empty": "No stamps yet. Be the first to post one!",
+    "loading": "Loading stamps…",
+    "loadMore": "Show older stamps",
+    "loadingMore": "Loading…",
+    "like": "Like",
+    "unlike": "Unlike",
+    "likes": "{count} likes",
+    "oneLike": "1 like",
+    "by": "by @{username}",
+    "posted": "{date}",
+    "more": "More options",
+    "report": "Report",
+    "reportTitle": "Report this stamp",
+    "reportLead": "Tell us what's wrong. They won't know it was you.",
+    "reasons": {
+      "harassment": "Harassment or threats",
+      "scam": "Scam or asking for money",
+      "sexual": "Sexual content",
+      "hate": "Hate",
+      "spam": "Spam",
+      "other": "Something else"
+    },
+    "reportNote": "Anything else? (optional)",
+    "reportSend": "Send report",
+    "reportPick": "Pick a reason first.",
+    "reported": "Thank you. We'll look at it.",
+    "delete": "Delete",
+    "deleteConfirm": "Delete this stamp for good?",
+    "deleteYes": "Yes, delete it",
+    "photoAlt": "A photo posted by @{username}",
+    "error": "Something went wrong. Try again."
   }
 }

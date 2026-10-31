@@ -46,6 +46,7 @@ export function AdminPanel() {
       </nav>
       {tab === "overview" && <Overview />}
       {tab === "reports" && <Reports />}
+      {tab === "community" && <Community />}
       {tab === "questions" && <Questions />}
       {tab === "users" && <Accounts />}
     </div>
@@ -131,6 +132,10 @@ function Overview() {
 type ReportData = {
   id: string; reason: keyof typeof t.reasons; note: string | null; created_at: string; status: string;
   resolution: "taken_down" | "dismissed" | null; sender: string | null; sender_reports: number;
+  post: {
+    id: string; author: string; caption: string; photo: { small_url: string } | null; like_count: number;
+    created_at: string; removed: boolean;
+  } | null;
   letter: {
     id: string; type: string; sender_name: string; recipient_name: string; secret_admirer: boolean;
     content: Record<string, string>; photo: { small_url: string } | null; created_at: string; taken_down: boolean;
@@ -184,7 +189,16 @@ function ReportCard({ report, onDone }: { report: ReportData; onDone: () => void
         <span className="font-semibold">{t.sender}:</span> {report.sender ?? "–"}
         {report.sender_reports > 1 && <span className="font-bold text-accent-text"> · {fill(t.senderReports, { count: report.sender_reports })}</span>}
       </p>
-      {letter ? (
+      {report.post ? (
+        <div className="flex flex-col gap-2 rounded-md border-2 border-dashed border-line bg-white/60 p-3 text-sm">
+          <p className="font-semibold">{t.postReport} · {report.post.author} · {report.post.like_count} ❤️</p>
+          {report.post.photo && (
+            // eslint-disable-next-line @next/next/no-img-element -- a private, signed link
+            <img src={report.post.photo.small_url} alt="" className="max-h-60 w-auto max-w-full self-start rounded border-2 border-ink" />
+          )}
+          <p className="whitespace-pre-line">{report.post.caption}</p>
+        </div>
+      ) : letter ? (
         <div className="flex flex-col gap-2 rounded-md border-2 border-dashed border-line bg-white/60 p-3 text-sm">
           <p className="font-semibold">
             {t.types[letter.type as keyof typeof t.types] ?? letter.type} · {letter.sender_name} → {letter.recipient_name}
@@ -211,7 +225,7 @@ function ReportCard({ report, onDone }: { report: ReportData; onDone: () => void
           </div>
         ) : (
           <div className="flex flex-wrap gap-2">
-            <button type="button" disabled={busy || !letter || letter.taken_down}
+            <button type="button" disabled={busy || (report.post ? report.post.removed : !letter || letter.taken_down)}
               className="min-h-12 rounded-md bg-stamp px-4 text-sm font-bold text-paper disabled:opacity-50"
               onClick={() => setConfirming(true)}>{t.takeDown}</button>
             <button type="button" disabled={busy} className={smallButton} onClick={() => act("dismiss")}>{t.dismiss}</button>
@@ -221,6 +235,77 @@ function ReportCard({ report, onDone }: { report: ReportData; onDone: () => void
         <p className="text-sm font-bold">{report.resolution === "taken_down" ? t.takenDown : t.dismissed}</p>
       )}
     </article>
+  );
+}
+
+// --- community -----------------------------------------------------------------------------
+
+type AdminPost = {
+  id: string; author: string; caption: string; photo: { small_url: string } | null; like_count: number;
+  reports: number; created_at: string; removed: boolean; top: boolean;
+};
+type AdminPosts = { items: AdminPost[]; top_picked: boolean; page: number; pages: number };
+
+function Community() {
+  const [show, setShow] = useState<keyof typeof t.postsShow>("all");
+  const [page, setPage] = useState(1);
+  const { data, error, reload } = useLoad<AdminPosts>(`/admin/posts?show=${show}&page=${page}`);
+
+  async function act(path: string, body: unknown) {
+    await api(path, { method: "POST", body });
+    reload();
+  }
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-wrap gap-2">
+        {(Object.keys(t.postsShow) as (keyof typeof t.postsShow)[]).map((s) => (
+          <button key={s} type="button" aria-pressed={show === s} onClick={() => { setShow(s); setPage(1); }}
+            className={`min-h-12 rounded-md border-2 px-4 text-sm font-bold ${show === s ? "border-fg bg-fg text-bg" : "border-line"}`}>
+            {t.postsShow[s]}
+          </button>
+        ))}
+      </div>
+      {data && <p className="text-sm text-muted">{data.top_picked ? t.topPickedNote : t.topLikesNote}</p>}
+      {error && <p role="alert">{error}</p>}
+      {data?.items.length === 0 && <p className="text-muted">{t.noPosts}</p>}
+      <ul className="grid gap-3 sm:grid-cols-2">
+        {data?.items.map((post) => (
+          <li key={post.id} className={`${card} ${post.removed ? "opacity-60" : ""}`}>
+            {post.photo && (
+              // eslint-disable-next-line @next/next/no-img-element -- a private, signed link
+              <img src={post.photo.small_url} alt="" loading="lazy" className="aspect-square w-full rounded border-2 border-ink object-cover" />
+            )}
+            <p className="text-sm font-bold">
+              {post.author} · {lagosDate(post.created_at)}
+              {post.top && <span className="text-accent-text"> · 🏆 {t.topNow}</span>}
+            </p>
+            <p className="text-sm whitespace-pre-line">{post.caption}</p>
+            <p className="text-sm">
+              {fill(t.postLikes, { count: post.like_count })} ·{" "}
+              <span className={post.reports ? "font-bold text-accent-text" : ""}>{fill(t.postReports, { count: post.reports })}</span>
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <button type="button" className={smallButton} onClick={() => act(`/admin/posts/${post.id}/removed`, { removed: !post.removed })}>
+                {post.removed ? t.restorePost : t.removePost}
+              </button>
+              {!post.removed && (post.top && data.top_picked ? (
+                <button type="button" className={smallButton} onClick={() => act("/admin/top", { post_id: null })}>{t.backToLikes}</button>
+              ) : !post.top ? (
+                <button type="button" className={smallButton} onClick={() => act("/admin/top", { post_id: post.id })}>🏆 {t.makeTop}</button>
+              ) : null)}
+            </div>
+          </li>
+        ))}
+      </ul>
+      {data && data.pages > 1 && (
+        <nav className="flex items-center justify-between gap-2">
+          <button type="button" className={smallButton} disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>{t.newer}</button>
+          <span className="text-sm text-muted">{data.page} / {data.pages}</span>
+          <button type="button" className={smallButton} disabled={page >= data.pages} onClick={() => setPage((p) => p + 1)}>{t.older}</button>
+        </nav>
+      )}
+    </div>
   );
 }
 

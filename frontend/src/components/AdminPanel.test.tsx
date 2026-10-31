@@ -39,6 +39,12 @@ beforeEach(() => {
       if (u.pathname.startsWith("/admin/reports/")) return new Response(null, { status: 204 });
       if (u.pathname === "/admin/questions") return json(200, { items: [QUESTION], total: 1, page: 1, pages: 1 });
       if (u.pathname.startsWith("/admin/questions/")) return new Response(null, { status: 204 });
+      if (u.pathname === "/admin/posts")
+        return json(200, {
+          items: [{ id: "p1", author: "@tolu_demo", caption: "Beach day", photo: null, like_count: 4, reports: 1, created_at: "2026-10-31T10:00:00Z", removed: false, top: false }],
+          top_picked: false, page: 1, pages: 1,
+        });
+      if (u.pathname === "/admin/top" || u.pathname.startsWith("/admin/posts/")) return new Response(null, { status: 204 });
       if (u.pathname === "/games/formats") return json(200, [{ key: "mix", name: "Mix" }, { key: "same_page", name: "Same page" }]);
       throw new Error(`unexpected ${u.pathname}`);
     }),
@@ -83,4 +89,16 @@ describe("AdminPanel", () => {
     fireEvent.click(screen.getByRole("button", { name: "Retire" }));
     await waitFor(() => expect(calls.find((c) => c.path === "/admin/questions/sp_weekend/retired")?.body).toEqual({ retired: true }));
   });
+
+  it("makes a community post the top post, or removes it", async () => {
+    render(<AdminPanel />);
+    fireEvent.click(await screen.findByRole("button", { name: "Community" }));
+    expect(await screen.findByText("Beach day")).toBeTruthy();
+    expect(screen.getByText("Top post is chosen by likes.")).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "🏆 Make top post" }));
+    await waitFor(() => expect(calls.find((c) => c.path === "/admin/top")?.body).toEqual({ post_id: "p1" }));
+    fireEvent.click(screen.getByRole("button", { name: "Remove" }));
+    await waitFor(() => expect(calls.find((c) => c.path === "/admin/posts/p1/removed")?.body).toEqual({ removed: true }));
+  });
 });
+
