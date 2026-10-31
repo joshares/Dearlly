@@ -224,3 +224,13 @@ h3 {
   display: inline-block;
   animation: gift-pop 450ms ease-out;
 }
+
+/* Game answers turning over together on reveal. */
+@keyframes flip-in {
+  from { transform: rotateX(70deg); opacity: 0; }
+  to { transform: rotateX(0); opacity: 1; }
+}
+.flip-in {
+  animation: flip-in 420ms ease-out;
+  transform-origin: top;
+}

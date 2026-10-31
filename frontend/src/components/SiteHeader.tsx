@@ -5,8 +5,8 @@ import type { Messages } from "@/i18n";
 
 /** Top bar: logo, and on laptops the main menu. Phones use the bottom bar instead. */
 export function SiteHeader({ t, loggedIn }: { t: Messages["header"]; loggedIn: boolean }) {
-  // Games and Our Stamp arrive in later stages, so they are labelled, not linked.
-  const soon = [t.games, t.stamps];
+  // Our Stamp arrives in a later stage, so it's labelled, not linked.
+  const soon = [t.stamps];
   return (
     <header className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 py-4 pr-5 pl-9 md:px-12 md:py-6">
       <Link href="/" aria-label={t.home} className="text-fg no-underline">
@@ -17,6 +17,11 @@ export function SiteHeader({ t, loggedIn }: { t: Messages["header"]; loggedIn: b
           <li>
             <Link href="/write" className="text-fg hover:text-accent-text">
               {t.write}
+            </Link>
+          </li>
+          <li>
+            <Link href="/games" className="text-fg hover:text-accent-text">
+              {t.games}
             </Link>
           </li>
           {soon.map((label) => (
