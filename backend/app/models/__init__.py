@@ -3,6 +3,7 @@
 from app.db.base import Base
 from app.models.email_safety import EmailBlock, Report
 from app.models.experience import Experience
+from app.models.game import Game, GameQuestionStat, GameSeen
 from app.models.photo import Photo
 from app.models.user import AuthSession, RefreshToken, User
 
@@ -11,6 +12,9 @@ __all__ = [
     "Base",
     "EmailBlock",
     "Experience",
+    "Game",
+    "GameQuestionStat",
+    "GameSeen",
     "Photo",
     "RefreshToken",
     "Report",

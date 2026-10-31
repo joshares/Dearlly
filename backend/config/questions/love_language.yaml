@@ -1,0 +1,13 @@
+# Love language quiz: pick what matters more to you. Each answer adds to one love language:
+# words, time, gifts, acts, touch. The end of the game shows each player's top one.
+questions:
+  - {key: ll_01, levels: [friendship, talking, romantic, intense], depth: 1, text: "Which would mean more?", options: [{text: "A kind note out of nowhere", lang: words}, {text: "A long hug", lang: touch}]}
+  - {key: ll_02, levels: [friendship, talking, romantic, intense], depth: 1, text: "Which would mean more?", options: [{text: "An afternoon together, phones away", lang: time}, {text: "A small gift that shows you remembered", lang: gifts}]}
+  - {key: ll_03, levels: [friendship, talking, romantic, intense], depth: 1, text: "Which would mean more?", options: [{text: "Someone handling a task I dread", lang: acts}, {text: "Hearing \"I'm proud of you\"", lang: words}]}
+  - {key: ll_04, levels: [friendship, talking, romantic, intense], depth: 2, text: "Which would mean more?", options: [{text: "Holding hands on a walk", lang: touch}, {text: "Their full attention when I talk", lang: time}]}
+  - {key: ll_05, levels: [friendship, talking, romantic, intense], depth: 2, text: "Which would mean more?", options: [{text: "A surprise delivered to my door", lang: gifts}, {text: "Breakfast made for me", lang: acts}]}
+  - {key: ll_06, levels: [friendship, talking, romantic, intense], depth: 2, text: "Which would mean more?", options: [{text: "A message saying what they love about me", lang: words}, {text: "A weekend trip together", lang: time}]}
+  - {key: ll_07, levels: [friendship, talking, romantic, intense], depth: 3, text: "After a long day, I'd rather…", options: [{text: "Be held", lang: touch}, {text: "Come home to chores already done", lang: acts}]}
+  - {key: ll_08, levels: [friendship, talking, romantic, intense], depth: 3, text: "On my birthday, I'd rather get…", options: [{text: "A gift picked just for me", lang: gifts}, {text: "A heartfelt letter", lang: words}]}
+  - {key: ll_09, levels: [friendship, talking, romantic, intense], depth: 3, text: "I feel most cared for when someone…", options: [{text: "Clears their evening for me", lang: time}, {text: "Rubs my shoulders", lang: touch}]}
+  - {key: ll_10, levels: [friendship, talking, romantic, intense], depth: 4, text: "Which would make me feel more loved?", options: [{text: "Fixing something I've been struggling with", lang: acts}, {text: "Bringing me my favourite snack", lang: gifts}]}

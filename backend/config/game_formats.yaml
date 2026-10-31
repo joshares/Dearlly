@@ -1,2 +1,79 @@
-# Two-player game formats (How well do you know me, Same page, ...). Filled in Stage 7.
-game_formats: []
+# Two-player games. A new game = an entry here + its questions in config/questions/<key>.yaml
+# (+ its screen, if it plays differently). Played live on two phones; the server runs the game.
+#
+# key:      stable id (never rename once live)
+# name / blurb: shown in the game library
+# answer:   choice (pick an option), text (type an answer), truth_dare (pick Truth or Dare, then
+#           answer or do it)
+# scoring:  match (same answer = a match), guess (one answers about themselves, the other guesses;
+#           roles swap each round), love_language (answers add up to each player's love language),
+#           none
+# seconds:  time limit per question (0 = none)
+# skips:    skips each player gets per game (0 = none)
+# in_mix:   can appear in a "Mix" game
+
+game_formats:
+  - key: same_page
+    name: Same page
+    blurb: Both pick an answer. Do you think alike?
+    answer: choice
+    scoring: match
+    seconds: 0
+    skips: 0
+    in_mix: true
+  - key: would_you_rather
+    name: Would you rather
+    blurb: Two choices, one answer each. Find out where you agree.
+    answer: choice
+    scoring: match
+    seconds: 0
+    skips: 0
+    in_mix: true
+  - key: this_or_that
+    name: This or that
+    blurb: Ten seconds to choose. No overthinking.
+    answer: choice
+    scoring: match
+    seconds: 10
+    skips: 0
+    in_mix: true
+  - key: know_me
+    name: How well do you know me
+    blurb: One answers about themselves, the other guesses. Then swap.
+    answer: choice
+    scoring: guess
+    seconds: 0
+    skips: 0
+    in_mix: true
+  - key: finish_sentence
+    name: Finish my sentence
+    blurb: Both finish the same sentence, then read each other's.
+    answer: text
+    scoring: none
+    seconds: 0
+    skips: 0
+    in_mix: true
+  - key: deep_talk
+    name: Deep talk
+    blurb: Real questions, no scores. Three skips each.
+    answer: text
+    scoring: none
+    seconds: 0
+    skips: 3
+    in_mix: true
+  - key: truth_dare
+    name: Truth or dare
+    blurb: Take turns. Every dare can be done from your phone.
+    answer: truth_dare
+    scoring: none
+    seconds: 0
+    skips: 0
+    in_mix: false
+  - key: love_language
+    name: Love language quiz
+    blurb: Pick what matters more to you. Discover both your love languages.
+    answer: choice
+    scoring: love_language
+    seconds: 0
+    skips: 0
+    in_mix: false

@@ -1,0 +1,14 @@
+# This or that: ten seconds to choose; a match if you pick the same.
+questions:
+  - {key: tot_tea_coffee, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Tea", "Coffee"]}
+  - {key: tot_beach_city, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Beach", "City"]}
+  - {key: tot_sweet_salty, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Sweet", "Salty"]}
+  - {key: tot_night_morning, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Night owl", "Early bird"]}
+  - {key: tot_text_call, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Text", "Call"]}
+  - {key: tot_plan_spont, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Planned", "Spontaneous"]}
+  - {key: tot_dogs_cats, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Dogs", "Cats"]}
+  - {key: tot_rain_sun, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Rainy day in", "Sunny day out"]}
+  - {key: tot_words_hugs, levels: [talking, romantic, intense], depth: 2, text: "Quick!", options: ["Sweet words", "Long hugs"]}
+  - {key: tot_dance_sing, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Dance", "Sing"]}
+  - {key: tot_first_last, levels: [romantic, intense], depth: 3, text: "Quick!", options: ["First kiss", "Last kiss of the night"]}
+  - {key: tot_hold_hug, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Holding hands", "Arm around me"]}

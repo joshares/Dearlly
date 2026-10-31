@@ -1,0 +1,14 @@
+# Deep talk: real questions, no scores. Each player has a few skips.
+questions:
+  - {key: dt_changed_mind, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's something you changed your mind about recently?"}
+  - {key: dt_younger_self, levels: [friendship, talking, romantic, intense], depth: 3, text: "What would you tell your younger self?"}
+  - {key: dt_feel_safe, levels: [talking, romantic, intense], depth: 4, text: "What makes you feel truly safe with someone?"}
+  - {key: dt_hardest_year, levels: [friendship, talking, romantic, intense], depth: 4, text: "What was your hardest year, and what got you through it?"}
+  - {key: dt_love_learned, levels: [talking, romantic, intense], depth: 3, text: "What did your family teach you about love, good or bad?"}
+  - {key: dt_dream_still, levels: [friendship, talking, romantic, intense], depth: 3, text: "What dream do you still quietly hold on to?"}
+  - {key: dt_misunderstood, levels: [friendship, talking, romantic, intense], depth: 4, text: "When do you feel most misunderstood?"}
+  - {key: dt_us_better, levels: [romantic, intense], depth: 4, text: "What's one thing we could do to make us even better?"}
+  - {key: dt_afraid_lose, levels: [romantic, intense], depth: 5, text: "What are you most afraid of losing?"}
+  - {key: dt_when_knew, levels: [romantic, intense], depth: 5, text: "When did you first know you really cared about me?"}
+  - {key: dt_success_means, levels: [friendship, talking, romantic, intense], depth: 2, text: "What does a good life look like to you?"}
+  - {key: dt_unsaid, levels: [romantic, intense], depth: 5, text: "Is there something you've wanted to tell me but haven't?"}

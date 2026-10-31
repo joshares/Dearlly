@@ -1,0 +1,19 @@
+# Same page: both pick an answer; a match if you pick the same.
+# levels: friendship, talking, romantic, intense. depth: 1 (light) to 5 (deepest).
+questions:
+  - {key: sp_weekend, levels: [friendship, talking, romantic], depth: 1, text: "The perfect Saturday starts with…", options: ["A long lie-in", "An early workout", "A big breakfast", "Plans with friends"]}
+  - {key: sp_trip, levels: [friendship, talking, romantic], depth: 1, text: "Pick a trip for next month.", options: ["Beach and sunshine", "A busy new city", "Mountains and quiet", "Staying home, phone off"]}
+  - {key: sp_food, levels: [friendship, talking, romantic], depth: 1, text: "Dinner is on me tonight. You're choosing…", options: ["Spicy and bold", "Comfort food", "Something healthy", "Dessert first"]}
+  - {key: sp_movie, levels: [friendship, talking, romantic], depth: 1, text: "Movie night. What are we watching?", options: ["A comedy", "A thriller", "A love story", "A documentary"]}
+  - {key: sp_texting, levels: [talking, romantic], depth: 2, text: "Best way to stay in touch during a busy day?", options: ["Quick texts", "A voice note", "One proper call", "Funny memes"]}
+  - {key: sp_argue, levels: [talking, romantic], depth: 3, text: "After a disagreement, the best next step is…", options: ["Talk it out right away", "Take some space first", "Write it down", "Hug, then talk"]}
+  - {key: sp_money, levels: [talking, romantic], depth: 3, text: "Money in a relationship should be…", options: ["Fully shared", "Mostly separate", "Shared for bills, separate for fun", "Whoever earns more pays more"]}
+  - {key: sp_love_show, levels: [romantic], depth: 2, text: "The best surprise is…", options: ["A handwritten letter", "A planned day out", "A gift I mentioned once", "Doing a chore I hate"]}
+  - {key: sp_future_home, levels: [romantic], depth: 3, text: "Our home in five years is…", options: ["A city apartment", "A house with a garden", "Somewhere abroad", "Wherever work takes us"]}
+  - {key: sp_hard_day, levels: [friendship, talking, romantic], depth: 3, text: "On a hard day, I most want…", options: ["Someone to listen", "Advice", "A distraction", "To be left alone for a bit"]}
+  - {key: sp_jealousy, levels: [romantic, intense], depth: 4, text: "A little jealousy in a relationship is…", options: ["Sweet", "A red flag", "Normal, if you talk about it", "Never okay"]}
+  - {key: sp_first_move, levels: [talking, romantic, intense], depth: 2, text: "Who should make the first move?", options: ["Whoever feels it first", "The one who's braver", "Let it happen naturally", "Me, obviously"]}
+  - {key: sp_kiss_where, levels: [intense], depth: 3, text: "The most romantic place for a first kiss is…", options: ["Under the stars", "At the door after a date", "In the rain", "Somewhere completely unexpected"]}
+  - {key: sp_closeness, levels: [intense], depth: 4, text: "What makes you feel closest to me?", options: ["Deep talks late at night", "Being held", "Laughing together", "Doing nothing, side by side"]}
+  - {key: sp_secrets, levels: [romantic, intense], depth: 5, text: "Should couples share every secret?", options: ["Yes, everything", "Almost everything", "Only what affects us", "Some things stay private"]}
+  - {key: sp_forever, levels: [romantic, intense], depth: 5, text: "Love that lasts is mostly about…", options: ["Choosing each other daily", "Chemistry", "Friendship", "Growing together"]}
