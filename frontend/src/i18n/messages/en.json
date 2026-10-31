@@ -807,6 +807,18 @@
     "rateLabel": "Good question?",
     "rateUp": "Good question",
     "rateDown": "Not a good question",
-    "rated": "Thanks! It helps us pick better questions."
+    "rated": "Thanks! It helps us pick better questions.",
+    "cardKicker": "Game over",
+    "cardMatched": "{matched} of {scored} matched",
+    "cardLoveTitle": "Our love languages",
+    "cardLove": "{name}: {lang}",
+    "cardGuessed": "{name} guessed {count} right",
+    "cardTalked": "{count} questions, answered together",
+    "cardFooter": "Play together on",
+    "share": "Share our result",
+    "sharing": "Making your card…",
+    "saveCard": "Save as picture",
+    "savedCard": "Saved to your phone.",
+    "shareText": "We played {game} on Dearlly 💌"
   }
 }
