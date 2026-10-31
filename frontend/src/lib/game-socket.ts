@@ -55,6 +55,7 @@ export type Move =
 
 export type Connection = "connecting" | "open" | "reconnecting" | "gone" | "denied";
 
+const KEEP_ALIVE_MS = 30_000;
 const CLOSE_LOGIN = 4401;
 const CLOSE_NOT_ALLOWED = 4403;
 const CLOSE_NOT_FOUND = 4404;
@@ -88,6 +89,11 @@ export function useGame(code: string, enabled: boolean) {
         attempts = 0;
         setConnection("open");
       };
+      // Cloudflare closes connections that stay quiet for about 100 seconds (a long deep-talk
+      // pause would do it), so say a tiny "still here" every 30 seconds.
+      const alive = window.setInterval(() => {
+        if (ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ t: "ping" }));
+      }, KEEP_ALIVE_MS);
       ws.onmessage = (event: MessageEvent<string>) => {
         const message = JSON.parse(event.data) as Record<string, unknown>;
         if (message.t === "state") setView(message.state as GameView);
@@ -97,6 +103,7 @@ export function useGame(code: string, enabled: boolean) {
         else if (message.t === "gone") setConnection("gone");
       };
       ws.onclose = (event) => {
+        window.clearInterval(alive);
         socket.current = null;
         if (stopped) return;
         if (event.code === CLOSE_LOGIN) {

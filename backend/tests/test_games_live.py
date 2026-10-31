@@ -124,9 +124,12 @@ def test_a_whole_game_live_with_chat(auth_client: AuthClient) -> None:
             ),
         )
         assert lobby["state"]["status"] == "lobby"
+        # The keep-alive is quietly accepted (no error back).
+        host.send_json({"t": "ping"})
         # Chat goes to both, from the one who sent it.
         host.send_json({"t": "chat", "text": "Ready when you are 😊"})
         said = until(guest, lambda m: m.get("t") == "chat")
+        assert until(host, lambda m: m.get("t") in ("chat", "error"))["t"] == "chat"
         assert said["text"] == "Ready when you are 😊" and said["name"] == "ada_demo"
         guest.send_json({"t": "chat", "text": "visit www.scam.example"})
         assert "links" in until(guest, lambda m: m.get("t") == "error")["detail"]

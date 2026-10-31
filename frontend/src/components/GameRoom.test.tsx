@@ -162,6 +162,17 @@ describe("GameRoom", () => {
     expect(screen.getByText("hey you")).toBeTruthy();
   });
 
+  it("keeps the connection alive while nobody moves", async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    try {
+      const ws = await connected();
+      await vi.advanceTimersByTimeAsync(61_000);
+      expect(ws.sent.filter((m) => m.t === "ping").length).toBe(2);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
   it("renews the login and reconnects when the pass expired", async () => {
     const ws = await connected();
     ws.drop(4401);

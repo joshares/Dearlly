@@ -337,6 +337,9 @@ async def _play(ws: WebSocket, game_id: uuid.UUID, me: str, name: str) -> None:
                 kind = str(message.get("t", ""))
             except (ValueError, AttributeError):
                 continue
+            if kind == "ping":
+                # The phone's keep-alive: Cloudflare closes connections quiet for ~100 seconds.
+                continue
             if kind == "chat":
                 if now - last_chat < 0.4:
                     continue
