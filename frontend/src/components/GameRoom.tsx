@@ -123,8 +123,9 @@ function Live({ info }: { info: GameInfo }) {
   const other = view.players.find((p) => p.id !== view.me);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
-      <div className="flex flex-col gap-4">
+    // minmax(0, …): the game column shrinks to the phone instead of growing to its widest line.
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
+      <div className="flex min-w-0 flex-col gap-4">
         {connection === "reconnecting" && (
           <p role="status" className="rounded-md border-2 border-dashed border-line bg-surface p-2 text-center text-sm font-semibold">
             {t.reconnecting}
@@ -190,16 +191,19 @@ function Invite({ info }: { info: GameInfo }) {
   const link = typeof window === "undefined" ? "" : `${window.location.origin}/play/${info.code}`;
   const whatsapp = `https://wa.me/?text=${encodeURIComponent(`${fill(t.whatsappText, { game: info.format_name })} ${link}`)}`;
   return (
-    <div className="flex flex-col gap-3 rounded-md border-2 border-dashed border-line bg-surface p-4">
+    <div className="flex flex-col gap-3 rounded-md border-2 border-dashed border-line bg-surface p-3 sm:p-4">
       <h2 className="text-xl">{t.inviteHeading}</h2>
       <p className="text-sm text-muted">{t.inviteLead}</p>
-      <p className="flex items-baseline gap-3">
+      <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <span className="text-sm font-semibold">{t.code}</span>
-        <span className="font-heading text-3xl tracking-[0.2em]">{info.code}</span>
+        {/* Sized to the screen: six wide letters must never push past a small phone. */}
+        <span className="font-heading text-[clamp(1.5rem,8vw,2.25rem)] leading-none tracking-[0.12em] whitespace-nowrap">
+          {info.code}
+        </span>
       </p>
       <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
         <a href={whatsapp} target="_blank" rel="noopener noreferrer"
-          className="inline-flex min-h-12 items-center justify-center rounded-lg bg-stamp px-5 font-extrabold text-paper no-underline shadow-[3px_3px_0_var(--color-ink)]">
+          className="inline-flex min-h-12 items-center justify-center rounded-lg bg-stamp px-3 text-center font-extrabold whitespace-nowrap text-paper no-underline shadow-[3px_3px_0_var(--color-ink)] sm:px-5">
           {t.whatsapp}
         </a>
         <button type="button" className={secondary}
@@ -444,7 +448,7 @@ function Chat({ chat, me, send }: { chat: ChatMessage[]; me: string; send: (m: M
   }, [chat, open]);
 
   return (
-    <aside className="flex flex-col gap-2 rounded-md border-2 border-line bg-surface p-3 lg:sticky lg:top-6 lg:self-start" aria-label={t.chat}>
+    <aside className="flex min-w-0 flex-col gap-2 rounded-md border-2 border-line bg-surface p-3 lg:sticky lg:top-6 lg:self-start" aria-label={t.chat}>
       <button type="button" className="flex min-h-12 items-center justify-between font-bold"
         aria-expanded={open}
         onClick={() => {

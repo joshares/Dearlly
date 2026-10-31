@@ -70,4 +70,37 @@ describe("GameLibrary", () => {
     expect(push).toHaveBeenCalledWith("/login?next=%2Fgames");
     expect(created).toBeNull();
   });
+
+  it("joins a game by code", async () => {
+    render(<GameLibrary loggedIn />);
+    const box = screen.getByLabelText("Game code") as HTMLInputElement;
+    const join = screen.getByRole("button", { name: "Join" }) as HTMLButtonElement;
+    fireEvent.change(box, { target: { value: "ab-c 2o3i4" } });
+    // Upper case, and only letters a code can have (no O/0 or I/1).
+    expect(box.value).toBe("ABC234");
+    expect(join.disabled).toBe(false);
+    fireEvent.click(join);
+    expect(push).toHaveBeenCalledWith("/play/ABC234");
+  });
+
+  it("moves on to the next step on every pick, even the one already chosen", async () => {
+    const seen: string[] = [];
+    Element.prototype.scrollIntoView = function (this: Element) {
+      seen.push(this.textContent?.slice(0, 20) ?? "");
+    };
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    try {
+      render(<GameLibrary loggedIn />);
+      fireEvent.click(await screen.findByLabelText(/^Mix/)); // already the default
+      expect(seen.at(-1)).toMatch(/^Pick a level/);
+      fireEvent.click(screen.getByLabelText(/Romantic/)); // already the default
+      await vi.advanceTimersByTimeAsync(100);
+      expect(seen.at(-1)).toMatch(/Create game/);
+    } finally {
+      vi.useRealTimers();
+      // @ts-expect-error -- jsdom has none; put it back as it was
+      delete Element.prototype.scrollIntoView;
+    }
+  });
 });
+
