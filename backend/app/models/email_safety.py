@@ -24,13 +24,17 @@ class EmailBlock(Base):
 
 
 class Report(Base):
-    """A recipient reporting a letter, for the founder to review."""
+    """Someone reporting a letter or a community post, for the founder to review."""
 
     __tablename__ = "reports"
 
     id: Mapped[uuid.UUID] = mapped_column(Uuid, primary_key=True, default=uuid.uuid4)
     experience_id: Mapped[uuid.UUID | None] = mapped_column(
         ForeignKey("experiences.id", ondelete="SET NULL"), index=True
+    )
+    # Or a community post (one of the two is set).
+    post_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("posts.id", ondelete="SET NULL"), index=True
     )
     # Kept if the letter is later deleted, so repeat offenders can still be spotted.
     sender_id: Mapped[uuid.UUID | None] = mapped_column(Uuid, index=True)

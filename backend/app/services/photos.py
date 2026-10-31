@@ -7,8 +7,8 @@
   it's stored. Anything at or over the threshold is refused and never saved.
 - Storage: a private Cloudflare R2 bucket in production (a folder locally). Nothing is public; the
   API hands photos out itself, behind links signed with SECRET_KEY that expire within two hours.
-- Sweeping: photos never attached to a letter, and files whose row is gone (deleted accounts), are
-  removed by a daily task.
+- Sweeping: photos never attached to a letter or post, and files whose row is gone (deleted
+  accounts), are removed by a daily task.
 """
 
 import base64
@@ -304,7 +304,11 @@ async def sweep(
         stale = (
             await db.execute(
                 delete(Photo)
-                .where(Photo.experience_id.is_(None), Photo.created_at < now - UNATTACHED_FOR)
+                .where(
+                    Photo.experience_id.is_(None),
+                    Photo.post_id.is_(None),
+                    Photo.created_at < now - UNATTACHED_FOR,
+                )
                 .returning(Photo.storage_key)
             )
         ).scalars()

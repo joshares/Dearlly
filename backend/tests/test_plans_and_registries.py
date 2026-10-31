@@ -64,3 +64,12 @@ def test_email_rules() -> None:
     # The pattern CodeQL flagged as slow now returns instantly.
     with pytest.raises(ProfileFieldError):
         normalize_email("!@!." + "!." * 120)
+
+
+def test_tests_clear_every_table_between_runs() -> None:
+    """A table missing here keeps rows from one test to the next (counts then drift)."""
+    from app.models import Base
+
+    from .conftest import TABLES
+
+    assert set(Base.metadata.tables) == set(TABLES)

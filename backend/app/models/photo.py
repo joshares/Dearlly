@@ -10,8 +10,9 @@ from app.db.base import Base
 class Photo(Base):
     """A photo added to a letter. The file lives in storage (R2) under `storage_key`.
 
-    Uploaded while writing; attached to the letter when it's sealed. Photos never attached within a
-    day are removed by the daily sweep, along with any file whose row is gone.
+    Uploaded while writing; attached to the letter (or community post) when it's sent. Photos
+    never attached within a day are removed by the daily sweep, along with any file whose row is
+    gone.
     """
 
     __tablename__ = "photos"
@@ -22,6 +23,10 @@ class Photo(Base):
     )
     experience_id: Mapped[uuid.UUID | None] = mapped_column(
         ForeignKey("experiences.id", ondelete="CASCADE"), index=True
+    )
+    # Or on a community post (a photo is on one letter or one post, never both).
+    post_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("posts.id", ondelete="CASCADE"), index=True
     )
     storage_key: Mapped[str] = mapped_column(String(80), unique=True)
     width: Mapped[int] = mapped_column(Integer)
