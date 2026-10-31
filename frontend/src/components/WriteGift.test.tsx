@@ -42,7 +42,7 @@ describe("WriteGift", () => {
   it("hides the gift in the preview's stamp and seals it", async () => {
     render(<WriteGift loggedIn />);
     fireEvent.change(screen.getByLabelText(/Your name/), { target: { value: "Ada" } });
-    fireEvent.change(screen.getByLabelText("Their name"), { target: { value: "Tolu" } });
+    fireEvent.change(screen.getByLabelText(/^Their name/), { target: { value: "Tolu" } });
     fireEvent.click(screen.getAllByRole("button", { name: "Use this" })[0]!);
     const seal = screen.getByRole("button", { name: "Seal it" }) as HTMLButtonElement;
     expect(seal.disabled).toBe(true); // no gift yet

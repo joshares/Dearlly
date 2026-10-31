@@ -212,7 +212,7 @@ export function WriteVacation({ loggedIn = false }: { loggedIn?: boolean }) {
               value={draft.destination} onChange={(e) => update({ destination: e.target.value })} />
             <span className={hint}>{t.destinationHint}</span>
           </label>
-          <div className="grid grid-cols-2 gap-3 sm:max-w-md">
+          <div className="grid grid-cols-2 items-end gap-3 sm:max-w-md">
             <label className={label}>
               {t.startLabel}
               <input className={input} type="date" name="start_date" required value={draft.startDate}

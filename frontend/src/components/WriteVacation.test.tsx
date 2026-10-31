@@ -54,13 +54,13 @@ describe("WriteVacation", () => {
   it("fills in the trip, keeps the return after the start, and seals it", async () => {
     render(<WriteVacation loggedIn />);
     fireEvent.change(screen.getByLabelText(/Your name/), { target: { value: "Ada" } });
-    fireEvent.change(screen.getByLabelText("Their name"), { target: { value: "Tolu" } });
+    fireEvent.change(screen.getByLabelText(/^Their name/), { target: { value: "Tolu" } });
     fireEvent.click(screen.getAllByRole("button", { name: "Use this" })[0]!);
     fireEvent.change(screen.getByLabelText(/Where to/), { target: { value: "Zanzibar" } });
-    fireEvent.change(screen.getByLabelText("Leaving on"), { target: { value: "2026-12-12" } });
+    fireEvent.change(screen.getByLabelText(/^Leaving on/), { target: { value: "2026-12-12" } });
     // Coming back moved along with leaving.
-    expect((screen.getByLabelText("Coming back on") as HTMLInputElement).value).toBe("2026-12-12");
-    fireEvent.change(screen.getByLabelText("Coming back on"), { target: { value: "2026-12-16" } });
+    expect((screen.getByLabelText(/^Coming back on/) as HTMLInputElement).value).toBe("2026-12-12");
+    fireEvent.change(screen.getByLabelText(/^Coming back on/), { target: { value: "2026-12-16" } });
     fireEvent.change(screen.getByLabelText(/What to pack/), { target: { value: "Swimsuit" } });
     expect(screen.getAllByText("12–16 Dec 2026 · 4 nights").length).toBeGreaterThan(0);
 

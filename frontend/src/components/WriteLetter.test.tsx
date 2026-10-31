@@ -50,7 +50,7 @@ afterEach(() => {
 
 function fillIn() {
   fireEvent.change(screen.getByLabelText(/Your name/), { target: { value: "Ada" } });
-  fireEvent.change(screen.getByLabelText("Their name"), { target: { value: "Tolu" } });
+  fireEvent.change(screen.getByLabelText(/^Their name/), { target: { value: "Tolu" } });
   fireEvent.change(screen.getByLabelText(/What you call them/), { target: { value: "my love" } });
 }
 
