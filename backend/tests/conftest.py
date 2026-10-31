@@ -64,6 +64,12 @@ def client(app: FastAPI) -> Iterator[TestClient]:
 # CI sets REQUIRE_DB_TESTS=1 so they can never be skipped silently there.
 
 TABLES = (
+    "top_picks",
+    "post_likes",
+    "posts",
+    "game_seen",
+    "game_question_stats",
+    "games",
     "photos",
     "reports",
     "email_blocks",

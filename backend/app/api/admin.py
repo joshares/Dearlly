@@ -15,11 +15,12 @@ from pydantic import BaseModel
 from sqlalchemy import func, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
 
+from app.api.community import posts_out, top_post, week_start
 from app.api.deps import AppSettings, CurrentUser, DbSession
 from app.api.photos import PhotoOut, photo_out
 from app.core.csrf import require_csrf
 from app.games.bank import bank
-from app.models import Experience, Game, GameQuestionStat, Photo, Report, User
+from app.models import Experience, Game, GameQuestionStat, Photo, Post, Report, TopPick, User
 from app.services.letter_mail import forget_address
 
 logger = logging.getLogger(__name__)
@@ -99,6 +100,16 @@ class ReportLetter(BaseModel):
     taken_down: bool
 
 
+class ReportPost(BaseModel):
+    id: uuid.UUID
+    author: str
+    caption: str
+    photo: PhotoOut | None
+    like_count: int
+    created_at: datetime
+    removed: bool
+
+
 class ReportOut(BaseModel):
     id: uuid.UUID
     reason: str
@@ -107,6 +118,7 @@ class ReportOut(BaseModel):
     status: str
     resolution: str | None
     letter: ReportLetter | None
+    post: ReportPost | None = None
     sender: str | None
     sender_reports: int
 
@@ -130,6 +142,13 @@ async def reports(
     for report in rows:
         letter = await db.get(Experience, report.experience_id) if report.experience_id else None
         sender = await db.get(User, report.sender_id) if report.sender_id else None
+        post = await db.get(Post, report.post_id) if report.post_id else None
+        post_photo = None
+        if post is not None:
+            found_photo = (
+                await db.execute(select(Photo).where(Photo.post_id == post.id))
+            ).scalar_one_or_none()
+            post_photo = photo_out(settings, found_photo) if found_photo else None
         photo = None
         if letter is not None and letter.content.get("photo"):
             found = await db.get(Photo, uuid.UUID(letter.content["photo"]))
@@ -155,6 +174,17 @@ async def reports(
                 )
                 if letter
                 else None,
+                post=ReportPost(
+                    id=post.id,
+                    author=f"@{sender.username}" if sender else "deleted",
+                    caption=post.caption,
+                    photo=post_photo,
+                    like_count=post.like_count,
+                    created_at=post.created_at,
+                    removed=post.removed_at is not None,
+                )
+                if post
+                else None,
                 sender=f"@{sender.username}" if sender else None,
                 sender_reports=await _count(db, Report, Report.sender_id == report.sender_id)
                 if report.sender_id
@@ -173,9 +203,19 @@ async def _report(db: DbSession, report_id: uuid.UUID) -> Report:
 
 @router.post("/reports/{report_id}/takedown", status_code=status.HTTP_204_NO_CONTENT)
 async def take_down(report_id: uuid.UUID, admin: Admin, db: DbSession) -> None:
-    """The reported letter's link stops working; every open report on it is closed."""
+    """The reported letter's link stops working (or the post is removed); every open report on it
+    is closed."""
     report = await _report(db, report_id)
     now = datetime.now(UTC)
+    if report.post_id is not None:
+        post = await db.get(Post, report.post_id)
+        if post is not None:
+            post.removed_at = post.removed_at or now
+        await db.execute(
+            update(Report)
+            .where(Report.post_id == report.post_id, Report.status == "open")
+            .values(status="resolved", resolution="taken_down", resolved_at=now)
+        )
     if report.experience_id is not None:
         letter = await db.get(Experience, report.experience_id)
         if letter is not None:
@@ -367,3 +407,124 @@ async def users(
         )
         for u in found
     ]
+
+
+# --- community --------------------------------------------------------------------------------
+
+
+class AdminPostOut(BaseModel):
+    id: uuid.UUID
+    author: str
+    caption: str
+    photo: PhotoOut | None
+    like_count: int
+    reports: int
+    created_at: datetime
+    removed: bool
+    top: bool
+
+
+class AdminPostsPage(BaseModel):
+    items: list[AdminPostOut]
+    top_picked: bool
+    page: int
+    pages: int
+
+
+@router.get("/posts")
+async def admin_posts(
+    admin: Admin,
+    db: DbSession,
+    settings: AppSettings,
+    show: Literal["all", "this_week", "removed"] = "all",
+    page: Annotated[int, Query(ge=1, le=1000)] = 1,
+) -> AdminPostsPage:
+    now = datetime.now(UTC)
+    where: list[Any] = []
+    if show == "removed":
+        where.append(Post.removed_at.is_not(None))
+    else:
+        where.append(Post.removed_at.is_(None))
+    if show == "this_week":
+        where.append(Post.created_at > now - timedelta(days=7))
+    order = (
+        (Post.like_count.desc(), Post.created_at.desc())
+        if show == "this_week"
+        else (Post.created_at.desc(),)
+    )
+    total = await _count(db, Post, *where)
+    rows = list(
+        (
+            await db.execute(
+                select(Post).where(*where).order_by(*order).offset((page - 1) * PAGE).limit(PAGE)
+            )
+        ).scalars()
+    )
+    current, picked = await top_post(db, now)
+    shown = await posts_out(db, settings, admin, rows)
+    return AdminPostsPage(
+        items=[
+            AdminPostOut(
+                id=post.id,
+                author=f"@{out.author.username}",
+                caption=post.caption,
+                photo=out.photo,
+                like_count=post.like_count,
+                reports=await _count(db, Report, Report.post_id == post.id),
+                created_at=post.created_at,
+                removed=post.removed_at is not None,
+                top=current is not None and current.id == post.id,
+            )
+            for post, out in zip(rows, shown, strict=True)
+        ],
+        top_picked=picked,
+        page=page,
+        pages=max(1, math.ceil(total / PAGE)),
+    )
+
+
+class RemoveIn(BaseModel):
+    removed: bool
+
+
+@router.post("/posts/{post_id}/removed", status_code=status.HTTP_204_NO_CONTENT)
+async def remove_post(post_id: uuid.UUID, body: RemoveIn, admin: Admin, db: DbSession) -> None:
+    """Hides a post everywhere (or brings it back). Kept, so repeat offenders can be spotted."""
+    post = await db.get(Post, post_id)
+    if post is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "No such post.")
+    post.removed_at = datetime.now(UTC) if body.removed else None
+    await db.commit()
+    logger.info(
+        "admin removed a post" if body.removed else "admin restored a post",
+        extra={"admin": str(admin.id), "post": str(post.id)},
+    )
+
+
+class TopIn(BaseModel):
+    post_id: uuid.UUID | None  # None: go back to "most likes"
+
+
+@router.post("/top", status_code=status.HTTP_204_NO_CONTENT)
+async def pick_top(body: TopIn, admin: Admin, db: DbSession) -> None:
+    """The admin's top post for this week (Monday to Sunday, WAT), or back to most likes."""
+    week = week_start(datetime.now(UTC))
+    if body.post_id is None:
+        pick = await db.get(TopPick, week)
+        if pick is not None:
+            await db.delete(pick)
+        await db.commit()
+        logger.info("admin cleared the top post", extra={"admin": str(admin.id)})
+        return
+    post = await db.get(Post, body.post_id)
+    if post is None or post.removed_at is not None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "No such post.")
+    await db.execute(
+        insert(TopPick)
+        .values(week_start=week, post_id=post.id, picked_by=admin.id)
+        .on_conflict_do_update(
+            index_elements=["week_start"], set_={"post_id": post.id, "picked_by": admin.id}
+        )
+    )
+    await db.commit()
+    logger.info("admin picked the top post", extra={"admin": str(admin.id), "post": str(post.id)})

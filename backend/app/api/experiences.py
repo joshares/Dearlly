@@ -324,7 +324,12 @@ async def _own_free_photo(
     if not settings.photos_enabled:
         raise _bad("Photos aren't switched on yet. Remove the photo to send it.")
     photo = await db.get(Photo, uuid.UUID(photo_id))
-    if photo is None or photo.owner_id != user.id or photo.experience_id is not None:
+    if (
+        photo is None
+        or photo.owner_id != user.id
+        or photo.experience_id is not None
+        or photo.post_id is not None
+    ):
         raise _bad("That photo can't be used. Add it again.")
     return photo
 
