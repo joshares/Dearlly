@@ -12,7 +12,7 @@ from sqlalchemy.pool import NullPool
 from starlette.testclient import WebSocketTestSession
 
 from app.api import games as games_api
-from app.models import Game, GameSeen
+from app.models import Game, GameQuestionStat, GameSeen
 
 from .conftest import AuthClient
 
@@ -73,6 +73,25 @@ def _game_rows(client: AuthClient) -> tuple[int, int, dict[str, Any] | None]:
     return asyncio.run(run())
 
 
+def _thumbs(client: AuthClient) -> tuple[int, int]:
+    settings = client.app.state.settings  # type: ignore[attr-defined]
+
+    async def run() -> tuple[int, int]:
+        engine = create_async_engine(settings.database_url.get_secret_value(), poolclass=NullPool)
+        async with async_sessionmaker(engine)() as db:
+            row = (
+                await db.execute(
+                    select(
+                        func.sum(GameQuestionStat.thumbs_up), func.sum(GameQuestionStat.thumbs_down)
+                    )
+                )
+            ).one()
+        await engine.dispose()
+        return int(row[0] or 0), int(row[1] or 0)
+
+    return asyncio.run(run())
+
+
 def _new_game(client: AuthClient, host: str, guest: str, **body: Any) -> str:
     _as(client, host)
     created = client.post(
@@ -107,6 +126,8 @@ def _play_through(client: AuthClient, code: str, ada: str, tolu: str) -> list[st
             guest.send_json({"t": "answer", "value": 0})
             shown = until(host, state_where(lambda s: s["round"]["revealed"]))["state"]["round"]
             assert shown["match"] is True and len(shown["answers"]) == 2
+            guest.send_json({"t": "rate", "value": "down" if number == 1 else "up"})
+            until(guest, state_where(lambda s: s["round"] and s["round"]["my_rating"] is not None))
             host.send_json({"t": "next"})
         ended = until(guest, state_where(lambda s: s["status"] == "ended"))
         assert ended["state"]["summary"]["matched"] == 3
@@ -153,6 +174,8 @@ def test_a_pair_gets_new_questions_next_game(auth_client: AuthClient) -> None:
     assert not set(first) & set(second)
     seen, games, result = _game_rows(auth_client)
     assert seen == 6 and games == 2
+    up, down = _thumbs(auth_client)
+    assert (up, down) == (4, 2)  # each game: 👎 on round 1, 👍 on rounds 2 and 3
     assert result and result["matched"] == 3
 
 

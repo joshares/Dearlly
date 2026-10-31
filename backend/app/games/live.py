@@ -201,6 +201,16 @@ async def record_skipped(db: AsyncSession, keys: list[str]) -> None:
         )
 
 
+async def record_ratings(db: AsyncSession, key: str, values: list[str]) -> None:
+    for value in values:
+        column = GameQuestionStat.thumbs_up if value == "up" else GameQuestionStat.thumbs_down
+        await db.execute(
+            update(GameQuestionStat)
+            .where(GameQuestionStat.question_key == key)
+            .values({column: column + 1})
+        )
+
+
 async def play_move(
     redis: Redis,
     sessionmaker: async_sessionmaker[AsyncSession],
@@ -219,6 +229,7 @@ async def play_move(
         if state is None:
             raise MoveError("This game has expired.")
         before_used, before_history = len(state.used), len(state.history)
+        rated_before = dict(state.round.ratings) if state.round else {}
         before_status = state.status
         async with sessionmaker() as db:
             picker = make_picker(
@@ -233,7 +244,7 @@ async def play_move(
                 rules.tick()
             elif move == "join":
                 rules.join(player_id, str(value))
-            elif move in ("answer", "pick"):
+            elif move in ("answer", "pick", "rate"):
                 getattr(rules, move)(player_id, value)
             elif move in ("ready", "skip", "next", "end"):
                 getattr(rules, move)(player_id)
@@ -246,6 +257,9 @@ async def play_move(
             await record_skipped(
                 db, [r.key for r in state.history[before_history:] if r.skipped and r.key]
             )
+            if move == "rate" and state.round and state.round.key:
+                new = {p: v for p, v in state.round.ratings.items() if p not in rated_before}
+                await record_ratings(db, state.round.key, list(new.values()))
             row = await db.get(Game, game_id)
             if row is not None:
                 if before_status == "lobby" and state.status == "playing":

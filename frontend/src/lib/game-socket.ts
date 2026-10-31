@@ -19,6 +19,7 @@ export type GameRound = {
   answered: string[];
   my_answer: string | null;
   my_choice: number | null;
+  my_rating: "up" | "down" | null;
   revealed: boolean;
   answers: Record<string, string> | null;
   match: boolean | null;
@@ -48,6 +49,7 @@ export type Move =
   | { t: "ready" }
   | { t: "answer"; value: number | string | null }
   | { t: "pick"; value: "truth" | "dare" }
+  | { t: "rate"; value: "up" | "down" }
   | { t: "skip" }
   | { t: "next" }
   | { t: "end" }

@@ -45,6 +45,8 @@ class Round(BaseModel):
     subject: str | None = None
     choice: Literal["truth", "dare"] | None = None
     answers: dict[str, int | str] = Field(default_factory=dict)
+    # 👍 / 👎 on the question, once each, after the reveal (helps retire weak questions).
+    ratings: dict[str, Literal["up", "down"]] = Field(default_factory=dict)
     revealed: bool = False
     skipped: bool = False
     deadline: float | None = None
@@ -223,6 +225,19 @@ class Game:
         self._fill(round_, kind=kind)
         self._changed()
 
+    def rate(self, player_id: str, value: object) -> None:
+        """👍 or 👎 on the question just revealed, once per player."""
+        self._player(player_id)
+        round_ = self._current()
+        if not round_.revealed or round_.key is None:
+            raise MoveError("Rate the question once the answers are showing.")
+        if value not in ("up", "down"):
+            raise MoveError("Pick 👍 or 👎.")
+        if player_id in round_.ratings:
+            return
+        round_.ratings[player_id] = value
+        self._changed()
+
     def skip(self, player_id: str) -> None:
         """Deep talk: spend a skip for a different question (same round)."""
         player = self._player(player_id)
@@ -380,6 +395,7 @@ def view(state: GameState, bank: Bank, me: str, online: set[str], now: float) ->
                 else None
             ),
             "my_choice": round_.answers.get(me) if fmt.answer == "choice" else None,
+            "my_rating": round_.ratings.get(me),
             "revealed": round_.revealed,
             # The other player's answer only once both are in (or time ran out).
             "answers": (

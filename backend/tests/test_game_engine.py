@@ -305,3 +305,18 @@ def test_no_question_is_written_twice_in_a_game() -> None:
         sig = (q.format, q.text.lower(), tuple(sorted(o.text.lower() for o in q.options)))
         assert sig not in seen, q.key
         seen.add(sig)
+
+
+def test_rating_a_question_after_the_reveal() -> None:
+    game = _game("same_page")
+    with pytest.raises(MoveError, match="once the answers are showing"):
+        game.rate(HOST, "up")
+    game.answer(HOST, 0)
+    game.answer(GUEST, 1)
+    game.rate(HOST, "up")
+    game.rate(HOST, "down")  # only the first counts
+    with pytest.raises(MoveError):
+        game.rate(GUEST, "meh")
+    assert game.state.round and game.state.round.ratings == {HOST: "up"}
+    assert _view(game, HOST)["round"]["my_rating"] == "up"
+    assert _view(game, GUEST)["round"]["my_rating"] is None
