@@ -14,3 +14,285 @@ questions:
   - {key: td_d_poem, kind: dare, levels: [romantic, intense], depth: 3, text: "Write a four-line love poem about your partner in the chat."}
   - {key: td_d_voice_sweet, kind: dare, levels: [intense], depth: 3, text: "Send a voice note telling your partner what you'd do on your next date."}
   - {key: td_d_status, kind: dare, levels: [romantic, intense], depth: 2, text: "Post a sweet message about your partner as your WhatsApp status (you can delete it later)."}
+  - {key: td_b001, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the most childish thing you still do?"}
+  - {key: td_b002, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your most embarrassing nickname?"}
+  - {key: td_b003, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the strangest thing you've ever eaten?"}
+  - {key: td_b004, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a song you secretly love but would never admit?"}
+  - {key: td_b005, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the last thing you searched on your phone?"}
+  - {key: td_b006, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "Who's your celebrity crush?"}
+  - {key: td_b007, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the silliest thing you've cried about?"}
+  - {key: td_b008, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your weirdest habit?"}
+  - {key: td_b009, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the longest you've gone without showering?"}
+  - {key: td_b010, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "Have you ever pretended to be sick to skip something?"}
+  - {key: td_b011, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the worst haircut you've ever had?"}
+  - {key: td_b012, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your most-used excuse for being late?"}
+  - {key: td_b013, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a show you binge-watched in one weekend?"}
+  - {key: td_b014, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the most money you've wasted on one thing?"}
+  - {key: td_b015, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "Have you ever laughed at a serious moment?"}
+  - {key: td_b016, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the worst gift you've ever received?"}
+  - {key: td_b017, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a lie you told as a child that you got away with?"}
+  - {key: td_b018, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the most embarrassing thing in your camera roll?"}
+  - {key: td_b019, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "Have you ever sent a message to the wrong person?"}
+  - {key: td_b020, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your guilty-pleasure food?"}
+  - {key: td_b021, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the weirdest dream you remember?"}
+  - {key: td_b022, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "Have you ever walked into a glass door?"}
+  - {key: td_b023, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's something you're terrible at but pretend you're good at?"}
+  - {key: td_b024, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the most embarrassing thing you've done in front of a crush?"}
+  - {key: td_b025, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "Who was your first best friend?"}
+  - {key: td_b026, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the worst date you've ever been on?"}
+  - {key: td_b027, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the biggest lie you've told your parents?"}
+  - {key: td_b028, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's something you've never told your best friend?"}
+  - {key: td_b029, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the meanest thing you've ever said to someone?"}
+  - {key: td_b030, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a rule you broke and never got caught?"}
+  - {key: td_b031, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "Have you ever had a crush on a friend's partner?"}
+  - {key: td_b032, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's something you're jealous of?"}
+  - {key: td_b033, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the most trouble you've ever been in?"}
+  - {key: td_b034, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a secret talent you hide?"}
+  - {key: td_b035, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's your biggest insecurity?"}
+  - {key: td_b036, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the last thing you felt guilty about?"}
+  - {key: td_b037, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What would you do if you were invisible for a day?"}
+  - {key: td_b038, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "Have you ever stalked someone's profile for over an hour?"}
+  - {key: td_b039, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the pettiest thing you've ever done?"}
+  - {key: td_b040, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the most impulsive thing you've done?"}
+  - {key: td_b041, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's one thing you'd change about your appearance?"}
+  - {key: td_b042, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "Who do you text the most?"}
+  - {key: td_b043, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a habit of yours that annoys others?"}
+  - {key: td_b044, kind: truth, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's your biggest regret so far?"}
+  - {key: td_b045, kind: truth, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's something you're afraid to try?"}
+  - {key: td_b046, kind: truth, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's the hardest thing you've ever done?"}
+  - {key: td_b047, kind: truth, levels: [friendship, talking, romantic, intense], depth: 3, text: "When was the last time you cried, and why?"}
+  - {key: td_b048, kind: truth, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's something you've never forgiven?"}
+  - {key: td_b049, kind: truth, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's the biggest risk you've ever taken?"}
+  - {key: td_b050, kind: truth, levels: [friendship, talking, romantic, intense], depth: 3, text: "What do you wish you could change about your past?"}
+  - {key: td_b051, kind: truth, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's a dream you gave up on?"}
+  - {key: td_b052, kind: truth, levels: [friendship, talking, romantic, intense], depth: 4, text: "What's a secret you've carried for years?"}
+  - {key: td_b053, kind: truth, levels: [friendship, talking, romantic, intense], depth: 4, text: "What are you most afraid of losing?"}
+  - {key: td_b054, kind: truth, levels: [friendship, talking], depth: 1, text: "Who's the funniest person in our friend group?"}
+  - {key: td_b055, kind: truth, levels: [friendship, talking], depth: 1, text: "What's the best trip you've taken with friends?"}
+  - {key: td_b056, kind: truth, levels: [friendship, talking], depth: 2, text: "Have you ever been jealous of me?"}
+  - {key: td_b057, kind: truth, levels: [friendship, talking], depth: 2, text: "What's something I do that annoys you?"}
+  - {key: td_b058, kind: truth, levels: [friendship, talking], depth: 2, text: "What did you think of me when we first met?"}
+  - {key: td_b059, kind: truth, levels: [friendship, talking], depth: 3, text: "Have you ever kept a secret from me?"}
+  - {key: td_b060, kind: truth, levels: [talking, romantic, intense], depth: 1, text: "What's your worst pick-up line?"}
+  - {key: td_b061, kind: truth, levels: [talking, romantic, intense], depth: 1, text: "What's the most romantic thing you've ever done?"}
+  - {key: td_b062, kind: truth, levels: [talking, romantic, intense], depth: 1, text: "How many times have you been in love?"}
+  - {key: td_b063, kind: truth, levels: [talking, romantic, intense], depth: 1, text: "What's your ideal type, honestly?"}
+  - {key: td_b064, kind: truth, levels: [talking, romantic, intense], depth: 2, text: "What was your first impression of me?"}
+  - {key: td_b065, kind: truth, levels: [talking, romantic, intense], depth: 2, text: "Have you ever ghosted someone?"}
+  - {key: td_b066, kind: truth, levels: [talking, romantic, intense], depth: 2, text: "What's the cheesiest thing you've done for love?"}
+  - {key: td_b067, kind: truth, levels: [talking, romantic, intense], depth: 2, text: "What made you want to keep talking to me?"}
+  - {key: td_b068, kind: truth, levels: [talking, romantic, intense], depth: 2, text: "Have you ever checked my profile more than once in a day?"}
+  - {key: td_b069, kind: truth, levels: [talking, romantic, intense], depth: 2, text: "What's a red flag you've ignored before?"}
+  - {key: td_b070, kind: truth, levels: [talking, romantic, intense], depth: 2, text: "What's the longest you've waited to text someone back on purpose?"}
+  - {key: td_b071, kind: truth, levels: [talking, romantic, intense], depth: 2, text: "Who was your first kiss?"}
+  - {key: td_b072, kind: truth, levels: [talking, romantic, intense], depth: 3, text: "What scares you most about dating?"}
+  - {key: td_b073, kind: truth, levels: [talking, romantic, intense], depth: 3, text: "What's something you've never said out loud about love?"}
+  - {key: td_b074, kind: truth, levels: [talking, romantic, intense], depth: 3, text: "Do you still think about any of your exes?"}
+  - {key: td_b075, kind: truth, levels: [romantic, intense], depth: 1, text: "What's your favourite photo of us, and why?"}
+  - {key: td_b076, kind: truth, levels: [romantic, intense], depth: 1, text: "What's a habit of mine you secretly love?"}
+  - {key: td_b077, kind: truth, levels: [romantic, intense], depth: 1, text: "What's the first thing you'd do on a holiday with me?"}
+  - {key: td_b078, kind: truth, levels: [romantic, intense], depth: 2, text: "What was the moment you knew you liked me?"}
+  - {key: td_b079, kind: truth, levels: [romantic, intense], depth: 2, text: "What's something I do that you'd never want me to stop?"}
+  - {key: td_b080, kind: truth, levels: [romantic, intense], depth: 2, text: "Have you ever been jealous in our relationship?"}
+  - {key: td_b081, kind: truth, levels: [romantic, intense], depth: 2, text: "What did you tell your friends about me at the start?"}
+  - {key: td_b082, kind: truth, levels: [romantic, intense], depth: 2, text: "What's the most annoying thing I do?"}
+  - {key: td_b083, kind: truth, levels: [romantic, intense], depth: 2, text: "What's your favourite memory of us?"}
+  - {key: td_b084, kind: truth, levels: [romantic, intense], depth: 2, text: "What's one thing you've never told me about our first date?"}
+  - {key: td_b085, kind: truth, levels: [romantic, intense], depth: 3, text: "When did you first say you loved me in your head?"}
+  - {key: td_b086, kind: truth, levels: [romantic, intense], depth: 3, text: "What's something you've wanted to ask me but haven't?"}
+  - {key: td_b087, kind: truth, levels: [romantic, intense], depth: 3, text: "What's one thing you'd change about us?"}
+  - {key: td_b088, kind: truth, levels: [romantic, intense], depth: 3, text: "What do you think about when you miss me?"}
+  - {key: td_b089, kind: truth, levels: [romantic, intense], depth: 4, text: "What's your biggest fear about us?"}
+  - {key: td_b090, kind: truth, levels: [romantic, intense], depth: 4, text: "What's the most vulnerable you've felt with me?"}
+  - {key: td_b091, kind: truth, levels: [romantic, intense], depth: 5, text: "What do you want our love to look like in twenty years?"}
+  - {key: td_b092, kind: truth, levels: [intense], depth: 2, text: "What's the most attractive thing about me?"}
+  - {key: td_b093, kind: truth, levels: [intense], depth: 2, text: "Where's the most unusual place you've wanted to kiss me?"}
+  - {key: td_b094, kind: truth, levels: [intense], depth: 2, text: "What outfit of mine do you like most?"}
+  - {key: td_b095, kind: truth, levels: [intense], depth: 3, text: "What's a romantic fantasy date you'd love with me?"}
+  - {key: td_b096, kind: truth, levels: [intense], depth: 3, text: "When do you find me hardest to resist?"}
+  - {key: td_b097, kind: truth, levels: [intense], depth: 3, text: "What's the best kiss we've had?"}
+  - {key: td_b098, kind: truth, levels: [intense], depth: 3, text: "What's the most flirty thought you've had about me today?"}
+  - {key: td_b099, kind: truth, levels: [intense], depth: 3, text: "What do you notice first when I walk into a room?"}
+  - {key: td_b100, kind: truth, levels: [intense], depth: 4, text: "What's something about me that drives you wild?"}
+  - {key: td_b101, kind: truth, levels: [intense], depth: 4, text: "What's one thing you'd love me to whisper to you?"}
+  - {key: td_b102, kind: truth, levels: [intense], depth: 4, text: "What's the moment you felt most wanted by me?"}
+  - {key: td_b103, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note of you laughing like a villain."}
+  - {key: td_b104, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a selfie making your best model face."}
+  - {key: td_b105, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Type the next message using only emojis."}
+  - {key: td_b106, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note singing \"Happy Birthday\" in your deepest voice."}
+  - {key: td_b107, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a photo of the view from where you are right now."}
+  - {key: td_b108, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Do your best animal impression in a voice note."}
+  - {key: td_b109, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note speaking in a made-up accent for 10 seconds."}
+  - {key: td_b110, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Share the last song you listened to in the chat."}
+  - {key: td_b111, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a selfie with the funniest face you can make."}
+  - {key: td_b112, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Write a two-line poem about your breakfast in the chat."}
+  - {key: td_b113, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note doing your best news reporter impression."}
+  - {key: td_b114, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Type a sentence in the chat with your eyes closed."}
+  - {key: td_b115, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a photo of the oldest thing in your room."}
+  - {key: td_b116, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note of you whistling your favourite song."}
+  - {key: td_b117, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Describe your day in exactly five words in the chat."}
+  - {key: td_b118, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a selfie wearing something on your head."}
+  - {key: td_b119, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Do 10 jumping jacks and send a voice note of you panting."}
+  - {key: td_b120, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a photo of your shoes right now."}
+  - {key: td_b121, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Change your WhatsApp profile picture to something silly for an hour."}
+  - {key: td_b122, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note saying a tongue twister three times fast."}
+  - {key: td_b123, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a photo of the strangest thing in your fridge."}
+  - {key: td_b124, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Type the alphabet backwards in the chat in under 30 seconds."}
+  - {key: td_b125, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note of your best dramatic movie line."}
+  - {key: td_b126, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a selfie with your favourite snack."}
+  - {key: td_b127, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Share the third photo in your gallery (if it's safe to share!)."}
+  - {key: td_b128, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note beatboxing for 10 seconds."}
+  - {key: td_b129, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Write your name using only emojis in the chat."}
+  - {key: td_b130, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note of you speaking like a robot."}
+  - {key: td_b131, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Do your best dance move on a video call for 10 seconds."}
+  - {key: td_b132, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a photo of your messiest corner."}
+  - {key: td_b133, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Send a voice note telling a joke, and don't laugh."}
+  - {key: td_b134, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Post a silly selfie as your WhatsApp status for 10 minutes."}
+  - {key: td_b135, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Text a friend \"I just saw a pigeon wearing a hat\" and share their reply."}
+  - {key: td_b136, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Send a voice note singing the chorus of a song you hate."}
+  - {key: td_b137, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Send a voice note doing an impression of someone you both know (kindly!)."}
+  - {key: td_b138, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Read the last message you sent to your mum out loud in a voice note."}
+  - {key: td_b139, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Send a photo pretending to be a statue somewhere in your house."}
+  - {key: td_b140, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Write a short rap about your partner's favourite food in the chat."}
+  - {key: td_b141, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Send a voice note of your best evil laugh."}
+  - {key: td_b142, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Let your partner choose an emoji you must use in every message for the rest of the game."}
+  - {key: td_b143, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Send a voice note reciting a nursery rhyme dramatically."}
+  - {key: td_b144, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Send a selfie with your hair styled in the silliest way possible."}
+  - {key: td_b145, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Describe your partner in three made-up words in the chat."}
+  - {key: td_b146, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Send a voice note of you narrating what you're doing like a nature documentary."}
+  - {key: td_b147, kind: dare, levels: [friendship, talking, romantic, intense], depth: 3, text: "Send a voice note saying one thing you're proud of yourself for."}
+  - {key: td_b148, kind: dare, levels: [friendship, talking, romantic, intense], depth: 3, text: "Write in the chat one thing you've learned this year."}
+  - {key: td_b149, kind: dare, levels: [friendship, talking, romantic, intense], depth: 3, text: "Send a voice note thanking someone who helped you, by name."}
+  - {key: td_b150, kind: dare, levels: [friendship, talking], depth: 1, text: "Send a voice note of your best impression of me."}
+  - {key: td_b151, kind: dare, levels: [friendship, talking], depth: 1, text: "Share the funniest photo you have of us (if you have one!)."}
+  - {key: td_b152, kind: dare, levels: [friendship, talking], depth: 1, text: "Write three words that describe our friendship in the chat."}
+  - {key: td_b153, kind: dare, levels: [friendship, talking], depth: 2, text: "Text a mutual friend \"We're playing a game and I lost\" and share their reply."}
+  - {key: td_b154, kind: dare, levels: [friendship, talking], depth: 2, text: "Send a voice note telling the story of how we met, but dramatically."}
+  - {key: td_b155, kind: dare, levels: [talking, romantic, intense], depth: 1, text: "Send a voice note saying \"good morning\" the way you'd want to hear it."}
+  - {key: td_b156, kind: dare, levels: [talking, romantic, intense], depth: 1, text: "Send your best pick-up line in the chat."}
+  - {key: td_b157, kind: dare, levels: [talking, romantic, intense], depth: 1, text: "Send a selfie with your cutest smile."}
+  - {key: td_b158, kind: dare, levels: [talking, romantic, intense], depth: 2, text: "Write a compliment for me in the chat without using \"nice\" or \"cute\"."}
+  - {key: td_b159, kind: dare, levels: [talking, romantic, intense], depth: 2, text: "Send a voice note describing your perfect first date."}
+  - {key: td_b160, kind: dare, levels: [talking, romantic, intense], depth: 2, text: "Send the song that reminds you of me in the chat."}
+  - {key: td_b161, kind: dare, levels: [talking, romantic, intense], depth: 2, text: "Write a six-word love story about us in the chat."}
+  - {key: td_b162, kind: dare, levels: [talking, romantic, intense], depth: 2, text: "Send a voice note reading your last text to me dramatically."}
+  - {key: td_b163, kind: dare, levels: [talking, romantic, intense], depth: 3, text: "Send a voice note telling me one thing you like about talking to me."}
+  - {key: td_b164, kind: dare, levels: [romantic, intense], depth: 1, text: "Send the oldest photo of us you have."}
+  - {key: td_b165, kind: dare, levels: [romantic, intense], depth: 1, text: "Change my name in your phone to something sweet for a day and show me."}
+  - {key: td_b166, kind: dare, levels: [romantic, intense], depth: 1, text: "Send a voice note singing our song."}
+  - {key: td_b167, kind: dare, levels: [romantic, intense], depth: 2, text: "Write me a four-line love poem in the chat."}
+  - {key: td_b168, kind: dare, levels: [romantic, intense], depth: 2, text: "Send a voice note telling the story of how we met."}
+  - {key: td_b169, kind: dare, levels: [romantic, intense], depth: 2, text: "List five things you love about me in the chat, in under a minute."}
+  - {key: td_b170, kind: dare, levels: [romantic, intense], depth: 2, text: "Plan our next date in the chat in exactly three sentences."}
+  - {key: td_b171, kind: dare, levels: [romantic, intense], depth: 2, text: "Send a voice note saying \"I love you\" in three different languages."}
+  - {key: td_b172, kind: dare, levels: [romantic, intense], depth: 2, text: "Post a sweet photo of us as your status for an hour."}
+  - {key: td_b173, kind: dare, levels: [romantic, intense], depth: 2, text: "Send a voice note recreating the first thing you ever said to me."}
+  - {key: td_b174, kind: dare, levels: [romantic, intense], depth: 2, text: "Write a fake review of me as a partner, five stars, in the chat."}
+  - {key: td_b175, kind: dare, levels: [romantic, intense], depth: 3, text: "Send a voice note telling me your favourite memory of us."}
+  - {key: td_b176, kind: dare, levels: [romantic, intense], depth: 3, text: "Write in the chat one promise you'll keep this month."}
+  - {key: td_b177, kind: dare, levels: [romantic, intense], depth: 3, text: "Send a voice note describing our future home."}
+  - {key: td_b178, kind: dare, levels: [romantic, intense], depth: 4, text: "Send a voice note saying what you'd tell me if we were together right now."}
+  - {key: td_b179, kind: dare, levels: [intense], depth: 2, text: "Send a voice note saying my name the most romantic way you can."}
+  - {key: td_b180, kind: dare, levels: [intense], depth: 2, text: "Send a selfie blowing me a kiss."}
+  - {key: td_b181, kind: dare, levels: [intense], depth: 2, text: "Describe our perfect date night using only emojis."}
+  - {key: td_b182, kind: dare, levels: [intense], depth: 2, text: "Send a voice note whispering \"goodnight\" to me."}
+  - {key: td_b183, kind: dare, levels: [intense], depth: 3, text: "Send a flirty voice note about what you'd do on our next date."}
+  - {key: td_b184, kind: dare, levels: [intense], depth: 3, text: "Write the most romantic text you can in the chat, right now."}
+  - {key: td_b185, kind: dare, levels: [intense], depth: 3, text: "Send a voice note describing your favourite thing about my smile."}
+  - {key: td_b186, kind: dare, levels: [intense], depth: 3, text: "Send a selfie with the look you'd give me across a room."}
+  - {key: td_b187, kind: dare, levels: [intense], depth: 3, text: "Tell me in a voice note where you'd take me for a surprise weekend."}
+  - {key: td_b188, kind: dare, levels: [intense], depth: 3, text: "Write in the chat the moment you wanted to kiss me most."}
+  - {key: td_b189, kind: dare, levels: [intense], depth: 3, text: "Send a voice note singing me one line of a love song, slowly."}
+  - {key: td_b190, kind: dare, levels: [intense], depth: 4, text: "Send a voice note telling me what you love most about holding me."}
+  - {key: td_b191, kind: dare, levels: [intense], depth: 4, text: "Write a short love letter in the chat starting with \"When I think of you…\"."}
+  - {key: td_b192, kind: dare, levels: [intense], depth: 4, text: "Send a voice note describing the perfect kiss with me."}
+  - {key: td_b193, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the most useless thing you know how to do?"}
+  - {key: td_b194, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "Which app would you delete last?"}
+  - {key: td_b195, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the most ridiculous thing you've bought online?"}
+  - {key: td_b196, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a food combination you love that others find gross?"}
+  - {key: td_b197, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the funniest thing that happened to you at school?"}
+  - {key: td_b198, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a word you always spell wrong?"}
+  - {key: td_b199, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the worst film you've watched to the end?"}
+  - {key: td_b200, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What fictional character would you date?"}
+  - {key: td_b201, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "Have you ever fallen asleep somewhere embarrassing?"}
+  - {key: td_b202, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your most irrational fear?"}
+  - {key: td_b203, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the longest you've stayed in bed on a day off?"}
+  - {key: td_b204, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the strangest thing you believed as a child?"}
+  - {key: td_b205, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What do you do when you're home alone that no one knows?"}
+  - {key: td_b206, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the most embarrassing song on your playlist?"}
+  - {key: td_b207, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "Have you ever talked your way out of trouble?"}
+  - {key: td_b208, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a compliment you secretly fish for?"}
+  - {key: td_b209, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the most awkward conversation you've had recently?"}
+  - {key: td_b210, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "Have you ever re-gifted a present?"}
+  - {key: td_b211, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's something you pretend to understand but don't?"}
+  - {key: td_b212, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What would your friends say is your worst habit?"}
+  - {key: td_b213, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the last thing you lied about?"}
+  - {key: td_b214, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the most dramatic thing you've done after an argument?"}
+  - {key: td_b215, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's an opinion you're scared to share?"}
+  - {key: td_b216, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the worst thing you've done when angry?"}
+  - {key: td_b217, kind: truth, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's something you wish you were braver about?"}
+  - {key: td_b218, kind: truth, levels: [friendship, talking, romantic, intense], depth: 3, text: "Who do you miss right now?"}
+  - {key: td_b219, kind: truth, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's a moment you were really proud of yourself?"}
+  - {key: td_b220, kind: truth, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's something you need to apologise for?"}
+  - {key: td_b221, kind: truth, levels: [talking, romantic, intense], depth: 1, text: "What's your go-to move when you like someone?"}
+  - {key: td_b222, kind: truth, levels: [talking, romantic, intense], depth: 2, text: "What's the boldest thing you've done to get someone's attention?"}
+  - {key: td_b223, kind: truth, levels: [talking, romantic, intense], depth: 2, text: "Have you ever practised a conversation before having it?"}
+  - {key: td_b224, kind: truth, levels: [talking, romantic, intense], depth: 2, text: "What did you think the first time you heard my voice?"}
+  - {key: td_b225, kind: truth, levels: [talking, romantic, intense], depth: 3, text: "What would make you fall for someone instantly?"}
+  - {key: td_b226, kind: truth, levels: [romantic, intense], depth: 2, text: "What's a small thing I do that makes your whole day?"}
+  - {key: td_b227, kind: truth, levels: [romantic, intense], depth: 2, text: "What's the funniest argument we've ever had?"}
+  - {key: td_b228, kind: truth, levels: [romantic, intense], depth: 3, text: "What's a dream you haven't told me yet?"}
+  - {key: td_b229, kind: truth, levels: [romantic, intense], depth: 3, text: "What's one thing you want us to do before the year ends?"}
+  - {key: td_b230, kind: truth, levels: [intense], depth: 3, text: "What's the most romantic thing you'd love me to say to you?"}
+  - {key: td_b231, kind: truth, levels: [intense], depth: 3, text: "What do you miss most about me when we're apart?"}
+  - {key: td_b232, kind: truth, levels: [intense], depth: 4, text: "What do you think about right before you fall asleep next to me?"}
+  - {key: td_b233, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note of the first sound you can make that sounds like an animal."}
+  - {key: td_b234, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a selfie with a spoon on your nose (or your best attempt)."}
+  - {key: td_b235, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Type a full sentence in the chat using only the letters on the left side of your keyboard."}
+  - {key: td_b236, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note telling a two-sentence horror story."}
+  - {key: td_b237, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Share your screen time for today in the chat."}
+  - {key: td_b238, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a photo of what you're wearing on your feet."}
+  - {key: td_b239, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note counting to ten in as many languages as you can."}
+  - {key: td_b240, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a selfie pretending you just won an award."}
+  - {key: td_b241, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Write a haiku about the weather where you are, in the chat."}
+  - {key: td_b242, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note doing your best sports commentator voice about your day."}
+  - {key: td_b243, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a photo of your favourite mug or cup."}
+  - {key: td_b244, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note saying your full name backwards."}
+  - {key: td_b245, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Do a dramatic reading of the last thing you posted online in a voice note."}
+  - {key: td_b246, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a selfie with the most surprised face you can make."}
+  - {key: td_b247, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Name ten fruits in the chat in 20 seconds."}
+  - {key: td_b248, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note of your best rooster crow."}
+  - {key: td_b249, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a photo of something blue near you right now."}
+  - {key: td_b250, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note of you singing your favourite advert jingle."}
+  - {key: td_b251, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Write a one-sentence film plot about your day in the chat."}
+  - {key: td_b252, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a selfie making a heart with your hands."}
+  - {key: td_b253, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Send a voice note of you doing a slow-motion replay of your morning."}
+  - {key: td_b254, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Let your partner pick a word you must use in your next three messages."}
+  - {key: td_b255, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Send a voice note doing a dramatic weather forecast for where you are."}
+  - {key: td_b256, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Text the last person in your call log \"Just thinking of you!\" and share their reply."}
+  - {key: td_b257, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Send a voice note of you making a toast to your partner."}
+  - {key: td_b258, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Write a short news headline about yourself in the chat."}
+  - {key: td_b259, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Send a voice note describing your room like an estate agent."}
+  - {key: td_b260, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Send a selfie doing your best impression of a famous painting."}
+  - {key: td_b261, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Send a voice note of you singing a song with your nose pinched."}
+  - {key: td_b262, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Write a two-sentence advert selling yourself in the chat."}
+  - {key: td_b263, kind: dare, levels: [friendship, talking], depth: 1, text: "Write our friendship's motto in the chat."}
+  - {key: td_b264, kind: dare, levels: [friendship, talking], depth: 1, text: "Send a voice note doing our signature greeting."}
+  - {key: td_b265, kind: dare, levels: [friendship, talking], depth: 2, text: "Send a voice note predicting where we'll both be in ten years."}
+  - {key: td_b266, kind: dare, levels: [talking, romantic, intense], depth: 1, text: "Send a selfie with the outfit you'd wear on our next date."}
+  - {key: td_b267, kind: dare, levels: [talking, romantic, intense], depth: 1, text: "Write in the chat three things you'd plan for a perfect day with me."}
+  - {key: td_b268, kind: dare, levels: [talking, romantic, intense], depth: 2, text: "Send a voice note of your best attempt at a romantic movie line."}
+  - {key: td_b269, kind: dare, levels: [talking, romantic, intense], depth: 2, text: "Send a song that describes how you feel right now in the chat."}
+  - {key: td_b270, kind: dare, levels: [talking, romantic, intense], depth: 2, text: "Write my name as an acrostic poem in the chat."}
+  - {key: td_b271, kind: dare, levels: [talking, romantic, intense], depth: 3, text: "Send a voice note telling me what you look forward to about us."}
+  - {key: td_b272, kind: dare, levels: [romantic, intense], depth: 1, text: "Send a voice note doing an impression of me waking up."}
+  - {key: td_b273, kind: dare, levels: [romantic, intense], depth: 1, text: "Send a photo of something that reminds you of me."}
+  - {key: td_b274, kind: dare, levels: [romantic, intense], depth: 2, text: "Write in the chat our love story as a film title and a one-line summary."}
+  - {key: td_b275, kind: dare, levels: [romantic, intense], depth: 2, text: "Send a voice note describing our dream holiday in detail."}
+  - {key: td_b276, kind: dare, levels: [romantic, intense], depth: 2, text: "Send me a playlist of three songs about us in the chat."}
+  - {key: td_b277, kind: dare, levels: [romantic, intense], depth: 3, text: "Send a voice note telling me the moment you knew I was the one."}
+  - {key: td_b278, kind: dare, levels: [intense], depth: 2, text: "Send a selfie with your most charming look."}
+  - {key: td_b279, kind: dare, levels: [intense], depth: 3, text: "Send a voice note describing what you'd do if I walked through your door right now."}
+  - {key: td_b280, kind: dare, levels: [intense], depth: 3, text: "Write the sweetest pet name you can think of for me in the chat and explain why."}
+  - {key: td_b281, kind: dare, levels: [intense], depth: 3, text: "Send a voice note telling me one thing about me that gives you butterflies."}
+  - {key: td_b282, kind: dare, levels: [intense], depth: 4, text: "Send a voice note describing our perfect evening together, start to finish."}

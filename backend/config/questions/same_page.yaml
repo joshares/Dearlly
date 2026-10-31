@@ -17,3 +17,243 @@ questions:
   - {key: sp_closeness, levels: [intense], depth: 4, text: "What makes you feel closest to me?", options: ["Deep talks late at night", "Being held", "Laughing together", "Doing nothing, side by side"]}
   - {key: sp_secrets, levels: [romantic, intense], depth: 5, text: "Should couples share every secret?", options: ["Yes, everything", "Almost everything", "Only what affects us", "Some things stay private"]}
   - {key: sp_forever, levels: [romantic, intense], depth: 5, text: "Love that lasts is mostly about…", options: ["Choosing each other daily", "Chemistry", "Friendship", "Growing together"]}
+  - {key: sp_b001, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best snack for a long journey is…", options: ["Crisps", "Fruit", "Sweets", "Sandwiches"]}
+  - {key: sp_b002, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best day of the week is…", options: ["Friday", "Saturday", "Sunday", "Any day off"]}
+  - {key: sp_b003, levels: [friendship, talking, romantic, intense], depth: 1, text: "The perfect holiday is…", options: ["Lying on a beach", "Exploring a city", "Hiking in nature", "Staying home and resting"]}
+  - {key: sp_b004, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best pizza topping is…", options: ["Pepperoni", "Mushrooms", "Extra cheese", "Pineapple"]}
+  - {key: sp_b005, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best season is…", options: ["Spring", "Summer", "Autumn", "Winter"]}
+  - {key: sp_b006, levels: [friendship, talking, romantic, intense], depth: 1, text: "The most fun way to spend an evening is…", options: ["Games", "A film", "Going out", "Cooking"]}
+  - {key: sp_b007, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best kind of music for a party is…", options: ["Afrobeats", "Pop", "Hip hop", "Old classics"]}
+  - {key: sp_b008, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best pet is…", options: ["A dog", "A cat", "A fish", "No pet"]}
+  - {key: sp_b009, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best time to work out is…", options: ["Early morning", "Lunchtime", "Evening", "Never"]}
+  - {key: sp_b010, levels: [friendship, talking, romantic, intense], depth: 1, text: "Breakfast should be…", options: ["Big", "Small", "Skipped", "Whatever's around"]}
+  - {key: sp_b011, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best type of film is…", options: ["Action", "Comedy", "Horror", "Romance"]}
+  - {key: sp_b012, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best ice cream flavour is…", options: ["Chocolate", "Vanilla", "Strawberry", "Something unusual"]}
+  - {key: sp_b013, levels: [friendship, talking, romantic, intense], depth: 1, text: "The most important thing in a home is…", options: ["A comfy bed", "A big kitchen", "Good light", "Space for friends"]}
+  - {key: sp_b014, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best way to travel is…", options: ["By plane", "By car", "By train", "By boat"]}
+  - {key: sp_b015, levels: [friendship, talking, romantic, intense], depth: 1, text: "A rainy day calls for…", options: ["Films and blankets", "Hot food", "Sleep", "Going out anyway"]}
+  - {key: sp_b016, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best drink on a hot day is…", options: ["Cold water", "Juice", "Iced coffee", "A smoothie"]}
+  - {key: sp_b017, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best dessert is…", options: ["Cake", "Ice cream", "Fruit", "Nothing, I'm full"]}
+  - {key: sp_b018, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best gift is…", options: ["Something handmade", "Something useful", "An experience", "Money"]}
+  - {key: sp_b019, levels: [friendship, talking, romantic, intense], depth: 1, text: "At a buffet, you start with…", options: ["Salad", "Main dishes", "Dessert", "Everything at once"]}
+  - {key: sp_b020, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best type of holiday photo is…", options: ["Selfies", "Scenery", "Food", "Candid shots"]}
+  - {key: sp_b021, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best place to read is…", options: ["In bed", "In a café", "Outdoors", "I don't read"]}
+  - {key: sp_b022, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best way to celebrate a birthday is…", options: ["A big party", "Dinner with close people", "A trip", "Quietly"]}
+  - {key: sp_b023, levels: [friendship, talking, romantic, intense], depth: 1, text: "The most annoying sound is…", options: ["Chewing", "Snoring", "An alarm", "Loud phone calls"]}
+  - {key: sp_b024, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best fruit is…", options: ["Mango", "Pineapple", "Watermelon", "Banana"]}
+  - {key: sp_b025, levels: [friendship, talking, romantic, intense], depth: 1, text: "You're most likely to be late because of…", options: ["Traffic", "Getting ready", "Sleeping in", "Losing your keys"]}
+  - {key: sp_b026, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best room in the house is…", options: ["Bedroom", "Kitchen", "Living room", "Bathroom"]}
+  - {key: sp_b027, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best weekend breakfast is…", options: ["Pancakes", "Eggs", "Toast", "Brunch out"]}
+  - {key: sp_b028, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best place to sit in a cinema is…", options: ["Middle", "Back row", "Front row", "Aisle"]}
+  - {key: sp_b029, levels: [friendship, talking, romantic, intense], depth: 1, text: "On a long flight, you…", options: ["Sleep", "Watch films", "Read", "Talk to your neighbour"]}
+  - {key: sp_b030, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best smell is…", options: ["Fresh bread", "Rain", "Flowers", "Clean laundry"]}
+  - {key: sp_b031, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best way to cool down is…", options: ["Cold shower", "Fan", "Air con", "Ice cream"]}
+  - {key: sp_b032, levels: [friendship, talking, romantic, intense], depth: 1, text: "The first thing to pack for a trip is…", options: ["Phone charger", "Clothes", "Toothbrush", "Snacks"]}
+  - {key: sp_b033, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best game night game is…", options: ["Cards", "Board games", "Video games", "Charades"]}
+  - {key: sp_b034, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best kind of party is…", options: ["House party", "Club", "Beach party", "Dinner party"]}
+  - {key: sp_b035, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best colour for a car is…", options: ["Black", "White", "Red", "Blue"]}
+  - {key: sp_b036, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best season for a wedding is…", options: ["Spring", "Summer", "Autumn", "Winter"]}
+  - {key: sp_b037, levels: [friendship, talking, romantic, intense], depth: 1, text: "A perfect lazy day includes…", options: ["Sleeping", "Eating", "Watching shows", "Doing nothing at all"]}
+  - {key: sp_b038, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best way to say hello is…", options: ["A hug", "A handshake", "A wave", "A smile"]}
+  - {key: sp_b039, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best kind of weather is…", options: ["Sunny", "Cloudy and cool", "Rainy", "Windy"]}
+  - {key: sp_b040, levels: [friendship, talking, romantic, intense], depth: 1, text: "You would rather eat…", options: ["Spicy food", "Sweet food", "Salty food", "Sour food"]}
+  - {key: sp_b041, levels: [friendship, talking, romantic, intense], depth: 2, text: "The best way to make friends as an adult is…", options: ["Work", "Hobbies", "A faith community", "Through other friends"]}
+  - {key: sp_b042, levels: [friendship, talking, romantic, intense], depth: 2, text: "The most important quality in a friend is…", options: ["Loyalty", "Honesty", "Humour", "Being there"]}
+  - {key: sp_b043, levels: [friendship, talking, romantic, intense], depth: 2, text: "When plans get cancelled, you feel…", options: ["Relieved", "Annoyed", "Sad", "It depends"]}
+  - {key: sp_b044, levels: [friendship, talking, romantic, intense], depth: 2, text: "The best way to spend a bonus is…", options: ["Save it", "Treat yourself", "Treat others", "Invest it"]}
+  - {key: sp_b045, levels: [friendship, talking, romantic, intense], depth: 2, text: "When you're angry, you need…", options: ["Space", "To talk", "To move", "Food"]}
+  - {key: sp_b046, levels: [friendship, talking, romantic, intense], depth: 2, text: "The best advice comes from…", options: ["Parents", "Friends", "Books", "Experience"]}
+  - {key: sp_b047, levels: [friendship, talking, romantic, intense], depth: 2, text: "Your phone screen time is…", options: ["Low", "Medium", "High", "Don't ask"]}
+  - {key: sp_b048, levels: [friendship, talking, romantic, intense], depth: 2, text: "You're happiest when…", options: ["With people", "Alone", "Busy", "Resting"]}
+  - {key: sp_b049, levels: [friendship, talking, romantic, intense], depth: 2, text: "Success means…", options: ["Money", "Freedom", "Happiness", "Respect"]}
+  - {key: sp_b050, levels: [friendship, talking, romantic, intense], depth: 2, text: "The best way to learn something new is…", options: ["Videos", "Books", "Classes", "Trying it"]}
+  - {key: sp_b051, levels: [friendship, talking, romantic, intense], depth: 2, text: "You deal with stress by…", options: ["Exercising", "Sleeping", "Talking", "Eating"]}
+  - {key: sp_b052, levels: [friendship, talking, romantic, intense], depth: 2, text: "A perfect Sunday afternoon is…", options: ["A nap", "Visiting family", "An outing", "Getting ready for the week"]}
+  - {key: sp_b053, levels: [friendship, talking, romantic, intense], depth: 2, text: "The most valuable thing you own is…", options: ["Your phone", "Your car", "Something sentimental", "Your books"]}
+  - {key: sp_b054, levels: [friendship, talking, romantic, intense], depth: 2, text: "You'd rather be…", options: ["Respected", "Liked", "Feared", "Left alone"]}
+  - {key: sp_b055, levels: [friendship, talking, romantic, intense], depth: 2, text: "The best time for big conversations is…", options: ["Morning", "Afternoon", "Evening", "Late at night"]}
+  - {key: sp_b056, levels: [friendship, talking, romantic, intense], depth: 2, text: "When you're sick, you want…", options: ["To be left alone", "Lots of care", "Food delivered", "Someone to watch shows with"]}
+  - {key: sp_b057, levels: [friendship, talking, romantic, intense], depth: 2, text: "In a group, you're usually…", options: ["The planner", "The joker", "The listener", "The late one"]}
+  - {key: sp_b058, levels: [friendship, talking, romantic, intense], depth: 2, text: "You make decisions…", options: ["Quickly", "Slowly", "With a list", "With your gut"]}
+  - {key: sp_b059, levels: [friendship, talking, romantic, intense], depth: 2, text: "The best thing about being an adult is…", options: ["Freedom", "Money", "Choosing your food", "Staying up late"]}
+  - {key: sp_b060, levels: [friendship, talking, romantic, intense], depth: 2, text: "The worst thing about being an adult is…", options: ["Bills", "Responsibilities", "Cooking", "Not enough time"]}
+  - {key: sp_b061, levels: [friendship, talking, romantic, intense], depth: 2, text: "You'd rather work…", options: ["Alone", "In a team", "With one partner", "From home"]}
+  - {key: sp_b062, levels: [friendship, talking, romantic, intense], depth: 2, text: "The best compliment is about…", options: ["Your looks", "Your work", "Your heart", "Your humour"]}
+  - {key: sp_b063, levels: [friendship, talking, romantic, intense], depth: 3, text: "What matters most in life is…", options: ["Family", "Health", "Love", "Purpose"]}
+  - {key: sp_b064, levels: [friendship, talking, romantic, intense], depth: 3, text: "The hardest thing to say is…", options: ["Sorry", "I love you", "I need help", "No"]}
+  - {key: sp_b065, levels: [friendship, talking, romantic, intense], depth: 3, text: "You feel most at peace…", options: ["At home", "In nature", "In prayer", "With loved ones"]}
+  - {key: sp_b066, levels: [friendship, talking, romantic, intense], depth: 3, text: "The best way to grow is…", options: ["Failing", "Reading", "Travelling", "Listening"]}
+  - {key: sp_b067, levels: [friendship, talking, romantic, intense], depth: 3, text: "You fear most…", options: ["Failure", "Loneliness", "Being ordinary", "Losing someone"]}
+  - {key: sp_b068, levels: [friendship, talking, romantic, intense], depth: 3, text: "Happiness comes from…", options: ["Inside", "Other people", "Achievements", "Small moments"]}
+  - {key: sp_b069, levels: [friendship, talking, romantic, intense], depth: 3, text: "You'd change your life by…", options: ["Moving", "Changing jobs", "Learning something new", "Nothing"]}
+  - {key: sp_b070, levels: [friendship, talking, romantic, intense], depth: 3, text: "When someone hurts you, you…", options: ["Talk to them", "Go quiet", "Let it go", "Hold a grudge"]}
+  - {key: sp_b071, levels: [friendship, talking, romantic, intense], depth: 3, text: "What makes a good life…", options: ["Love", "Adventure", "Peace", "Meaning"]}
+  - {key: sp_b072, levels: [friendship, talking, romantic, intense], depth: 4, text: "The biggest lesson you've learned is…", options: ["Trust slowly", "Love yourself", "Life is short", "People change"]}
+  - {key: sp_b073, levels: [friendship, talking, romantic, intense], depth: 4, text: "You most need to hear…", options: ["You're enough", "I'm proud of you", "It's not your fault", "You're loved"]}
+  - {key: sp_b074, levels: [friendship, talking, romantic, intense], depth: 4, text: "Your biggest strength is…", options: ["Kindness", "Determination", "Humour", "Patience"]}
+  - {key: sp_b075, levels: [friendship, talking], depth: 1, text: "The best friend trip is…", options: ["Beach", "City", "Camping", "Road trip"]}
+  - {key: sp_b076, levels: [friendship, talking], depth: 1, text: "Friends should talk…", options: ["Every day", "Every week", "When it matters", "Whenever"]}
+  - {key: sp_b077, levels: [friendship, talking], depth: 1, text: "The best group activity is…", options: ["Game night", "Dinner out", "Sports", "Karaoke"]}
+  - {key: sp_b078, levels: [friendship, talking], depth: 2, text: "A good friend will…", options: ["Tell you the truth", "Defend you", "Show up", "Keep secrets"]}
+  - {key: sp_b079, levels: [friendship, talking], depth: 2, text: "Splitting the bill should be…", options: ["Even", "By what you ordered", "One pays, then swap", "Whoever's richer"]}
+  - {key: sp_b080, levels: [friendship, talking], depth: 2, text: "The best birthday surprise for a friend is…", options: ["A party", "A gift", "A trip", "A heartfelt message"]}
+  - {key: sp_b081, levels: [friendship, talking], depth: 2, text: "Friends who move away should…", options: ["Call weekly", "Visit yearly", "Text often", "Stay friends anyway"]}
+  - {key: sp_b082, levels: [friendship, talking], depth: 2, text: "The best way to fix a friend fight is…", options: ["Talk now", "Give it time", "Send a funny message", "Apologise first"]}
+  - {key: sp_b083, levels: [friendship, talking], depth: 3, text: "A friendship ends when…", options: ["Trust breaks", "People grow apart", "Someone moves", "It never really ends"]}
+  - {key: sp_b084, levels: [friendship, talking], depth: 3, text: "Friends can be like family when…", options: ["They've been there for years", "They show up in hard times", "They know your secrets", "Always"]}
+  - {key: sp_b085, levels: [talking, romantic, intense], depth: 1, text: "The best first date is…", options: ["Coffee", "Dinner", "A walk", "An activity"]}
+  - {key: sp_b086, levels: [talking, romantic, intense], depth: 1, text: "On a first date, you talk about…", options: ["Work", "Hobbies", "Family", "Anything but work"]}
+  - {key: sp_b087, levels: [talking, romantic, intense], depth: 1, text: "The perfect text reply time is…", options: ["Instantly", "Within an hour", "Same day", "Whenever"]}
+  - {key: sp_b088, levels: [talking, romantic, intense], depth: 1, text: "The best way to flirt is…", options: ["Compliments", "Jokes", "Eye contact", "Texting"]}
+  - {key: sp_b089, levels: [talking, romantic, intense], depth: 2, text: "The first thing you notice in someone is…", options: ["Smile", "Eyes", "Style", "Confidence"]}
+  - {key: sp_b090, levels: [talking, romantic, intense], depth: 2, text: "A good partner should be…", options: ["Funny", "Kind", "Ambitious", "Loyal"]}
+  - {key: sp_b091, levels: [talking, romantic, intense], depth: 2, text: "The most attractive habit is…", options: ["Reading", "Cooking", "Exercising", "Being on time"]}
+  - {key: sp_b092, levels: [talking, romantic, intense], depth: 2, text: "The biggest turn-off is…", options: ["Rudeness", "Lateness", "Bad hygiene", "Arrogance"]}
+  - {key: sp_b093, levels: [talking, romantic, intense], depth: 2, text: "Meeting someone's family should happen…", options: ["Early", "After a few months", "When it's serious", "Whenever"]}
+  - {key: sp_b094, levels: [talking, romantic, intense], depth: 2, text: "The best way to meet someone is…", options: ["Through friends", "At work", "Online", "By chance"]}
+  - {key: sp_b095, levels: [talking, romantic, intense], depth: 2, text: "Who should say \"I love you\" first?", options: ["Whoever feels it", "The bolder one", "Doesn't matter", "Me"]}
+  - {key: sp_b096, levels: [talking, romantic, intense], depth: 2, text: "Social media and relationships…", options: ["Post everything", "Post sometimes", "Keep it private", "Only big moments"]}
+  - {key: sp_b097, levels: [talking, romantic, intense], depth: 2, text: "After an argument, the first text should come from…", options: ["Whoever was wrong", "Whoever cares more", "Whoever's calmer", "Me"]}
+  - {key: sp_b098, levels: [talking, romantic, intense], depth: 2, text: "The ideal amount of time together is…", options: ["Every day", "A few times a week", "Weekends", "It depends"]}
+  - {key: sp_b099, levels: [talking, romantic, intense], depth: 3, text: "Dating is mostly about…", options: ["Fun", "Finding a partner", "Getting to know yourself", "Connection"]}
+  - {key: sp_b100, levels: [talking, romantic, intense], depth: 3, text: "A red flag is…", options: ["Lying", "Jealousy", "Not listening", "Bad with money"]}
+  - {key: sp_b101, levels: [talking, romantic, intense], depth: 3, text: "A green flag is…", options: ["Consistency", "Kindness to strangers", "Honesty", "Good friends"]}
+  - {key: sp_b102, levels: [talking, romantic, intense], depth: 3, text: "The best sign they like you is…", options: ["They make time", "They remember details", "They introduce you", "They text first"]}
+  - {key: sp_b103, levels: [talking, romantic, intense], depth: 3, text: "Exes should be…", options: ["Forgotten", "Friends", "Polite strangers", "Blocked"]}
+  - {key: sp_b104, levels: [talking, romantic, intense], depth: 3, text: "You know it's serious when…", options: ["You meet the family", "You talk about the future", "You travel together", "You just know"]}
+  - {key: sp_b105, levels: [romantic, intense], depth: 1, text: "The best date night is…", options: ["Dinner out", "Cooking at home", "A film", "Something new"]}
+  - {key: sp_b106, levels: [romantic, intense], depth: 1, text: "The best anniversary gift is…", options: ["A trip", "Jewellery", "A letter", "A surprise"]}
+  - {key: sp_b107, levels: [romantic, intense], depth: 1, text: "Our song should be…", options: ["A slow love song", "Something upbeat", "An old classic", "The first song we danced to"]}
+  - {key: sp_b108, levels: [romantic, intense], depth: 1, text: "Breakfast together should be…", options: ["In bed", "At a café", "Cooked together", "Quick and rushed"]}
+  - {key: sp_b109, levels: [romantic, intense], depth: 1, text: "Our dream holiday is…", options: ["Beach", "Safari", "Snowy cabin", "City break"]}
+  - {key: sp_b110, levels: [romantic, intense], depth: 2, text: "Couples should share…", options: ["Everything", "Most things", "Bills only", "Passwords"]}
+  - {key: sp_b111, levels: [romantic, intense], depth: 2, text: "The best way to spend a Saturday together is…", options: ["Out exploring", "At home relaxing", "With friends", "Doing chores together"]}
+  - {key: sp_b112, levels: [romantic, intense], depth: 2, text: "The perfect proposal is…", options: ["Private", "In front of family", "On a trip", "A surprise in public"]}
+  - {key: sp_b113, levels: [romantic, intense], depth: 2, text: "Our home should have…", options: ["A garden", "A big kitchen", "A home office", "A spare room for guests"]}
+  - {key: sp_b114, levels: [romantic, intense], depth: 2, text: "Chores should be…", options: ["Split evenly", "By what we're good at", "Taken in turns", "Paid for"]}
+  - {key: sp_b115, levels: [romantic, intense], depth: 2, text: "The perfect wedding is…", options: ["Big and loud", "Small and intimate", "Destination", "Courthouse and party"]}
+  - {key: sp_b116, levels: [romantic, intense], depth: 2, text: "We should have…", options: ["No kids", "One child", "Two or three", "A big family"]}
+  - {key: sp_b117, levels: [romantic, intense], depth: 2, text: "Pets in our home…", options: ["Yes, a dog", "Yes, a cat", "Maybe later", "No pets"]}
+  - {key: sp_b118, levels: [romantic, intense], depth: 2, text: "Holidays should be spent with…", options: ["My family", "Your family", "Just us", "Friends"]}
+  - {key: sp_b119, levels: [romantic, intense], depth: 2, text: "Money goals for us are…", options: ["Buy a house", "Travel", "Save", "Start a business"]}
+  - {key: sp_b120, levels: [romantic, intense], depth: 2, text: "When we disagree, we should…", options: ["Talk immediately", "Take a break first", "Write it down", "Hug first"]}
+  - {key: sp_b121, levels: [romantic, intense], depth: 2, text: "The best way to say sorry is…", options: ["Words", "A gift", "Changed behaviour", "A hug"]}
+  - {key: sp_b122, levels: [romantic, intense], depth: 2, text: "We feel closest when…", options: ["Talking late", "Travelling", "Laughing", "In silence together"]}
+  - {key: sp_b123, levels: [romantic, intense], depth: 2, text: "Our love language is mostly…", options: ["Words", "Time", "Touch", "Acts of kindness"]}
+  - {key: sp_b124, levels: [romantic, intense], depth: 2, text: "The best surprise for me would be…", options: ["A trip", "A letter", "A visit", "A gift"]}
+  - {key: sp_b125, levels: [romantic, intense], depth: 3, text: "The secret to a long relationship is…", options: ["Communication", "Trust", "Fun", "Patience"]}
+  - {key: sp_b126, levels: [romantic, intense], depth: 3, text: "We should never…", options: ["Go to bed angry", "Keep secrets", "Stop dating", "Take each other for granted"]}
+  - {key: sp_b127, levels: [romantic, intense], depth: 3, text: "When one of us is stressed, the other should…", options: ["Listen", "Fix it", "Distract", "Give space"]}
+  - {key: sp_b128, levels: [romantic, intense], depth: 3, text: "Our biggest strength as a couple is…", options: ["Laughter", "Trust", "Friendship", "Loyalty"]}
+  - {key: sp_b129, levels: [romantic, intense], depth: 3, text: "Where do we see ourselves in five years?", options: ["Same city", "New city", "Abroad", "Wherever life takes us"]}
+  - {key: sp_b130, levels: [romantic, intense], depth: 3, text: "The best way to keep romance alive is…", options: ["Date nights", "Surprises", "Love notes", "Trying new things"]}
+  - {key: sp_b131, levels: [romantic, intense], depth: 3, text: "Jealousy in our relationship should be…", options: ["Talked about", "Ignored", "Laughed at", "Never happen"]}
+  - {key: sp_b132, levels: [romantic, intense], depth: 3, text: "Our families should be…", options: ["Very involved", "A little involved", "Kept separate", "It depends"]}
+  - {key: sp_b133, levels: [romantic, intense], depth: 4, text: "Love is…", options: ["A feeling", "A choice", "A promise", "All of these"]}
+  - {key: sp_b134, levels: [romantic, intense], depth: 4, text: "If we could fix one thing about us, it would be…", options: ["Communication", "Time together", "Patience", "Nothing"]}
+  - {key: sp_b135, levels: [romantic, intense], depth: 4, text: "The most important promise is…", options: ["To stay", "To be honest", "To be kind", "To keep choosing each other"]}
+  - {key: sp_b136, levels: [romantic, intense], depth: 4, text: "What would break us?", options: ["Lying", "Cheating", "Growing apart", "Nothing"]}
+  - {key: sp_b137, levels: [romantic, intense], depth: 5, text: "Forever means…", options: ["Every day", "Through everything", "As long as we're happy", "Always"]}
+  - {key: sp_b138, levels: [romantic, intense], depth: 5, text: "The day I knew it was real was…", options: ["Our first kiss", "A hard moment we got through", "A random ordinary day", "I still feel it every day"]}
+  - {key: sp_b139, levels: [intense], depth: 1, text: "The best place to cuddle is…", options: ["Sofa", "Bed", "Hammock", "Anywhere with you"]}
+  - {key: sp_b140, levels: [intense], depth: 2, text: "The most romantic time of day is…", options: ["Sunrise", "Sunset", "Midnight", "Lazy morning"]}
+  - {key: sp_b141, levels: [intense], depth: 2, text: "The most attractive thing I do is…", options: ["Laugh", "Dress up", "Cook", "Look at you"]}
+  - {key: sp_b142, levels: [intense], depth: 2, text: "A perfect kiss is…", options: ["Slow", "Surprising", "Long", "Gentle"]}
+  - {key: sp_b143, levels: [intense], depth: 2, text: "The best place for a kiss is…", options: ["Forehead", "Cheek", "Lips", "Hand"]}
+  - {key: sp_b144, levels: [intense], depth: 2, text: "The most romantic setting is…", options: ["Candlelight", "Beach at night", "Rooftop", "Rainy window"]}
+  - {key: sp_b145, levels: [intense], depth: 3, text: "What makes me feel wanted…", options: ["Compliments", "Touch", "Attention", "Surprises"]}
+  - {key: sp_b146, levels: [intense], depth: 3, text: "The best way to make up after a fight is…", options: ["A long hug", "A kiss", "A heart-to-heart", "Cooking together"]}
+  - {key: sp_b147, levels: [intense], depth: 3, text: "The most flirty thing to do in public is…", options: ["Hold hands", "Whisper", "Wink", "Steal a kiss"]}
+  - {key: sp_b148, levels: [intense], depth: 3, text: "My favourite way to be held is…", options: ["From behind", "Face to face", "Hand in hand", "Head on your chest"]}
+  - {key: sp_b149, levels: [intense], depth: 3, text: "The sweetest thing to wake up to is…", options: ["A kiss", "Breakfast", "A love note", "Your voice"]}
+  - {key: sp_b150, levels: [intense], depth: 3, text: "Our chemistry is mostly…", options: ["Playful", "Intense", "Comforting", "Electric"]}
+  - {key: sp_b151, levels: [intense], depth: 3, text: "The best outfit on me is…", options: ["Casual", "Dressed up", "Your shirt", "Pyjamas"]}
+  - {key: sp_b152, levels: [intense], depth: 4, text: "What I find most irresistible about you is…", options: ["Your smile", "Your voice", "Your mind", "Your touch"]}
+  - {key: sp_b153, levels: [intense], depth: 4, text: "The moment I felt closest to you was…", options: ["A long talk", "A hug", "A kiss", "A quiet moment"]}
+  - {key: sp_b154, levels: [intense], depth: 4, text: "A night to remember would be…", options: ["Dinner and dancing", "Stargazing", "A hotel getaway", "Talking till sunrise"]}
+  - {key: sp_b155, levels: [intense], depth: 4, text: "What makes our love exciting is…", options: ["Surprises", "Teasing", "Deep talks", "Adventures"]}
+  - {key: sp_b156, levels: [intense], depth: 5, text: "I feel most loved when you…", options: ["Look at me", "Hold me", "Say my name", "Choose me"]}
+  - {key: sp_b157, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best way to start the day is…", options: ["Coffee", "Prayer or quiet time", "Exercise", "Scrolling my phone"]}
+  - {key: sp_b158, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best street food is…", options: ["Grilled meat", "Fried snacks", "Fresh fruit", "Ice cream"]}
+  - {key: sp_b159, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best place for a picnic is…", options: ["A park", "A beach", "A garden", "A rooftop"]}
+  - {key: sp_b160, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best TV show genre is…", options: ["Reality TV", "Crime", "Comedy", "Fantasy"]}
+  - {key: sp_b161, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best kind of shoes are…", options: ["Trainers", "Heels", "Sandals", "Boots"]}
+  - {key: sp_b162, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best thing about holidays is…", options: ["No alarms", "Good food", "New places", "Family time"]}
+  - {key: sp_b163, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best way to spend a long weekend is…", options: ["Travel", "Rest", "Catch up with friends", "Finish projects"]}
+  - {key: sp_b164, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best type of cake is…", options: ["Chocolate", "Red velvet", "Carrot", "Cheesecake"]}
+  - {key: sp_b165, levels: [friendship, talking, romantic, intense], depth: 1, text: "You'd most like to learn…", options: ["A language", "An instrument", "To cook", "To code"]}
+  - {key: sp_b166, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best festival food is…", options: ["Barbecue", "Rice dishes", "Desserts", "Finger food"]}
+  - {key: sp_b167, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best place to work is…", options: ["An office", "At home", "A café", "Outdoors"]}
+  - {key: sp_b168, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best way to listen to music is…", options: ["Headphones", "Speakers", "Live", "In the car"]}
+  - {key: sp_b169, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best present to receive is…", options: ["Clothes", "Gadgets", "Books", "Something homemade"]}
+  - {key: sp_b170, levels: [friendship, talking, romantic, intense], depth: 1, text: "Your ideal house is…", options: ["Modern", "Classic", "Cosy cottage", "Big and open"]}
+  - {key: sp_b171, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best weekend activity is…", options: ["Sport", "Shopping", "Visiting family", "Lazing around"]}
+  - {key: sp_b172, levels: [friendship, talking, romantic, intense], depth: 1, text: "You'd most like to visit…", options: ["Japan", "Brazil", "Italy", "South Africa"]}
+  - {key: sp_b173, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best kind of joke is…", options: ["Puns", "Silly", "Clever", "Dark humour"]}
+  - {key: sp_b174, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best holiday souvenir is…", options: ["A magnet", "Clothes", "Food", "Photos"]}
+  - {key: sp_b175, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best mood for a road trip is…", options: ["Loud music", "Deep talks", "Snacks and sleep", "Games"]}
+  - {key: sp_b176, levels: [friendship, talking, romantic, intense], depth: 1, text: "The worst chore is…", options: ["Dishes", "Laundry", "Cleaning the bathroom", "Ironing"]}
+  - {key: sp_b177, levels: [friendship, talking, romantic, intense], depth: 2, text: "The best age is…", options: ["Your twenties", "Your thirties", "Your forties", "Right now"]}
+  - {key: sp_b178, levels: [friendship, talking, romantic, intense], depth: 2, text: "You'd most like to be famous for…", options: ["Your talent", "Your kindness", "Your business", "Your ideas"]}
+  - {key: sp_b179, levels: [friendship, talking, romantic, intense], depth: 2, text: "You're most likely to cry at…", options: ["A film", "A wedding", "A song", "Never"]}
+  - {key: sp_b180, levels: [friendship, talking, romantic, intense], depth: 2, text: "You relax best by…", options: ["Sleeping", "Watching something", "Being outside", "Talking to someone"]}
+  - {key: sp_b181, levels: [friendship, talking, romantic, intense], depth: 2, text: "If you won a lot of money, you'd first…", options: ["Buy a house", "Travel", "Help family", "Save it"]}
+  - {key: sp_b182, levels: [friendship, talking, romantic, intense], depth: 2, text: "The best teacher in life is…", options: ["Mistakes", "Parents", "Friends", "Time"]}
+  - {key: sp_b183, levels: [friendship, talking, romantic, intense], depth: 2, text: "A perfect job would let you…", options: ["Travel", "Help people", "Be creative", "Earn a lot"]}
+  - {key: sp_b184, levels: [friendship, talking, romantic, intense], depth: 2, text: "The thing you can't live without is…", options: ["Music", "Your phone", "Family", "Good food"]}
+  - {key: sp_b185, levels: [friendship, talking, romantic, intense], depth: 2, text: "The best way to apologise is…", options: ["In person", "By message", "With a gift", "By changing"]}
+  - {key: sp_b186, levels: [friendship, talking, romantic, intense], depth: 2, text: "Your dream car is…", options: ["A big SUV", "A sports car", "An electric car", "Any car that works"]}
+  - {key: sp_b187, levels: [friendship, talking, romantic, intense], depth: 2, text: "You'd most like to have dinner with…", options: ["A famous artist", "A world leader", "An ancestor", "Your future self"]}
+  - {key: sp_b188, levels: [friendship, talking, romantic, intense], depth: 2, text: "The hardest habit to break is…", options: ["Scrolling", "Snacking", "Procrastinating", "Overthinking"]}
+  - {key: sp_b189, levels: [friendship, talking, romantic, intense], depth: 3, text: "The best kind of love is…", options: ["Passionate", "Steady", "Playful", "Unconditional"]}
+  - {key: sp_b190, levels: [friendship, talking, romantic, intense], depth: 3, text: "A life well lived is…", options: ["Full of travel", "Full of people", "Full of purpose", "Full of peace"]}
+  - {key: sp_b191, levels: [friendship, talking, romantic, intense], depth: 3, text: "You find it hardest to…", options: ["Trust", "Rest", "Say no", "Ask for help"]}
+  - {key: sp_b192, levels: [friendship, talking, romantic, intense], depth: 3, text: "You'd most like to be remembered as…", options: ["Kind", "Brave", "Funny", "Wise"]}
+  - {key: sp_b193, levels: [friendship, talking, romantic, intense], depth: 3, text: "The most important thing to teach a child is…", options: ["Kindness", "Honesty", "Hard work", "Confidence"]}
+  - {key: sp_b194, levels: [friendship, talking, romantic, intense], depth: 4, text: "What you've changed your mind about most is…", options: ["Love", "Money", "Friendship", "Yourself"]}
+  - {key: sp_b195, levels: [friendship, talking, romantic, intense], depth: 4, text: "The thing you're still learning is…", options: ["Patience", "Self-love", "Forgiveness", "Letting go"]}
+  - {key: sp_b196, levels: [talking, romantic, intense], depth: 1, text: "The best date snack is…", options: ["Popcorn", "Ice cream", "Chocolate", "Something we share"]}
+  - {key: sp_b197, levels: [talking, romantic, intense], depth: 1, text: "The best date activity is…", options: ["Mini golf", "Bowling", "A concert", "A cooking class"]}
+  - {key: sp_b198, levels: [talking, romantic, intense], depth: 2, text: "A perfect partner texts…", options: ["All day", "Morning and night", "When they have news", "Just enough"]}
+  - {key: sp_b199, levels: [talking, romantic, intense], depth: 2, text: "The cutest pet name is…", options: ["Babe", "Love", "Sweetheart", "Their real name"]}
+  - {key: sp_b200, levels: [talking, romantic, intense], depth: 2, text: "The best way to show interest is…", options: ["Ask questions", "Make time", "Give compliments", "Send memes"]}
+  - {key: sp_b201, levels: [talking, romantic, intense], depth: 2, text: "The best time to have \"the talk\" is…", options: ["After a few dates", "After a month", "When it feels right", "When they bring it up"]}
+  - {key: sp_b202, levels: [talking, romantic, intense], depth: 2, text: "A sweet gesture early on is…", options: ["Remembering details", "Walking you home", "A small gift", "A thoughtful message"]}
+  - {key: sp_b203, levels: [talking, romantic, intense], depth: 3, text: "The thing that matters most in a partner is…", options: ["Values", "Chemistry", "Humour", "Ambition"]}
+  - {key: sp_b204, levels: [talking, romantic, intense], depth: 3, text: "The best way to handle a misunderstanding is…", options: ["Call", "Meet", "Text it out", "Let it pass"]}
+  - {key: sp_b205, levels: [talking, romantic, intense], depth: 3, text: "What makes someone a keeper?", options: ["Consistency", "Kindness", "Loyalty", "They make you better"]}
+  - {key: sp_b206, levels: [romantic, intense], depth: 1, text: "Our favourite thing to do together is…", options: ["Eat", "Travel", "Watch shows", "Talk"]}
+  - {key: sp_b207, levels: [romantic, intense], depth: 1, text: "The best couple costume is…", options: ["Superheroes", "Famous couple", "Food pair", "Something silly"]}
+  - {key: sp_b208, levels: [romantic, intense], depth: 1, text: "Our next trip should be…", options: ["Somewhere warm", "Somewhere snowy", "A new city", "Back home"]}
+  - {key: sp_b209, levels: [romantic, intense], depth: 2, text: "The best way to spend our anniversary is…", options: ["A trip", "A fancy dinner", "A quiet night", "Recreating our first date"]}
+  - {key: sp_b210, levels: [romantic, intense], depth: 2, text: "The most romantic city is…", options: ["Paris", "Venice", "Cape Town", "Marrakech"]}
+  - {key: sp_b211, levels: [romantic, intense], depth: 2, text: "Who's the better cook?", options: ["Me", "You", "We're equal", "Neither of us"]}
+  - {key: sp_b212, levels: [romantic, intense], depth: 2, text: "Who's more likely to forget an anniversary?", options: ["Me", "You", "Neither", "Both"]}
+  - {key: sp_b213, levels: [romantic, intense], depth: 2, text: "Who falls asleep first?", options: ["Me", "You", "Depends", "Together"]}
+  - {key: sp_b214, levels: [romantic, intense], depth: 2, text: "Who says sorry first?", options: ["Me", "You", "Whoever's wrong", "Both together"]}
+  - {key: sp_b215, levels: [romantic, intense], depth: 2, text: "Who's the better driver?", options: ["Me", "You", "Equal", "Neither"]}
+  - {key: sp_b216, levels: [romantic, intense], depth: 2, text: "Who spends more time getting ready?", options: ["Me", "You", "Same", "Depends on the event"]}
+  - {key: sp_b217, levels: [romantic, intense], depth: 2, text: "Who's more romantic?", options: ["Me", "You", "Equal", "Depends on the day"]}
+  - {key: sp_b218, levels: [romantic, intense], depth: 3, text: "The thing we do best together is…", options: ["Laugh", "Plan", "Support each other", "Explore"]}
+  - {key: sp_b219, levels: [romantic, intense], depth: 3, text: "The habit I love most about you is…", options: ["How you care", "How you listen", "How you make me laugh", "How you show up"]}
+  - {key: sp_b220, levels: [romantic, intense], depth: 3, text: "What we should do more of is…", options: ["Travel", "Date nights", "Talking", "Resting"]}
+  - {key: sp_b221, levels: [romantic, intense], depth: 3, text: "Our relationship is like…", options: ["A slow song", "A road trip", "A warm home", "A great film"]}
+  - {key: sp_b222, levels: [romantic, intense], depth: 4, text: "The hardest thing we've been through was…", options: ["Distance", "A big disagreement", "Family stress", "Money worries"]}
+  - {key: sp_b223, levels: [romantic, intense], depth: 4, text: "What keeps us strong is…", options: ["Faith", "Friendship", "Communication", "Choosing each other"]}
+  - {key: sp_b224, levels: [romantic, intense], depth: 5, text: "When we're old, I hope we…", options: ["Still laugh", "Still dance", "Still hold hands", "Still choose each other"]}
+  - {key: sp_b225, levels: [intense], depth: 2, text: "The most attractive thing to wear is…", options: ["Something fitted", "Something simple", "Something bold", "Nothing fancy, just confidence"]}
+  - {key: sp_b226, levels: [intense], depth: 2, text: "A kiss should last…", options: ["A second", "Ten seconds", "A minute", "As long as it wants"]}
+  - {key: sp_b227, levels: [intense], depth: 3, text: "The best way to flirt over text is…", options: ["Compliments", "Teasing", "Voice notes", "Emojis"]}
+  - {key: sp_b228, levels: [intense], depth: 3, text: "The most romantic gesture is…", options: ["Slow dancing", "Holding hands", "A love letter", "A surprise kiss"]}
+  - {key: sp_b229, levels: [intense], depth: 3, text: "My weakness when it comes to you is…", options: ["Your eyes", "Your laugh", "Your voice", "Your hugs"]}
+  - {key: sp_b230, levels: [intense], depth: 4, text: "The thing I'd love more of is…", options: ["Kisses", "Compliments", "Cuddles", "Time alone together"]}
+  - {key: sp_b231, levels: [intense], depth: 4, text: "What makes me blush is…", options: ["Compliments", "Eye contact", "Teasing", "Your touch"]}
+  - {key: sp_b232, levels: [intense], depth: 4, text: "The perfect end to a date night is…", options: ["A long kiss", "A slow dance", "A walk home", "Talking till late"]}
+  - {key: sp_b233, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best way to stay in touch with someone far away is…", options: ["Video calls", "Voice notes", "Long texts", "Sending letters or gifts"]}
+  - {key: sp_b234, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best snack while watching a film is…", options: ["Popcorn", "Chocolate", "Crisps", "Fruit"]}
+  - {key: sp_b235, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best way to spend a hot afternoon is…", options: ["Swimming", "Napping", "Ice cream", "Staying indoors"]}
+  - {key: sp_b236, levels: [friendship, talking, romantic, intense], depth: 2, text: "Long-distance friendships work best with…", options: ["Regular calls", "Shared games", "Visits", "Inside jokes"]}
+  - {key: sp_b237, levels: [romantic, intense], depth: 2, text: "When we're apart, the best way to feel close is…", options: ["Video calls", "Watching the same film", "Voice notes", "Planning the next visit"]}
+  - {key: sp_b238, levels: [romantic, intense], depth: 3, text: "The hardest part of being apart is…", options: ["Missing hugs", "Time zones", "Not sharing meals", "Not seeing each other's face"]}
+  - {key: sp_b239, levels: [romantic, intense], depth: 3, text: "The best thing about distance is…", options: ["It makes visits special", "We talk more", "We trust more", "Nothing, I hate it"]}
+  - {key: sp_b240, levels: [intense], depth: 3, text: "After time apart, the first thing we should do is…", options: ["Hug for ages", "Kiss", "Eat together", "Talk all night"]}

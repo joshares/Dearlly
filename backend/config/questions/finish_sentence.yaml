@@ -12,3 +12,209 @@ questions:
   - {key: fs_promise, levels: [romantic, intense], depth: 5, text: "One promise I want to make you is…"}
   - {key: fs_cant_stop, levels: [intense], depth: 3, text: "I can't stop thinking about the time we…"}
   - {key: fs_next_date, levels: [talking, romantic, intense], depth: 2, text: "On our next date, I want us to…"}
+  - {key: fs_b001, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best meal I've ever had was…"}
+  - {key: fs_b002, levels: [friendship, talking, romantic, intense], depth: 1, text: "My favourite way to spend a Saturday is…"}
+  - {key: fs_b003, levels: [friendship, talking, romantic, intense], depth: 1, text: "A song I never skip is…"}
+  - {key: fs_b004, levels: [friendship, talking, romantic, intense], depth: 1, text: "If I could eat one thing forever, it would be…"}
+  - {key: fs_b005, levels: [friendship, talking, romantic, intense], depth: 1, text: "The last thing that made me laugh out loud was…"}
+  - {key: fs_b006, levels: [friendship, talking, romantic, intense], depth: 1, text: "My dream holiday is…"}
+  - {key: fs_b007, levels: [friendship, talking, romantic, intense], depth: 1, text: "A film I could watch again and again is…"}
+  - {key: fs_b008, levels: [friendship, talking, romantic, intense], depth: 1, text: "My go-to karaoke song is…"}
+  - {key: fs_b009, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best gift I've ever received was…"}
+  - {key: fs_b010, levels: [friendship, talking, romantic, intense], depth: 1, text: "If I had a free day tomorrow, I would…"}
+  - {key: fs_b011, levels: [friendship, talking, romantic, intense], depth: 1, text: "My favourite smell in the world is…"}
+  - {key: fs_b012, levels: [friendship, talking, romantic, intense], depth: 1, text: "The weirdest food I've ever tried is…"}
+  - {key: fs_b013, levels: [friendship, talking, romantic, intense], depth: 1, text: "My favourite childhood snack was…"}
+  - {key: fs_b014, levels: [friendship, talking, romantic, intense], depth: 1, text: "I'm secretly really good at…"}
+  - {key: fs_b015, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best advice I've ever been given is…"}
+  - {key: fs_b016, levels: [friendship, talking, romantic, intense], depth: 1, text: "My favourite place in my city is…"}
+  - {key: fs_b017, levels: [friendship, talking, romantic, intense], depth: 1, text: "If I were an animal, I'd be…"}
+  - {key: fs_b018, levels: [friendship, talking, romantic, intense], depth: 1, text: "The app I can't stop opening is…"}
+  - {key: fs_b019, levels: [friendship, talking, romantic, intense], depth: 1, text: "My favourite holiday tradition is…"}
+  - {key: fs_b020, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best concert or show I've been to was…"}
+  - {key: fs_b021, levels: [friendship, talking, romantic, intense], depth: 1, text: "If I could live anywhere, it would be…"}
+  - {key: fs_b022, levels: [friendship, talking, romantic, intense], depth: 1, text: "My favourite thing to cook is…"}
+  - {key: fs_b023, levels: [friendship, talking, romantic, intense], depth: 1, text: "A habit I'm trying to break is…"}
+  - {key: fs_b024, levels: [friendship, talking, romantic, intense], depth: 1, text: "My most-used emoji says that I…"}
+  - {key: fs_b025, levels: [friendship, talking, romantic, intense], depth: 1, text: "The most random thing in my bag right now is…"}
+  - {key: fs_b026, levels: [friendship, talking, romantic, intense], depth: 1, text: "My favourite outfit makes me feel…"}
+  - {key: fs_b027, levels: [friendship, talking, romantic, intense], depth: 1, text: "Something I'd love to learn is…"}
+  - {key: fs_b028, levels: [friendship, talking, romantic, intense], depth: 1, text: "The last thing I bought for myself was…"}
+  - {key: fs_b029, levels: [friendship, talking, romantic, intense], depth: 1, text: "My perfect sandwich has…"}
+  - {key: fs_b030, levels: [friendship, talking, romantic, intense], depth: 1, text: "If I could have any job for a day, it would be…"}
+  - {key: fs_b031, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best day of my week is usually…"}
+  - {key: fs_b032, levels: [friendship, talking, romantic, intense], depth: 1, text: "My favourite cartoon growing up was…"}
+  - {key: fs_b033, levels: [friendship, talking, romantic, intense], depth: 1, text: "One food I can't stand is…"}
+  - {key: fs_b034, levels: [friendship, talking, romantic, intense], depth: 1, text: "My ideal Sunday evening looks like…"}
+  - {key: fs_b035, levels: [friendship, talking, romantic, intense], depth: 1, text: "A celebrity I'd love to have dinner with is…"}
+  - {key: fs_b036, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best thing about where I grew up is…"}
+  - {key: fs_b037, levels: [friendship, talking, romantic, intense], depth: 1, text: "My phone wallpaper right now is…"}
+  - {key: fs_b038, levels: [friendship, talking, romantic, intense], depth: 1, text: "A smell that takes me back to childhood is…"}
+  - {key: fs_b039, levels: [friendship, talking, romantic, intense], depth: 1, text: "The thing I always forget to buy is…"}
+  - {key: fs_b040, levels: [friendship, talking, romantic, intense], depth: 1, text: "If I opened a restaurant, I'd serve…"}
+  - {key: fs_b041, levels: [friendship, talking, romantic, intense], depth: 2, text: "I feel most like myself when…"}
+  - {key: fs_b042, levels: [friendship, talking, romantic, intense], depth: 2, text: "Something that always cheers me up is…"}
+  - {key: fs_b043, levels: [friendship, talking, romantic, intense], depth: 2, text: "The best compliment I've ever had was…"}
+  - {key: fs_b044, levels: [friendship, talking, romantic, intense], depth: 2, text: "I'm most proud of the time I…"}
+  - {key: fs_b045, levels: [friendship, talking, romantic, intense], depth: 2, text: "A small thing that makes my day is…"}
+  - {key: fs_b046, levels: [friendship, talking, romantic, intense], depth: 2, text: "A goal I have this year is…"}
+  - {key: fs_b047, levels: [friendship, talking, romantic, intense], depth: 2, text: "The thing I'm most looking forward to is…"}
+  - {key: fs_b048, levels: [friendship, talking, romantic, intense], depth: 2, text: "People are often surprised to learn that I…"}
+  - {key: fs_b049, levels: [friendship, talking, romantic, intense], depth: 2, text: "I wish I had more time for…"}
+  - {key: fs_b050, levels: [friendship, talking, romantic, intense], depth: 2, text: "One thing I'd tell my teenage self is…"}
+  - {key: fs_b051, levels: [friendship, talking, romantic, intense], depth: 2, text: "My biggest pet peeve is…"}
+  - {key: fs_b052, levels: [friendship, talking, romantic, intense], depth: 2, text: "If I won a big prize, the first thing I'd do is…"}
+  - {key: fs_b053, levels: [friendship, talking, romantic, intense], depth: 2, text: "A risk I'm glad I took is…"}
+  - {key: fs_b054, levels: [friendship, talking, romantic, intense], depth: 2, text: "The best part of my job or studies is…"}
+  - {key: fs_b055, levels: [friendship, talking, romantic, intense], depth: 2, text: "I always feel calm when…"}
+  - {key: fs_b056, levels: [friendship, talking, romantic, intense], depth: 2, text: "The person who taught me the most is…"}
+  - {key: fs_b057, levels: [friendship, talking, romantic, intense], depth: 2, text: "Something I've changed my mind about is…"}
+  - {key: fs_b058, levels: [friendship, talking, romantic, intense], depth: 2, text: "A tradition I'd like to start is…"}
+  - {key: fs_b059, levels: [friendship, talking, romantic, intense], depth: 2, text: "A book or film that changed me is…"}
+  - {key: fs_b060, levels: [friendship, talking, romantic, intense], depth: 2, text: "I'm happiest in the company of people who…"}
+  - {key: fs_b061, levels: [friendship, talking, romantic, intense], depth: 2, text: "My most treasured possession is…"}
+  - {key: fs_b062, levels: [friendship, talking, romantic, intense], depth: 2, text: "The hardest thing about adulthood is…"}
+  - {key: fs_b063, levels: [friendship, talking, romantic, intense], depth: 2, text: "A dream I had as a child was…"}
+  - {key: fs_b064, levels: [friendship, talking, romantic, intense], depth: 2, text: "I feel brave when…"}
+  - {key: fs_b065, levels: [friendship, talking, romantic, intense], depth: 3, text: "Something I'm still learning is…"}
+  - {key: fs_b066, levels: [friendship, talking, romantic, intense], depth: 3, text: "I feel most at peace when…"}
+  - {key: fs_b067, levels: [friendship, talking, romantic, intense], depth: 3, text: "The thing I value most in people is…"}
+  - {key: fs_b068, levels: [friendship, talking, romantic, intense], depth: 3, text: "A moment I'll never forget is…"}
+  - {key: fs_b069, levels: [friendship, talking, romantic, intense], depth: 3, text: "When I'm sad, I need…"}
+  - {key: fs_b070, levels: [friendship, talking, romantic, intense], depth: 3, text: "One thing I wish people understood about me is…"}
+  - {key: fs_b071, levels: [friendship, talking, romantic, intense], depth: 3, text: "The best decision I ever made was…"}
+  - {key: fs_b072, levels: [friendship, talking, romantic, intense], depth: 3, text: "Something that scares me but I want to try is…"}
+  - {key: fs_b073, levels: [friendship, talking, romantic, intense], depth: 3, text: "I feel most loved when…"}
+  - {key: fs_b074, levels: [friendship, talking, romantic, intense], depth: 3, text: "My idea of success is…"}
+  - {key: fs_b075, levels: [friendship, talking, romantic, intense], depth: 3, text: "I'm grateful every day for…"}
+  - {key: fs_b076, levels: [friendship, talking, romantic, intense], depth: 3, text: "The kindest thing anyone did for me was…"}
+  - {key: fs_b077, levels: [friendship, talking, romantic, intense], depth: 4, text: "A lesson that cost me a lot was…"}
+  - {key: fs_b078, levels: [friendship, talking, romantic, intense], depth: 4, text: "I've forgiven someone for…"}
+  - {key: fs_b079, levels: [friendship, talking, romantic, intense], depth: 4, text: "The thing that keeps me going on hard days is…"}
+  - {key: fs_b080, levels: [friendship, talking, romantic, intense], depth: 4, text: "I'm still healing from…"}
+  - {key: fs_b081, levels: [friendship, talking, romantic, intense], depth: 4, text: "If I could change one thing about the world, it would be…"}
+  - {key: fs_b082, levels: [friendship, talking, romantic, intense], depth: 4, text: "I want to be remembered for…"}
+  - {key: fs_b083, levels: [friendship, talking, romantic, intense], depth: 5, text: "What I need most right now is…"}
+  - {key: fs_b084, levels: [friendship, talking, romantic, intense], depth: 5, text: "The truest thing I can say about myself is…"}
+  - {key: fs_b085, levels: [friendship, talking], depth: 1, text: "Our friendship in three words is…"}
+  - {key: fs_b086, levels: [friendship, talking], depth: 1, text: "The funniest thing we've done together is…"}
+  - {key: fs_b087, levels: [friendship, talking], depth: 1, text: "If we were a TV duo, we'd be…"}
+  - {key: fs_b088, levels: [friendship, talking], depth: 1, text: "You're the friend I call when…"}
+  - {key: fs_b089, levels: [friendship, talking], depth: 2, text: "The first time we met, I thought…"}
+  - {key: fs_b090, levels: [friendship, talking], depth: 2, text: "My favourite thing about you as a friend is…"}
+  - {key: fs_b091, levels: [friendship, talking], depth: 2, text: "A trip I want us to take is…"}
+  - {key: fs_b092, levels: [friendship, talking], depth: 2, text: "You always know how to…"}
+  - {key: fs_b093, levels: [friendship, talking], depth: 3, text: "I'm thankful for our friendship because…"}
+  - {key: fs_b094, levels: [friendship, talking], depth: 3, text: "The time you really showed up for me was…"}
+  - {key: fs_b095, levels: [talking, romantic, intense], depth: 1, text: "The perfect first date would be…"}
+  - {key: fs_b096, levels: [talking, romantic, intense], depth: 1, text: "The first thing I noticed about you was…"}
+  - {key: fs_b097, levels: [talking, romantic, intense], depth: 1, text: "If we went on a trip tomorrow, I'd choose…"}
+  - {key: fs_b098, levels: [talking, romantic, intense], depth: 1, text: "My favourite thing we've talked about is…"}
+  - {key: fs_b099, levels: [talking, romantic, intense], depth: 2, text: "You make me laugh when…"}
+  - {key: fs_b100, levels: [talking, romantic, intense], depth: 2, text: "Something I'd love to know about you is…"}
+  - {key: fs_b101, levels: [talking, romantic, intense], depth: 2, text: "A date idea I've always wanted to try is…"}
+  - {key: fs_b102, levels: [talking, romantic, intense], depth: 2, text: "I knew I liked talking to you when…"}
+  - {key: fs_b103, levels: [talking, romantic, intense], depth: 2, text: "My green flag is…"}
+  - {key: fs_b104, levels: [talking, romantic, intense], depth: 2, text: "My red flag is…"}
+  - {key: fs_b105, levels: [talking, romantic, intense], depth: 2, text: "The cutest thing you've said to me is…"}
+  - {key: fs_b106, levels: [talking, romantic, intense], depth: 2, text: "If I planned our next date, we'd…"}
+  - {key: fs_b107, levels: [talking, romantic, intense], depth: 3, text: "I feel comfortable with you because…"}
+  - {key: fs_b108, levels: [talking, romantic, intense], depth: 3, text: "What I'm looking for in love is…"}
+  - {key: fs_b109, levels: [talking, romantic, intense], depth: 3, text: "I hope that we…"}
+  - {key: fs_b110, levels: [talking, romantic, intense], depth: 3, text: "The quality I admire most in you is…"}
+  - {key: fs_b111, levels: [talking, romantic, intense], depth: 3, text: "I get butterflies when…"}
+  - {key: fs_b112, levels: [romantic, intense], depth: 1, text: "Our song is…"}
+  - {key: fs_b113, levels: [romantic, intense], depth: 1, text: "My favourite photo of us is the one where…"}
+  - {key: fs_b114, levels: [romantic, intense], depth: 1, text: "Our perfect lazy day looks like…"}
+  - {key: fs_b115, levels: [romantic, intense], depth: 1, text: "The best trip we've had was…"}
+  - {key: fs_b116, levels: [romantic, intense], depth: 1, text: "Your cooking reminds me of…"}
+  - {key: fs_b117, levels: [romantic, intense], depth: 1, text: "Our couple nickname should be…"}
+  - {key: fs_b118, levels: [romantic, intense], depth: 2, text: "My favourite thing about our home life is…"}
+  - {key: fs_b119, levels: [romantic, intense], depth: 2, text: "You're at your cutest when…"}
+  - {key: fs_b120, levels: [romantic, intense], depth: 2, text: "A habit of yours I secretly love is…"}
+  - {key: fs_b121, levels: [romantic, intense], depth: 2, text: "My favourite date we've had was…"}
+  - {key: fs_b122, levels: [romantic, intense], depth: 2, text: "The thing I'd love us to do more is…"}
+  - {key: fs_b123, levels: [romantic, intense], depth: 2, text: "When I first saw you, I thought…"}
+  - {key: fs_b124, levels: [romantic, intense], depth: 2, text: "Our love story would be called…"}
+  - {key: fs_b125, levels: [romantic, intense], depth: 2, text: "The best gift you've ever given me is…"}
+  - {key: fs_b126, levels: [romantic, intense], depth: 2, text: "A place I want to take you is…"}
+  - {key: fs_b127, levels: [romantic, intense], depth: 2, text: "I knew you were special when…"}
+  - {key: fs_b128, levels: [romantic, intense], depth: 2, text: "Our next adventure should be…"}
+  - {key: fs_b129, levels: [romantic, intense], depth: 3, text: "You make me a better person by…"}
+  - {key: fs_b130, levels: [romantic, intense], depth: 3, text: "I feel safest when you…"}
+  - {key: fs_b131, levels: [romantic, intense], depth: 3, text: "The moment I fell for you was…"}
+  - {key: fs_b132, levels: [romantic, intense], depth: 3, text: "My favourite thing about how you love me is…"}
+  - {key: fs_b133, levels: [romantic, intense], depth: 3, text: "When we're apart, I miss…"}
+  - {key: fs_b134, levels: [romantic, intense], depth: 3, text: "Something I've never told you is…"}
+  - {key: fs_b135, levels: [romantic, intense], depth: 3, text: "I'm proud of us because…"}
+  - {key: fs_b136, levels: [romantic, intense], depth: 3, text: "The hardest thing we've been through taught me…"}
+  - {key: fs_b137, levels: [romantic, intense], depth: 3, text: "Our relationship is strongest when…"}
+  - {key: fs_b138, levels: [romantic, intense], depth: 4, text: "I want to grow old with you because…"}
+  - {key: fs_b139, levels: [romantic, intense], depth: 4, text: "The way you love me makes me feel…"}
+  - {key: fs_b140, levels: [romantic, intense], depth: 4, text: "If our love were a place, it would be…"}
+  - {key: fs_b141, levels: [romantic, intense], depth: 4, text: "I fell more in love with you when…"}
+  - {key: fs_b142, levels: [romantic, intense], depth: 4, text: "The future I dream of with you is…"}
+  - {key: fs_b143, levels: [romantic, intense], depth: 4, text: "You've changed my life by…"}
+  - {key: fs_b144, levels: [romantic, intense], depth: 5, text: "I'll always love you because…"}
+  - {key: fs_b145, levels: [romantic, intense], depth: 5, text: "The promise I'll always keep is…"}
+  - {key: fs_b146, levels: [romantic, intense], depth: 5, text: "Loving you has taught me…"}
+  - {key: fs_b147, levels: [intense], depth: 1, text: "The outfit of yours I love most is…"}
+  - {key: fs_b148, levels: [intense], depth: 2, text: "The first time I wanted to kiss you was…"}
+  - {key: fs_b149, levels: [intense], depth: 2, text: "My favourite place to be kissed is…"}
+  - {key: fs_b150, levels: [intense], depth: 2, text: "You look most irresistible when…"}
+  - {key: fs_b151, levels: [intense], depth: 2, text: "The sweetest thing you do without knowing is…"}
+  - {key: fs_b152, levels: [intense], depth: 3, text: "My favourite memory of us alone is…"}
+  - {key: fs_b153, levels: [intense], depth: 3, text: "I can't stop thinking about the time…"}
+  - {key: fs_b154, levels: [intense], depth: 3, text: "The most romantic night I can imagine is…"}
+  - {key: fs_b155, levels: [intense], depth: 3, text: "When you look at me like that, I…"}
+  - {key: fs_b156, levels: [intense], depth: 3, text: "The thing I love most about your voice is…"}
+  - {key: fs_b157, levels: [intense], depth: 3, text: "If I could kiss you right now, I'd…"}
+  - {key: fs_b158, levels: [intense], depth: 3, text: "I love it when you hold me and…"}
+  - {key: fs_b159, levels: [intense], depth: 3, text: "The most romantic thing I want to do with you is…"}
+  - {key: fs_b160, levels: [intense], depth: 4, text: "You make my heart race when…"}
+  - {key: fs_b161, levels: [intense], depth: 4, text: "What I find most attractive about you is…"}
+  - {key: fs_b162, levels: [intense], depth: 4, text: "The moment I felt most wanted by you was…"}
+  - {key: fs_b163, levels: [intense], depth: 4, text: "A secret I want to share only with you is…"}
+  - {key: fs_b164, levels: [intense], depth: 4, text: "The way you touch my hand makes me feel…"}
+  - {key: fs_b165, levels: [intense], depth: 5, text: "When I'm in your arms, I feel…"}
+  - {key: fs_b166, levels: [intense], depth: 5, text: "You are my…"}
+  - {key: fs_b167, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best thing I ate this week was…"}
+  - {key: fs_b168, levels: [friendship, talking, romantic, intense], depth: 1, text: "My favourite time of day is…"}
+  - {key: fs_b169, levels: [friendship, talking, romantic, intense], depth: 1, text: "If I had a theme song, it would be…"}
+  - {key: fs_b170, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best birthday I've had was…"}
+  - {key: fs_b171, levels: [friendship, talking, romantic, intense], depth: 1, text: "My comfort food is…"}
+  - {key: fs_b172, levels: [friendship, talking, romantic, intense], depth: 1, text: "The most beautiful sunset I've seen was…"}
+  - {key: fs_b173, levels: [friendship, talking, romantic, intense], depth: 1, text: "If I could time travel, I'd visit…"}
+  - {key: fs_b174, levels: [friendship, talking, romantic, intense], depth: 1, text: "A fictional place I'd love to live is…"}
+  - {key: fs_b175, levels: [friendship, talking, romantic, intense], depth: 1, text: "My favourite way to unwind is…"}
+  - {key: fs_b176, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best holiday I've had was…"}
+  - {key: fs_b177, levels: [friendship, talking, romantic, intense], depth: 2, text: "If I wrote a book, it would be about…"}
+  - {key: fs_b178, levels: [friendship, talking, romantic, intense], depth: 2, text: "A tradition from my childhood I loved was…"}
+  - {key: fs_b179, levels: [friendship, talking, romantic, intense], depth: 2, text: "The hardest thing I've ever learned to do was…"}
+  - {key: fs_b180, levels: [friendship, talking, romantic, intense], depth: 2, text: "I feel most grown-up when…"}
+  - {key: fs_b181, levels: [friendship, talking, romantic, intense], depth: 2, text: "Something I'm quietly proud of is…"}
+  - {key: fs_b182, levels: [friendship, talking, romantic, intense], depth: 2, text: "My favourite thing about myself is…"}
+  - {key: fs_b183, levels: [friendship, talking, romantic, intense], depth: 3, text: "The best thing about my life right now is…"}
+  - {key: fs_b184, levels: [friendship, talking, romantic, intense], depth: 3, text: "I'd like more people to know that…"}
+  - {key: fs_b185, levels: [friendship, talking, romantic, intense], depth: 3, text: "A moment that changed how I see the world was…"}
+  - {key: fs_b186, levels: [talking, romantic, intense], depth: 2, text: "The first message I sent you was…"}
+  - {key: fs_b187, levels: [talking, romantic, intense], depth: 2, text: "A song that makes me think of you is…"}
+  - {key: fs_b188, levels: [talking, romantic, intense], depth: 3, text: "I can't wait to…"}
+  - {key: fs_b189, levels: [romantic, intense], depth: 2, text: "The thing I miss most when you're not here is…"}
+  - {key: fs_b190, levels: [romantic, intense], depth: 2, text: "Our best inside joke is…"}
+  - {key: fs_b191, levels: [romantic, intense], depth: 3, text: "The best thing about long-distance us is…"}
+  - {key: fs_b192, levels: [romantic, intense], depth: 3, text: "When I see your name on my phone, I…"}
+  - {key: fs_b193, levels: [romantic, intense], depth: 4, text: "I'm most thankful for you when…"}
+  - {key: fs_b194, levels: [intense], depth: 3, text: "When I hear your voice, I…"}
+  - {key: fs_b195, levels: [intense], depth: 3, text: "The thing I'd love to do on our next night together is…"}
+  - {key: fs_b196, levels: [intense], depth: 4, text: "You make me feel beautiful when…"}
+  - {key: fs_b197, levels: [friendship, talking, romantic, intense], depth: 1, text: "If I could teleport right now, I'd go to…"}
+  - {key: fs_b198, levels: [friendship, talking, romantic, intense], depth: 1, text: "The best video call I've ever had was…"}
+  - {key: fs_b199, levels: [friendship, talking, romantic, intense], depth: 1, text: "A place I want to show you one day is…"}
+  - {key: fs_b200, levels: [friendship, talking, romantic, intense], depth: 2, text: "The thing I miss most about home when I'm away is…"}
+  - {key: fs_b201, levels: [friendship, talking, romantic, intense], depth: 2, text: "My favourite way to stay in touch is…"}
+  - {key: fs_b202, levels: [romantic, intense], depth: 2, text: "When we finally meet again, the first thing we'll do is…"}
+  - {key: fs_b203, levels: [romantic, intense], depth: 3, text: "The best part of our calls is…"}
+  - {key: fs_b204, levels: [romantic, intense], depth: 3, text: "Distance has taught me that…"}
+  - {key: fs_b205, levels: [intense], depth: 3, text: "The next time I see you, I want to…"}
+  - {key: fs_b206, levels: [intense], depth: 4, text: "At night when I miss you, I…"}

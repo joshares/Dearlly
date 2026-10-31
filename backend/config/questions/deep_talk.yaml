@@ -12,3 +12,235 @@ questions:
   - {key: dt_when_knew, levels: [romantic, intense], depth: 5, text: "When did you first know you really cared about me?"}
   - {key: dt_success_means, levels: [friendship, talking, romantic, intense], depth: 2, text: "What does a good life look like to you?"}
   - {key: dt_unsaid, levels: [romantic, intense], depth: 5, text: "Is there something you've wanted to tell me but haven't?"}
+  - {key: dt_b001, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a simple pleasure that always makes you happy?"}
+  - {key: dt_b002, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the best thing that happened to you this week?"}
+  - {key: dt_b003, levels: [friendship, talking, romantic, intense], depth: 1, text: "What did you love doing as a child that you don't do anymore?"}
+  - {key: dt_b004, levels: [friendship, talking, romantic, intense], depth: 1, text: "Which place have you been that you'd go back to tomorrow?"}
+  - {key: dt_b005, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a skill you'd love to master, and why?"}
+  - {key: dt_b006, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's something you're looking forward to this month?"}
+  - {key: dt_b007, levels: [friendship, talking, romantic, intense], depth: 1, text: "Who was your favourite teacher, and what made them special?"}
+  - {key: dt_b008, levels: [friendship, talking, romantic, intense], depth: 1, text: "What would your perfect day look like from morning to night?"}
+  - {key: dt_b009, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a small thing someone did for you that you still remember?"}
+  - {key: dt_b010, levels: [friendship, talking, romantic, intense], depth: 1, text: "If you could master any instrument overnight, which would it be?"}
+  - {key: dt_b011, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your favourite family story to tell?"}
+  - {key: dt_b012, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a hobby you'd pick up if you had more time?"}
+  - {key: dt_b013, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the most beautiful place you've ever seen?"}
+  - {key: dt_b014, levels: [friendship, talking, romantic, intense], depth: 1, text: "What song takes you straight back to a memory?"}
+  - {key: dt_b015, levels: [friendship, talking, romantic, intense], depth: 1, text: "What would you do with a month off, no money worries?"}
+  - {key: dt_b016, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the best piece of advice your parents gave you?"}
+  - {key: dt_b017, levels: [friendship, talking, romantic, intense], depth: 2, text: "What do you think people misunderstand about your generation?"}
+  - {key: dt_b018, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's something you believed as a child that turned out to be wrong?"}
+  - {key: dt_b019, levels: [friendship, talking, romantic, intense], depth: 2, text: "What part of your personality came from your parents?"}
+  - {key: dt_b020, levels: [friendship, talking, romantic, intense], depth: 2, text: "What does a good friend do that others don't?"}
+  - {key: dt_b021, levels: [friendship, talking, romantic, intense], depth: 2, text: "When do you feel most creative?"}
+  - {key: dt_b022, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's something you're proud of that nobody else knows about?"}
+  - {key: dt_b023, levels: [friendship, talking, romantic, intense], depth: 2, text: "What would you do if you knew you couldn't fail?"}
+  - {key: dt_b024, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a habit that changed your life for the better?"}
+  - {key: dt_b025, levels: [friendship, talking, romantic, intense], depth: 2, text: "What do you wish you'd learned earlier in life?"}
+  - {key: dt_b026, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a tradition from your family you'd like to keep?"}
+  - {key: dt_b027, levels: [friendship, talking, romantic, intense], depth: 2, text: "How do you want to feel at the end of each day?"}
+  - {key: dt_b028, levels: [friendship, talking, romantic, intense], depth: 2, text: "Who do you admire, and what have they taught you?"}
+  - {key: dt_b029, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the kindest thing you've seen a stranger do?"}
+  - {key: dt_b030, levels: [friendship, talking, romantic, intense], depth: 2, text: "What does rest really look like for you?"}
+  - {key: dt_b031, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a question you wish people asked you more often?"}
+  - {key: dt_b032, levels: [friendship, talking, romantic, intense], depth: 2, text: "What would you do differently if no one was watching?"}
+  - {key: dt_b033, levels: [friendship, talking, romantic, intense], depth: 2, text: "How have you changed in the last five years?"}
+  - {key: dt_b034, levels: [friendship, talking, romantic, intense], depth: 2, text: "What are you curious about right now?"}
+  - {key: dt_b035, levels: [friendship, talking, romantic, intense], depth: 2, text: "What does your ideal home feel like, not just look like?"}
+  - {key: dt_b036, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a risk you'd like to take in the next year?"}
+  - {key: dt_b037, levels: [friendship, talking, romantic, intense], depth: 2, text: "When was the last time you felt truly free?"}
+  - {key: dt_b038, levels: [friendship, talking, romantic, intense], depth: 2, text: "What does \"enough\" look like for you?"}
+  - {key: dt_b039, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's something you've had to unlearn?"}
+  - {key: dt_b040, levels: [friendship, talking, romantic, intense], depth: 3, text: "What fear has held you back the most?"}
+  - {key: dt_b041, levels: [friendship, talking, romantic, intense], depth: 3, text: "When did you last surprise yourself?"}
+  - {key: dt_b042, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's a belief you hold that most people don't?"}
+  - {key: dt_b043, levels: [friendship, talking, romantic, intense], depth: 3, text: "What do you think your biggest blind spot is?"}
+  - {key: dt_b044, levels: [friendship, talking, romantic, intense], depth: 3, text: "How do you know when you need a break?"}
+  - {key: dt_b045, levels: [friendship, talking, romantic, intense], depth: 3, text: "What has been the turning point of your life so far?"}
+  - {key: dt_b046, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's something you've forgiven yourself for?"}
+  - {key: dt_b047, levels: [friendship, talking, romantic, intense], depth: 3, text: "What do you think happiness actually is?"}
+  - {key: dt_b048, levels: [friendship, talking, romantic, intense], depth: 3, text: "What would you want your future children to know about you?"}
+  - {key: dt_b049, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's the hardest goodbye you've ever said?"}
+  - {key: dt_b050, levels: [friendship, talking, romantic, intense], depth: 3, text: "What part of your life feels unfinished?"}
+  - {key: dt_b051, levels: [friendship, talking, romantic, intense], depth: 3, text: "What do you do when you feel lonely?"}
+  - {key: dt_b052, levels: [friendship, talking, romantic, intense], depth: 3, text: "What do you think you're here to do?"}
+  - {key: dt_b053, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's a compliment you find hard to believe about yourself?"}
+  - {key: dt_b054, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's a moment you felt deeply understood?"}
+  - {key: dt_b055, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's something you wish you could say to someone from your past?"}
+  - {key: dt_b056, levels: [friendship, talking, romantic, intense], depth: 3, text: "How do you handle it when life doesn't go to plan?"}
+  - {key: dt_b057, levels: [friendship, talking, romantic, intense], depth: 3, text: "What role does faith or spirituality play in your life?"}
+  - {key: dt_b058, levels: [friendship, talking, romantic, intense], depth: 3, text: "What do you think makes a person truly good?"}
+  - {key: dt_b059, levels: [friendship, talking, romantic, intense], depth: 3, text: "What memory do you return to when you need comfort?"}
+  - {key: dt_b060, levels: [friendship, talking, romantic, intense], depth: 3, text: "What did growing up teach you about money?"}
+  - {key: dt_b061, levels: [friendship, talking, romantic, intense], depth: 3, text: "What has disappointment taught you?"}
+  - {key: dt_b062, levels: [friendship, talking, romantic, intense], depth: 4, text: "What's the most important thing you've learned from a mistake?"}
+  - {key: dt_b063, levels: [friendship, talking, romantic, intense], depth: 4, text: "What are you still trying to prove, and to whom?"}
+  - {key: dt_b064, levels: [friendship, talking, romantic, intense], depth: 4, text: "What would you change if you weren't afraid of what people think?"}
+  - {key: dt_b065, levels: [friendship, talking, romantic, intense], depth: 4, text: "What part of yourself do you hide most?"}
+  - {key: dt_b066, levels: [friendship, talking, romantic, intense], depth: 4, text: "When have you felt most alone, and what got you through?"}
+  - {key: dt_b067, levels: [friendship, talking, romantic, intense], depth: 4, text: "What do you need to let go of?"}
+  - {key: dt_b068, levels: [friendship, talking, romantic, intense], depth: 4, text: "What does your inner voice say to you most often?"}
+  - {key: dt_b069, levels: [friendship, talking, romantic, intense], depth: 4, text: "What have you sacrificed for something you love?"}
+  - {key: dt_b070, levels: [friendship, talking, romantic, intense], depth: 4, text: "What's a promise you made to yourself?"}
+  - {key: dt_b071, levels: [friendship, talking, romantic, intense], depth: 4, text: "What would make you feel your life has been worth it?"}
+  - {key: dt_b072, levels: [friendship, talking, romantic, intense], depth: 4, text: "What do you think your younger self would think of you now?"}
+  - {key: dt_b073, levels: [friendship, talking, romantic, intense], depth: 4, text: "What's something you've never fully recovered from?"}
+  - {key: dt_b074, levels: [friendship, talking, romantic, intense], depth: 4, text: "What does love look like when it's hard?"}
+  - {key: dt_b075, levels: [friendship, talking, romantic, intense], depth: 4, text: "What's a wound you're proud to have healed?"}
+  - {key: dt_b076, levels: [friendship, talking, romantic, intense], depth: 5, text: "What do you most want to be forgiven for?"}
+  - {key: dt_b077, levels: [friendship, talking, romantic, intense], depth: 5, text: "If this were your last year, what would you do differently?"}
+  - {key: dt_b078, levels: [friendship, talking, romantic, intense], depth: 5, text: "What are you most afraid to admit to yourself?"}
+  - {key: dt_b079, levels: [friendship, talking, romantic, intense], depth: 5, text: "What does peace mean to you, deep down?"}
+  - {key: dt_b080, levels: [friendship, talking], depth: 1, text: "What's your favourite memory of us as friends?"}
+  - {key: dt_b081, levels: [friendship, talking], depth: 2, text: "What do you think makes our friendship work?"}
+  - {key: dt_b082, levels: [friendship, talking], depth: 2, text: "What's something you've always wanted to ask me?"}
+  - {key: dt_b083, levels: [friendship, talking], depth: 3, text: "What's a friendship that changed you?"}
+  - {key: dt_b084, levels: [friendship, talking], depth: 3, text: "What do you need from a friend when life gets hard?"}
+  - {key: dt_b085, levels: [friendship, talking], depth: 3, text: "Have you ever lost a friend, and what did it teach you?"}
+  - {key: dt_b086, levels: [friendship, talking], depth: 4, text: "What's something about me you've never told me you admire?"}
+  - {key: dt_b087, levels: [friendship, talking], depth: 4, text: "How can I be a better friend to you?"}
+  - {key: dt_b088, levels: [talking, romantic, intense], depth: 1, text: "What were you like as a teenager?"}
+  - {key: dt_b089, levels: [talking, romantic, intense], depth: 1, text: "What does a perfect evening with someone you like look like?"}
+  - {key: dt_b090, levels: [talking, romantic, intense], depth: 2, text: "What did your parents' relationship teach you about love?"}
+  - {key: dt_b091, levels: [talking, romantic, intense], depth: 2, text: "What's something you're looking for that you haven't found yet?"}
+  - {key: dt_b092, levels: [talking, romantic, intense], depth: 2, text: "What made your last relationship end?"}
+  - {key: dt_b093, levels: [talking, romantic, intense], depth: 2, text: "How do you know when you really like someone?"}
+  - {key: dt_b094, levels: [talking, romantic, intense], depth: 2, text: "What do you wish dating was more like?"}
+  - {key: dt_b095, levels: [talking, romantic, intense], depth: 2, text: "What do people get wrong about you on first meeting?"}
+  - {key: dt_b096, levels: [talking, romantic, intense], depth: 2, text: "What's the most romantic thing anyone's done for you?"}
+  - {key: dt_b097, levels: [talking, romantic, intense], depth: 3, text: "What do you need to feel safe opening up to someone?"}
+  - {key: dt_b098, levels: [talking, romantic, intense], depth: 3, text: "What's a relationship lesson you learned the hard way?"}
+  - {key: dt_b099, levels: [talking, romantic, intense], depth: 3, text: "How do you want to be loved?"}
+  - {key: dt_b100, levels: [talking, romantic, intense], depth: 3, text: "What scares you about falling for someone?"}
+  - {key: dt_b101, levels: [talking, romantic, intense], depth: 3, text: "What's something you'd want a partner to know early on?"}
+  - {key: dt_b102, levels: [talking, romantic, intense], depth: 3, text: "What does commitment mean to you?"}
+  - {key: dt_b103, levels: [talking, romantic, intense], depth: 3, text: "How do you handle it when someone pulls away?"}
+  - {key: dt_b104, levels: [talking, romantic, intense], depth: 4, text: "What's the most vulnerable you've ever been with someone?"}
+  - {key: dt_b105, levels: [talking, romantic, intense], depth: 4, text: "What would make you trust someone completely?"}
+  - {key: dt_b106, levels: [talking, romantic, intense], depth: 4, text: "What do you hope I see in you?"}
+  - {key: dt_b107, levels: [romantic, intense], depth: 1, text: "What's your favourite memory of our early days?"}
+  - {key: dt_b108, levels: [romantic, intense], depth: 1, text: "What's something about me that made you smile this week?"}
+  - {key: dt_b109, levels: [romantic, intense], depth: 1, text: "Where's a place you'd love us to grow old?"}
+  - {key: dt_b110, levels: [romantic, intense], depth: 2, text: "What do you love most about our everyday routine?"}
+  - {key: dt_b111, levels: [romantic, intense], depth: 2, text: "What's one way I could make your days easier?"}
+  - {key: dt_b112, levels: [romantic, intense], depth: 2, text: "What does a great weekend together look like to you?"}
+  - {key: dt_b113, levels: [romantic, intense], depth: 2, text: "What tradition should we start as a couple?"}
+  - {key: dt_b114, levels: [romantic, intense], depth: 2, text: "What's a dream you'd like us to chase together?"}
+  - {key: dt_b115, levels: [romantic, intense], depth: 2, text: "What part of my family or friends do you feel close to?"}
+  - {key: dt_b116, levels: [romantic, intense], depth: 2, text: "What's something new you'd like us to try?"}
+  - {key: dt_b117, levels: [romantic, intense], depth: 2, text: "How do you think we've changed since we met?"}
+  - {key: dt_b118, levels: [romantic, intense], depth: 2, text: "What's the best advice anyone's given us as a couple?"}
+  - {key: dt_b119, levels: [romantic, intense], depth: 3, text: "When do you feel most connected to me?"}
+  - {key: dt_b120, levels: [romantic, intense], depth: 3, text: "What's something I do that makes you feel truly seen?"}
+  - {key: dt_b121, levels: [romantic, intense], depth: 3, text: "What do you think we're best at as a couple?"}
+  - {key: dt_b122, levels: [romantic, intense], depth: 3, text: "Where do you think we need to grow together?"}
+  - {key: dt_b123, levels: [romantic, intense], depth: 3, text: "What does a good apology between us look like?"}
+  - {key: dt_b124, levels: [romantic, intense], depth: 3, text: "How do you want us to handle disagreements better?"}
+  - {key: dt_b125, levels: [romantic, intense], depth: 3, text: "What's one fear you have about our future?"}
+  - {key: dt_b126, levels: [romantic, intense], depth: 3, text: "What do you want our home to feel like?"}
+  - {key: dt_b127, levels: [romantic, intense], depth: 3, text: "What does being a team mean to you?"}
+  - {key: dt_b128, levels: [romantic, intense], depth: 3, text: "How can I support your dreams better?"}
+  - {key: dt_b129, levels: [romantic, intense], depth: 3, text: "What's a moment you were proud to be with me?"}
+  - {key: dt_b130, levels: [romantic, intense], depth: 3, text: "How do you like to be comforted when you're upset?"}
+  - {key: dt_b131, levels: [romantic, intense], depth: 3, text: "What's something I've taught you without realising?"}
+  - {key: dt_b132, levels: [romantic, intense], depth: 3, text: "What do you think keeps love alive for years?"}
+  - {key: dt_b133, levels: [romantic, intense], depth: 3, text: "What do we do that you'd want our children to copy?"}
+  - {key: dt_b134, levels: [romantic, intense], depth: 4, text: "What's a time you felt distant from me, and why?"}
+  - {key: dt_b135, levels: [romantic, intense], depth: 4, text: "What's something you've needed from me but never asked for?"}
+  - {key: dt_b136, levels: [romantic, intense], depth: 4, text: "What's a part of you that you're still learning to share with me?"}
+  - {key: dt_b137, levels: [romantic, intense], depth: 4, text: "What would you want me to do if you were struggling but hiding it?"}
+  - {key: dt_b138, levels: [romantic, intense], depth: 4, text: "What does forever mean to you?"}
+  - {key: dt_b139, levels: [romantic, intense], depth: 4, text: "When did you realise you loved me?"}
+  - {key: dt_b140, levels: [romantic, intense], depth: 4, text: "What's one thing you'd never want us to lose?"}
+  - {key: dt_b141, levels: [romantic, intense], depth: 4, text: "How do you want us to look after each other when we're old?"}
+  - {key: dt_b142, levels: [romantic, intense], depth: 4, text: "What would you want to tell me if we only had one day left together?"}
+  - {key: dt_b143, levels: [romantic, intense], depth: 4, text: "What's a hard conversation you think we should have?"}
+  - {key: dt_b144, levels: [romantic, intense], depth: 4, text: "What does trust between us feel like?"}
+  - {key: dt_b145, levels: [romantic, intense], depth: 5, text: "What's the deepest way I've loved you?"}
+  - {key: dt_b146, levels: [romantic, intense], depth: 5, text: "What do you hope our love story teaches others?"}
+  - {key: dt_b147, levels: [romantic, intense], depth: 5, text: "What do you need to hear from me most?"}
+  - {key: dt_b148, levels: [romantic, intense], depth: 5, text: "If you could relive one moment with me, which would it be and why?"}
+  - {key: dt_b149, levels: [romantic, intense], depth: 5, text: "What's something you've forgiven me for that I might not know about?"}
+  - {key: dt_b150, levels: [intense], depth: 2, text: "What's the most romantic dream you've had about us?"}
+  - {key: dt_b151, levels: [intense], depth: 2, text: "What's something about me that drives you crazy in a good way?"}
+  - {key: dt_b152, levels: [intense], depth: 2, text: "Where's the most romantic place you'd want to kiss me?"}
+  - {key: dt_b153, levels: [intense], depth: 3, text: "What makes you feel desired?"}
+  - {key: dt_b154, levels: [intense], depth: 3, text: "What's the most attractive thing I do without trying?"}
+  - {key: dt_b155, levels: [intense], depth: 3, text: "What do you think about when you can't sleep and I'm on your mind?"}
+  - {key: dt_b156, levels: [intense], depth: 3, text: "What's a romantic fantasy date you've never told me about?"}
+  - {key: dt_b157, levels: [intense], depth: 3, text: "What makes a kiss unforgettable for you?"}
+  - {key: dt_b158, levels: [intense], depth: 3, text: "What's a moment you couldn't take your eyes off me?"}
+  - {key: dt_b159, levels: [intense], depth: 3, text: "How do you like to be flirted with?"}
+  - {key: dt_b160, levels: [intense], depth: 3, text: "What's something you'd love me to do more often to show I want you?"}
+  - {key: dt_b161, levels: [intense], depth: 4, text: "What's the moment you felt the strongest chemistry between us?"}
+  - {key: dt_b162, levels: [intense], depth: 4, text: "What makes you feel closest to me physically, without words?"}
+  - {key: dt_b163, levels: [intense], depth: 4, text: "What do you love about the way I look at you?"}
+  - {key: dt_b164, levels: [intense], depth: 4, text: "What's something you've wanted to tell me but felt too shy to say?"}
+  - {key: dt_b165, levels: [intense], depth: 4, text: "How has our closeness changed since we first met?"}
+  - {key: dt_b166, levels: [intense], depth: 4, text: "What makes you feel completely comfortable with me?"}
+  - {key: dt_b167, levels: [intense], depth: 5, text: "What does being truly wanted by me feel like?"}
+  - {key: dt_b168, levels: [intense], depth: 5, text: "What's the most intimate moment we've shared that wasn't physical?"}
+  - {key: dt_b169, levels: [intense], depth: 5, text: "What do you want me to know about how deeply you feel for me?"}
+  - {key: dt_b170, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a place that feels like home that isn't your house?"}
+  - {key: dt_b171, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the best meal someone has ever made for you?"}
+  - {key: dt_b172, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a sound that makes you feel calm?"}
+  - {key: dt_b173, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a gift you still treasure?"}
+  - {key: dt_b174, levels: [friendship, talking, romantic, intense], depth: 1, text: "What would your dream weekend routine be?"}
+  - {key: dt_b175, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a city you'd love to live in for a year?"}
+  - {key: dt_b176, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a book or film you'd recommend to everyone?"}
+  - {key: dt_b177, levels: [friendship, talking, romantic, intense], depth: 1, text: "What do you love most about your culture?"}
+  - {key: dt_b178, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a family recipe you'd never want lost?"}
+  - {key: dt_b179, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the funniest thing a child has ever said to you?"}
+  - {key: dt_b180, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a goal that matters more to you than people know?"}
+  - {key: dt_b181, levels: [friendship, talking, romantic, intense], depth: 2, text: "What do you think your friends love most about you?"}
+  - {key: dt_b182, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the best day you've had this year, and why?"}
+  - {key: dt_b183, levels: [friendship, talking, romantic, intense], depth: 2, text: "What makes a house a home for you?"}
+  - {key: dt_b184, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's something that always makes you feel grateful?"}
+  - {key: dt_b185, levels: [friendship, talking, romantic, intense], depth: 2, text: "What do you wish more people did for each other?"}
+  - {key: dt_b186, levels: [friendship, talking, romantic, intense], depth: 2, text: "Which part of your daily life would you never change?"}
+  - {key: dt_b187, levels: [friendship, talking, romantic, intense], depth: 2, text: "What does a good friendship need to survive distance?"}
+  - {key: dt_b188, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a question that keeps you up at night?"}
+  - {key: dt_b189, levels: [friendship, talking, romantic, intense], depth: 2, text: "What part of growing up surprised you most?"}
+  - {key: dt_b190, levels: [friendship, talking, romantic, intense], depth: 2, text: "How do you want people to feel after they spend time with you?"}
+  - {key: dt_b191, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's an achievement that felt better than expected?"}
+  - {key: dt_b192, levels: [friendship, talking, romantic, intense], depth: 3, text: "When have you felt most proud of where you come from?"}
+  - {key: dt_b193, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's a mistake that ended up being a blessing?"}
+  - {key: dt_b194, levels: [friendship, talking, romantic, intense], depth: 3, text: "How do you decide who to trust?"}
+  - {key: dt_b195, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's a hard truth you've come to accept?"}
+  - {key: dt_b196, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's the most important conversation you've ever had?"}
+  - {key: dt_b197, levels: [friendship, talking, romantic, intense], depth: 3, text: "What do you need more of to feel balanced?"}
+  - {key: dt_b198, levels: [friendship, talking, romantic, intense], depth: 3, text: "What do you wish your parents knew about you?"}
+  - {key: dt_b199, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's an apology you're still waiting for?"}
+  - {key: dt_b200, levels: [friendship, talking, romantic, intense], depth: 3, text: "What does courage look like in everyday life?"}
+  - {key: dt_b201, levels: [friendship, talking, romantic, intense], depth: 3, text: "When did you last ask for help, and how did it feel?"}
+  - {key: dt_b202, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's a dream you've quietly put on hold?"}
+  - {key: dt_b203, levels: [friendship, talking, romantic, intense], depth: 3, text: "How do you want to grow in the next year?"}
+  - {key: dt_b204, levels: [friendship, talking, romantic, intense], depth: 4, text: "What's a part of your story you rarely tell?"}
+  - {key: dt_b205, levels: [friendship, talking, romantic, intense], depth: 4, text: "What's the loneliest you've felt in a crowd?"}
+  - {key: dt_b206, levels: [friendship, talking, romantic, intense], depth: 4, text: "What would you say to someone who hurt you, if you could?"}
+  - {key: dt_b207, levels: [friendship, talking, romantic, intense], depth: 4, text: "What has loving someone cost you?"}
+  - {key: dt_b208, levels: [friendship, talking, romantic, intense], depth: 4, text: "When did you first feel like an adult?"}
+  - {key: dt_b209, levels: [friendship, talking, romantic, intense], depth: 4, text: "What are you holding onto that no longer serves you?"}
+  - {key: dt_b210, levels: [friendship, talking, romantic, intense], depth: 5, text: "What do you hope never changes about you?"}
+  - {key: dt_b211, levels: [friendship, talking, romantic, intense], depth: 5, text: "What do you most want to give the people you love?"}
+  - {key: dt_b212, levels: [talking, romantic, intense], depth: 2, text: "What does a great partnership look like to you?"}
+  - {key: dt_b213, levels: [talking, romantic, intense], depth: 2, text: "What were your biggest lessons from past relationships?"}
+  - {key: dt_b214, levels: [talking, romantic, intense], depth: 3, text: "What makes you feel cared for when someone's far away?"}
+  - {key: dt_b215, levels: [talking, romantic, intense], depth: 3, text: "What's the most honest thing you could tell me right now?"}
+  - {key: dt_b216, levels: [talking, romantic, intense], depth: 4, text: "What would you want me to understand about your heart?"}
+  - {key: dt_b217, levels: [romantic, intense], depth: 2, text: "What's a moment this year when I made you feel special?"}
+  - {key: dt_b218, levels: [romantic, intense], depth: 2, text: "What's one thing you'd love us to learn together?"}
+  - {key: dt_b219, levels: [romantic, intense], depth: 2, text: "What do you think our friends see in us as a couple?"}
+  - {key: dt_b220, levels: [romantic, intense], depth: 3, text: "What's one way I've grown since we've been together?"}
+  - {key: dt_b221, levels: [romantic, intense], depth: 3, text: "What do you need from me when you're stressed?"}
+  - {key: dt_b222, levels: [romantic, intense], depth: 3, text: "What do you want our next year together to feel like?"}
+  - {key: dt_b223, levels: [romantic, intense], depth: 3, text: "What's something we used to do that you miss?"}
+  - {key: dt_b224, levels: [romantic, intense], depth: 4, text: "What's a promise you want us both to keep?"}
+  - {key: dt_b225, levels: [romantic, intense], depth: 4, text: "What makes you feel we'll make it through anything?"}
+  - {key: dt_b226, levels: [romantic, intense], depth: 4, text: "How do you want me to love you on your worst days?"}
+  - {key: dt_b227, levels: [romantic, intense], depth: 5, text: "What's the most beautiful thing about loving each other from far away?"}
+  - {key: dt_b228, levels: [intense], depth: 3, text: "What's the most romantic message you've ever received from me?"}
+  - {key: dt_b229, levels: [intense], depth: 3, text: "What do you love about the way we flirt?"}
+  - {key: dt_b230, levels: [intense], depth: 4, text: "What do you feel when we finally see each other after time apart?"}
+  - {key: dt_b231, levels: [intense], depth: 4, text: "What makes you feel most connected to me when we're not together?"}
+  - {key: dt_b232, levels: [intense], depth: 5, text: "What would you say to me if you knew I'd remember it forever?"}
