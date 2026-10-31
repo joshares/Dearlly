@@ -4,6 +4,7 @@ import { OpenLetter } from "@/components/OpenLetter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { getMessages } from "@/i18n";
 import { seemsLoggedIn } from "@/lib/session";
+import { shareCard } from "@/lib/site";
 
 const t = getMessages();
 
@@ -11,6 +12,7 @@ const t = getMessages();
 // The title stays generic so link previews (WhatsApp) don't reveal who it's from.
 export const metadata: Metadata = {
   title: t.letter.metaTitle,
+  openGraph: shareCard(t.letter.metaTitle, t.og.letter.line),
   robots: { index: false, follow: false },
   referrer: "no-referrer",
 };

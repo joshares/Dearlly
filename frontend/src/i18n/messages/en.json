@@ -1001,7 +1001,11 @@
     "sharing": "Making your card…",
     "saveCard": "Save as picture",
     "savedCard": "Saved to your phone.",
-    "shareText": "We played {game} on Dearlly 💌"
+    "shareText": "We played {game} on Dearlly 💌",
+    "guestTitle": "You're invited to play",
+    "guestLead": "Someone has started a game for two on Dearlly and wants you to join. You each play on your own phone, wherever you are.",
+    "guestNeed": "You need a free account to play, so the game knows who's who. You'll come straight back here.",
+    "guestCta": "Log in to play"
   },
   "community": {
     "metaTitle": "Our Stamp · Dearlly",
@@ -1086,5 +1090,50 @@
     "ctaHeading": "Somewhere else in mind?",
     "ctaBody": "Any place works. Type it in and choose a time.",
     "cta": "Invite them on a date"
+  },
+  "og": {
+    "site": "dearlly.app",
+    "home": {
+      "kicker": "The love-letter post office",
+      "title": "Say it like a love letter.",
+      "line": "Love notes, date invitations, gift reveals and games for two.",
+      "alt": "Dearlly: say it like a love letter"
+    },
+    "letter": {
+      "kicker": "Sealed for you",
+      "title": "A letter, just for you.",
+      "line": "Tap to break the seal.",
+      "alt": "A sealed letter from Dearlly"
+    },
+    "play": {
+      "kicker": "Games for two",
+      "title": "Come play with me.",
+      "line": "Answer privately, reveal together.",
+      "alt": "An invitation to play a game on Dearlly"
+    },
+    "games": {
+      "kicker": "Games for two",
+      "title": "Play together, wherever you are.",
+      "line": "Answer privately, then reveal together.",
+      "alt": "Games for two on Dearlly"
+    },
+    "quotes": {
+      "kicker": "Love note ideas",
+      "title": "Lines to borrow, for every mood.",
+      "line": "Send one as a sealed love note.",
+      "alt": "Love note ideas on Dearlly"
+    },
+    "dateIdeas": {
+      "kicker": "Date ideas",
+      "title": "Places worth dressing up for.",
+      "line": "Picked from guides people trust.",
+      "alt": "Date ideas on Dearlly"
+    },
+    "city": {
+      "kicker": "Date ideas",
+      "title": "Date ideas in {city}",
+      "line": "{count} places from guides people trust.",
+      "alt": "Date ideas in {city} on Dearlly"
+    }
   }
 }

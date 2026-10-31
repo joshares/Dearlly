@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 
 import { figtree, gloock, homemadeApple } from "@/app/fonts";
 import { defaultLocale, getMessages } from "@/i18n";
-import { SITE_URL } from "@/lib/site";
+import { shareCard, SITE_URL } from "@/lib/site";
 
 import "./globals.css";
 
@@ -14,7 +14,9 @@ export const metadata: Metadata = {
   description: t.meta.description,
   metadataBase: new URL(SITE_URL),
   // Which pages search engines may list is decided in src/proxy.ts (src/lib/site.ts).
-  openGraph: { siteName: "Dearlly", type: "website" },
+  openGraph: shareCard(t.meta.title, t.meta.description),
+  // Large picture on X too (it uses the same picture as WhatsApp and the rest).
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {

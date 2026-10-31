@@ -5,6 +5,8 @@ import { staticSecurityHeaders } from "./src/lib/security-headers";
 const nextConfig: NextConfig = {
   // Small self-contained server for the Docker image (no npm needed at runtime).
   output: "standalone",
+  // The fonts for link preview pictures are read from disk, so ship them with the server.
+  outputFileTracingIncludes: { "/**": ["./src/fonts/og/*"] },
   poweredByHeader: false,
   reactStrictMode: true,
   experimental: {

@@ -10,6 +10,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { getMessages } from "@/i18n";
 import { serverGet } from "@/lib/server-api";
 import { seemsLoggedIn } from "@/lib/session";
+import { shareCard } from "@/lib/site";
 
 const t = getMessages();
 const d = t.dateIdeas;
@@ -27,10 +28,13 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!found) return { title: d.metaTitle };
   const { city } = found;
   if (!city) return { title: t.notFound.metaTitle };
+  const title = fill(d.cityMetaTitle, { city: city.name });
+  const description = fill(d.cityMetaDescription, { city: city.name, count: city.place_count });
   return {
-    title: fill(d.cityMetaTitle, { city: city.name }),
-    description: fill(d.cityMetaDescription, { city: city.name, count: city.place_count }),
+    title,
+    description,
     alternates: { canonical: `/date-ideas/${city.key}` },
+    openGraph: shareCard(title, description),
   };
 }
 
