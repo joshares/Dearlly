@@ -281,3 +281,26 @@ def test_the_real_question_files_load() -> None:
     }
     for key in bank.formats:
         assert bank.pool(key, "romantic"), f"no romantic questions for {key}"
+
+
+def test_the_bank_is_big_enough_for_every_game_and_level() -> None:
+    bank = load_bank()
+    assert len(bank.questions) >= 1900
+    for key in bank.formats:
+        for level in ("friendship", "talking", "romantic", "intense"):
+            pool = bank.pool(key, level)
+            if key == "truth_dare":
+                # Every turn needs a fresh truth or dare, whichever is picked.
+                assert sum(q.kind == "truth" for q in pool) >= 20, (key, level)
+                assert sum(q.kind == "dare" for q in pool) >= 20, (key, level)
+            else:
+                assert len(pool) >= 60, (key, level)
+
+
+def test_no_question_is_written_twice_in_a_game() -> None:
+    bank = load_bank()
+    seen: set[tuple[str, str, tuple[str, ...]]] = set()
+    for q in bank.questions.values():
+        sig = (q.format, q.text.lower(), tuple(sorted(o.text.lower() for o in q.options)))
+        assert sig not in seen, q.key
+        seen.add(sig)

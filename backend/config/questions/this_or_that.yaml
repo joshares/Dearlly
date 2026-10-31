@@ -12,3 +12,259 @@ questions:
   - {key: tot_dance_sing, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Dance", "Sing"]}
   - {key: tot_first_last, levels: [romantic, intense], depth: 3, text: "Quick!", options: ["First kiss", "Last kiss of the night"]}
   - {key: tot_hold_hug, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Holding hands", "Arm around me"]}
+  - {key: tot_b001, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Pizza", "Burger"]}
+  - {key: tot_b002, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Chocolate", "Vanilla"]}
+  - {key: tot_b003, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Mountains", "Ocean"]}
+  - {key: tot_b004, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Books", "Films"]}
+  - {key: tot_b005, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Summer", "Winter"]}
+  - {key: tot_b006, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Sunrise", "Sunset"]}
+  - {key: tot_b007, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Phone call", "Video call"]}
+  - {key: tot_b008, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Shower", "Bath"]}
+  - {key: tot_b009, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Fries", "Rice"]}
+  - {key: tot_b010, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Netflix", "YouTube"]}
+  - {key: tot_b011, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Breakfast", "Dinner"]}
+  - {key: tot_b012, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Sneakers", "Sandals"]}
+  - {key: tot_b013, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Car", "Train"]}
+  - {key: tot_b014, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Window seat", "Aisle seat"]}
+  - {key: tot_b015, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Apple", "Android"]}
+  - {key: tot_b016, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Hot", "Cold"]}
+  - {key: tot_b017, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Spicy", "Mild"]}
+  - {key: tot_b018, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Cake", "Ice cream"]}
+  - {key: tot_b019, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Jeans", "Joggers"]}
+  - {key: tot_b020, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Stay in", "Go out"]}
+  - {key: tot_b021, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Comedy", "Drama"]}
+  - {key: tot_b022, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Pancakes", "Waffles"]}
+  - {key: tot_b023, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Juice", "Soda"]}
+  - {key: tot_b024, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Cooking", "Baking"]}
+  - {key: tot_b025, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Pool", "Beach"]}
+  - {key: tot_b026, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Morning", "Night"]}
+  - {key: tot_b027, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Sweater", "Hoodie"]}
+  - {key: tot_b028, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Popcorn", "Crisps"]}
+  - {key: tot_b029, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Music", "Podcasts"]}
+  - {key: tot_b030, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Big party", "Small dinner"]}
+  - {key: tot_b031, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Road trip", "Flight"]}
+  - {key: tot_b032, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Camping", "Hotel"]}
+  - {key: tot_b033, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Theme park", "Water park"]}
+  - {key: tot_b034, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Eggs", "Cereal"]}
+  - {key: tot_b035, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Lemonade", "Iced tea"]}
+  - {key: tot_b036, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Rain", "Sunshine"]}
+  - {key: tot_b037, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Stars", "Moon"]}
+  - {key: tot_b038, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Ballet", "Hip hop"]}
+  - {key: tot_b039, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Guitar", "Piano"]}
+  - {key: tot_b040, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Sneak a nap", "Stay up late"]}
+  - {key: tot_b041, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Pen", "Pencil"]}
+  - {key: tot_b042, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Texting", "Talking"]}
+  - {key: tot_b043, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Gold", "Silver"]}
+  - {key: tot_b044, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Red", "Blue"]}
+  - {key: tot_b045, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Black", "White"]}
+  - {key: tot_b046, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Tea at home", "Coffee out"]}
+  - {key: tot_b047, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Cards", "Board games"]}
+  - {key: tot_b048, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Football", "Basketball"]}
+  - {key: tot_b049, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Gym", "Yoga"]}
+  - {key: tot_b050, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Walking", "Cycling"]}
+  - {key: tot_b051, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Strawberries", "Mango"]}
+  - {key: tot_b052, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Pineapple on pizza", "No pineapple on pizza"]}
+  - {key: tot_b053, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Chicken", "Fish"]}
+  - {key: tot_b054, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Soup", "Salad"]}
+  - {key: tot_b055, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Noodles", "Pasta"]}
+  - {key: tot_b056, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Smoothie", "Milkshake"]}
+  - {key: tot_b057, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Candles", "Fairy lights"]}
+  - {key: tot_b058, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Rings", "Bracelets"]}
+  - {key: tot_b059, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Perfume", "Body spray"]}
+  - {key: tot_b060, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Selfie", "Group photo"]}
+  - {key: tot_b061, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Paper book", "E-book"]}
+  - {key: tot_b062, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Cats", "Birds"]}
+  - {key: tot_b063, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Earrings", "Necklace"]}
+  - {key: tot_b064, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Cartoons", "Anime"]}
+  - {key: tot_b065, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Superheroes", "Villains"]}
+  - {key: tot_b066, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Wake up early", "Sleep in"]}
+  - {key: tot_b067, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Scary film", "Funny film"]}
+  - {key: tot_b068, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Fast food", "Home cooking"]}
+  - {key: tot_b069, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["City lights", "Starry sky"]}
+  - {key: tot_b070, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Concert", "Festival"]}
+  - {key: tot_b071, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Notes app", "Paper notebook"]}
+  - {key: tot_b072, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Desserts", "Starters"]}
+  - {key: tot_b073, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Shopping", "Window shopping"]}
+  - {key: tot_b074, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Snow", "Sand"]}
+  - {key: tot_b075, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Fireworks", "Bonfire"]}
+  - {key: tot_b076, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Roller coaster", "Ferris wheel"]}
+  - {key: tot_b077, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Tacos", "Burritos"]}
+  - {key: tot_b078, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Honey", "Jam"]}
+  - {key: tot_b079, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Peanut butter", "Nutella"]}
+  - {key: tot_b080, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Avocado", "Tomato"]}
+  - {key: tot_b081, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Mint", "Lemon"]}
+  - {key: tot_b082, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Sunglasses", "Hat"]}
+  - {key: tot_b083, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Watch", "Bracelet"]}
+  - {key: tot_b084, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Pyjamas", "Tracksuit"]}
+  - {key: tot_b085, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Lake", "River"]}
+  - {key: tot_b086, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Forest", "Desert"]}
+  - {key: tot_b087, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Bike", "Scooter"]}
+  - {key: tot_b088, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Aeroplane", "Boat"]}
+  - {key: tot_b089, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Sweet tea", "Plain tea"]}
+  - {key: tot_b090, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Ketchup", "Mayonnaise"]}
+  - {key: tot_b091, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Crunchy", "Soft"]}
+  - {key: tot_b092, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Morning run", "Evening walk"]}
+  - {key: tot_b093, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Hiking", "Swimming"]}
+  - {key: tot_b094, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Art gallery", "Museum"]}
+  - {key: tot_b095, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Zoo", "Aquarium"]}
+  - {key: tot_b096, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Karaoke", "Dancing"]}
+  - {key: tot_b097, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Puzzle", "Quiz"]}
+  - {key: tot_b098, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Chess", "Draughts"]}
+  - {key: tot_b099, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Bubble tea", "Coffee"]}
+  - {key: tot_b100, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Croissant", "Doughnut"]}
+  - {key: tot_b101, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Brownie", "Cookie"]}
+  - {key: tot_b102, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Spring", "Autumn"]}
+  - {key: tot_b103, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Thunderstorm", "Clear sky"]}
+  - {key: tot_b104, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Old songs", "New songs"]}
+  - {key: tot_b105, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Sing", "Rap"]}
+  - {key: tot_b106, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Love songs", "Party songs"]}
+  - {key: tot_b107, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Plans", "Surprises"]}
+  - {key: tot_b108, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Save", "Spend"]}
+  - {key: tot_b109, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Early", "On time"]}
+  - {key: tot_b110, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Messy room", "Tidy room"]}
+  - {key: tot_b111, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Lists", "Memory"]}
+  - {key: tot_b112, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Leader", "Team player"]}
+  - {key: tot_b113, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Talker", "Listener"]}
+  - {key: tot_b114, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Logic", "Feelings"]}
+  - {key: tot_b115, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Past", "Future"]}
+  - {key: tot_b116, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Adventure", "Comfort"]}
+  - {key: tot_b117, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Fame", "Peace"]}
+  - {key: tot_b118, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Truth", "Dare"]}
+  - {key: tot_b119, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Head", "Heart"]}
+  - {key: tot_b120, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Risk", "Safety"]}
+  - {key: tot_b121, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Change", "Routine"]}
+  - {key: tot_b122, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Quality", "Quantity"]}
+  - {key: tot_b123, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Big city", "Small town"]}
+  - {key: tot_b124, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Many friends", "Few close friends"]}
+  - {key: tot_b125, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Work hard", "Play hard"]}
+  - {key: tot_b126, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Ask for help", "Figure it out alone"]}
+  - {key: tot_b127, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Forgive", "Forget"]}
+  - {key: tot_b128, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Dream big", "Keep it simple"]}
+  - {key: tot_b129, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Say it", "Show it"]}
+  - {key: tot_b130, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Win", "Have fun"]}
+  - {key: tot_b131, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Lead", "Follow"]}
+  - {key: tot_b132, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Online", "In person"]}
+  - {key: tot_b133, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Spontaneous trip", "Planned holiday"]}
+  - {key: tot_b134, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Cash", "Card"]}
+  - {key: tot_b136, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Introvert", "Extrovert"]}
+  - {key: tot_b137, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Sweet", "Sour"]}
+  - {key: tot_b138, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Long hair", "Short hair"]}
+  - {key: tot_b139, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Beard", "Clean-shaven"]}
+  - {key: tot_b140, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Tattoos", "No tattoos"]}
+  - {key: tot_b141, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Dressed up", "Dressed down"]}
+  - {key: tot_b142, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Cosy", "Glamorous"]}
+  - {key: tot_b143, levels: [friendship, talking], depth: 1, text: "Quick!", options: ["Group chat", "Private chat"]}
+  - {key: tot_b144, levels: [friendship, talking], depth: 1, text: "Quick!", options: ["Game night", "Movie night"]}
+  - {key: tot_b145, levels: [friendship, talking], depth: 1, text: "Quick!", options: ["Sleepover", "Night out"]}
+  - {key: tot_b146, levels: [friendship, talking], depth: 1, text: "Quick!", options: ["Brunch", "Dinner"]}
+  - {key: tot_b147, levels: [friendship, talking], depth: 1, text: "Quick!", options: ["Matching outfits", "Own style"]}
+  - {key: tot_b148, levels: [friendship, talking], depth: 1, text: "Quick!", options: ["Prank", "Surprise"]}
+  - {key: tot_b149, levels: [friendship, talking], depth: 2, text: "Quick!", options: ["Best friend's secret", "Best friend's honesty"]}
+  - {key: tot_b150, levels: [friendship, talking], depth: 1, text: "Quick!", options: ["Road trip snacks", "Road trip playlist"]}
+  - {key: tot_b151, levels: [friendship, talking], depth: 1, text: "Quick!", options: ["Birthday party", "Birthday trip"]}
+  - {key: tot_b152, levels: [friendship, talking], depth: 1, text: "Quick!", options: ["Memes", "Voice notes"]}
+  - {key: tot_b153, levels: [talking, romantic, intense], depth: 1, text: "Quick!", options: ["Flowers", "Chocolates"]}
+  - {key: tot_b154, levels: [talking, romantic, intense], depth: 1, text: "Quick!", options: ["Love letter", "Love song"]}
+  - {key: tot_b155, levels: [talking, romantic, intense], depth: 1, text: "Quick!", options: ["Coffee date", "Dinner date"]}
+  - {key: tot_b156, levels: [talking, romantic, intense], depth: 1, text: "Quick!", options: ["Holding hands", "Arm in arm"]}
+  - {key: tot_b157, levels: [talking, romantic, intense], depth: 1, text: "Quick!", options: ["Kiss on the cheek", "Kiss on the hand"]}
+  - {key: tot_b158, levels: [talking, romantic, intense], depth: 1, text: "Quick!", options: ["Dance", "Dinner"]}
+  - {key: tot_b159, levels: [talking, romantic, intense], depth: 1, text: "Quick!", options: ["Movie night", "Night walk"]}
+  - {key: tot_b160, levels: [talking, romantic, intense], depth: 1, text: "Quick!", options: ["First message", "First call"]}
+  - {key: tot_b161, levels: [talking, romantic, intense], depth: 1, text: "Quick!", options: ["Good morning text", "Goodnight text"]}
+  - {key: tot_b162, levels: [talking, romantic, intense], depth: 1, text: "Quick!", options: ["Compliment", "Gift"]}
+  - {key: tot_b163, levels: [talking, romantic, intense], depth: 1, text: "Quick!", options: ["Shy", "Bold"]}
+  - {key: tot_b164, levels: [talking, romantic, intense], depth: 1, text: "Quick!", options: ["Funny", "Romantic"]}
+  - {key: tot_b165, levels: [talking, romantic, intense], depth: 2, text: "Quick!", options: ["Sweet talk", "Deep talk"]}
+  - {key: tot_b166, levels: [talking, romantic, intense], depth: 2, text: "Quick!", options: ["Slow burn", "Love at first sight"]}
+  - {key: tot_b167, levels: [talking, romantic, intense], depth: 2, text: "Quick!", options: ["Long texts", "Short texts"]}
+  - {key: tot_b168, levels: [talking, romantic, intense], depth: 2, text: "Quick!", options: ["Emojis", "No emojis"]}
+  - {key: tot_b169, levels: [talking, romantic, intense], depth: 2, text: "Quick!", options: ["Picnic", "Rooftop dinner"]}
+  - {key: tot_b170, levels: [talking, romantic, intense], depth: 2, text: "Quick!", options: ["Mystery", "Open book"]}
+  - {key: tot_b171, levels: [talking, romantic, intense], depth: 2, text: "Quick!", options: ["Chase", "Be chased"]}
+  - {key: tot_b172, levels: [talking, romantic, intense], depth: 2, text: "Quick!", options: ["Laugh together", "Cry together"]}
+  - {key: tot_b173, levels: [talking, romantic, intense], depth: 2, text: "Quick!", options: ["Same hobbies", "Different hobbies"]}
+  - {key: tot_b174, levels: [talking, romantic, intense], depth: 2, text: "Quick!", options: ["Jealous", "Chill"]}
+  - {key: tot_b175, levels: [talking, romantic, intense], depth: 2, text: "Quick!", options: ["Clingy", "Independent"]}
+  - {key: tot_b176, levels: [talking, romantic, intense], depth: 2, text: "Quick!", options: ["Morning dates", "Late-night dates"]}
+  - {key: tot_b177, levels: [romantic, intense], depth: 1, text: "Quick!", options: ["Cuddles", "Kisses"]}
+  - {key: tot_b178, levels: [romantic, intense], depth: 1, text: "Quick!", options: ["Breakfast in bed", "Dinner by candlelight"]}
+  - {key: tot_b179, levels: [romantic, intense], depth: 1, text: "Quick!", options: ["Our song", "Our place"]}
+  - {key: tot_b180, levels: [romantic, intense], depth: 1, text: "Quick!", options: ["Spoon", "Be the spoon"]}
+  - {key: tot_b181, levels: [romantic, intense], depth: 1, text: "Quick!", options: ["Forehead kiss", "Nose kiss"]}
+  - {key: tot_b182, levels: [romantic, intense], depth: 1, text: "Quick!", options: ["Your hoodie", "My hoodie"]}
+  - {key: tot_b183, levels: [romantic, intense], depth: 1, text: "Quick!", options: ["Anniversary trip", "Anniversary dinner"]}
+  - {key: tot_b184, levels: [romantic, intense], depth: 1, text: "Quick!", options: ["Couple photos", "Candid photos"]}
+  - {key: tot_b185, levels: [romantic, intense], depth: 1, text: "Quick!", options: ["Pet names", "Real names"]}
+  - {key: tot_b186, levels: [romantic, intense], depth: 1, text: "Quick!", options: ["Love notes", "Love texts"]}
+  - {key: tot_b187, levels: [romantic, intense], depth: 1, text: "Quick!", options: ["Slow dance", "Fast dance"]}
+  - {key: tot_b188, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Big wedding", "Small wedding"]}
+  - {key: tot_b189, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["City home", "Country home"]}
+  - {key: tot_b190, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Kids soon", "Kids later"]}
+  - {key: tot_b191, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Joint account", "Separate accounts"]}
+  - {key: tot_b192, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Surprise proposal", "Planned proposal"]}
+  - {key: tot_b193, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Honeymoon beach", "Honeymoon city"]}
+  - {key: tot_b194, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Talk it out", "Cool off first"]}
+  - {key: tot_b195, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Morning cuddles", "Night cuddles"]}
+  - {key: tot_b196, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Say sorry", "Show sorry"]}
+  - {key: tot_b197, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Quality time", "Gifts"]}
+  - {key: tot_b198, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Words", "Touch"]}
+  - {key: tot_b199, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Acts of service", "Words of affirmation"]}
+  - {key: tot_b200, levels: [romantic, intense], depth: 3, text: "Quick!", options: ["Comfort", "Passion"]}
+  - {key: tot_b201, levels: [romantic, intense], depth: 3, text: "Quick!", options: ["Stability", "Excitement"]}
+  - {key: tot_b202, levels: [romantic, intense], depth: 3, text: "Quick!", options: ["Old memories", "New memories"]}
+  - {key: tot_b203, levels: [romantic, intense], depth: 3, text: "Quick!", options: ["Forever", "Right now"]}
+  - {key: tot_b204, levels: [intense], depth: 1, text: "Quick!", options: ["Lips", "Eyes"]}
+  - {key: tot_b205, levels: [intense], depth: 1, text: "Quick!", options: ["Hug from behind", "Hug from the front"]}
+  - {key: tot_b206, levels: [intense], depth: 1, text: "Quick!", options: ["Whisper", "Shout it out"]}
+  - {key: tot_b207, levels: [intense], depth: 2, text: "Quick!", options: ["Candles", "Moonlight"]}
+  - {key: tot_b208, levels: [intense], depth: 2, text: "Quick!", options: ["Slow kiss", "Quick kiss"]}
+  - {key: tot_b209, levels: [intense], depth: 2, text: "Quick!", options: ["Eye contact", "Hand holding"]}
+  - {key: tot_b210, levels: [intense], depth: 2, text: "Quick!", options: ["Neck kisses", "Forehead kisses"]}
+  - {key: tot_b211, levels: [intense], depth: 2, text: "Quick!", options: ["Flirty text", "Flirty call"]}
+  - {key: tot_b212, levels: [intense], depth: 2, text: "Quick!", options: ["Silk", "Cotton"]}
+  - {key: tot_b213, levels: [intense], depth: 2, text: "Quick!", options: ["Red dress", "Little black dress"]}
+  - {key: tot_b214, levels: [intense], depth: 2, text: "Quick!", options: ["Suit", "Smart casual"]}
+  - {key: tot_b215, levels: [intense], depth: 2, text: "Quick!", options: ["Cologne", "Natural scent"]}
+  - {key: tot_b216, levels: [intense], depth: 2, text: "Quick!", options: ["Bubble bath", "Spa day"]}
+  - {key: tot_b217, levels: [intense], depth: 2, text: "Quick!", options: ["Massage", "Cuddle"]}
+  - {key: tot_b218, levels: [intense], depth: 3, text: "Quick!", options: ["Dance close", "Dance wild"]}
+  - {key: tot_b219, levels: [intense], depth: 3, text: "Quick!", options: ["Tease", "Be teased"]}
+  - {key: tot_b220, levels: [intense], depth: 3, text: "Quick!", options: ["Make the first move", "Wait for the first move"]}
+  - {key: tot_b221, levels: [intense], depth: 3, text: "Quick!", options: ["Kiss in the rain", "Kiss by the fire"]}
+  - {key: tot_b222, levels: [intense], depth: 3, text: "Quick!", options: ["Back rubs", "Foot rubs"]}
+  - {key: tot_b223, levels: [intense], depth: 3, text: "Quick!", options: ["Morning kiss", "Goodnight kiss"]}
+  - {key: tot_b224, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Rice", "Beans"]}
+  - {key: tot_b225, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Jollof", "Fried rice"]}
+  - {key: tot_b226, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Chips", "Wedges"]}
+  - {key: tot_b227, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Banana", "Orange"]}
+  - {key: tot_b228, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Morning shower", "Night shower"]}
+  - {key: tot_b229, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Ice cream cone", "Ice cream cup"]}
+  - {key: tot_b230, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Rollercoaster", "Water slide"]}
+  - {key: tot_b231, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Sunglasses", "Umbrella"]}
+  - {key: tot_b232, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Hoop earrings", "Studs"]}
+  - {key: tot_b233, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Hot sauce", "No sauce"]}
+  - {key: tot_b234, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Notes", "Voice memos"]}
+  - {key: tot_b235, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Playlist", "Radio"]}
+  - {key: tot_b236, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Grilled", "Fried"]}
+  - {key: tot_b237, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Cereal first", "Milk first"]}
+  - {key: tot_b238, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Weekend away", "Weekend home"]}
+  - {key: tot_b239, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Breakfast out", "Breakfast in"]}
+  - {key: tot_b240, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Fancy dinner", "Street food"]}
+  - {key: tot_b241, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Dress up", "Dress down"]}
+  - {key: tot_b242, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Laptop", "Tablet"]}
+  - {key: tot_b243, levels: [friendship, talking, romantic, intense], depth: 1, text: "Quick!", options: ["Video games", "Board games"]}
+  - {key: tot_b244, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Reply now", "Reply later"]}
+  - {key: tot_b245, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Read the ending first", "Never spoil it"]}
+  - {key: tot_b246, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Plan every detail", "Wing it"]}
+  - {key: tot_b247, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Loud laugh", "Quiet giggle"]}
+  - {key: tot_b249, levels: [friendship, talking, romantic, intense], depth: 2, text: "Quick!", options: ["Lead the dance", "Follow the dance"]}
+  - {key: tot_b250, levels: [talking, romantic, intense], depth: 1, text: "Quick!", options: ["Call", "Surprise visit"]}
+  - {key: tot_b251, levels: [talking, romantic, intense], depth: 2, text: "Quick!", options: ["Love letter", "Love voice note"]}
+  - {key: tot_b252, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Couple trip", "Friends trip"]}
+  - {key: tot_b253, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Dinner date", "Breakfast date"]}
+  - {key: tot_b254, levels: [romantic, intense], depth: 2, text: "Quick!", options: ["Sunset walk", "Sunrise walk"]}
+  - {key: tot_b255, levels: [intense], depth: 2, text: "Quick!", options: ["Candlelit dinner", "Rooftop dinner"]}
+  - {key: tot_b256, levels: [intense], depth: 2, text: "Quick!", options: ["Slow song", "Love song"]}
+  - {key: tot_b257, levels: [intense], depth: 3, text: "Quick!", options: ["Hold me", "Kiss me"]}
+  - {key: tot_b258, levels: [intense], depth: 3, text: "Quick!", options: ["Whisper", "Text"]}

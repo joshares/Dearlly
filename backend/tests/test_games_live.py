@@ -5,11 +5,13 @@ from collections.abc import Callable, Iterator
 from contextlib import contextmanager
 from typing import Any
 
+import pytest
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from sqlalchemy.pool import NullPool
 from starlette.testclient import WebSocketTestSession
 
+from app.api import games as games_api
 from app.models import Game, GameSeen
 
 from .conftest import AuthClient
@@ -189,13 +191,15 @@ def test_who_can_join_and_connect(auth_client: AuthClient) -> None:
 
 
 def test_library_lists_every_game_and_creating_needs_enough_questions(
-    auth_client: AuthClient,
+    auth_client: AuthClient, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     formats = auth_client.get("/games/formats").json()
     assert formats[0]["key"] == "mix"
     assert {f["key"] for f in formats} >= {"same_page", "truth_dare", "love_language"}
     ada = _login(auth_client, ADA, "ada_demo")
     _as(auth_client, ada)
+    # The real bank has plenty everywhere; pretend this game only has 10 questions.
+    monkeypatch.setattr(games_api, "_pool_size", lambda *_: 10)
     too_many = auth_client.post(
         "/games", json={"format": "love_language", "intensity": "romantic", "rounds": 20}
     )

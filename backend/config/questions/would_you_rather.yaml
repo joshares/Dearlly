@@ -14,3 +14,315 @@ questions:
   - {key: wyr_slow_dance, levels: [intense], depth: 3, text: "Would you rather…", options: ["Slow dance in the kitchen", "Kiss under the rain"]}
   - {key: wyr_whisper, levels: [intense], depth: 3, text: "Would you rather I…", options: ["Whisper something sweet", "Say it out loud in front of everyone"]}
   - {key: wyr_cuddle, levels: [intense], depth: 2, text: "Would you rather…", options: ["Cuddle all morning", "Stay up talking all night"]}
+  - {key: wyr_b001, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have breakfast for dinner every night", "Have dinner for breakfast every morning"]}
+  - {key: wyr_b002, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Only be able to whisper", "Only be able to shout"]}
+  - {key: wyr_b003, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Live without music", "Live without movies"]}
+  - {key: wyr_b004, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a pet dragon", "Have a pet unicorn"]}
+  - {key: wyr_b005, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Always be 10 minutes early", "Always be 10 minutes late"]}
+  - {key: wyr_b006, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Never use social media again", "Never watch TV again"]}
+  - {key: wyr_b007, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Be able to fly", "Be able to breathe underwater"]}
+  - {key: wyr_b008, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Live by the sea", "Live in the mountains"]}
+  - {key: wyr_b009, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Speak every language", "Play every instrument"]}
+  - {key: wyr_b010, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a personal chef", "Have a personal driver"]}
+  - {key: wyr_b011, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Never feel cold again", "Never feel tired again"]}
+  - {key: wyr_b012, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Explore space", "Explore the deep ocean"]}
+  - {key: wyr_b013, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Only eat sweet food", "Only eat savoury food"]}
+  - {key: wyr_b014, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have unlimited data forever", "Have unlimited flights forever"]}
+  - {key: wyr_b015, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Read minds", "Be invisible"]}
+  - {key: wyr_b016, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Always have a full phone battery", "Always have perfect Wi-Fi"]}
+  - {key: wyr_b017, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Live in a big city", "Live in a quiet village"]}
+  - {key: wyr_b018, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Be the funniest person in the room", "Be the smartest person in the room"]}
+  - {key: wyr_b019, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Win an award for your cooking", "Win an award for your dancing"]}
+  - {key: wyr_b020, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Go on a road trip", "Go on a cruise"]}
+  - {key: wyr_b021, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Never wait in a queue again", "Never sit in traffic again"]}
+  - {key: wyr_b022, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a rewind button for life", "Have a pause button for life"]}
+  - {key: wyr_b023, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Know every song's lyrics", "Know every film's ending"]}
+  - {key: wyr_b024, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Eat only street food", "Eat only at fancy restaurants"]}
+  - {key: wyr_b025, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Be a famous singer", "Be a famous actor"]}
+  - {key: wyr_b026, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a house with a pool", "Have a house with a cinema"]}
+  - {key: wyr_b027, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Always know the time without a watch", "Always know the way without a map"]}
+  - {key: wyr_b028, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Never have to sleep", "Never have to eat"]}
+  - {key: wyr_b029, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Live in summer forever", "Live in the rainy season forever"]}
+  - {key: wyr_b030, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have super speed", "Have super strength"]}
+  - {key: wyr_b031, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be able to talk to animals", "Be able to talk to plants"]}
+  - {key: wyr_b032, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Live 100 years in the past", "Live 100 years in the future"]}
+  - {key: wyr_b033, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be the best at one thing", "Be good at everything"]}
+  - {key: wyr_b034, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have more time", "Have more money"]}
+  - {key: wyr_b035, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Win the lottery", "Find your dream job"]}
+  - {key: wyr_b036, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Travel alone", "Travel with a big group"]}
+  - {key: wyr_b037, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Work from home forever", "Work in an office with your best friends"]}
+  - {key: wyr_b038, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Lose your phone for a week", "Lose your voice for a week"]}
+  - {key: wyr_b039, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be known for your kindness", "Be known for your talent"]}
+  - {key: wyr_b040, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Relive your childhood", "Fast-forward ten years"]}
+  - {key: wyr_b041, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a photographic memory", "Be able to forget anything you choose"]}
+  - {key: wyr_b042, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Always say what you think", "Never be able to speak your mind"]}
+  - {key: wyr_b043, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Host every party", "Always be a guest"]}
+  - {key: wyr_b044, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a small circle of close friends", "Know everyone in town"]}
+  - {key: wyr_b045, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Eat pizza every day", "Never eat pizza again"]}
+  - {key: wyr_b046, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Dance in public", "Sing in public"]}
+  - {key: wyr_b047, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have the house to yourself for a month", "Have a full house every day"]}
+  - {key: wyr_b048, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Be stuck in a lift with your boss", "Be stuck in a lift with your ex"]}
+  - {key: wyr_b049, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Give up chocolate", "Give up coffee"]}
+  - {key: wyr_b050, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Laugh at everything", "Never laugh again"]}
+  - {key: wyr_b051, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be a morning person", "Be a night person"]}
+  - {key: wyr_b052, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Go to a concert", "Go to a football match"]}
+  - {key: wyr_b053, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Always have to sing instead of talk", "Always have to dance when you walk"]}
+  - {key: wyr_b054, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a job you love that pays little", "Have a job you hate that pays a lot"]}
+  - {key: wyr_b055, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Change something about the past", "See something from the future"]}
+  - {key: wyr_b056, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Never get a sunburn", "Never get a mosquito bite"]}
+  - {key: wyr_b057, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have free food for life", "Have free clothes for life"]}
+  - {key: wyr_b058, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be an amazing cook", "Be an amazing singer"]}
+  - {key: wyr_b059, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be famous on the internet", "Be respected in your community"]}
+  - {key: wyr_b060, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Ride a camel", "Ride an elephant"]}
+  - {key: wyr_b061, levels: [friendship, talking], depth: 2, text: "Would you rather…", options: ["Plan the group trip", "Just show up and enjoy it"]}
+  - {key: wyr_b062, levels: [friendship, talking], depth: 1, text: "Would you rather…", options: ["Have a friend who's always late", "Have a friend who's always on their phone"]}
+  - {key: wyr_b063, levels: [friendship, talking], depth: 2, text: "Would you rather…", options: ["Keep a friend's secret forever", "Tell them a hard truth"]}
+  - {key: wyr_b064, levels: [friendship, talking], depth: 1, text: "Would you rather…", options: ["Go on holiday with your friends", "Go on holiday with your family"]}
+  - {key: wyr_b065, levels: [friendship, talking], depth: 2, text: "Would you rather…", options: ["Have one best friend", "Have five good friends"]}
+  - {key: wyr_b066, levels: [friendship, talking], depth: 1, text: "Would you rather…", options: ["Be in the group chat that never sleeps", "Be in the group chat that never replies"]}
+  - {key: wyr_b067, levels: [friendship, talking], depth: 2, text: "Would you rather…", options: ["Borrow money from a friend", "Lend money to a friend"]}
+  - {key: wyr_b068, levels: [friendship, talking], depth: 1, text: "Would you rather…", options: ["Win a game night", "Host a game night"]}
+  - {key: wyr_b069, levels: [friendship, talking], depth: 2, text: "Would you rather…", options: ["Have a friend who gives great advice", "Have a friend who makes you laugh"]}
+  - {key: wyr_b070, levels: [friendship, talking], depth: 1, text: "Would you rather…", options: ["Spend a day at a theme park with friends", "Spend a day at the beach with friends"]}
+  - {key: wyr_b071, levels: [talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Get a good morning text", "Get a goodnight text"]}
+  - {key: wyr_b072, levels: [talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Go on a picnic date", "Go on a museum date"]}
+  - {key: wyr_b073, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have the first date at a café", "Have the first date at a restaurant"]}
+  - {key: wyr_b074, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be asked out with a note", "Be asked out in person"]}
+  - {key: wyr_b075, levels: [talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Get flowers", "Get chocolate"]}
+  - {key: wyr_b076, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Meet their friends first", "Meet their family first"]}
+  - {key: wyr_b077, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Talk on the phone for hours", "Text all day"]}
+  - {key: wyr_b078, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Date someone very similar to you", "Date someone very different from you"]}
+  - {key: wyr_b079, levels: [talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Go dancing on a date", "Go bowling on a date"]}
+  - {key: wyr_b080, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Split the bill", "Take turns paying"]}
+  - {key: wyr_b081, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a partner who plans everything", "Have a partner who goes with the flow"]}
+  - {key: wyr_b082, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be surprised", "Plan the surprise"]}
+  - {key: wyr_b083, levels: [talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Watch the sunset together", "Watch the sunrise together"]}
+  - {key: wyr_b084, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Hear a compliment about your looks", "Hear a compliment about your mind"]}
+  - {key: wyr_b085, levels: [talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Know exactly how they feel", "Let it unfold slowly"]}
+  - {key: wyr_b086, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a date with no phones", "Have a date documented in photos"]}
+  - {key: wyr_b087, levels: [talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Cook dinner together", "Order in together"]}
+  - {key: wyr_b088, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a long first date", "Have a short first date that leaves you wanting more"]}
+  - {key: wyr_b089, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Laugh together", "Have deep conversations together"]}
+  - {key: wyr_b090, levels: [talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Be with someone who's honest even when it hurts", "Be with someone who's always gentle"]}
+  - {key: wyr_b091, levels: [romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a lazy Sunday in bed", "Have an adventurous Sunday out"]}
+  - {key: wyr_b092, levels: [romantic, intense], depth: 1, text: "Would you rather…", options: ["Get matching outfits", "Get matching tattoos"]}
+  - {key: wyr_b093, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Celebrate every anniversary big", "Celebrate quietly, just us"]}
+  - {key: wyr_b094, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Live together in a small flat in the city", "Live together in a big house far from it"]}
+  - {key: wyr_b095, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Plan a wedding together", "Elope together"]}
+  - {key: wyr_b096, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Travel the world together for a year", "Buy a home together"]}
+  - {key: wyr_b097, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Have date night every week", "Have a weekend away every month"]}
+  - {key: wyr_b098, levels: [romantic, intense], depth: 1, text: "Would you rather…", options: ["Share every dessert", "Have your own dessert"]}
+  - {key: wyr_b099, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a pet together", "Have a garden together"]}
+  - {key: wyr_b100, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Get a love letter", "Get a love song"]}
+  - {key: wyr_b101, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Always know what I'm thinking", "Always know what I'm feeling"]}
+  - {key: wyr_b102, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Go back to our first date", "Plan our next big trip"]}
+  - {key: wyr_b103, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Wake up to breakfast in bed", "Fall asleep to a back rub"]}
+  - {key: wyr_b104, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Have more time together", "Have more adventures together"]}
+  - {key: wyr_b105, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Give a big surprise once a year", "Give small surprises every week"]}
+  - {key: wyr_b106, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Spend a holiday with my family", "Spend a holiday with your family"]}
+  - {key: wyr_b107, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Fight and make up quickly", "Never fight but stay a bit distant"]}
+  - {key: wyr_b108, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Dance together at a wedding", "Sing together at karaoke"]}
+  - {key: wyr_b109, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Have our song played on the radio", "Have our story written in a book"]}
+  - {key: wyr_b110, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Grow old in one place together", "Keep moving to new places together"]}
+  - {key: wyr_b111, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Receive a surprise visit", "Receive a surprise gift"]}
+  - {key: wyr_b112, levels: [romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a movie marathon", "Have a game night"]}
+  - {key: wyr_b113, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Write our vows ourselves", "Use traditional vows"]}
+  - {key: wyr_b114, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Be loved loudly", "Be loved quietly"]}
+  - {key: wyr_b115, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Plan our future in detail", "Take it one day at a time"]}
+  - {key: wyr_b116, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Hear me say I love you every day", "See me show it every day"]}
+  - {key: wyr_b117, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Spend our anniversary somewhere new", "Spend it where we met"]}
+  - {key: wyr_b118, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Read each other's old diaries", "Read each other's old messages"]}
+  - {key: wyr_b119, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Have one more year with me", "Have ten more first dates with me"]}
+  - {key: wyr_b120, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Cook for me", "Be cooked for by me"]}
+  - {key: wyr_b121, levels: [romantic, intense], depth: 1, text: "Would you rather…", options: ["Take a dance class together", "Take a cooking class together"]}
+  - {key: wyr_b122, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a big family", "Have a small family"]}
+  - {key: wyr_b123, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Be my best friend", "Be my greatest love"]}
+  - {key: wyr_b124, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Hold hands everywhere", "Keep it private in public"]}
+  - {key: wyr_b125, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Take a spontaneous trip", "Plan the perfect trip together"]}
+  - {key: wyr_b126, levels: [friendship, talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Be truly understood", "Be truly admired"]}
+  - {key: wyr_b127, levels: [friendship, talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Forgive easily", "Forget easily"]}
+  - {key: wyr_b128, levels: [friendship, talking, romantic, intense], depth: 4, text: "Would you rather…", options: ["Know the date you'll die", "Know how you'll die"]}
+  - {key: wyr_b129, levels: [friendship, talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Have everyone like you", "Have a few people love you deeply"]}
+  - {key: wyr_b130, levels: [friendship, talking, romantic, intense], depth: 4, text: "Would you rather…", options: ["Lose all your memories", "Never make new ones"]}
+  - {key: wyr_b131, levels: [friendship, talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Follow your heart", "Follow your head"]}
+  - {key: wyr_b132, levels: [friendship, talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Feel everything deeply", "Feel nothing too much"]}
+  - {key: wyr_b133, levels: [friendship, talking, romantic, intense], depth: 4, text: "Would you rather…", options: ["Be remembered", "Be happy"]}
+  - {key: wyr_b134, levels: [friendship, talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Have a life full of adventure", "Have a life full of peace"]}
+  - {key: wyr_b135, levels: [talking, romantic, intense], depth: 4, text: "Would you rather…", options: ["Love and lose", "Never love at all"]}
+  - {key: wyr_b136, levels: [romantic, intense], depth: 4, text: "Would you rather…", options: ["Know every secret I've kept", "Never know any of them"]}
+  - {key: wyr_b137, levels: [romantic, intense], depth: 4, text: "Would you rather…", options: ["Relive our hardest moment and fix it", "Leave it as it is"]}
+  - {key: wyr_b138, levels: [romantic, intense], depth: 5, text: "Would you rather…", options: ["Be with me if it meant giving up your dream", "Chase your dream without me"]}
+  - {key: wyr_b139, levels: [romantic, intense], depth: 4, text: "Would you rather…", options: ["Know how our story ends", "Be surprised"]}
+  - {key: wyr_b140, levels: [romantic, intense], depth: 5, text: "Would you rather…", options: ["Love me more than I love you", "Be loved more than you love me"]}
+  - {key: wyr_b141, levels: [intense], depth: 2, text: "Would you rather…", options: ["Kiss on the forehead", "Kiss on the cheek"]}
+  - {key: wyr_b142, levels: [intense], depth: 2, text: "Would you rather…", options: ["Slow dance with me in the dark", "Watch the stars with me on a rooftop"]}
+  - {key: wyr_b143, levels: [intense], depth: 3, text: "Would you rather…", options: ["Have me whisper in your ear", "Have me hold your face when I kiss you"]}
+  - {key: wyr_b144, levels: [intense], depth: 2, text: "Would you rather…", options: ["Hug for a whole minute", "Kiss for a whole minute"]}
+  - {key: wyr_b145, levels: [intense], depth: 3, text: "Would you rather…", options: ["Stay up all night talking", "Wake up early to watch the sunrise together"]}
+  - {key: wyr_b146, levels: [intense], depth: 3, text: "Would you rather…", options: ["Be surprised with a candlelit dinner", "Be surprised with a bubble bath"]}
+  - {key: wyr_b147, levels: [intense], depth: 3, text: "Would you rather…", options: ["Hold my hand during a scary film", "Lean on my shoulder during a sad one"]}
+  - {key: wyr_b148, levels: [intense], depth: 2, text: "Would you rather…", options: ["Get a flirty text at work", "Get a flirty note in your bag"]}
+  - {key: wyr_b149, levels: [intense], depth: 3, text: "Would you rather…", options: ["Have a picnic under the stars", "Have a dance in the rain"]}
+  - {key: wyr_b150, levels: [intense], depth: 3, text: "Would you rather…", options: ["Tell me what you find most attractive about me", "Show me with one look"]}
+  - {key: wyr_b151, levels: [intense], depth: 4, text: "Would you rather…", options: ["Have me read you a love letter", "Have me sing to you"]}
+  - {key: wyr_b152, levels: [intense], depth: 3, text: "Would you rather…", options: ["Feel my arms around you from behind", "Feel my head on your chest"]}
+  - {key: wyr_b153, levels: [intense], depth: 4, text: "Would you rather…", options: ["Know exactly what I'm thinking when I look at you", "Find out slowly"]}
+  - {key: wyr_b154, levels: [intense], depth: 3, text: "Would you rather…", options: ["Get a long kiss goodbye", "Get a long kiss hello"]}
+  - {key: wyr_b155, levels: [intense], depth: 3, text: "Would you rather…", options: ["Be pulled into a dance", "Be pulled into a hug"]}
+  - {key: wyr_b156, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Eat only rice for a month", "Eat only bread for a month"]}
+  - {key: wyr_b157, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a tiny house by the beach", "Have a mansion in the desert"]}
+  - {key: wyr_b158, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Visit every country once", "Live in one country you love forever"]}
+  - {key: wyr_b159, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Be a chef", "Be a pilot"]}
+  - {key: wyr_b160, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a garden full of fruit", "Have a garden full of flowers"]}
+  - {key: wyr_b161, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Never have to cook", "Never have to clean"]}
+  - {key: wyr_b162, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Go to Paris", "Go to Tokyo"]}
+  - {key: wyr_b163, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a free holiday every year", "Have a free car every five years"]}
+  - {key: wyr_b164, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Live on a boat", "Live in a treehouse"]}
+  - {key: wyr_b165, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Drink only water forever", "Drink only juice forever"]}
+  - {key: wyr_b166, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a hot drink in the rain", "Have a cold drink in the sun"]}
+  - {key: wyr_b167, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Know how to fix any car", "Know how to fix any phone"]}
+  - {key: wyr_b168, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Be a superhero", "Be a wizard"]}
+  - {key: wyr_b169, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a famous best friend", "Be famous yourself"]}
+  - {key: wyr_b170, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Always win at board games", "Always win at video games"]}
+  - {key: wyr_b171, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a robot that cleans", "Have a robot that cooks"]}
+  - {key: wyr_b172, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Go skydiving", "Go scuba diving"]}
+  - {key: wyr_b173, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a car that flies", "Have a car that drives itself"]}
+  - {key: wyr_b174, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Be able to sleep anywhere", "Be able to eat anything without getting sick"]}
+  - {key: wyr_b175, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Live without your phone for a month", "Live without sugar for a month"]}
+  - {key: wyr_b176, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Only wear one colour forever", "Never wear the same outfit twice"]}
+  - {key: wyr_b177, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a song stuck in your head forever", "Have a word stuck on the tip of your tongue forever"]}
+  - {key: wyr_b178, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Be good at drawing", "Be good at writing"]}
+  - {key: wyr_b179, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a holiday in winter", "Have a holiday in summer"]}
+  - {key: wyr_b180, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Be in a horror film", "Be in a romantic comedy"]}
+  - {key: wyr_b181, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Own a bakery", "Own a bookshop"]}
+  - {key: wyr_b182, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Go back to school", "Never study again"]}
+  - {key: wyr_b183, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a sports car", "Have a camper van"]}
+  - {key: wyr_b184, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Meet your favourite celebrity", "Meet your favourite historical figure"]}
+  - {key: wyr_b185, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Be a great dancer", "Be a great swimmer"]}
+  - {key: wyr_b186, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a job with long holidays", "Have a job with short days"]}
+  - {key: wyr_b187, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be your own boss", "Have a great boss"]}
+  - {key: wyr_b188, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Save money", "Spend it on experiences"]}
+  - {key: wyr_b189, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Live near family", "Live near friends"]}
+  - {key: wyr_b190, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be really organised", "Be really spontaneous"]}
+  - {key: wyr_b191, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Always be honest", "Always be kind"]}
+  - {key: wyr_b192, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Try every food in the world", "Master one cuisine"]}
+  - {key: wyr_b193, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a quiet weekend", "Have a busy weekend"]}
+  - {key: wyr_b194, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Get a handwritten letter", "Get a long voice note"]}
+  - {key: wyr_b195, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Build something with your hands", "Create something with your mind"]}
+  - {key: wyr_b196, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Win a race", "Finish a marathon"]}
+  - {key: wyr_b197, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Know what people think of you", "Never know"]}
+  - {key: wyr_b198, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be young forever", "Be wise forever"]}
+  - {key: wyr_b199, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be a great listener", "Be a great storyteller"]}
+  - {key: wyr_b200, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have all the answers", "Ask all the questions"]}
+  - {key: wyr_b201, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Learn a new skill every year", "Perfect one skill for life"]}
+  - {key: wyr_b202, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have less stuff", "Have more space"]}
+  - {key: wyr_b203, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Live in a place with no seasons", "Live in a place with four seasons"]}
+  - {key: wyr_b204, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Wake up somewhere new every week", "Wake up in your own bed every day"]}
+  - {key: wyr_b205, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be the oldest child", "Be the youngest child"]}
+  - {key: wyr_b206, levels: [friendship, talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Change the world a little", "Change one life a lot"]}
+  - {key: wyr_b207, levels: [friendship, talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Be rich and lonely", "Be broke and loved"]}
+  - {key: wyr_b208, levels: [friendship, talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Know your purpose", "Find it slowly"]}
+  - {key: wyr_b209, levels: [friendship, talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Make a big mistake and learn", "Play it safe and wonder"]}
+  - {key: wyr_b210, levels: [friendship, talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Be brave", "Be wise"]}
+  - {key: wyr_b211, levels: [friendship, talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Start over somewhere new", "Stay and build where you are"]}
+  - {key: wyr_b212, levels: [friendship, talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Have a life with no regrets", "Have a life with no fears"]}
+  - {key: wyr_b213, levels: [friendship, talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Be remembered for your work", "Be remembered for your heart"]}
+  - {key: wyr_b214, levels: [friendship, talking, romantic, intense], depth: 4, text: "Would you rather…", options: ["Say goodbye properly", "Never have to say goodbye"]}
+  - {key: wyr_b215, levels: [friendship, talking, romantic, intense], depth: 4, text: "Would you rather…", options: ["Know the truth that hurts", "Keep the peace you have"]}
+  - {key: wyr_b216, levels: [friendship, talking], depth: 1, text: "Would you rather…", options: ["Do a road trip with your best friend", "Do a city break with your best friend"]}
+  - {key: wyr_b217, levels: [friendship, talking], depth: 1, text: "Would you rather…", options: ["Be the friend who cooks", "Be the friend who brings dessert"]}
+  - {key: wyr_b218, levels: [friendship, talking], depth: 2, text: "Would you rather…", options: ["Have a friend tell you the truth", "Have a friend protect your feelings"]}
+  - {key: wyr_b219, levels: [friendship, talking], depth: 1, text: "Would you rather…", options: ["Go to a friend's wedding", "Plan a friend's birthday"]}
+  - {key: wyr_b220, levels: [friendship, talking], depth: 2, text: "Would you rather…", options: ["Reconnect with an old friend", "Make a brand-new friend"]}
+  - {key: wyr_b221, levels: [friendship, talking], depth: 1, text: "Would you rather…", options: ["Do karaoke with friends", "Do an escape room with friends"]}
+  - {key: wyr_b222, levels: [friendship, talking], depth: 2, text: "Would you rather…", options: ["Have friends who challenge you", "Have friends who comfort you"]}
+  - {key: wyr_b223, levels: [friendship, talking], depth: 1, text: "Would you rather…", options: ["Win a trip for two", "Win a trip for your whole group"]}
+  - {key: wyr_b224, levels: [friendship, talking], depth: 1, text: "Would you rather…", options: ["Watch a film with friends", "Watch a match with friends"]}
+  - {key: wyr_b225, levels: [friendship, talking], depth: 2, text: "Would you rather…", options: ["Be the one who always calls", "Be the one who's always called"]}
+  - {key: wyr_b226, levels: [friendship, talking], depth: 2, text: "Would you rather…", options: ["Live with your best friend", "Live next door to your best friend"]}
+  - {key: wyr_b227, levels: [friendship, talking], depth: 1, text: "Would you rather…", options: ["Have a picnic in the park", "Have a barbecue in the garden"]}
+  - {key: wyr_b228, levels: [talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Be asked out over text", "Be asked out with flowers"]}
+  - {key: wyr_b229, levels: [talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Go on a coffee date", "Go on a dinner date"]}
+  - {key: wyr_b230, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a funny first date", "Have a romantic first date"]}
+  - {key: wyr_b231, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Go on a double date", "Go on a date for two"]}
+  - {key: wyr_b232, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a partner who's a great cook", "Have a partner who's a great dancer"]}
+  - {key: wyr_b233, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be told you're beautiful", "Be told you're brilliant"]}
+  - {key: wyr_b234, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a voice note goodnight", "Have a call goodnight"]}
+  - {key: wyr_b235, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Go somewhere loud and fun", "Go somewhere quiet and cosy"]}
+  - {key: wyr_b236, levels: [talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Share your playlist", "Share your favourite film"]}
+  - {key: wyr_b237, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a long talk on the first date", "Have an adventure on the first date"]}
+  - {key: wyr_b238, levels: [talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Show your feelings first", "Wait for them to show theirs"]}
+  - {key: wyr_b239, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Get a surprise visit", "Get a surprise package"]}
+  - {key: wyr_b240, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be with someone who loves sport", "Be with someone who loves books"]}
+  - {key: wyr_b241, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a partner with the same hobbies", "Have a partner who teaches you new ones"]}
+  - {key: wyr_b242, levels: [talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Be texted back instantly", "Be texted back thoughtfully"]}
+  - {key: wyr_b243, levels: [talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Talk about the future early", "Enjoy the present first"]}
+  - {key: wyr_b244, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Hear their love story playlist", "Read their favourite book"]}
+  - {key: wyr_b245, levels: [talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Get ice cream together", "Get coffee together"]}
+  - {key: wyr_b246, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Be with someone shy", "Be with someone outgoing"]}
+  - {key: wyr_b247, levels: [talking, romantic, intense], depth: 3, text: "Would you rather…", options: ["Know their past", "Focus on their present"]}
+  - {key: wyr_b248, levels: [romantic, intense], depth: 1, text: "Would you rather…", options: ["Wear my shirt", "Wear my jacket"]}
+  - {key: wyr_b249, levels: [romantic, intense], depth: 1, text: "Would you rather…", options: ["Share a blanket on the sofa", "Share a hammock in the garden"]}
+  - {key: wyr_b250, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Have breakfast together every day", "Have dinner together every day"]}
+  - {key: wyr_b251, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Travel to a new country with me", "Return to a place we love"]}
+  - {key: wyr_b252, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Have our photo on the wall", "Have our names carved on a tree"]}
+  - {key: wyr_b253, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Start a business together", "Start a family tradition together"]}
+  - {key: wyr_b254, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a surprise party", "Have a quiet night just us"]}
+  - {key: wyr_b255, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Find a love note in your pocket", "Find a love note on the mirror"]}
+  - {key: wyr_b256, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a weekly date night", "Have a monthly adventure"]}
+  - {key: wyr_b257, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Sing in the car together", "Dance in the kitchen together"]}
+  - {key: wyr_b258, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Make a scrapbook of us", "Make a video of us"]}
+  - {key: wyr_b259, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Have a partner who always makes you laugh", "Have a partner who always makes you feel safe"]}
+  - {key: wyr_b260, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Watch our wedding video every year", "Write each other a letter every year"]}
+  - {key: wyr_b261, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Choose our next holiday", "Let me choose our next holiday"]}
+  - {key: wyr_b262, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Hear how I fell for you", "Tell me how you fell for me"]}
+  - {key: wyr_b263, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Have a cosy cabin weekend", "Have a beach resort weekend"]}
+  - {key: wyr_b264, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Always resolve things before bed", "Sleep on it and talk in the morning"]}
+  - {key: wyr_b265, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Plant a tree together", "Adopt a pet together"]}
+  - {key: wyr_b266, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Get a framed photo of us", "Get a playlist of our songs"]}
+  - {key: wyr_b267, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Show love through words", "Show love through actions"]}
+  - {key: wyr_b268, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Be the one who apologises first", "Be the one who forgives first"]}
+  - {key: wyr_b269, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Spend a day without phones together", "Spend a day taking photos together"]}
+  - {key: wyr_b270, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Celebrate small wins together", "Plan big goals together"]}
+  - {key: wyr_b271, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Have matching mugs", "Have matching phone cases"]}
+  - {key: wyr_b272, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Renew our promises every year", "Keep them in our hearts"]}
+  - {key: wyr_b273, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Know my favourite memory of us", "Make a new favourite memory"]}
+  - {key: wyr_b274, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Feel close in silence", "Feel close in conversation"]}
+  - {key: wyr_b275, levels: [romantic, intense], depth: 4, text: "Would you rather…", options: ["Have more courage in love", "Have more patience in love"]}
+  - {key: wyr_b276, levels: [romantic, intense], depth: 4, text: "Would you rather…", options: ["Never argue again", "Always make up beautifully"]}
+  - {key: wyr_b277, levels: [romantic, intense], depth: 4, text: "Would you rather…", options: ["Trust completely", "Understand completely"]}
+  - {key: wyr_b278, levels: [romantic, intense], depth: 5, text: "Would you rather…", options: ["Be the love of my life", "Be the best chapter of my life"]}
+  - {key: wyr_b279, levels: [intense], depth: 2, text: "Would you rather…", options: ["Have breakfast in bed with me", "Have a midnight snack with me"]}
+  - {key: wyr_b280, levels: [intense], depth: 3, text: "Would you rather…", options: ["Give me a massage", "Get a massage from me"]}
+  - {key: wyr_b281, levels: [intense], depth: 3, text: "Would you rather…", options: ["Kiss in a crowded place", "Kiss somewhere secret"]}
+  - {key: wyr_b282, levels: [intense], depth: 3, text: "Would you rather…", options: ["Hear me say what I miss about you", "Hear me say what I can't stop thinking about"]}
+  - {key: wyr_b283, levels: [intense], depth: 3, text: "Would you rather…", options: ["Be serenaded", "Be danced with"]}
+  - {key: wyr_b284, levels: [intense], depth: 3, text: "Would you rather…", options: ["Fall asleep on my chest", "Fall asleep holding my hand"]}
+  - {key: wyr_b285, levels: [intense], depth: 3, text: "Would you rather…", options: ["Get a slow dance in the living room", "Get a kiss under the moon"]}
+  - {key: wyr_b286, levels: [intense], depth: 4, text: "Would you rather…", options: ["Know my biggest crush on you moment", "Tell me yours"]}
+  - {key: wyr_b287, levels: [intense], depth: 3, text: "Would you rather…", options: ["Plan a surprise date for me", "Be surprised by me"]}
+  - {key: wyr_b288, levels: [intense], depth: 3, text: "Would you rather…", options: ["Wear something I picked for you", "Pick something for me to wear"]}
+  - {key: wyr_b289, levels: [intense], depth: 4, text: "Would you rather…", options: ["Spend a whole weekend just us, no plans", "Spend it with every hour planned"]}
+  - {key: wyr_b290, levels: [intense], depth: 3, text: "Would you rather…", options: ["Hold eye contact for one minute", "Hold hands without talking for one minute"]}
+  - {key: wyr_b291, levels: [intense], depth: 3, text: "Would you rather…", options: ["Get a flirty voice note", "Get a flirty handwritten note"]}
+  - {key: wyr_b292, levels: [intense], depth: 4, text: "Would you rather…", options: ["Hear me describe our perfect night", "Describe it to me"]}
+  - {key: wyr_b293, levels: [intense], depth: 3, text: "Would you rather…", options: ["Steal a kiss", "Be kissed by surprise"]}
+  - {key: wyr_b294, levels: [intense], depth: 3, text: "Would you rather…", options: ["Watch a romantic film cuddled up", "Read to each other in bed"]}
+  - {key: wyr_b295, levels: [intense], depth: 4, text: "Would you rather…", options: ["Feel butterflies again", "Feel completely at home"]}
+  - {key: wyr_b296, levels: [intense], depth: 3, text: "Would you rather…", options: ["Run your fingers through my hair", "Have me run mine through yours"]}
+  - {key: wyr_b297, levels: [intense], depth: 4, text: "Would you rather…", options: ["Be my first thought in the morning", "Be my last thought at night"]}
+  - {key: wyr_b298, levels: [talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a video call date", "Have a voice-call date"]}
+  - {key: wyr_b299, levels: [talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Watch the same film at the same time apart", "Play a game together online"]}
+  - {key: wyr_b300, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Get a surprise delivery from me", "Get a surprise voice note from me"]}
+  - {key: wyr_b301, levels: [romantic, intense], depth: 2, text: "Would you rather…", options: ["Plan our next visit now", "Keep it a surprise"]}
+  - {key: wyr_b302, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Talk every day for ten minutes", "Talk once a week for two hours"]}
+  - {key: wyr_b303, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Be in the same time zone", "Be in the same city once a month"]}
+  - {key: wyr_b304, levels: [romantic, intense], depth: 3, text: "Would you rather…", options: ["Fall asleep on a call together", "Wake up to a long message"]}
+  - {key: wyr_b305, levels: [intense], depth: 3, text: "Would you rather…", options: ["Get a goodnight voice note", "Get a good morning call"]}
+  - {key: wyr_b306, levels: [intense], depth: 3, text: "Would you rather…", options: ["Have me write you a letter", "Have me read one aloud to you"]}
+  - {key: wyr_b307, levels: [intense], depth: 4, text: "Would you rather…", options: ["Count down the days until we meet", "Be surprised at your door"]}
+  - {key: wyr_b308, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Send a postcard", "Send a parcel"]}
+  - {key: wyr_b309, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Have a pen pal abroad", "Have a neighbour you love"]}
+  - {key: wyr_b310, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Live in a different country for a year", "Travel to ten countries in a year"]}
+  - {key: wyr_b311, levels: [friendship, talking, romantic, intense], depth: 2, text: "Would you rather…", options: ["Learn a language from a friend", "Teach a friend your language"]}
+  - {key: wyr_b312, levels: [friendship, talking, romantic, intense], depth: 1, text: "Would you rather…", options: ["Visit a famous landmark", "Discover a hidden local spot"]}
