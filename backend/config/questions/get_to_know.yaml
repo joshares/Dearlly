@@ -1,0 +1,210 @@
+# Get to know you: open questions about yourself; both answer in their own words, then read
+# each other's. For talking stages, new friends, or anyone who wants to know someone better.
+# levels: friendship, talking, romantic, intense. depth: 1 (light) to 5 (deepest).
+questions:
+  - {key: gk_b001, levels: [friendship, talking, romantic, intense], depth: 1, text: "What do you do for fun?"}
+  - {key: gk_b002, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your favourite food, and where's the best place to get it?"}
+  - {key: gk_b003, levels: [friendship, talking, romantic, intense], depth: 1, text: "What kind of music do you listen to most?"}
+  - {key: gk_b004, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your favourite film or show right now?"}
+  - {key: gk_b005, levels: [friendship, talking, romantic, intense], depth: 1, text: "Are you a morning person or a night person?"}
+  - {key: gk_b006, levels: [friendship, talking, romantic, intense], depth: 1, text: "What does a normal weekday look like for you?"}
+  - {key: gk_b007, levels: [friendship, talking, romantic, intense], depth: 1, text: "What do you do for work or study, and do you enjoy it?"}
+  - {key: gk_b008, levels: [friendship, talking, romantic, intense], depth: 1, text: "Where did you grow up?"}
+  - {key: gk_b009, levels: [friendship, talking, romantic, intense], depth: 1, text: "Do you have brothers or sisters? Where are you in the family?"}
+  - {key: gk_b010, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your favourite way to spend a weekend?"}
+  - {key: gk_b011, levels: [friendship, talking, romantic, intense], depth: 1, text: "Cats, dogs, or no pets?"}
+  - {key: gk_b012, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your go-to order at a restaurant?"}
+  - {key: gk_b013, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a hobby you've always wanted to try?"}
+  - {key: gk_b014, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your favourite season, and why?"}
+  - {key: gk_b015, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a place you'd love to travel to?"}
+  - {key: gk_b016, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the best trip you've ever taken?"}
+  - {key: gk_b017, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your comfort food?"}
+  - {key: gk_b018, levels: [friendship, talking, romantic, intense], depth: 1, text: "What do you usually do to relax?"}
+  - {key: gk_b019, levels: [friendship, talking, romantic, intense], depth: 1, text: "What sport or game do you enjoy, playing or watching?"}
+  - {key: gk_b020, levels: [friendship, talking, romantic, intense], depth: 1, text: "Do you like cooking? What's your best dish?"}
+  - {key: gk_b021, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's an app you use every day?"}
+  - {key: gk_b022, levels: [friendship, talking, romantic, intense], depth: 1, text: "What was the last book, podcast or video that you really enjoyed?"}
+  - {key: gk_b023, levels: [friendship, talking, romantic, intense], depth: 1, text: "Beach holiday or city break?"}
+  - {key: gk_b024, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's something you're really good at?"}
+  - {key: gk_b025, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your favourite thing about where you live?"}
+  - {key: gk_b026, levels: [friendship, talking, romantic, intense], depth: 1, text: "Tea, coffee, or neither?"}
+  - {key: gk_b027, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your idea of a perfect Sunday?"}
+  - {key: gk_b028, levels: [friendship, talking, romantic, intense], depth: 1, text: "Are you more of a planner or spontaneous?"}
+  - {key: gk_b029, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's the best concert, event or festival you've been to?"}
+  - {key: gk_b030, levels: [friendship, talking, romantic, intense], depth: 1, text: "What did you want to be when you grew up?"}
+  - {key: gk_b031, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a small thing that always makes you happy?"}
+  - {key: gk_b032, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your favourite holiday or celebration of the year?"}
+  - {key: gk_b033, levels: [friendship, talking, romantic, intense], depth: 1, text: "Do you prefer calls, texts or voice notes?"}
+  - {key: gk_b034, levels: [friendship, talking, romantic, intense], depth: 1, text: "How do you usually celebrate your birthday?"}
+  - {key: gk_b035, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's a film you could watch over and over?"}
+  - {key: gk_b036, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your favourite smell?"}
+  - {key: gk_b037, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your favourite thing to do with friends?"}
+  - {key: gk_b038, levels: [friendship, talking, romantic, intense], depth: 1, text: "Are you more indoors or outdoors?"}
+  - {key: gk_b039, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your favourite dessert?"}
+  - {key: gk_b040, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's something you're looking forward to?"}
+  - {key: gk_b041, levels: [friendship, talking, romantic, intense], depth: 2, text: "What are three words your friends would use to describe you?"}
+  - {key: gk_b042, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's something people are often surprised to learn about you?"}
+  - {key: gk_b043, levels: [friendship, talking, romantic, intense], depth: 2, text: "What are you most proud of so far?"}
+  - {key: gk_b044, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a goal you're working towards right now?"}
+  - {key: gk_b045, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's something you're trying to get better at?"}
+  - {key: gk_b046, levels: [friendship, talking, romantic, intense], depth: 2, text: "How do you handle stress?"}
+  - {key: gk_b047, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's your relationship like with your family?"}
+  - {key: gk_b048, levels: [friendship, talking, romantic, intense], depth: 2, text: "Who's the most important person in your life?"}
+  - {key: gk_b049, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a value you try to live by?"}
+  - {key: gk_b050, levels: [friendship, talking, romantic, intense], depth: 2, text: "What does a good friend look like to you?"}
+  - {key: gk_b051, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a pet peeve of yours?"}
+  - {key: gk_b052, levels: [friendship, talking, romantic, intense], depth: 2, text: "How do you like to be supported when you're having a hard time?"}
+  - {key: gk_b053, levels: [friendship, talking, romantic, intense], depth: 2, text: "Are you an introvert, an extrovert, or somewhere in between?"}
+  - {key: gk_b054, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the best advice you've ever been given?"}
+  - {key: gk_b055, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a habit you're proud of?"}
+  - {key: gk_b056, levels: [friendship, talking, romantic, intense], depth: 2, text: "What would your dream job be?"}
+  - {key: gk_b057, levels: [friendship, talking, romantic, intense], depth: 2, text: "Where do you see yourself in five years?"}
+  - {key: gk_b058, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's something you've learned recently?"}
+  - {key: gk_b059, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a cause or issue you care about?"}
+  - {key: gk_b060, levels: [friendship, talking, romantic, intense], depth: 2, text: "What role does faith or spirituality play in your life?"}
+  - {key: gk_b061, levels: [friendship, talking, romantic, intense], depth: 2, text: "How do you like to spend your money: saving, spending, or a mix?"}
+  - {key: gk_b062, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's something you can't stand?"}
+  - {key: gk_b063, levels: [friendship, talking, romantic, intense], depth: 2, text: "What makes you laugh the hardest?"}
+  - {key: gk_b064, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's a tradition from your family that you love?"}
+  - {key: gk_b065, levels: [friendship, talking, romantic, intense], depth: 2, text: "How do you recharge after a long week?"}
+  - {key: gk_b066, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's one thing on your bucket list?"}
+  - {key: gk_b067, levels: [friendship, talking, romantic, intense], depth: 2, text: "What kind of people do you get along with best?"}
+  - {key: gk_b068, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's your biggest strength?"}
+  - {key: gk_b069, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's something you're still figuring out?"}
+  - {key: gk_b070, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's been the biggest change in your life so far?"}
+  - {key: gk_b071, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's something that's shaped who you are?"}
+  - {key: gk_b072, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's a fear you'd like to overcome?"}
+  - {key: gk_b073, levels: [friendship, talking, romantic, intense], depth: 3, text: "What do you need to feel at peace?"}
+  - {key: gk_b074, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's a mistake you learned a lot from?"}
+  - {key: gk_b075, levels: [friendship, talking, romantic, intense], depth: 3, text: "What do you find hard to talk about?"}
+  - {key: gk_b076, levels: [friendship, talking, romantic, intense], depth: 3, text: "What does success look like for you?"}
+  - {key: gk_b077, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's something you wish more people understood about you?"}
+  - {key: gk_b078, levels: [friendship, talking, romantic, intense], depth: 3, text: "How do you show people you care about them?"}
+  - {key: gk_b079, levels: [friendship, talking, romantic, intense], depth: 3, text: "What's a dream you haven't told many people?"}
+  - {key: gk_b080, levels: [friendship, talking, romantic, intense], depth: 3, text: "What matters most to you in life?"}
+  - {key: gk_b081, levels: [friendship, talking, romantic, intense], depth: 3, text: "How have you changed in the last few years?"}
+  - {key: gk_b082, levels: [friendship, talking, romantic, intense], depth: 4, text: "What's the hardest thing you've been through?"}
+  - {key: gk_b083, levels: [friendship, talking, romantic, intense], depth: 4, text: "What's something you're healing from?"}
+  - {key: gk_b084, levels: [friendship, talking, romantic, intense], depth: 4, text: "What do you want your life to stand for?"}
+  - {key: gk_b085, levels: [friendship, talking], depth: 1, text: "How did you meet your closest friends?"}
+  - {key: gk_b086, levels: [friendship, talking], depth: 1, text: "What's a friend group tradition you love?"}
+  - {key: gk_b087, levels: [friendship, talking], depth: 2, text: "What makes a friendship last for you?"}
+  - {key: gk_b088, levels: [friendship, talking], depth: 2, text: "What do you look for in a new friend?"}
+  - {key: gk_b089, levels: [friendship, talking], depth: 3, text: "What's the best thing a friend has ever done for you?"}
+  - {key: gk_b090, levels: [talking, romantic, intense], depth: 1, text: "What does your ideal first date look like?"}
+  - {key: gk_b091, levels: [talking, romantic, intense], depth: 1, text: "What's the first thing you notice about someone?"}
+  - {key: gk_b092, levels: [talking, romantic, intense], depth: 1, text: "What's your love language: words, time, gifts, help, or hugs?"}
+  - {key: gk_b093, levels: [talking, romantic, intense], depth: 1, text: "What do you find attractive in a person?"}
+  - {key: gk_b094, levels: [talking, romantic, intense], depth: 1, text: "How do you like to be texted: lots, a little, or just when there's news?"}
+  - {key: gk_b095, levels: [talking, romantic, intense], depth: 1, text: "What's a date idea you've always wanted to try?"}
+  - {key: gk_b096, levels: [talking, romantic, intense], depth: 1, text: "Coffee date, dinner date, or something active?"}
+  - {key: gk_b097, levels: [talking, romantic, intense], depth: 1, text: "What's the most romantic thing someone could do for you?"}
+  - {key: gk_b098, levels: [talking, romantic, intense], depth: 1, text: "What's your idea of a fun night together?"}
+  - {key: gk_b099, levels: [talking, romantic, intense], depth: 1, text: "What song would you put on a playlist for someone you like?"}
+  - {key: gk_b100, levels: [talking, romantic, intense], depth: 2, text: "What are you looking for right now: something casual or something serious?"}
+  - {key: gk_b101, levels: [talking, romantic, intense], depth: 2, text: "What does a healthy relationship look like to you?"}
+  - {key: gk_b102, levels: [talking, romantic, intense], depth: 2, text: "What's a green flag for you?"}
+  - {key: gk_b103, levels: [talking, romantic, intense], depth: 2, text: "What's a red flag for you?"}
+  - {key: gk_b104, levels: [talking, romantic, intense], depth: 2, text: "What's a dealbreaker for you?"}
+  - {key: gk_b105, levels: [talking, romantic, intense], depth: 2, text: "How important is it that a partner gets along with your friends and family?"}
+  - {key: gk_b106, levels: [talking, romantic, intense], depth: 2, text: "What's the best quality a partner can have?"}
+  - {key: gk_b107, levels: [talking, romantic, intense], depth: 2, text: "How do you show someone you like them?"}
+  - {key: gk_b108, levels: [talking, romantic, intense], depth: 2, text: "How do you feel about public affection?"}
+  - {key: gk_b109, levels: [talking, romantic, intense], depth: 2, text: "How much time together do you like in a relationship?"}
+  - {key: gk_b110, levels: [talking, romantic, intense], depth: 2, text: "How do you like to handle disagreements?"}
+  - {key: gk_b111, levels: [talking, romantic, intense], depth: 2, text: "What's your view on splitting the bill on dates?"}
+  - {key: gk_b112, levels: [talking, romantic, intense], depth: 2, text: "How soon is too soon to meet the family?"}
+  - {key: gk_b113, levels: [talking, romantic, intense], depth: 2, text: "What did you learn from your last relationship?"}
+  - {key: gk_b114, levels: [talking, romantic, intense], depth: 2, text: "How do you feel about long-distance relationships?"}
+  - {key: gk_b115, levels: [talking, romantic, intense], depth: 2, text: "What's your idea of a perfect weekend with a partner?"}
+  - {key: gk_b116, levels: [talking, romantic, intense], depth: 2, text: "How do you like to be comforted when you're upset?"}
+  - {key: gk_b117, levels: [talking, romantic, intense], depth: 2, text: "What makes you feel appreciated?"}
+  - {key: gk_b118, levels: [talking, romantic, intense], depth: 2, text: "What's something you need in a relationship to feel secure?"}
+  - {key: gk_b119, levels: [talking, romantic, intense], depth: 2, text: "How important is humour in a partner?"}
+  - {key: gk_b120, levels: [talking, romantic, intense], depth: 2, text: "What's your idea of romance: big gestures or small details?"}
+  - {key: gk_b121, levels: [talking, romantic, intense], depth: 2, text: "How do you feel about social media in relationships?"}
+  - {key: gk_b122, levels: [talking, romantic, intense], depth: 2, text: "How do you handle jealousy?"}
+  - {key: gk_b123, levels: [talking, romantic, intense], depth: 2, text: "How do you usually act when you have a crush?"}
+  - {key: gk_b124, levels: [talking, romantic, intense], depth: 2, text: "What's your favourite thing about being in a relationship?"}
+  - {key: gk_b125, levels: [talking, romantic, intense], depth: 3, text: "Do you want to get married one day?"}
+  - {key: gk_b126, levels: [talking, romantic, intense], depth: 3, text: "Do you want children? If so, how many?"}
+  - {key: gk_b127, levels: [talking, romantic, intense], depth: 3, text: "How important is shared faith or values in a partner?"}
+  - {key: gk_b128, levels: [talking, romantic, intense], depth: 3, text: "Where would you like to live long term?"}
+  - {key: gk_b129, levels: [talking, romantic, intense], depth: 3, text: "What does commitment mean to you?"}
+  - {key: gk_b130, levels: [talking, romantic, intense], depth: 3, text: "What would make you trust someone completely?"}
+  - {key: gk_b131, levels: [talking, romantic, intense], depth: 3, text: "How do you want to be loved?"}
+  - {key: gk_b132, levels: [talking, romantic, intense], depth: 3, text: "What are you like when you're angry?"}
+  - {key: gk_b133, levels: [talking, romantic, intense], depth: 3, text: "What's something you've never compromised on in a relationship?"}
+  - {key: gk_b134, levels: [talking, romantic, intense], depth: 3, text: "How do you feel about money in a relationship: shared, separate, or both?"}
+  - {key: gk_b135, levels: [talking, romantic, intense], depth: 3, text: "What role do you want your family to play in your relationship?"}
+  - {key: gk_b136, levels: [talking, romantic, intense], depth: 3, text: "What scares you most about relationships?"}
+  - {key: gk_b137, levels: [talking, romantic, intense], depth: 3, text: "What does loyalty mean to you?"}
+  - {key: gk_b138, levels: [talking, romantic, intense], depth: 3, text: "How do you know you can trust someone?"}
+  - {key: gk_b139, levels: [talking, romantic, intense], depth: 3, text: "What's a relationship you admire, and why?"}
+  - {key: gk_b140, levels: [talking, romantic, intense], depth: 3, text: "What would your ideal life look like in ten years?"}
+  - {key: gk_b141, levels: [talking, romantic, intense], depth: 4, text: "What's something you've never told anyone you were dating?"}
+  - {key: gk_b142, levels: [talking, romantic, intense], depth: 4, text: "What do you need from someone when you're at your lowest?"}
+  - {key: gk_b143, levels: [talking, romantic, intense], depth: 4, text: "What hurt you most in a past relationship?"}
+  - {key: gk_b144, levels: [talking, romantic, intense], depth: 4, text: "What would you want me to know about you before we get closer?"}
+  - {key: gk_b145, levels: [romantic, intense], depth: 2, text: "What's something about you I still don't know?"}
+  - {key: gk_b146, levels: [romantic, intense], depth: 2, text: "What's a dream you'd like us to chase together?"}
+  - {key: gk_b147, levels: [romantic, intense], depth: 2, text: "What's a habit of mine you've grown to love?"}
+  - {key: gk_b148, levels: [romantic, intense], depth: 2, text: "What's your favourite way for us to spend time together?"}
+  - {key: gk_b149, levels: [romantic, intense], depth: 3, text: "What's something you want more of in our relationship?"}
+  - {key: gk_b150, levels: [romantic, intense], depth: 3, text: "What's a part of your past you'd like me to understand better?"}
+  - {key: gk_b151, levels: [romantic, intense], depth: 3, text: "What do you think we could learn from each other?"}
+  - {key: gk_b152, levels: [romantic, intense], depth: 4, text: "What's a fear you have about our future?"}
+  - {key: gk_b153, levels: [romantic, intense], depth: 4, text: "What do you need from me that you haven't asked for?"}
+  - {key: gk_b154, levels: [romantic, intense], depth: 5, text: "What do you hope we'll be like in twenty years?"}
+  - {key: gk_b155, levels: [intense], depth: 2, text: "What was your first impression of me, honestly?"}
+  - {key: gk_b156, levels: [intense], depth: 2, text: "What's the most attractive thing about me?"}
+  - {key: gk_b157, levels: [intense], depth: 2, text: "What outfit do you think I look best in?"}
+  - {key: gk_b158, levels: [intense], depth: 2, text: "What's your idea of the perfect romantic evening?"}
+  - {key: gk_b159, levels: [intense], depth: 3, text: "When did you first realise you were attracted to me?"}
+  - {key: gk_b160, levels: [intense], depth: 3, text: "What's a romantic date you'd love us to have?"}
+  - {key: gk_b161, levels: [intense], depth: 3, text: "What do you find hardest to resist about me?"}
+  - {key: gk_b162, levels: [intense], depth: 3, text: "What's a sweet thing you'd love me to say to you?"}
+  - {key: gk_b163, levels: [intense], depth: 3, text: "What makes you feel desired?"}
+  - {key: gk_b164, levels: [intense], depth: 3, text: "What's your favourite way to be flirted with?"}
+  - {key: gk_b165, levels: [intense], depth: 4, text: "What do you think about when you miss me?"}
+  - {key: gk_b166, levels: [intense], depth: 4, text: "What's a romantic dream you've had about us?"}
+  - {key: gk_b167, levels: [intense], depth: 4, text: "What makes our chemistry special to you?"}
+  - {key: gk_b168, levels: [intense], depth: 5, text: "What does being close to me feel like?"}
+  - {key: gk_b169, levels: [talking, romantic, intense], depth: 1, text: "What's your favourite way to spend a date night in?"}
+  - {key: gk_b170, levels: [talking, romantic, intense], depth: 1, text: "What's a compliment you never get tired of hearing?"}
+  - {key: gk_b171, levels: [talking, romantic, intense], depth: 1, text: "What would you plan for our first trip together?"}
+  - {key: gk_b172, levels: [talking, romantic, intense], depth: 1, text: "What's your go-to outfit for a date?"}
+  - {key: gk_b173, levels: [talking, romantic, intense], depth: 1, text: "Are you a good texter or a bad texter? Be honest."}
+  - {key: gk_b174, levels: [talking, romantic, intense], depth: 1, text: "What's the best date you've ever been on?"}
+  - {key: gk_b175, levels: [talking, romantic, intense], depth: 1, text: "What kind of gifts do you like to receive?"}
+  - {key: gk_b176, levels: [talking, romantic, intense], depth: 1, text: "What's a movie you'd want to watch together?"}
+  - {key: gk_b177, levels: [talking, romantic, intense], depth: 1, text: "What's your favourite thing to do on a lazy day?"}
+  - {key: gk_b178, levels: [talking, romantic, intense], depth: 1, text: "What's something that instantly makes you smile?"}
+  - {key: gk_b179, levels: [talking, romantic, intense], depth: 2, text: "How do you like to spend your birthday with a partner?"}
+  - {key: gk_b180, levels: [talking, romantic, intense], depth: 2, text: "What do you do when you need space?"}
+  - {key: gk_b181, levels: [talking, romantic, intense], depth: 2, text: "How often do you like to see someone you're dating?"}
+  - {key: gk_b182, levels: [talking, romantic, intense], depth: 2, text: "Who should cook and who should clean in a relationship?"}
+  - {key: gk_b183, levels: [talking, romantic, intense], depth: 2, text: "How do you feel about meeting each other's friends early on?"}
+  - {key: gk_b184, levels: [talking, romantic, intense], depth: 2, text: "What's your opinion on staying friends with exes?"}
+  - {key: gk_b185, levels: [talking, romantic, intense], depth: 2, text: "How do you apologise when you're wrong?"}
+  - {key: gk_b186, levels: [talking, romantic, intense], depth: 2, text: "What's your idea of quality time?"}
+  - {key: gk_b187, levels: [talking, romantic, intense], depth: 2, text: "How do you feel about surprises?"}
+  - {key: gk_b188, levels: [talking, romantic, intense], depth: 2, text: "What does a good morning look like with a partner?"}
+  - {key: gk_b189, levels: [talking, romantic, intense], depth: 2, text: "What's something small that makes you feel cared for?"}
+  - {key: gk_b190, levels: [talking, romantic, intense], depth: 2, text: "What's a hobby you'd love a partner to share with you?"}
+  - {key: gk_b191, levels: [talking, romantic, intense], depth: 2, text: "How do you feel about pet names?"}
+  - {key: gk_b192, levels: [talking, romantic, intense], depth: 2, text: "What's your stance on sharing phone passwords?"}
+  - {key: gk_b193, levels: [talking, romantic, intense], depth: 2, text: "Who usually makes the first move: you or them?"}
+  - {key: gk_b194, levels: [talking, romantic, intense], depth: 2, text: "How do you keep the spark alive?"}
+  - {key: gk_b195, levels: [talking, romantic, intense], depth: 3, text: "What did your parents' relationship teach you about love?"}
+  - {key: gk_b196, levels: [talking, romantic, intense], depth: 3, text: "What would you never want a partner to do?"}
+  - {key: gk_b197, levels: [talking, romantic, intense], depth: 3, text: "What's your biggest goal for the next year, and how could a partner support it?"}
+  - {key: gk_b198, levels: [talking, romantic, intense], depth: 3, text: "What's something you're insecure about in relationships?"}
+  - {key: gk_b199, levels: [talking, romantic, intense], depth: 3, text: "What do you want your future home to feel like?"}
+  - {key: gk_b200, levels: [talking, romantic, intense], depth: 3, text: "How do you balance your own life with a relationship?"}
+  - {key: gk_b201, levels: [talking, romantic, intense], depth: 3, text: "How do you want to handle it when we disagree about something big?"}
+  - {key: gk_b202, levels: [talking, romantic, intense], depth: 3, text: "What does a perfect partner do when you've had a bad day?"}
+  - {key: gk_b203, levels: [talking, romantic, intense], depth: 3, text: "What's a sacrifice you'd make for love, and one you wouldn't?"}
+  - {key: gk_b204, levels: [talking, romantic, intense], depth: 3, text: "What are you like on your worst day?"}
+  - {key: gk_b205, levels: [talking, romantic, intense], depth: 4, text: "What do you hope someone will love about you?"}
+  - {key: gk_b206, levels: [talking, romantic, intense], depth: 4, text: "What's a promise you'd want from someone before getting serious?"}

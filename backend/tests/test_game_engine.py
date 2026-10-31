@@ -275,6 +275,7 @@ def test_the_real_question_files_load() -> None:
         "this_or_that",
         "know_me",
         "finish_sentence",
+        "get_to_know",
         "deep_talk",
         "truth_dare",
         "love_language",
@@ -285,7 +286,7 @@ def test_the_real_question_files_load() -> None:
 
 def test_the_bank_is_big_enough_for_every_game_and_level() -> None:
     bank = load_bank()
-    assert len(bank.questions) >= 1900
+    assert len(bank.questions) >= 2100
     for key in bank.formats:
         for level in ("friendship", "talking", "romantic", "intense"):
             pool = bank.pool(key, level)

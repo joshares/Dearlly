@@ -195,7 +195,12 @@ def test_library_lists_every_game_and_creating_needs_enough_questions(
 ) -> None:
     formats = auth_client.get("/games/formats").json()
     assert formats[0]["key"] == "mix"
-    assert {f["key"] for f in formats} >= {"same_page", "truth_dare", "love_language"}
+    assert {f["key"] for f in formats} >= {
+        "same_page",
+        "truth_dare",
+        "love_language",
+        "get_to_know",
+    }
     ada = _login(auth_client, ADA, "ada_demo")
     _as(auth_client, ada)
     # The real bank has plenty everywhere; pretend this game only has 10 questions.

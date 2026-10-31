@@ -279,7 +279,8 @@ function Round({
       {round.revealed && <Reveal view={view} round={round} names={names} otherName={otherName} />}
 
       <div className="flex flex-wrap items-center gap-3 border-t-2 border-dashed border-line pt-4">
-        {round.format === "deep_talk" && !round.revealed && me && me.skips_left > 0 && (
+        {/* Games with skips (Deep talk, Get to know you): each player has a few. */}
+        {!round.revealed && me && me.skips_left > 0 && (
           <button type="button" className={secondary} onClick={() => send({ t: "skip" })}>
             {fill(t.skip, { count: me.skips_left })}
           </button>
