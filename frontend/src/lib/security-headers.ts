@@ -18,7 +18,9 @@ export function buildCsp({ nonce, dev, apiOrigin }: CspOptions): string {
   const connect = ["'self'"];
   const images = ["'self'", "data:", "blob:"];
   if (apiOrigin) {
-    connect.push(new URL(apiOrigin).origin);
+    const api = new URL(apiOrigin).origin;
+    // Games talk to the API over a live connection (wss:// in production, ws:// locally).
+    connect.push(api, api.replace(/^http/, "ws"));
     images.push(new URL(apiOrigin).origin); // letter photos, served by the API behind signed links
   }
   if (dev) connect.push("ws:"); // hot reload

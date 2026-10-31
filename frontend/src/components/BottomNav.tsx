@@ -12,11 +12,11 @@ const ICONS: Record<NavKey, React.ReactNode> = {
   profile: <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 20c1-4 4-6 8-6s7 2 8 6" />,
 };
 
-// Games and Stamps arrive in later stages.
+// Stamps arrives in a later stage.
 const ITEMS: { key: NavKey; href?: string }[] = [
   { key: "home", href: "/" },
   { key: "create", href: "/write" },
-  { key: "games" },
+  { key: "games", href: "/games" },
   { key: "stamps" },
   { key: "profile", href: "/profile" },
 ];

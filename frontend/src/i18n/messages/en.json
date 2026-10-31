@@ -41,11 +41,12 @@
       }
     },
     "gamesHeading": "Games for two",
-    "gamesBody": "Answer privately, reveal together. From talking stage to deep talk — the server deals the questions, so nobody can peek.",
+    "gamesBody": "Play live on your own phones, wherever you both are. Answer privately, reveal together, and chat as you go. From talking stage to deep talk, the server deals the questions, so nobody can peek.",
     "adultsOnly": "For adults 18+.",
     "privacyLink": "Privacy",
     "dateCta": "Invite them on a date",
-    "open": "Write one"
+    "open": "Write one",
+    "gamesCta": "Play a game"
   },
   "nav": {
     "label": "Main",
@@ -350,7 +351,7 @@
   "privacy": {
     "metaTitle": "Privacy · Dearlly",
     "title": "Privacy notice",
-    "updated": "Last updated 31 October 2026 (photos and secret admirer added)",
+    "updated": "Last updated 31 October 2026 (photos, secret admirer and games added)",
     "intro": "Dearlly is a love-letter post office. You trust us with words meant for one person, so we collect as little as we can, keep it locked, and never sell it. This notice explains what we keep, why, and how to have it removed, in line with the Nigeria Data Protection Act 2023.",
     "sections": [
       {
@@ -381,6 +382,13 @@
           "If you add a photo to a letter, we save a fresh copy of it: location and other hidden details from your phone are removed.",
           "Before anyone sees it, a program on our own server checks it for nudity or sexual content. Photos it flags are refused and never stored. No photo is sent to another company for this check.",
           "Photos are kept in private storage and shown only through links that expire within two hours. A photo you add but never send is deleted after a day; your photos are deleted with your account."
+        ]
+      },
+      {
+        "heading": "Games",
+        "paragraphs": [
+          "When you play a game, your answers and the in-game chat are only shown to the two players. They're kept on our server while you play and deleted an hour after the game ends.",
+          "We keep the result (for example, how many answers matched) and which questions the two of you have already played, so your next game doesn't repeat them. Both go when either account is deleted."
         ]
       },
       {
@@ -608,5 +616,101 @@
   },
   "loading": {
     "label": "Loading…"
+  },
+  "games": {
+    "metaTitle": "Games for two · Dearlly",
+    "title": "Games for two",
+    "lead": "Play live on your own phones, wherever you both are. Answer privately; the answers flip over together.",
+    "pickGame": "Pick a game",
+    "pickLevel": "Pick a level",
+    "levels": {
+      "friendship": "Friendship",
+      "talking": "Talking stage",
+      "romantic": "Romantic",
+      "intense": "Intense"
+    },
+    "levelHints": {
+      "friendship": "Mild and fun, for friends.",
+      "talking": "Getting to know each other.",
+      "romantic": "For couples: memories, love, the future.",
+      "intense": "Deep and flirty, never explicit. You both have to opt in."
+    },
+    "roundsLabel": "Rounds",
+    "intenseConfirm": "I'm in for Intense: deep and flirty, never explicit.",
+    "create": "Create game",
+    "creating": "Creating…",
+    "needsAccount": "You'll log in or create a free account to play. The person you invite needs one too.",
+    "questionsCount": "{count} questions",
+    "roomMetaTitle": "A game for two · Dearlly",
+    "loading": "Finding your game…",
+    "notFound": "No game with that code. Check it, or ask for a new link.",
+    "goGames": "Go to games",
+    "invitedTitle": "{host} invited you to play",
+    "join": "Join the game",
+    "joining": "Joining…",
+    "full": "This game already has two players.",
+    "finished": "This game has already finished.",
+    "lobbyTitle": "Waiting room",
+    "inviteHeading": "Invite them",
+    "inviteLead": "Send this link. They open it on their own phone, wherever they are.",
+    "code": "Game code",
+    "copyLink": "Copy link",
+    "copied": "Copied",
+    "whatsapp": "Send on WhatsApp",
+    "whatsappText": "Play {game} with me on Dearlly 💌 Join here:",
+    "waitingFor": "Waiting for the other player to join…",
+    "online": "online",
+    "offline": "away",
+    "readyLabel": "Ready",
+    "notReady": "Not ready yet",
+    "imReady": "I'm ready",
+    "waitingReady": "Waiting for them to be ready…",
+    "you": "you",
+    "host": "host",
+    "round": "Round {number} of {total}",
+    "answered": "{name} answered ✓",
+    "thinking": "{name} is thinking…",
+    "yourAnswer": "Your answer",
+    "typeAnswer": "Type your answer…",
+    "send": "Send",
+    "lockedIn": "Locked in. Waiting for {name}…",
+    "match": "It's a match! 💞",
+    "noMatch": "Different answers",
+    "guessRight": "{name} guessed right! 🎯",
+    "guessWrong": "Not quite, {name}.",
+    "aboutYou": "Answer about yourself",
+    "guessFor": "Guess what {name} picked",
+    "theirTurn": "{name}'s turn",
+    "yourTurn": "Your turn: truth or dare?",
+    "truth": "Truth",
+    "dare": "Dare",
+    "dareDone": "Done ✓",
+    "dareNote": "Add a note (optional)",
+    "picking": "{name} is picking truth or dare…",
+    "noAnswer": "No answer",
+    "next": "Next question",
+    "skipQuestion": "Skip to the next",
+    "finish": "See results",
+    "end": "End game",
+    "endConfirm": "End the game now?",
+    "skip": "Skip ({count} left)",
+    "hostMovesOn": "{name} moves the game on.",
+    "secondsLeft": "{count}s",
+    "timeUp": "Time's up",
+    "resultsTitle": "Game over",
+    "matched": "You matched {matched} of {scored}",
+    "guessed": "{name} guessed {count} right",
+    "loveLanguage": "{name}'s love language: {lang}",
+    "rounds": "{count} rounds played",
+    "playAgain": "New game",
+    "chat": "Chat",
+    "chatPlaceholder": "Message…",
+    "chatEmpty": "Say hi 👋",
+    "chatPrivacy": "Chat is deleted an hour after the game.",
+    "reconnecting": "Reconnecting…",
+    "gone": "This game has expired.",
+    "error": "Something went wrong. Try again.",
+    "yourLoveLanguage": "Your love language: {lang}",
+    "youGuessed": "You guessed {count} right"
   }
 }

@@ -84,6 +84,12 @@ export function Home({ loggedIn }: { loggedIn: boolean }) {
         <section className="letter-sheet flex flex-col gap-3 rounded-sm py-8 pr-6 pl-12 md:max-w-3xl md:py-10 md:pl-16">
           <h2 className="text-3xl md:text-4xl">{home.gamesHeading}</h2>
           <p className="text-lg leading-[2.25rem] text-muted">{home.gamesBody}</p>
+          <Link
+            href="/games"
+            className="inline-flex min-h-12 items-center self-start rounded-lg border-2 border-fg px-5 font-extrabold no-underline"
+          >
+            {home.gamesCta}
+          </Link>
         </section>
 
         <p className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted">

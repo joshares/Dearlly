@@ -18,8 +18,9 @@ export function proxy(request: NextRequest) {
 
   const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set("Content-Security-Policy", csp);
-  // Private letters (/l/<token>) and email links: never indexed, even if a link leaks.
-  if (request.nextUrl.pathname.startsWith("/l/") || request.nextUrl.pathname === "/unsubscribe") {
+  // Private letters (/l/<token>), game links and email links: never indexed, even if leaked.
+  const path = request.nextUrl.pathname;
+  if (path.startsWith("/l/") || path.startsWith("/play/") || path === "/unsubscribe") {
     response.headers.set("X-Robots-Tag", "noindex, nofollow");
   }
   return response;
