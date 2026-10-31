@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { ARTICLES } from "@/content/blog";
 import { serverGet } from "@/lib/server-api";
 import { PUBLIC_PAGES, SITE_URL } from "@/lib/site";
 
@@ -14,5 +15,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: path === "/" ? 1 : 0.7,
     })),
     ...cities.map((city) => ({ url: `${SITE_URL}/date-ideas/${city.key}`, priority: 0.7 })),
+    ...ARTICLES.map((article) => ({
+      url: `${SITE_URL}/blog/${article.slug}`,
+      lastModified: article.updated ?? article.published,
+      priority: 0.6,
+    })),
   ];
 }

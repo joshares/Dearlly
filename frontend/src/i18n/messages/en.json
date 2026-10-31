@@ -156,7 +156,8 @@
     "dateIdeasLink": "Date ideas",
     "dateIdeasBody": "Places worth the trip, picked from trusted guides.",
     "termsLink": "Terms",
-    "safetyLink": "Safety"
+    "safetyLink": "Safety",
+    "blogLink": "Blog"
   },
   "nav": {
     "label": "Main",
@@ -1135,5 +1136,17 @@
       "line": "{count} places from guides people trust.",
       "alt": "Date ideas in {city} on Dearlly"
     }
+  },
+  "blog": {
+    "metaTitle": "The Dearlly blog: ideas for love notes, dates and couples",
+    "metaDescription": "Practical, original ideas for love letters, dates, Valentine's Day and staying close, from Dearlly.",
+    "title": "The Dearlly blog",
+    "lead": "Ideas for saying it well: love letters, dates, and staying close, wherever you both are.",
+    "readMinutes": "{minutes} min read",
+    "published": "Published {date}",
+    "updated": "Updated {date}",
+    "read": "Read it",
+    "allArticles": "All articles",
+    "kicker": "From the Dearlly blog"
   }
 }
