@@ -596,5 +596,17 @@
     "failed": "Couldn't add that photo. Try another.",
     "giftLabel": "Add a photo of the gift (optional)",
     "giftHint": "Hidden under the stamp with the gift until they scratch it. We remove location and other hidden details, and check it for nudity first."
+  },
+  "notFound": {
+    "metaTitle": "Page not found · Dearlly",
+    "badge": "Return to sender",
+    "title": "This page got lost in the post.",
+    "lead": "The address might be mistyped, or the page has moved. Your letters are safe.",
+    "home": "Go to the home page",
+    "write": "Write a love note",
+    "letterHint": "Looking for a letter someone sent you? Open the exact link from their message or email."
+  },
+  "loading": {
+    "label": "Loading…"
   }
 }

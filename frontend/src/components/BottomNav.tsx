@@ -21,7 +21,7 @@ const ITEMS: { key: NavKey; href?: string }[] = [
   { key: "profile", href: "/profile" },
 ];
 
-export function BottomNav({ t, current }: { t: Messages["nav"]; current: NavKey }) {
+export function BottomNav({ t, current }: { t: Messages["nav"]; current?: NavKey }) {
   return (
     <nav
       aria-label={t.label}
