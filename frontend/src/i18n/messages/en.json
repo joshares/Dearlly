@@ -154,7 +154,9 @@
     "quotesLink": "Words to borrow",
     "quotesBody": "Original love note lines for every mood. Send one as it is, or make it yours.",
     "dateIdeasLink": "Date ideas",
-    "dateIdeasBody": "Places worth the trip, picked from trusted guides."
+    "dateIdeasBody": "Places worth the trip, picked from trusted guides.",
+    "termsLink": "Terms",
+    "safetyLink": "Safety"
   },
   "nav": {
     "label": "Main",
@@ -200,8 +202,10 @@
     "google": "Continue with Google",
     "or": "or",
     "googleFailed": "Google sign-in didn't work. Please try again, or use an emailed code.",
-    "privacyNote": "How we look after your details:",
-    "privacyLink": "Privacy notice"
+    "privacyNote": "By creating an account you agree to our",
+    "privacyLink": "Privacy notice",
+    "termsLink": "Terms",
+    "and": "and"
   },
   "profile": {
     "title": "Your profile",
@@ -573,6 +577,155 @@
     ],
     "contactHeading": "Contact us",
     "contactBody": "Questions or requests about your data:",
+    "contactEmail": "hello@dearlly.app"
+  },
+  "terms": {
+    "metaTitle": "Terms · Dearlly",
+    "title": "Terms of use",
+    "updated": "Last updated 31 October 2026",
+    "intro": "These terms are the rules for using Dearlly: writing letters and invitations, playing games and posting in Our Stamp. By creating an account or using Dearlly, you agree to them. We've kept them short and in plain English.",
+    "sections": [
+      {
+        "heading": "Who can use Dearlly",
+        "paragraphs": [
+          "Dearlly is for adults aged 18 and over. When you create an account, you confirm you're 18 or older. We delete accounts that belong to someone younger.",
+          "You need an account to send letters, play games and post. People you send letters to don't need one to read them."
+        ]
+      },
+      {
+        "heading": "Your account",
+        "paragraphs": [
+          "Keep your login to yourself. You're responsible for what's done with your account. If you think someone else has used it, log out of all devices from your profile and tell us.",
+          "You can delete your account at any time from your profile. Your letters, photos and posts are deleted with it."
+        ]
+      },
+      {
+        "heading": "Be kind, be real",
+        "paragraphs": [
+          "Dearlly is for love, friendship and kindness. You agree not to use it to:"
+        ],
+        "items": [
+          "harass, threaten, bully or frighten anyone;",
+          "send or post sexual content, nudity, or anything involving someone under 18;",
+          "ask for money, bank details or gifts, run scams, or advertise;",
+          "pretend to be someone else, or use secret admirer letters to stalk or pressure anyone;",
+          "post photos of other people without their permission;",
+          "share hate or violence against anyone for who they are;",
+          "break the law, or try to break, overload or get around Dearlly's security."
+        ]
+      },
+      {
+        "heading": "Letters, invitations and secret admirers",
+        "paragraphs": [
+          "Only send letters to people you know and who would want to hear from you. If someone asks you to stop, stop.",
+          "Secret admirer letters hide your name from the person you send them to, but Dearlly always knows who sent them. If people block your secret letters, we can switch the feature off for your account.",
+          "Anyone who gets a letter from Dearlly can report it, stop messages from you, or block all Dearlly emails."
+        ]
+      },
+      {
+        "heading": "Photos and Our Stamp",
+        "paragraphs": [
+          "Only post photos you took or have the right to share, and that everyone in them is happy to have shared. Photos are checked automatically before anyone sees them, and some may be refused.",
+          "Posts in Our Stamp are seen by other Dearlly members. You can delete your own posts at any time. We can remove any post that breaks these terms."
+        ]
+      },
+      {
+        "heading": "Games",
+        "paragraphs": [
+          "Games are for two adults who both want to play. Intense games are deep and flirty but never explicit, and both players have to opt in. Keep the chat respectful."
+        ]
+      },
+      {
+        "heading": "What you own",
+        "paragraphs": [
+          "You own what you write and the photos you upload. You give Dearlly permission to store them, show them to the people you send them to (or to members, for posts), and make the copies needed to run the service, such as smaller versions of photos. This permission ends when you delete them, except where we must keep something to deal with a report or the law.",
+          "The Dearlly name, design, quotes and game questions belong to Dearlly. You can use the quotes and questions inside Dearlly and share your own letters and results."
+        ]
+      },
+      {
+        "heading": "When we step in",
+        "paragraphs": [
+          "If you break these terms, we may remove your content, limit features (such as secret admirer letters or posting), or close your account. We act on reports and may contact the authorities when someone's safety is at risk or the law requires it."
+        ]
+      },
+      {
+        "heading": "Dearlly is provided as it is",
+        "paragraphs": [
+          "We work hard to keep Dearlly running and safe, but we can't promise it will always be available or free of mistakes. Dearlly is free to use today; if we add paid features, we'll say so clearly before you pay for anything.",
+          "As far as the law allows, Dearlly isn't responsible for what members write, send or post, or for what happens on dates and trips arranged through invitations. Nothing in these terms takes away rights you have under Nigerian consumer law."
+        ]
+      },
+      {
+        "heading": "Changes and the law",
+        "paragraphs": [
+          "If we change these terms, we'll update the date at the top, and tell you by email first if a change matters. These terms are governed by the laws of the Federal Republic of Nigeria."
+        ]
+      }
+    ],
+    "contactHeading": "Questions",
+    "contactBody": "Questions about these terms:",
+    "contactEmail": "hello@dearlly.app"
+  },
+  "safety": {
+    "metaTitle": "Safety · Dearlly",
+    "title": "Staying safe on Dearlly",
+    "updated": "Last updated 31 October 2026",
+    "intro": "Dearlly is built for sweet moments, and we want every one of them to feel safe. Here's how we protect you, and how you can protect yourself.",
+    "sections": [
+      {
+        "heading": "What we do",
+        "items": [
+          "Private letters open only with their link. They never show up on search engines, and the sender can take them back.",
+          "Every photo is cleaned of hidden details like your location, and checked for nudity before anyone sees it.",
+          "Letters can't contain links or long numbers like bank accounts, which is how many scams start.",
+          "Secret admirer letters are limited to 3 a day and can be blocked with one tap. Dearlly always knows who sent them.",
+          "Games are played by two adults who both chose to play. Intense games need both to opt in, and are never explicit.",
+          "We read and act on every report."
+        ],
+        "paragraphs": []
+      },
+      {
+        "heading": "Never send money",
+        "paragraphs": [
+          "Nobody on Dearlly should ever ask you for money, airtime, gift cards, bank details or codes, however sweet their letter. That's a scam. Don't send anything. Report it, and block them."
+        ]
+      },
+      {
+        "heading": "If a letter or post upsets you",
+        "items": [
+          "Tap \"Report this letter\" at the bottom of the letter, or ⋯ then Report on a post. The sender won't know it was you.",
+          "For a secret admirer letter, tap \"Block this secret admirer\". It disappears for good.",
+          "In any letter email, tap \"Stop messages from this sender\", or \"Never email me again\" to stop all Dearlly emails."
+        ],
+        "paragraphs": []
+      },
+      {
+        "heading": "Going on a date",
+        "paragraphs": [
+          "Date invitations are lovely, but if you're meeting someone for the first time:"
+        ],
+        "items": [
+          "meet in a busy public place, like the restaurants and spots in our list;",
+          "tell a friend where you're going and who with, and share your live location;",
+          "arrange your own way there and back;",
+          "trust your feelings: you can always say \"Not this time\", or leave."
+        ]
+      },
+      {
+        "heading": "Photos",
+        "paragraphs": [
+          "Only share photos everyone in them is happy to share. Never send private photos to anyone you haven't met, and remember that anything you share online can be copied."
+        ]
+      },
+      {
+        "heading": "If you're in danger",
+        "paragraphs": [
+          "If you or someone else is in immediate danger in Nigeria, call 112, the national emergency number. Then tell us, so we can act on the account."
+        ]
+      }
+    ],
+    "contactHeading": "Tell us",
+    "contactBody": "Worried about something on Dearlly? Email us and we'll look into it:",
     "contactEmail": "hello@dearlly.app"
   },
   "date": {

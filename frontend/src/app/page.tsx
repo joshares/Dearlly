@@ -118,6 +118,12 @@ export function Home({ loggedIn }: { loggedIn: boolean }) {
           <Link href="/privacy" className="font-bold underline">
             {home.privacyLink}
           </Link>
+          <Link href="/terms" className="font-bold underline">
+            {home.termsLink}
+          </Link>
+          <Link href="/safety" className="font-bold underline">
+            {home.safetyLink}
+          </Link>
         </p>
       </main>
       <BottomNav t={t.nav} current="home" />

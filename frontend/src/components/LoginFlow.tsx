@@ -395,9 +395,14 @@ export function LoginFlow({
           </button>
           <p className="text-sm text-muted">
             {t.privacyNote}{" "}
+            <Link href="/terms" className="font-bold underline">
+              {t.termsLink}
+            </Link>{" "}
+            {t.and}{" "}
             <Link href="/privacy" className="font-bold underline">
               {t.privacyLink}
             </Link>
+            .
           </p>
         </form>
       )}
