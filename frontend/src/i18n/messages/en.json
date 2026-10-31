@@ -201,7 +201,12 @@
       "date_invite": "Date invitation",
       "vacation_invite": "Vacation",
       "gift_reveal": "Gift"
-    }
+    },
+    "secretLabel": "Send as a secret admirer",
+    "secretHint": "They'll see \"A secret admirer\" instead of your name until you choose to reveal it. Dearlly always knows it's you. Up to 3 a day, no photos.",
+    "secretName": "A secret admirer",
+    "secretSealed": "They'll see \"A secret admirer\". Reveal your name any time from Your letters.",
+    "secretWhatsapp": "Someone has a secret for you 💌 Open it here:"
   },
   "letter": {
     "metaTitle": "A letter for you · Dearlly",
@@ -267,7 +272,14 @@
     "theirAnswer": "Their answer",
     "writeBackDate": "Send your own invitation",
     "writeBackTrip": "Plan your own trip invitation",
-    "writeBackGift": "Send your own gift reveal"
+    "writeBackGift": "Send your own gift reveal",
+    "block": "Block this secret admirer",
+    "blocking": "Blocking…",
+    "blockHint": "One tap: this letter disappears for good, and if it came by email, they can't email you again.",
+    "blockedTitle": "Blocked.",
+    "blockedLead": "This letter is gone for good. If it came by email, this sender can't email you again.",
+    "senderSecretNote": "They see \"A secret admirer\" until you reveal your name from Your letters.",
+    "secretSender": "your secret admirer"
   },
   "sent": {
     "title": "Letters you've sent",
@@ -304,7 +316,14 @@
       "date_invite": "Date invitation",
       "vacation_invite": "Vacation invitation",
       "gift_reveal": "Gift reveal"
-    }
+    },
+    "secretHidden": "Secret admirer · your name is hidden",
+    "secretRevealed": "Secret admirer · you revealed your name",
+    "blocked": "They blocked this secret admirer letter",
+    "reveal": "Reveal my name",
+    "revealConfirm": "Show them your name? From now on the letter is signed by you. This can't be undone.",
+    "revealYes": "Yes, reveal it",
+    "revealNo": "Not yet"
   },
   "save": {
     "heading": "Keep this letter",
@@ -331,7 +350,7 @@
   "privacy": {
     "metaTitle": "Privacy · Dearlly",
     "title": "Privacy notice",
-    "updated": "Last updated 30 October 2026 (photos added)",
+    "updated": "Last updated 31 October 2026 (photos and secret admirer added)",
     "intro": "Dearlly is a love-letter post office. You trust us with words meant for one person, so we collect as little as we can, keep it locked, and never sell it. This notice explains what we keep, why, and how to have it removed, in line with the Nigeria Data Protection Act 2023.",
     "sections": [
       {
@@ -352,6 +371,7 @@
         "paragraphs": [
           "We keep what you write so the person you send it to can open it: the names, the message, the date it opens, and their reply. We also keep whether and when it was opened, so you can see \"Opened\".",
           "We don't read your letters. The only time someone at Dearlly looks at one is when it is reported, to decide whether to take it down.",
+          "If you send a letter as a secret admirer, the person you send it to doesn't see your name until you reveal it, but Dearlly always keeps a record of who sent it, so a report or a block can be acted on.",
           "Unsent drafts stay on your own phone or computer until you seal them. Downloads (pictures and PDFs) are made on your device; nothing is sent to us."
         ]
       },

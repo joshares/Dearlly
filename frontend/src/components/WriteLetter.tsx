@@ -43,6 +43,7 @@ type Draft = {
   photoWidth: number;
   photoHeight: number;
   opensAt: string; // datetime-local value, WAT
+  secret: boolean; // secret admirer: they see "A secret admirer" until the name is revealed
 };
 
 type Quote = { key: string; mood: Mood; title: string; text: string };
@@ -56,12 +57,14 @@ const EMPTY: Draft = {
   quoteText: "",
   theme: "cream",
   ...NO_PHOTO,
+  secret: false,
   opensAt: "",
 };
 
 function asLetter(draft: Draft): LetterContent {
   return {
-    senderName: draft.senderName,
+    // The preview shows what they'll see.
+    senderName: draft.secret ? t.secretName : draft.senderName,
     recipientName: draft.recipientName,
     recipientTitle: draft.recipientTitle,
     quoteTitle: draft.quoteTitle,
@@ -124,10 +127,11 @@ export function WriteLetter({ loggedIn = false }: { loggedIn?: boolean }) {
           },
           opens_at: lagosIso(draft.opensAt),
           recipient_email: draft.recipientEmail.trim() || null,
+          secret: draft.secret,
         },
       });
       saveDraft(DRAFT_KEY, null);
-      setSealed({ ...result, letter: asLetter(draft), email: draft.recipientEmail.trim() });
+      setSealed({ ...result, secret: draft.secret, letter: asLetter(draft), email: draft.recipientEmail.trim() });
     } catch (err) {
       if (err instanceof ApiError && err.status === 401) {
         // The account step: their draft is saved; they come straight back here.
@@ -141,7 +145,11 @@ export function WriteLetter({ loggedIn = false }: { loggedIn?: boolean }) {
   }
 
   if (sealed) {
-    return <SealedPanel sealed={sealed} onAnother={() => { setDraft(EMPTY); setSealed(null); }} />;
+    return (
+      <SealedPanel sealed={sealed} onAnother={() => { setDraft(EMPTY); setSealed(null); }}
+        note={sealed.secret ? t.secretSealed : undefined}
+        whatsappText={sealed.secret ? t.secretWhatsapp : undefined} />
+    );
   }
 
   const preview = <LetterCard placeholder={t.placeholder} letter={asLetter(draft)} />;
@@ -156,6 +164,17 @@ export function WriteLetter({ loggedIn = false }: { loggedIn?: boolean }) {
         </header>
 
         <WhoFields draft={draft} update={update} />
+
+        <label className="flex min-h-12 items-start gap-3 rounded-md border-2 border-dashed border-line p-3">
+          <input type="checkbox" name="secret" className="mt-1 h-6 w-6 shrink-0 accent-[var(--color-stamp)]"
+            checked={draft.secret}
+            // No photos on secret admirer letters: one already added is taken off.
+            onChange={(e) => update(e.target.checked ? { secret: true, ...NO_PHOTO } : { secret: false })} />
+          <span>
+            <span className="block font-bold">{t.secretLabel}</span>
+            <span className="block text-sm text-muted">{t.secretHint}</span>
+          </span>
+        </label>
 
         <fieldset className="flex flex-col gap-4">
           <legend className={legend} style={{ fontFamily: "var(--font-heading)" }}>
@@ -206,7 +225,7 @@ export function WriteLetter({ loggedIn = false }: { loggedIn?: boolean }) {
           </label>
         </fieldset>
 
-        <PhotoField value={draft} onChange={update} loggedIn={loggedIn} next="/write" />
+        {!draft.secret && <PhotoField value={draft} onChange={update} loggedIn={loggedIn} next="/write" />}
 
         <LookFields draft={draft} update={update} />
 

@@ -14,10 +14,13 @@
 # themes:     paper styles the sender can pick
 # reply:      how the recipient answers: "reaction" (pick one + optional note) or "yes_no" (Stage 5)
 # reactions:  for reply: reaction, the choices the recipient sees
+# secret_admirer: true = can be sent anonymously (love notes only: an anonymous date or trip
+#             invitation to a real place and time isn't safe)
 
 experience_types:
   - key: love_note
     name: Love note
+    secret_admirer: true
     email_subject: "{sender} sealed a letter for you 💌"
     fields:
       photo:

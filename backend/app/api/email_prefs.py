@@ -47,6 +47,8 @@ async def stop_info(
     token: str, request: Request, db: DbSession, settings: AppSettings, limiter: Limiter
 ) -> StopInfo:
     _, sender_id = await _read(request, settings, limiter, token)
+    if letter_mail.token_is_secret(settings, token):
+        return StopInfo(sender="this secret admirer")
     sender = await db.get(User, sender_id)
     return StopInfo(sender=f"@{sender.username}" if sender else "this sender")
 
