@@ -271,7 +271,8 @@ Also start now: find the illustrator (brief: love-letter post office, Nigerian c
 **Stage 5 (Date, vacation, gift reveal, places, photos, secret admirer) is done** (31 Oct 2026): date invitations (69 curated places in Lagos and Abuja with their guides and ranks; Yes / runaway No; directions), vacation invitations, gift reveals (scratch-off stamp, gift photo under it), photos on every letter (cleaned of hidden data, nudity-checked on our own server, private R2, signed links, two sizes), secret admirer (hidden name, 3 a day, one-tap block, reveal), not-found page and instant taps. Founder tested each on dearlly.app (PRs #38–#46).
 **Stage 6 (AI) is postponed until after launch** (founder, 31 Oct 2026).
 **Stage 7 (Games) is done** (31 Oct 2026): 9 games + Mix, played live on two phones anywhere (answers reveal together, "answered ✓", host moves on, chat, reconnects), 2,160 original questions with no repeats per pair, 👍/👎 per question, join by code, guided picking, shareable results card, and the admin page (overview, reports, questions, accounts). Founder tested on dearlly.app (PRs #47–#56).
-**Stage 8 (Community) is in progress.**
+**Stage 8 (Community) is done** (31 Oct 2026): "Our Stamp", a members-only feed of stamps (photo + caption, cleaned and nudity-checked), likes, Top post of the week (most likes in the last 7 days, admin can override), delete own posts, reports, and an admin Community tab. Founder tested on dearlly.app (PRs #57–#58).
+**Stage 9 (Public pages and launch readiness) is next.**
 Stage 0 is partly done: the plan is in the repo; the accounts and domain are being created alongside (needed by Stage 3).
 Update this section as each stage finishes.
 
