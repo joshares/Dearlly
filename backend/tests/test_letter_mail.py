@@ -254,6 +254,7 @@ def test_reports_are_saved_and_sent_to_the_founder(
     assert email.to == settings.reports_to and email.subject == "Dearlly report: scam"
     assert "Asked me for money" in email.text and "@ada_demo" in email.text
     assert f"python -m app.admin takedown {created['id']}" in email.text
+    assert "http://localhost:3100/admin" in email.text
 
     async def saved() -> list[Report]:
         engine = create_async_engine(settings.database_url.get_secret_value(), poolclass=NullPool)

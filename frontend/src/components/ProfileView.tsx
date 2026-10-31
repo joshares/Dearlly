@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -111,7 +112,14 @@ export function ProfileView() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-4xl leading-tight md:text-5xl">{t.title}</h1>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-4xl leading-tight md:text-5xl">{t.title}</h1>
+        {me.is_admin && (
+          <Link href="/admin" className="inline-flex min-h-12 items-center rounded-full border-2 border-stamp px-5 font-bold text-accent-text no-underline">
+            {t.adminLink}
+          </Link>
+        )}
+      </div>
       <dl className="flex flex-col gap-3 rounded-md border-2 border-line bg-surface p-4">
         <div>
           <dt className="text-sm text-muted">{t.usernameLabel}</dt>

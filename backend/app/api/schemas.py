@@ -24,6 +24,7 @@ class MyProfile(PublicProfile):
     email: str
     plan: Plan
     has_password: bool
+    is_admin: bool = False
 
 
 class CsrfOut(BaseModel):
