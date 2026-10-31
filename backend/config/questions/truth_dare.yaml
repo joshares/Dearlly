@@ -1,0 +1,16 @@
+# Truth or dare: take turns. Every dare can be done from your phone, wherever you both are.
+questions:
+  - {key: td_t_crush, kind: truth, levels: [friendship, talking, romantic, intense], depth: 1, text: "Who was your first crush?"}
+  - {key: td_t_embarrass, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the most embarrassing thing on your phone right now?"}
+  - {key: td_t_lie, kind: truth, levels: [friendship, talking, romantic, intense], depth: 2, text: "What's the last small lie you told?"}
+  - {key: td_t_notice, kind: truth, levels: [talking, romantic, intense], depth: 3, text: "What's the first thing you noticed about me?"}
+  - {key: td_t_miss, kind: truth, levels: [romantic, intense], depth: 3, text: "What do you miss most when we're apart?"}
+  - {key: td_t_dream, kind: truth, levels: [intense], depth: 4, text: "Describe a dream you've had about me."}
+  - {key: td_t_never_said, kind: truth, levels: [romantic, intense], depth: 5, text: "What's something you've never said out loud to me?"}
+  - {key: td_d_selfie, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send your silliest face as a selfie on WhatsApp right now."}
+  - {key: td_d_voice_song, kind: dare, levels: [friendship, talking, romantic, intense], depth: 1, text: "Send a voice note singing one line of your favourite song."}
+  - {key: td_d_last_photo, kind: dare, levels: [friendship, talking, romantic, intense], depth: 2, text: "Share the last photo in your gallery (if it's safe to share!)."}
+  - {key: td_d_compliment, kind: dare, levels: [talking, romantic, intense], depth: 2, text: "Write three compliments for your partner in the chat, no repeats."}
+  - {key: td_d_poem, kind: dare, levels: [romantic, intense], depth: 3, text: "Write a four-line love poem about your partner in the chat."}
+  - {key: td_d_voice_sweet, kind: dare, levels: [intense], depth: 3, text: "Send a voice note telling your partner what you'd do on your next date."}
+  - {key: td_d_status, kind: dare, levels: [romantic, intense], depth: 2, text: "Post a sweet message about your partner as your WhatsApp status (you can delete it later)."}

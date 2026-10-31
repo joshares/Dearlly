@@ -1,0 +1,16 @@
+# Would you rather: two choices; a match if you pick the same.
+questions:
+  - {key: wyr_teleport, levels: [friendship, talking, romantic], depth: 1, text: "Would you rather…", options: ["Teleport anywhere", "Pause time"]}
+  - {key: wyr_morning, levels: [friendship, talking, romantic], depth: 1, text: "Would you rather…", options: ["Wake up at 5am feeling great", "Sleep in every day"]}
+  - {key: wyr_food_forever, levels: [friendship, talking, romantic], depth: 1, text: "Would you rather eat only one of these forever?", options: ["Rice dishes", "Pasta dishes"]}
+  - {key: wyr_famous, levels: [friendship, talking], depth: 2, text: "Would you rather be…", options: ["Famous but busy", "Unknown but free"]}
+  - {key: wyr_past_future, levels: [friendship, talking, romantic], depth: 2, text: "Would you rather visit…", options: ["The past", "The future"]}
+  - {key: wyr_text_call, levels: [talking, romantic], depth: 1, text: "Would you rather get…", options: ["A long sweet text", "A short surprise call"]}
+  - {key: wyr_date_in_out, levels: [talking, romantic], depth: 2, text: "Would you rather have date night…", options: ["Out somewhere new", "In, cooking together"]}
+  - {key: wyr_honest, levels: [talking, romantic], depth: 3, text: "Would you rather hear…", options: ["A hard truth", "A kind white lie"]}
+  - {key: wyr_distance, levels: [romantic], depth: 3, text: "Would you rather…", options: ["Live far apart and talk every day", "Live close and see each other weekly"]}
+  - {key: wyr_relive, levels: [romantic], depth: 4, text: "Would you rather…", options: ["Relive our best day", "See our best day still to come"]}
+  - {key: wyr_know_thoughts, levels: [romantic, intense], depth: 4, text: "Would you rather…", options: ["Read my mind for a day", "Feel what I feel for a day"]}
+  - {key: wyr_slow_dance, levels: [intense], depth: 3, text: "Would you rather…", options: ["Slow dance in the kitchen", "Kiss under the rain"]}
+  - {key: wyr_whisper, levels: [intense], depth: 3, text: "Would you rather I…", options: ["Whisper something sweet", "Say it out loud in front of everyone"]}
+  - {key: wyr_cuddle, levels: [intense], depth: 2, text: "Would you rather…", options: ["Cuddle all morning", "Stay up talking all night"]}

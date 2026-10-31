@@ -1,0 +1,15 @@
+# How well do you know me: one answers about themselves (text), the other guesses (guess, with
+# {name} for the first player). Roles swap each round; a right guess scores a point.
+questions:
+  - {key: km_comfort_food, levels: [friendship, talking, romantic, intense], depth: 1, text: "What's your go-to comfort food?", guess: "What's {name}'s go-to comfort food?", options: ["Something spicy", "Something sweet", "Something fried", "Something homemade"]}
+  - {key: km_free_day, levels: [friendship, talking, romantic, intense], depth: 1, text: "A free day appears. What do you do?", guess: "A free day appears. What does {name} do?", options: ["Sleep", "Go out", "Binge a show", "Finally get things done"]}
+  - {key: km_music, levels: [friendship, talking, romantic, intense], depth: 1, text: "What are you most likely listening to right now?", guess: "What is {name} most likely listening to right now?", options: ["Afrobeats", "R&B", "Gospel", "Something from the 2000s"]}
+  - {key: km_stress, levels: [friendship, talking, romantic, intense], depth: 2, text: "When you're stressed, you…", guess: "When {name} is stressed, they…", options: ["Go quiet", "Talk it out", "Eat", "Stay busy"]}
+  - {key: km_dream_job, levels: [friendship, talking, romantic], depth: 2, text: "If money didn't matter, you'd work as…", guess: "If money didn't matter, {name} would work as…", options: ["An artist", "A traveller", "A business owner", "A teacher or helper"]}
+  - {key: km_fear, levels: [friendship, talking, romantic, intense], depth: 3, text: "Which scares you most?", guess: "Which scares {name} most?", options: ["Heights", "Being alone", "Failing", "Spiders"]}
+  - {key: km_apology, levels: [talking, romantic, intense], depth: 3, text: "The apology that works best on you is…", guess: "The apology that works best on {name} is…", options: ["Saying sorry clearly", "A thoughtful gesture", "Changed behaviour", "A long talk"]}
+  - {key: km_loved, levels: [romantic, intense], depth: 4, text: "You feel most loved when someone…", guess: "{name} feels most loved when someone…", options: ["Says it", "Shows up", "Spends time", "Touches their hand"]}
+  - {key: km_proud, levels: [friendship, talking, romantic, intense], depth: 4, text: "What are you proudest of?", guess: "What is {name} proudest of?", options: ["Their work", "Their family", "Who they've become", "Something they survived"]}
+  - {key: km_turn_on_mind, levels: [intense], depth: 3, text: "What's most attractive to you in a person?", guess: "What's most attractive to {name} in a person?", options: ["Confidence", "Kindness", "Humour", "Intelligence"]}
+  - {key: km_date_idea, levels: [romantic, intense], depth: 2, text: "Your dream date is…", guess: "{name}'s dream date is…", options: ["Candlelit dinner", "An adventure", "A night in", "A surprise trip"]}
+  - {key: km_future, levels: [romantic, intense], depth: 5, text: "In ten years, you most want to be…", guess: "In ten years, {name} most wants to be…", options: ["Settled and at peace", "Successful", "Travelling", "Surrounded by family"]}

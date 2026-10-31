@@ -22,11 +22,10 @@ def test_free_plan_is_gated_server_side() -> None:
     assert error.value.status_code == 403
 
 
-def test_registries_load_and_start_empty() -> None:
+def test_registries_load() -> None:
     registries = load_all_registries()
     assert set(registries) == set(REGISTRIES)
-    # Filled in as stages arrive: love notes (Stage 4) and the quote library so far.
-    assert registries["game_formats"] == ()
+    assert len(registries["game_formats"]) == 8
     assert {c["key"] for c in registries["cities"]} == {"lagos", "abuja"}
     assert any(t["key"] == "love_note" for t in registries["experience_types"])
     assert len(registries["quotes"]) >= 40

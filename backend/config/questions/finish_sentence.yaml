@@ -1,0 +1,14 @@
+# Finish my sentence: both finish the same sentence, then read each other's.
+questions:
+  - {key: fs_happy_place, levels: [friendship, talking, romantic, intense], depth: 1, text: "My happy place is…"}
+  - {key: fs_cant_live, levels: [friendship, talking, romantic, intense], depth: 1, text: "I could never live without…"}
+  - {key: fs_secret_talent, levels: [friendship, talking, romantic, intense], depth: 2, text: "A talent most people don't know I have is…"}
+  - {key: fs_laugh, levels: [friendship, talking, romantic, intense], depth: 1, text: "The thing that always makes me laugh is…"}
+  - {key: fs_first_impression, levels: [talking, romantic, intense], depth: 2, text: "My first impression of you was…"}
+  - {key: fs_favourite_memory, levels: [friendship, romantic, intense], depth: 3, text: "My favourite memory of us is…"}
+  - {key: fs_wish_knew, levels: [talking, romantic, intense], depth: 4, text: "I wish more people knew that I…"}
+  - {key: fs_grateful, levels: [friendship, talking, romantic, intense], depth: 3, text: "Right now, I'm most grateful for…"}
+  - {key: fs_you_make_me, levels: [romantic, intense], depth: 4, text: "You make me feel…"}
+  - {key: fs_promise, levels: [romantic, intense], depth: 5, text: "One promise I want to make you is…"}
+  - {key: fs_cant_stop, levels: [intense], depth: 3, text: "I can't stop thinking about the time we…"}
+  - {key: fs_next_date, levels: [talking, romantic, intense], depth: 2, text: "On our next date, I want us to…"}

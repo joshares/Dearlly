@@ -5,6 +5,7 @@ from urllib.parse import urlparse
 from fastapi import Depends, HTTPException, Request, Response, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from starlette.requests import HTTPConnection
 
 from app.core.config import Settings
 from app.core.ratelimit import RateLimiter
@@ -122,7 +123,12 @@ async def current_session_id(request: Request, settings: AppSettings) -> uuid.UU
 
 
 async def current_user(request: Request, db: DbSession, settings: AppSettings) -> User:
-    token = request.cookies.get(ACCESS_COOKIE)
+    return await user_from_cookies(request, db, settings)
+
+
+async def user_from_cookies(conn: HTTPConnection, db: AsyncSession, settings: Settings) -> User:
+    """The logged-in user, for a normal request or a live (WebSocket) connection."""
+    token = conn.cookies.get(ACCESS_COOKIE)
     if not token:
         raise _not_logged_in()
     try:
