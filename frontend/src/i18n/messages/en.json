@@ -711,6 +711,11 @@
     "gone": "This game has expired.",
     "error": "Something went wrong. Try again.",
     "yourLoveLanguage": "Your love language: {lang}",
-    "youGuessed": "You guessed {count} right"
+    "youGuessed": "You guessed {count} right",
+    "joinHeading": "Have a code?",
+    "joinLead": "Someone invited you? Type the 6-letter game code.",
+    "joinLabel": "Game code",
+    "joinButton": "Join",
+    "orCreate": "Or start a new game"
   }
 }
